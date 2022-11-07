@@ -31,7 +31,7 @@ public class InputModule : MonoBehaviour
         forward.y = 0f;
         Vector3 right = new Vector3(forward.z, 0f, -forward.x);
 
-        direc = (forward * z + right * x).normalized; // 방향
+        direc = (forward * z + right * x);//.normalized; // 방향
 
         mainModule.MovePlayer(direc, isRun);
         //RotateBody(_amount);
