@@ -10,6 +10,11 @@ public class MainModule : MonoBehaviour
 
     private MoveModule _moveModule;
     private InputModule _inputModule;
+    private UIModule _uIModule;
+
+    public MoveModule _MoveModule => _moveModule;
+    public InputModule _InputModule => _inputModule;
+    public UIModule _UIModule => _uIModule;
 
     private Animator _animator;
 
@@ -24,6 +29,7 @@ public class MainModule : MonoBehaviour
     {
         _moveModule = GetComponent<MoveModule>();
         _inputModule = GetComponent<InputModule>();
+        _uIModule = GetComponent<UIModule>();
         _animator = GetComponent<Animator>();
         playerCam = Camera.main;
     }

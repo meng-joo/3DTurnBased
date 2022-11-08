@@ -36,4 +36,25 @@ public class InputModule : MonoBehaviour
         mainModule.MovePlayer(direc, isRun);
         //RotateBody(_amount);
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("SignPanel"))
+        {
+            mainModule._UIModule.OnInteractionKeyImage(true);
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("SignPanel"))
+        {
+            mainModule._UIModule.OnInteractionKeyImage(false);
+        }
+    }
 }
