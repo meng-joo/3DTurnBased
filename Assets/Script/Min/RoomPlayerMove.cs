@@ -1,0 +1,31 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+public class RoomPlayerMove : MonoBehaviour
+{
+    Vector3 moveDir = Vector3.zero;
+
+    private NavMeshAgent _nav;
+
+    [SerializeField] private float speed = 5f;
+
+    void Start()
+    {
+        _nav = GetComponent<NavMeshAgent>();    
+    }
+    void Update()
+    {
+        Move();
+    }
+    private void Move()
+    {
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
+
+        moveDir = new Vector3(h, 0, v) * speed * Time.deltaTime;
+
+        _nav.Move(moveDir);
+        
+    }
+}
