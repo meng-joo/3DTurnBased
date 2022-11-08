@@ -6,7 +6,20 @@ using DG.Tweening;
 
 public class MainModule : MonoBehaviour
 {
+    [Space]
+    [Header("플레이어 데이터")]
     public PlayerDataSO playerDataSO;
+
+    [Space]
+    [Header("복도 카메라들")]
+    public Camera playerCam;
+    public CinemachineVirtualCamera vCam1;
+    public CinemachineVirtualCamera vCam2;
+    public CinemachineVirtualCamera vCam3;
+
+    [Space]
+    [Header("플레이어 움직일 수 있냐")]
+    public bool canMove;
 
     private MapManager _mapManager;
 
@@ -21,11 +34,6 @@ public class MainModule : MonoBehaviour
     private Animator _animator;
 
     private float playerSpeed;
-
-    public Camera playerCam;
-    public CinemachineVirtualCamera vCam1;
-    public CinemachineVirtualCamera vCam2;
-    public CinemachineVirtualCamera vCam3;
 
     private void Awake()
     {
@@ -44,10 +52,11 @@ public class MainModule : MonoBehaviour
 
     public void MovePlayer(Vector3 direc, bool isRun)
     {
-        if (direc != Vector3.zero)
+        _moveModule.MovePlayer(direc, playerSpeed);
+
+        if (direc != Vector3.zero && !canMove)
         {
             playerSpeed = isRun ? playerDataSO.runSpeed : playerDataSO.walkSpeed;
-            _moveModule.MovePlayer(direc, playerSpeed);
             return;
         }
 

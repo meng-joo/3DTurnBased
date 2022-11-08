@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class InputModule : MonoBehaviour
 {
-    public bool canMove;
-
     MainModule mainModule;
 
     private void Start()
@@ -16,6 +14,7 @@ public class InputModule : MonoBehaviour
     private void Update()
     {
         InputMove();
+        InputUI();
     }
 
     void InputMove()
@@ -31,30 +30,29 @@ public class InputModule : MonoBehaviour
         forward.y = 0f;
         Vector3 right = new Vector3(forward.z, 0f, -forward.x);
 
-        direc = (forward * z + right * x);//.normalized; // 방향
+        direc = (forward * z + right * x).normalized;//.normalized; // 방향
 
         mainModule.MovePlayer(direc, isRun);
         //RotateBody(_amount);
     }
 
-    private void OnTriggerStay(Collider other)
+    void InputUI()
     {
-        if (other.CompareTag("SignPanel"))
+        if (Input.GetKeyDown($"{mainModule._UIModule.KeyName}") && mainModule._UIModule.canInteration)
         {
-            mainModule._UIModule.OnInteractionKeyImage(true);
+            mainModule.canMove = true;
+            mainModule._UIModule._uiManager.SignUIOn();
+        }
 
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-
-            }
+        if(Input.GetKeyDown(KeyCode.Escape) && mainModule._UIModule._uiManager.isSignUp)
+        {
+            UndoSignImage();
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    public void UndoSignImage()
     {
-        if (other.CompareTag("SignPanel"))
-        {
-            //mainModule._UIModule.OnInteractionKeyImage(false);
-        }
+        mainModule.canMove = false;
+        mainModule._UIModule._uiManager.SignUIOff();
     }
 }

@@ -1,56 +1,41 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class UIManager : MonoBehaviour
-{ 
-    [Header("[UI Canvas]")]
+{
+    [Header("오버레이 캔버스")]
+    [SerializeField] private Canvas _canvas;
 
-    public bool isActiveContinue;
-    public bool isupgrading = false;
-    private bool isDisplayContinue = true;
-    public bool IsDisplayContinue { get { return isDisplayContinue; } set { isDisplayContinue = value; } }
+    [Space]
+    [Header("페이드 이미지")]
+    [SerializeField] public Image _fadeImage;
 
-    Stack<IUserInterface> _popupStack = new Stack<IUserInterface>();
+    [Space]
+    [Header("UI오브젝트들")]
+    [SerializeField] public Image _signImage;
+    [SerializeField] public Button backButton;
 
-    private void Update()
+    [Space]
+    [Header("표지판UI 활성화?")]
+    public bool isSignUp = false;
+
+    public void SignUIOn()
     {
-
+        _fadeImage.gameObject.SetActive(true);
+        _fadeImage.DOFade(.75f, 0.4f);
+        _signImage.transform.DOMoveY(1080 / 2, 0.6f);
+        backButton.transform.DOMoveX(200, 0.6f);
+        isSignUp = true;
     }
 
-    public void ActiveUI(GameObject targetUI)
+    public void SignUIOff()
     {
-        IsDisplayContinue = true;
-
-        if (_popupStack.Count > 0)
-        {
-            _popupStack.Peek().CloseUI();
-        }
-
-        _popupStack.Push(targetUI.GetComponent<IUserInterface>());
-        _popupStack.Peek().OpenUI();
-    }
-
-    public void DeActiveUI()
-    {
-        if (_popupStack.Count > 1)
-        {
-            _popupStack.Pop().CloseUI();
-            _popupStack.Peek().OpenUI();
-        }
-        else if (_popupStack.Count == 1)
-        {
-            _popupStack.Pop().CloseUI();
-            if (isDisplayContinue)
-            {
-            }
-            isActiveContinue = true;
-        }
-        else if (_popupStack.Count == 0)
-        {
-            if (isDisplayContinue)
-            {
-            }
-        }
+        _fadeImage.DOFade(0, 0.4f).OnComplete(() => _fadeImage.gameObject.SetActive(false));
+        _signImage.transform.DOMoveY(-1080 / 2, 0.6f);
+        backButton.transform.DOMoveX(-200, 0.6f);
+        isSignUp = false;
     }
 }
