@@ -5,7 +5,7 @@ using System;
 
 [Serializable]
 [CreateAssetMenu(menuName = "Tip/Explain")]
-public class TipSO : ScriptableObject
+public class TipDataSO : ScriptableObject
 {
     public string[] tipStr;
 }

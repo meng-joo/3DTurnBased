@@ -8,6 +8,8 @@ public class MainModule : MonoBehaviour
 {
     public PlayerDataSO playerDataSO;
 
+    private MapManager _mapManager;
+
     private MoveModule _moveModule;
     private InputModule _inputModule;
     private UIModule _uIModule;
@@ -31,6 +33,7 @@ public class MainModule : MonoBehaviour
         _inputModule = GetComponent<InputModule>();
         _uIModule = GetComponent<UIModule>();
         _animator = GetComponent<Animator>();
+        _mapManager = GameObject.Find("MapManager").GetComponent<MapManager>();
         playerCam = Camera.main;
     }
 
@@ -70,6 +73,11 @@ public class MainModule : MonoBehaviour
             vCam1.Priority = 10;
             vCam2.Priority = 10;
             vCam3.Priority = 20;
+        }
+        else if(other.CompareTag("ToRoom"))
+        {
+            //Time.timeScale = 0f;
+            _mapManager.StartInit();
         }
     }
 }

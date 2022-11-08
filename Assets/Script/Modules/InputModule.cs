@@ -54,7 +54,7 @@ public class InputModule : MonoBehaviour
     {
         if (other.CompareTag("SignPanel"))
         {
-            mainModule._UIModule.OnInteractionKeyImage(false);
+            //mainModule._UIModule.OnInteractionKeyImage(false);
         }
     }
 }
