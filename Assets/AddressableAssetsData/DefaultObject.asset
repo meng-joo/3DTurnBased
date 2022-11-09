@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cde423dac229caa47a96be88bc730903, type: 3}
-  m_Name: PlayerDataSO
+  m_Script: {fileID: 11500000, guid: 3a189bb168d8d90478a09ea08c2f3d72, type: 3}
+  m_Name: DefaultObject
   m_EditorClassIdentifier: 
-  walkSpeed: 2.3
-  runSpeed: 5.2
-  atk: 5
-  hp: 20
-  def: 5
+  m_AddressableAssetSettingsGuid: b7382ad27627c0540b920fda1d9f8278

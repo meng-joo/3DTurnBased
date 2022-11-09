@@ -8,13 +8,30 @@ using DG.Tweening;
 
 public class MapManager : MonoBehaviour
 {
-    [SerializeField] private Image fadeUI;
-    [SerializeField] private TextMeshProUGUI tipText;
-    [SerializeField] private TextMeshProUGUI tip;
-    [SerializeField] private TipDataSO tipSo;
-    [SerializeField] private Image maskTargetImage;
-    [SerializeField] private TextMeshProUGUI maskImage;
-    [SerializeField] private Image barImage;
+    private Canvas loadingCanvas;
+
+    private Image fadeUI;
+    private TextMeshProUGUI tipText;
+    private TextMeshProUGUI tip;
+    private TipDataSO tipSo;
+    private Image maskTargetImage;
+    private TextMeshProUGUI maskImage;
+    private Image barImage;
+
+    private void Start()
+    {
+        loadingCanvas = GameObject.Find("LoadingCanvas").GetComponent<Canvas>();
+        fadeUI = loadingCanvas.transform.GetChild(0).GetComponent<Image>();
+        barImage = fadeUI.transform.GetChild(0).GetComponent<Image>();
+         
+        tipText = fadeUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        tip = fadeUI.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        maskImage = fadeUI.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+
+        maskTargetImage = maskImage.transform.GetChild(0).GetComponent<Image>();
+
+        tipSo = AddressableManager.Instance.GetResource<TipDataSO>("Assets/SO/TipSO");
+    }
 
     public void RandomTipText()
     {
@@ -48,7 +65,7 @@ public class MapManager : MonoBehaviour
         seq.Append(maskImage.transform.DOMoveX(1700f, 0.4f));
         seq.AppendInterval(0.6f);
         seq.Append(tip.transform.DOMoveX(94, 0.5f));
-        seq.Append(tipText.transform.DOMoveX(350, 0.3f));
+        seq.Append(tipText.transform.DOMoveX(420, 0.3f));
         seq.AppendInterval(0.6f);
         seq.Append(maskTargetImage.transform.DOLocalMoveX(0f, 5f));
         seq.AppendInterval(0.5f);
@@ -59,7 +76,6 @@ public class MapManager : MonoBehaviour
         seq.Join(maskImage.DOFade(0, 0.7f));
         seq.Join(maskTargetImage.DOFade(0, 0.7f));
         seq.Append(tipText.transform.DOMoveX(-700, 0.4f));
-        seq.Join(tipText.DOFade(-600, 0.2f));
         seq.Join(tipText.DOFade(0, 0.6f));
         seq.Append(tip.transform.DOMoveX(-600, 0.93f));
         seq.Join(tip.DOFade(0, 0.6f));

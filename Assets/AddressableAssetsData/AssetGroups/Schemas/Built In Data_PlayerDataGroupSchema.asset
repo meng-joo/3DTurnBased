@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cde423dac229caa47a96be88bc730903, type: 3}
-  m_Name: PlayerDataSO
+  m_Script: {fileID: 11500000, guid: b1487f5d688e4f94f828f879d599dbdc, type: 3}
+  m_Name: Built In Data_PlayerDataGroupSchema
   m_EditorClassIdentifier: 
-  walkSpeed: 2.3
-  runSpeed: 5.2
-  atk: 5
-  hp: 20
-  def: 5
+  m_Group: {fileID: 11400000, guid: 746e2b6f9176be64fafb199a558eb72d, type: 2}
+  m_IncludeResourcesFolders: 1
+  m_IncludeBuildSettingsScenes: 1

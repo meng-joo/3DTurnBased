@@ -64,28 +64,10 @@ public class MainModule : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("訊だだだだだ照掬だだだだ");
-        if (other.tag == "1floor")
-        {
-            vCam1.Priority = 20;
-            vCam2.Priority = 10;
-            vCam3.Priority = 10;
-        }
-        else if (other.tag == "2floor")
-        {
-            vCam1.Priority = 10;
-            vCam2.Priority = 20;
-            vCam3.Priority = 10;
-        }
-        else if (other.CompareTag("3floor"))
-        {
-            vCam1.Priority = 10;
-            vCam2.Priority = 10;
-            vCam3.Priority = 20;
-        }
-        else if(other.CompareTag("ToRoom"))
+        if(other.CompareTag("ToRoom"))
         {
             //Time.timeScale = 0f;
+            canMove = true;
             _mapManager.StartInit();
         }
     }

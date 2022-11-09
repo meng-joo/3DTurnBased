@@ -24784,7 +24784,7 @@ GameObject:
   - component: {fileID: 1239651850}
   - component: {fileID: 1239651849}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: MapManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24799,10 +24799,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1239651848}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08fa276dbfe6ad047992cb3d3d06844c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4635aca61d077bb41a4fc10a14211259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeOutImage: {fileID: 0}
 --- !u!4 &1239651850
 Transform:
   m_ObjectHideFlags: 0
@@ -44864,6 +44863,7 @@ MonoBehaviour:
   vCam1: {fileID: 0}
   vCam2: {fileID: 0}
   vCam3: {fileID: 0}
+  canMove: 0
 --- !u!114 &8291003640352890857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44876,7 +44876,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f1302efa9b9e0468ae774c563343c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMove: 0
 --- !u!195 &8291003640352890858
 NavMeshAgent:
   m_ObjectHideFlags: 0
