@@ -10,6 +10,7 @@ public class RoomPlayerMove : MonoBehaviour
 
     [SerializeField] private float speed = 5f;
 
+    [SerializeField] private float rotationSpd = 720f;
     void Start()
     {
         _nav = GetComponent<NavMeshAgent>();    
@@ -23,9 +24,13 @@ public class RoomPlayerMove : MonoBehaviour
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
-        moveDir = new Vector3(h, 0, v) * speed * Time.deltaTime;
+        moveDir = new Vector3(h, 0, v).normalized * speed * Time.deltaTime;
 
         _nav.Move(moveDir);
-        
+
+        if (moveDir != Vector3.zero)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(moveDir), Time.deltaTime * rotationSpd);
+        }
     }
 }
