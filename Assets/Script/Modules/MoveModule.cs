@@ -21,6 +21,7 @@ public class MoveModule : MonoBehaviour
         Vector3 movePos = direc * speed * Time.deltaTime;
         _agent.Move(movePos);
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direc), 7 * Time.deltaTime);
+        if (movePos != Vector3.zero)
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direc), 7 * Time.deltaTime);
     }
 }

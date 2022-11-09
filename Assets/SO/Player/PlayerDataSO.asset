@@ -17,3 +17,5 @@ MonoBehaviour:
   atk: 5
   hp: 20
   def: 5
+  _skills:
+  - {fileID: 0}
