@@ -5,7 +5,6 @@ using UnityEngine;
 public class InputModule : MonoBehaviour
 {
     MainModule mainModule;
-
     private void Start()
     {
         mainModule = GetComponent<MainModule>();
@@ -27,6 +26,7 @@ public class InputModule : MonoBehaviour
         Vector3 direc = Vector3.zero;
 
         Vector3 forward = mainModule.playerCam.transform.TransformDirection(Vector3.forward);
+
         forward.y = 0f;
         Vector3 right = new Vector3(forward.z, 0f, -forward.x);
 
