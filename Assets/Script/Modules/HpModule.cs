@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-public class Skill : MonoBehaviour
+public class HpModule : MonoBehaviour
 {
     
 }

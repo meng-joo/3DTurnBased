@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cde423dac229caa47a96be88bc730903, type: 3}
-  m_Name: PlayerDataSO
+  m_Script: {fileID: 11500000, guid: e7a3b420f81ef7f43a6902b8cc19388c, type: 3}
+  m_Name: AllSkills
   m_EditorClassIdentifier: 
-  walkSpeed: 2.3
-  runSpeed: 5.2
-  player: {fileID: 11400000, guid: e685c9983c5323c48b0883e0cfe4a469, type: 2}
-  _skills: []
+  _allSkills:
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}

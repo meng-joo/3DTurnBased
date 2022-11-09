@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public enum SkillType
 {
@@ -9,8 +10,8 @@ public enum SkillType
     CURSE
 }
 
-[CreateAssetMenu(menuName = "SO/Skill")]
-public class SkillSO : ScriptableObject
+[Serializable]
+public class SkillData
 {
     [Header("스킬이름")]
     public string _skillName;
@@ -26,6 +27,9 @@ public class SkillSO : ScriptableObject
 
     [Header("스킬 이펙트")]
     public GameObject _particle;
+
+    [Header("스킬 함수이름")]
+    public string _methodName; 
 
     [Header("플레이어 획득 여부")]
     public bool isPossession;
