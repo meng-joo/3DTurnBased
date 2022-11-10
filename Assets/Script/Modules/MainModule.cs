@@ -68,9 +68,8 @@ public class MainModule : MonoBehaviour
         {
             //Time.timeScale = 0f;
             canMove = true;
+            playerDataSO.canBattle = true;
             _mapManager.StartInit();
         }
     }
-
-
 }

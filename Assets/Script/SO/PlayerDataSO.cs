@@ -11,6 +11,10 @@ public class PlayerDataSO : ScriptableObject
     public BaseAbilityDataSO player;
 
     [Space]
+    [Header("전투 가능 지역")]
+    public bool canBattle;
+
+    [Space]
     [Header("플레이어 보유 스킬")]
     public Skill[] _skills;
 }
