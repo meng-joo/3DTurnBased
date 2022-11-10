@@ -8,20 +8,19 @@ public class Item
     public int item_id = -1;
     public string item_name;
 
-    public static int createCnt = -1;
     public Item()
     {
-        item_id = ++createCnt;
+        item_id = -1;
         item_name = "";
     }
 
     public ItemAbility[] abilities;
 
+
     public Item(ItemObj itemObj)
     {
         item_name = itemObj.name;
-        item_id = itemObj.itemData.item_id + createCnt;
-
+        item_id = itemObj.itemData.item_id;
         abilities = new ItemAbility[itemObj.itemData.abilities.Length];
 
         for (int i = 0; i < abilities.Length; i++)

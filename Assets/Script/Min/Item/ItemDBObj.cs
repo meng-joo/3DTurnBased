@@ -13,7 +13,7 @@ public class ItemDBObj : ScriptableObject
     {
         for (int i = 0; i < itemObjs.Length; ++i)
         {
-            itemObjs[i].itemData.item_id = i;
+            itemObjs[i].itemData.item_id = i++;
         }
     }
 }

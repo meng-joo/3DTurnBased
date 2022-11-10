@@ -6,13 +6,12 @@ using UnityEngine;
 
 public enum ItemType : int
 {
-    Hair,
-    Body,
+    Helmet,
+    Armor,
     Pants,
     Shoes,
-    Accessories,
-    Gloves, //여기는 바뀔수있음
-    Weapon
+    Weapon,
+    Jewelry
 }
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory System/Items/New Item")]
@@ -29,7 +28,7 @@ public class ItemObj : ScriptableObject
     public List<string> boneNameLists = new List<string>(); 
 
     [TextArea(15, 20)]
-    public string itemSummery; 
+    public string itemSummery;
 
     private void OnValidate()
     {
