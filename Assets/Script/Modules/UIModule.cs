@@ -22,10 +22,11 @@ public class UIModule : MonoBehaviour
     private void Start()
     {
         _playerCanvas = transform.GetComponentInChildren<Canvas>();
-        _interationkeyImage = _playerCanvas.transform.Find("InterationKeyImage").GetComponent<Image>();
-        _keyText = _interationkeyImage.transform.Find("KeyText").GetComponent<TextMeshProUGUI>();
-        _behaveText = _interationkeyImage.transform.Find("BehaviorText").GetComponent<TextMeshProUGUI>();
-        _interationkeyImage.gameObject.SetActive(false);
+        _interationkeyImage = _playerCanvas.transform.Find("InterationKeyImage")?.GetComponent<Image>();
+        _keyText = _interationkeyImage?.transform.Find("KeyText")?.GetComponent<TextMeshProUGUI>();
+        _behaveText = _interationkeyImage?.transform.Find("BehaviorText")?.GetComponent<TextMeshProUGUI>();
+        _interationkeyImage.gameObject?.SetActive(false);
+        _uiManager = FindObjectOfType<UIManager>();
         _keyName = "f";
     }
 
