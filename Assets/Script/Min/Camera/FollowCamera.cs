@@ -17,6 +17,5 @@ public class FollowCamera : MonoBehaviour
 
         transform.position = followTarget.position + camPosition;
         transform.localRotation = Quaternion.Euler(camRotation);
-        
     }
 }
