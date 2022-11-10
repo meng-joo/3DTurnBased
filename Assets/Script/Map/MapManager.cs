@@ -20,17 +20,20 @@ public class MapManager : MonoBehaviour
 
     private void Start()
     {
-        loadingCanvas = GameObject.Find("LoadingCanvas").GetComponent<Canvas>();
-        fadeUI = loadingCanvas.transform.GetChild(0).GetComponent<Image>();
-        barImage = fadeUI.transform.GetChild(0).GetComponent<Image>();
-         
-        tipText = fadeUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-        tip = fadeUI.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-        maskImage = fadeUI.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+        loadingCanvas = GameObject.Find("LoadingCanvas")?.GetComponent<Canvas>();
+        if (loadingCanvas)
+        {
+            fadeUI = loadingCanvas.transform.GetChild(0).GetComponent<Image>();
+            barImage = fadeUI.transform.GetChild(0).GetComponent<Image>();
 
-        maskTargetImage = maskImage.transform.GetChild(0).GetComponent<Image>();
+            tipText = fadeUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+            tip = fadeUI.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+            maskImage = fadeUI.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
 
-        tipSo = AddressableManager.Instance.GetResource<TipDataSO>("Assets/SO/TipSO");
+            maskTargetImage = maskImage.transform.GetChild(0).GetComponent<Image>();
+
+            tipSo = AddressableManager.Instance.GetResource<TipDataSO>("Assets/SO/TipSO");
+        }
     }
 
     public void RandomTipText()
@@ -49,7 +52,7 @@ public class MapManager : MonoBehaviour
         seq.AppendCallback(() =>
         {
             //Glitch.GlitchManager.Instance.StartSceneValue();
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene("Game");
         });
 
         seq.AppendInterval(0.2f);
