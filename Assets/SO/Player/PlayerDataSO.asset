@@ -14,5 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 2.3
   runSpeed: 5.2
+  Health: 0
+  Ad: 0
+  Def: 0
+  Speed: 0
   player: {fileID: 11400000, guid: e685c9983c5323c48b0883e0cfe4a469, type: 2}
+  canBattle: 1
   _skills: []

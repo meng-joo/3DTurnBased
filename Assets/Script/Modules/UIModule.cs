@@ -30,7 +30,7 @@ public class UIModule : MonoBehaviour
         _keyName = "f";
     }
 
-    public void OnInteractionKeyImage(bool isOn = false, string _behave = "", string _key = "")
+    public void OnInteractionKeyImage(bool isOn = false, string _behave = "", string _key = "f")
     {
         Debug.Log(isOn);
 
@@ -40,6 +40,4 @@ public class UIModule : MonoBehaviour
         _behaveText.text = _behave;
         _interationkeyImage.gameObject.SetActive(isOn);
     }
-
-
 }
