@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0e057b33da7bb24abf3950eafd9a63f, type: 3}
-  m_Name: Skill_Jap
+  m_Name: Skill_Dash
   m_EditorClassIdentifier: 
   skillInfo:
-    _skillName: Jap
+    _skillName: Dash
     _skillType: 0
-    _skillImage: {fileID: 21300000, guid: d659f7396cd57754eba78763cf986c51, type: 3}
+    _skillImage: {fileID: 21300000, guid: c51afa706b02a044694b30f33f81d239, type: 3}
     _animationClip: {fileID: 0}
     _particle: {fileID: 0}
     _methodName: HitEnemy

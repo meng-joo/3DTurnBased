@@ -6,7 +6,7 @@ using System.Text;
 [Serializable]
 public class Inventory
 {
-    public InvenSlot[] InvenSlots = new InvenSlot[24];
+    public List<InvenSlot> InvenSlots = new List<InvenSlot>();
 
     public void Clear()
     {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
@@ -13,7 +14,7 @@ public enum InterfaceType
 
 [CreateAssetMenu(fileName = "New InvnetoryObject", menuName = "Inventory/InvnetoryObject")]
 public class InventoryObj : ScriptableObject
-{
+{ 
     public ItemDBObj itemDBObj;
 
     public InterfaceType type;
@@ -21,7 +22,7 @@ public class InventoryObj : ScriptableObject
     [SerializeField]
     private Inventory inventory = new Inventory();
 
-    public InvenSlot[] invenSlots => inventory.InvenSlots;
+    public List<InvenSlot> invenSlots => inventory.InvenSlots;
 
     public int getEmptySlotCnt
     {

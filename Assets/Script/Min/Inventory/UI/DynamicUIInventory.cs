@@ -29,7 +29,7 @@ public class DynamicUIInventory : UIInventory
     {
         uiSlotLists = new Dictionary<GameObject, InvenSlot>();
 
-        for (int i = 0; i < inventoryObj.invenSlots.Length; ++i)
+        for (int i = 0; i < inventoryObj.invenSlots.Count; ++i)
         {
             GameObject gameObj = Instantiate(prefabSlot, Vector3.zero, Quaternion.identity, transform);
             gameObj.GetComponent<RectTransform>().anchoredPosition = CalculatePosition(i);

@@ -13,7 +13,7 @@ public class StaticUIInventory : UIInventory
     public override void createUISlots()
     { 
         uiSlotLists = new Dictionary<GameObject, InvenSlot>();
-        for (int i = 0; i < inventoryObj.invenSlots.Length; i++)
+        for (int i = 0; i < inventoryObj.invenSlots.Count; i++)
         {
             GameObject gameObj = staticSlots[i];
 
@@ -27,4 +27,5 @@ public class StaticUIInventory : UIInventory
             uiSlotLists.Add(gameObj, inventoryObj.invenSlots[i]);
         }
     }
+    
 } 

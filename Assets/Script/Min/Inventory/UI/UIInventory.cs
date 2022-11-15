@@ -15,7 +15,10 @@ public static class MouseTransformData
  
 [RequireComponent(typeof(EventTrigger))]
 public abstract class UIInventory : MonoBehaviour
-{ 
+{
+    //public SkillObj skillObj;
+
+    public SkillInventoryObj skillObj;
     public InventoryObj inventoryObj; 
     private InventoryObj beforeInventoryObj;
      
@@ -25,7 +28,7 @@ public abstract class UIInventory : MonoBehaviour
     { 
         createUISlots();
          
-        for (int i = 0; i < inventoryObj.invenSlots.Length; i++)
+        for (int i = 0; i < inventoryObj.invenSlots.Count; i++)
         { 
             inventoryObj.invenSlots[i].inventoryObj = inventoryObj; 
             inventoryObj.invenSlots[i].OnPostUpload += OnEquipUpdate;
@@ -37,7 +40,7 @@ public abstract class UIInventory : MonoBehaviour
      
     protected virtual void Start()
     { 
-        for (int i = 0; i < inventoryObj.invenSlots.Length; ++i)
+        for (int i = 0; i < inventoryObj.invenSlots.Count; ++i)
         { 
             inventoryObj.invenSlots[i].uploadSlot(inventoryObj.invenSlots[i].item, inventoryObj.invenSlots[i].itemCnt);
         }
