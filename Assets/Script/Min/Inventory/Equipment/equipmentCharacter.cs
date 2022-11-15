@@ -15,7 +15,7 @@ public class equipmentCharacter : MonoBehaviour
     {
         equipMergeitem = new equipItemMerge(gameObject);
 
-        for (int i = 0; i < inventoryObj.invenSlots.Length; ++i)
+        for (int i = 0; i < inventoryObj.invenSlots.Count; ++i)
         {
             inventoryObj.invenSlots[i].OnPreUpload += OnUnEquipItem;
             inventoryObj.invenSlots[i].OnPostUpload += OnEquipItem;

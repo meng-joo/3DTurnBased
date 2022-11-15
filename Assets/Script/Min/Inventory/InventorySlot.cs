@@ -21,8 +21,6 @@ public class InvenSlot
 
     public Item item;
     public int itemCnt;
-
-    P p;
     public ItemObj ItemObject
     {
         get
@@ -47,7 +45,6 @@ public class InvenSlot
             item = new Item();
         }
         //플레이어값을바꿔야될꺼야
-        //p.dataSO.atk += item.abilities[0].Max;
         OnPreUpload?.Invoke(this);
         this.item = item;
         this.itemCnt = cnt;
