@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System.Reflection;
 
 [Serializable]
 public class InvenSlot
@@ -28,6 +29,7 @@ public class InvenSlot
             return item.item_id >= 0 ? inventoryObj.itemDBObj.itemObjs[item.item_id] : null;
         }
     }
+    private ApplyAbility applyAbility;
 
     public InvenSlot() => uploadSlot(new Item(), 0);
     public InvenSlot(Item item, int cnt) => uploadSlot(item, cnt);
@@ -49,6 +51,8 @@ public class InvenSlot
         this.item = item;
         this.itemCnt = cnt;
         OnPostUpload?.Invoke(this);
+
+
     }
 
     public bool getFlagEquipSlot(ItemObj itemObj)
@@ -62,6 +66,12 @@ public class InvenSlot
         {
             if (itemObj.itemType == itemType)
             {
+                Type type = typeof(ApplyAbility);
+                MethodInfo method = type.GetMethod("ChangeAbility");
+
+                object[] obj = new object[1];
+                obj[0] = itemObj.itemData.abilities;
+                method.Invoke(applyAbility, obj);
                 return true;
             }
         }

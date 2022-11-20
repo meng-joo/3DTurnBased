@@ -11,6 +11,8 @@ public class equipmentCharacter : MonoBehaviour
 
     public ItemObj[] defaultItemObjs = new ItemObj[4];
 
+    public    PlayerDataSO playerDataSO;
+
     void Awake()
     {
         equipMergeitem = new equipItemMerge(gameObject);

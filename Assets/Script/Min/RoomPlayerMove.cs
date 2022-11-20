@@ -22,7 +22,7 @@ public class RoomPlayerMove : MonoBehaviour
     private void Move()
     {
         float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        float v = Input.GetAxisRaw("Vertical"); 
 
         moveDir = new Vector3(h, 0, v).normalized * speed * Time.deltaTime;
 

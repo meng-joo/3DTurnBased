@@ -21,6 +21,10 @@ MonoBehaviour:
     m_Address: Assets/SO/TipSO
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 6f0a5b89e0c0fb3499c4ef5438bb2b14
+    m_Address: Assets/SO/Player/PlayerDataSO.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b7382ad27627c0540b920fda1d9f8278, type: 2}
   m_SchemaSet:
