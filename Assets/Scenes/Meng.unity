@@ -16470,7 +16470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!136 &596498441
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -59278,7 +59278,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 547233424804835614}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: InvenSkill, Assembly-CSharp
         m_MethodName: EndInven
         m_Mode: 1

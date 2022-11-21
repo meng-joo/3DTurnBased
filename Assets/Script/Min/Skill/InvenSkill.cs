@@ -17,7 +17,8 @@ public class InvenSkill : MonoBehaviour
     public Button exitBtn;
 
     public List<Card> deckLists = new List<Card>();
- 
+
+    public Transform skillDeck;
     public void EndInven()
     {
         Click.isSelected = false;
@@ -25,7 +26,7 @@ public class InvenSkill : MonoBehaviour
         {
             Click.clickCard.SetAlpha(0f);
         }
-        Click.clickCard = null;
+        //Click.clickCard = null;
     }
     private void CreateCard()
     {

@@ -76,11 +76,13 @@ public class Card : PoolAbleObject
     public void OnClick(Card card, PointerEventData data)
     {
 
-            if (isStatic && Click.clickCard.isStatic)
-            {
-                return;
-            }
+        //if (isStatic && Click.clickCard.isStatic)
+        //{
+        //    return;
+        //}
+
         SetAlpha(1f);
+
         if (Click.isSelected)
         {
 
@@ -88,18 +90,26 @@ public class Card : PoolAbleObject
             this.Skill = Click.clickCard.Skill;
             Click.clickCard.Skill = skillTemp;
 
-             if (isStatic && !Click.clickCard.isStatic) //내가 스태틱이고 누른것도 스태틱이고
+            invenSkill.deckLists.RemoveRange(0, invenSkill.skillDeck.childCount);
+
+            for (int i = 0; i < invenSkill.skillDeck.childCount; i++)
             {
-                Debug.Log("맹중영바보");
-                invenSkill.deckLists.Add(card);
-                invenSkill.deckLists.Remove(Click.clickCard);
+                invenSkill.deckLists.Add(invenSkill.skillDeck.GetChild(i).GetComponent<Card>());
             }
-            else if (!isStatic && Click.clickCard.isStatic)
-            {
-                Debug.Log("한민영ㅇ바");
-                invenSkill.deckLists.Remove(Click.clickCard);
-                invenSkill.deckLists.Add(card);
-            }
+
+
+            // if (isStatic && !Click.clickCard.isStatic) //내가 스태틱이고 누른것도 스태틱이고
+            //{
+            //    Debug.Log("맹중영바보");
+            //    invenSkill.deckLists.Add(card);
+            //    invenSkill.deckLists.Remove(Click.clickCard);
+            //}
+            //else if (!isStatic && Click.clickCard.isStatic)
+            //{
+            //    Debug.Log("한민영ㅇ바");
+            //    invenSkill.deckLists.Remove(Click.clickCard);
+            //    invenSkill.deckLists.Add(card);
+            //}
         }
         else
         {
