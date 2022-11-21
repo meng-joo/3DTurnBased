@@ -17,6 +17,12 @@ public class InventoryManager : MonoBehaviour
     public GameObject[] skillUI;
     public GameObject[] itemUI;
 
+    private MainModule mainModule;
+
+    private void Awake()
+    {
+        mainModule = FindObjectOfType<MainModule>();
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -53,6 +59,8 @@ public class InventoryManager : MonoBehaviour
 
         seq.Insert(0.3f, itemBtn.GetComponent<Image>().DOFade(1f, 0.5f));
         seq.Insert(0.3f, skillBtn.GetComponent<Image>().DOFade(1f, 0.5f));
+
+        mainModule.canMove = true;
     }
 
     /// <summary>
@@ -76,6 +84,8 @@ public class InventoryManager : MonoBehaviour
         seq.Insert(0.3f, skillBtn.GetComponent<Image>().DOFade(0f, 0.5f));
          
         seq.AppendCallback(() => OnItemUI());                    //<<----여기도 위에 있던거 밑으로 스퀀스 내림
+
+        mainModule.canMove = false;
     }
 
     public void OnSkillUI()

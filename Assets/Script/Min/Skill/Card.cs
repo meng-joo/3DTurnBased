@@ -13,22 +13,36 @@ public static class Click
     public static bool isSelected;
 }
 
-public class Card : MonoBehaviour
+public static class ExtensionList
 {
+    public static void Swap<T>(this List<T> list, int from, int to)
+    {
+        T tmp = list[from];
+        list[from] = list[to];
+        list[to] = tmp;
+    }
+}
+
+public class Card : PoolAbleObject
+{
+    public bool isFull = false;
+
+    InvenSkill invenSkill;
+
     public Button cardBtn;
     private Image selectImage;
     [SerializeField] private bool isStatic;
     Skill skill;
-    public Skill Skill 
-    { 
+    public Skill Skill
+    {
         get
         {
             return skill;
         }
-        set 
+        set
         {
             skill = value;
-            gameObject.transform.Find("Image").GetComponent<Image>().sprite = (skill != null) ?  skill.skillInfo._skillImage : null; 
+            gameObject.transform.Find("Image").GetComponent<Image>().sprite = (skill != null) ? skill.skillInfo._skillImage : null;
             gameObject.GetComponentInChildren<TextMeshProUGUI>().text = (skill != null) ? skill.skillInfo._skillName : string.Empty;
             SetAlpha(0f);
 
@@ -39,9 +53,11 @@ public class Card : MonoBehaviour
         }
     }
 
+
     private void Awake()
     {
         selectImage = transform.Find("SelectImage").GetComponent<Image>();
+        invenSkill = FindObjectOfType<InvenSkill>();
     }
     private void Start()
     {
@@ -59,13 +75,31 @@ public class Card : MonoBehaviour
     }
     public void OnClick(Card card, PointerEventData data)
     {
-        SetAlpha(1f);
 
+            if (isStatic && Click.clickCard.isStatic)
+            {
+                return;
+            }
+        SetAlpha(1f);
         if (Click.isSelected)
         {
+
             Skill skillTemp = this.Skill;
             this.Skill = Click.clickCard.Skill;
             Click.clickCard.Skill = skillTemp;
+
+             if (isStatic && !Click.clickCard.isStatic) //내가 스태틱이고 누른것도 스태틱이고
+            {
+                Debug.Log("맹중영바보");
+                invenSkill.deckLists.Add(card);
+                invenSkill.deckLists.Remove(Click.clickCard);
+            }
+            else if (!isStatic && Click.clickCard.isStatic)
+            {
+                Debug.Log("한민영ㅇ바");
+                invenSkill.deckLists.Remove(Click.clickCard);
+                invenSkill.deckLists.Add(card);
+            }
         }
         else
         {
@@ -90,8 +124,13 @@ public class Card : MonoBehaviour
         eventTrigger.triggers.Add(eventTriggerEntry);
     }
 
+    public override void Init_Pop()
+    {
+        throw new NotImplementedException();
+    }
 
-  
-    
-
+    public override void Init_Push()
+    {
+        throw new NotImplementedException();
+    }
 }

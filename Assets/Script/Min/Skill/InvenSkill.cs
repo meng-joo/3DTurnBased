@@ -16,7 +16,8 @@ public class InvenSkill : MonoBehaviour
 
     public Button exitBtn;
 
-
+    public List<Card> deckLists = new List<Card>();
+ 
     public void EndInven()
     {
         Click.isSelected = false;
