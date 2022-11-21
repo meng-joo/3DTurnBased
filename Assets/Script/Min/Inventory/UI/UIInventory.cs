@@ -16,9 +16,6 @@ public static class MouseTransformData
 [RequireComponent(typeof(EventTrigger))]
 public abstract class UIInventory : MonoBehaviour
 {
-    //public SkillObj skillObj;
-
-    public SkillInventoryObj skillObj;
     public InventoryObj inventoryObj; 
     private InventoryObj beforeInventoryObj;
      

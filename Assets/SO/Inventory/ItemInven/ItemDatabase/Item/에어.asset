@@ -24,7 +24,7 @@ MonoBehaviour:
       valStack: 5
       min: 3
       max: 5
-    - characterStack: 1
+    - characterStack: 0
       valStack: 5
       min: 3
       max: 5

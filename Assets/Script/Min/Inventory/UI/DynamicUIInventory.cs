@@ -23,7 +23,10 @@ public class DynamicUIInventory : UIInventory
     protected Vector2 space;
 
     [SerializeField]
-    protected int numCols = 4; 
+    protected int numCols = 4;
+
+    [SerializeField]
+    protected Transform slotParent;
 
     public override void createUISlots()
     {
@@ -32,6 +35,7 @@ public class DynamicUIInventory : UIInventory
         for (int i = 0; i < inventoryObj.invenSlots.Count; ++i)
         {
             GameObject gameObj = Instantiate(prefabSlot, Vector3.zero, Quaternion.identity, transform);
+            gameObj.transform.SetParent(slotParent);
             gameObj.GetComponent<RectTransform>().anchoredPosition = CalculatePosition(i);
 
             AddEventAction(gameObj, EventTriggerType.PointerEnter, delegate {  OnEnterSlots(gameObj); });
