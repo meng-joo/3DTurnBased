@@ -15,6 +15,9 @@ MonoBehaviour:
   skillInfo:
     _skillName: Jap
     _skillType: 0
+    _skillCardColor:
+      serializedVersion: 2
+      rgba: 5728253
     _skillImage: {fileID: 21300000, guid: d659f7396cd57754eba78763cf986c51, type: 3}
     _animationClip: {fileID: 0}
     _particle: {fileID: 0}

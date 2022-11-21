@@ -84,6 +84,11 @@ public class MainModule : MonoBehaviour
         }
     }
 
+    public void SetStat()
+    {
+
+    }
+
     public void MovePlayer(Vector3 direc, bool isRun)
     {
         _moveModule.MovePlayer(direc, playerSpeed);

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1058a033c3ede6344bf0d27a4238d0d2, type: 3}
-  m_Name: BatEnemy
+  m_Name: SpikeEnemy
   m_EditorClassIdentifier: 
   _enemyModle: {fileID: 3217397051797073244, guid: a1ca057777a341c449d1c62fd8b2a13f, type: 3}
   _enemyAbility: {fileID: 11400000, guid: 4423f1de2200914439eea423d4ab4266, type: 2}

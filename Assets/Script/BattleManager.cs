@@ -40,6 +40,8 @@ public class BattleManager : MonoBehaviour
 
     public void SpawnMonster()
     {
+        _mainModule.playerCam.cullingMask &= ~(1 << LayerMask.NameToLayer("Wall"));
+        
         for (int i = 0; i < 1; i++)
         {
             GameObject enemyPrefab = currentEnemys.floor_1[0]._enemyModle;
@@ -53,12 +55,18 @@ public class BattleManager : MonoBehaviour
     {
         _mainModule._UIModule.OnInteractionKeyImage();
         _mainModule.nomalCam.Priority -= 10;
-        _mainModule.playerCam.cullingMask &= ~(1 << LayerMask.NameToLayer("Wall"));
     }
 
     public void SetBattleUI()
     {
         _battleUI.SetBattleUI();
+    }
+
+    public bool SetTurn()
+    {
+        if (_mainModule.playerDataSO.Speed >= fieldEnemies[0].GetComponent<EnemyData>()._speed)
+            return true;
+        else return false;
     }
 
     //public NavMeshHit SetMonsterPos()

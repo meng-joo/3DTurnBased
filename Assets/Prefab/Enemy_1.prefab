@@ -833,6 +833,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3220457657312247692}
   - component: {fileID: 3310825277137058398}
+  - component: {fileID: 2500624003818557016}
+  - component: {fileID: 8857551245557506804}
+  - component: {fileID: 405912189441032923}
   m_Layer: 0
   m_Name: Enemy_1
   m_TagString: Untagged
@@ -867,7 +870,7 @@ Animator:
   m_GameObject: {fileID: 3217397051797073244}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0d3c605385d6d9547a1e3f24e8248962, type: 3}
-  m_Controller: {fileID: 9100000, guid: 1b58d63f942126347865fbdde70e67c5, type: 2}
+  m_Controller: {fileID: 9100000, guid: d547f3ecf1094884fb5b24b341ec7d4c, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -877,6 +880,43 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2500624003818557016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3217397051797073244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e731811a3db7bb14eb4b0aaed10cd80a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8857551245557506804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3217397051797073244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b41fbb1ff6589834c810c27dc792ef3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: 5b760a0b81992734fb420750eab00f0e, type: 2}
+--- !u!114 &405912189441032923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3217397051797073244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da2cd71f2ec75fe428fa32960d25eb51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3217404230246360714
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class Skill : ScriptableObject
         Type type = typeof(SkillFunc);
         MethodInfo method = type.GetMethod(skillInfo._methodName);
 
-        skillFunction.AddListener((x) => method.Invoke(_attackSkill,null)); 
+        skillFunction.AddListener((x) => method.Invoke(_attackSkill, null)); 
         //skillFunction.AddListener(() => _attackSkill.AttackSkill_Jap(null));
     }
 }
