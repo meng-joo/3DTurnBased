@@ -111,6 +111,8 @@ public class BattleUI : MonoBehaviour
             behaveButtons[i].transform.DOLocalMoveX(weight * 504, 0.4f);
             yield return new WaitForSeconds(0.17f);
         }
+
+        yield return new WaitForSeconds(0.6f);
         if (istextBox) SetUIBox(textBox, istextBox);
     }
 
@@ -131,43 +133,50 @@ public class BattleUI : MonoBehaviour
     public void OnClickSkill()
     {
         StartCoroutine(MoveBehaveButtons(true, false));
+        SetUIBox(textBox, false);
         SpawnCard();
     }
 
     public void OnClickInfo()
     {
-        ClearCard();
+        ClearCard(1);
+        
         StartCoroutine(MoveBehaveButtons(true, true));
     }
 
     public void OnClickItem()
     {
-        ClearCard();
-        StartCoroutine(MoveBehaveButtons(true, false));
+        ClearCard(2);
+        SetUIBox(textBox, false);
+        //StartCoroutine(MoveBehaveButtons(true, false));
     }
 
     public void OnClickRun()
     {
+        SetActiveButton(false);
         SetUIBox(skillBox, false);
         StartCoroutine(MoveBehaveButtons(false));
     }
 
-    private void ClearCard()
+    private void ClearCard(int num)
     {
         Sequence seq = DOTween.Sequence();
 
+        SetActiveButton(false);
         for (int i = 0; i < 5; i++)
         {
-            seq.Append(currentSkillCard[i].transform.DOLocalMoveY(-400, 0.3f));
+            seq.Append(currentSkillCard[i].transform.DOLocalMoveY(-400, 0.2f));
             seq.AppendCallback(() => Destroy(currentSkillCard[i]));
         }
 
-        seq.AppendCallback(() => SetUIBox(skillBox, false));
+        seq.AppendCallback(() => { SetUIBox(skillBox, false); SetActiveButton(true); behaveButtons[num].interactable = false; });
     }
 
     private void SpawnCard()
     {
         Sequence seq = DOTween.Sequence();
+
+        SetActiveButton(false);
 
         for (int i = 0; i < 5; i++)
         {
@@ -187,5 +196,17 @@ public class BattleUI : MonoBehaviour
         {
             seq.Append(currentSkillCard[i].transform.DOLocalMoveY(0, 0.3f));
         }
+
+        seq.AppendCallback(() =>
+        {
+            SetActiveButton(true);
+            behaveButtons[0].interactable = false;
+        });
+    }
+
+    public void SetCardInfo(int i)
+    {
+
+        //currentSkillCard[i].GetComponent<SkillCard>().SetSkillCard();
     }
 }

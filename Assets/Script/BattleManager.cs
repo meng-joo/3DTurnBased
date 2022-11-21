@@ -18,7 +18,6 @@ public class BattleManager : MonoBehaviour
     public float enemySpawnMinPoint;
     public float enemySpawnMaxPoint;
 
-
     private void Start()
     {
         _mainModule = GameObject.Find("Player").GetComponent<MainModule>();
