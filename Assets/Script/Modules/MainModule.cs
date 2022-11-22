@@ -46,6 +46,7 @@ public class MainModule : MonoBehaviour
     public InputModule _InputModule => _inputModule;
     public UIModule _UIModule => _uIModule;
     public BattleMobule _BattleModule => _battleMobule;
+    public MapManager MapManager => _mapManager;
 
     private Animator _animator;
 
@@ -114,7 +115,7 @@ public class MainModule : MonoBehaviour
             //Time.timeScale = 0f;
             canMove = true;
             playerDataSO.canBattle = true;
-            _mapManager.StartInit();
+            _mapManager.StartInit(1);
         }
     }
 }

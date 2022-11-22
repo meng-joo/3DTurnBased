@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class SkillCard : MonoBehaviour
+public class SkillCard : PoolAbleObject
 {
     [Header("스킬 카드 요소")]
     public Image backGroundImage;
@@ -26,5 +26,13 @@ public class SkillCard : MonoBehaviour
         skillImage.sprite = skillData.skillInfo._skillImage;
         skillName.text = skillData.skillInfo._skillName;
         skillInfo.text = skillData.skillInfo._skillExplanation;
+    }
+
+    public override void Init_Pop()
+    {
+    }
+
+    public override void Init_Push()
+    {
     }
 }

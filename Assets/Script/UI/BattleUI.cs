@@ -14,6 +14,7 @@ public class BattleUI : MonoBehaviour
     public Image skillBox;
     public Image behaveBox;
     public Image behaveTextBox;
+    public GameObject quickInven;
 
     [Space]
     public GameObject skillCard;
@@ -24,12 +25,14 @@ public class BattleUI : MonoBehaviour
     [Space]
     public List<Button> behaveButtons;
     public Image[] turnImage = new Image[2];
-    public TextMeshProUGUI behaveText;
+    public Text behaveText;
 
     [Space]
     [Header("적을 알기 위한 배틀 메니져")]
     [SerializeField] private BattleManager battleManager;
 
+    public PoolManager poolM;
+    public LocalPoolManager poolLocalM;
 
     private void Start()
     {
@@ -38,9 +41,12 @@ public class BattleUI : MonoBehaviour
             behaveButtons.Add(skillPanel.transform.GetChild(i).GetComponent<Button>());
         }
 
-        behaveText = behaveTextBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        behaveText = behaveTextBox.transform.GetChild(0).GetComponent<Text>();
         turnImage[0] = behaveTextBox.transform.GetChild(1).GetComponent<Image>();
         turnImage[1] = behaveTextBox.transform.GetChild(2).GetComponent<Image>();
+
+        poolM = GameObject.Find("PoolManager").GetComponent<PoolManager>();
+        poolLocalM = poolM.GetComponentInChildren<LocalPoolManager>();
     }
 
     public void SetBattleUI()
@@ -48,13 +54,15 @@ public class BattleUI : MonoBehaviour
         SetActiveButton(false);
         skillPanel.transform.DOLocalMoveX(700, 0.6f);
         behaveTextBox.transform.DOLocalMoveY(430, 0.7f);
+        SetQuickInven();
         StartCoroutine(MoveBehaveButtons(true));
 
         Sequence seq = DOTween.Sequence();
 
-        seq.AppendInterval(2f);
+        seq.AppendInterval(0.7f);
         seq.Append(turnImage[0].DOFade(1, 0.6f));
         seq.Join(turnImage[1].DOFade(1, 0.6f));
+        seq.AppendCallback(() => OnClickSkill());
         seq.AppendInterval(0.8f);
         seq.AppendCallback(() => SetChangeTurn(battleManager.SetTurn()));
     }
@@ -63,7 +71,7 @@ public class BattleUI : MonoBehaviour
     {
         Sequence seq = DOTween.Sequence();
 
-        seq.AppendCallback(() => SetActiveButton(false));
+        //seq.AppendCallback(() => SetActiveButton(false));
         if (isPlayerTurn)
         {
             turnImage[0].DOFade(1, 2.4f);
@@ -98,8 +106,13 @@ public class BattleUI : MonoBehaviour
             seq.Append(behaveText.transform.DOLocalMoveY(0, 0.4f));
         }
 
-        seq.AppendInterval(1f);
-        seq.AppendCallback(() => SetActiveButton(true));
+        //seq.AppendInterval(1f);
+        //seq.AppendCallback(() => SetActiveButton(true));
+    }
+
+    public void SetQuickInven()
+    {
+        quickInven.transform.DOMoveY(-70, 1.2f);
     }
 
     IEnumerator MoveBehaveButtons(bool isOn, bool istextBox = false)
@@ -134,20 +147,25 @@ public class BattleUI : MonoBehaviour
     {
         StartCoroutine(MoveBehaveButtons(true, false));
         SetUIBox(textBox, false);
+        SetQuickInven();
         SpawnCard();
     }
 
     public void OnClickInfo()
     {
         ClearCard(1);
-        
+        SetQuickInven();
         StartCoroutine(MoveBehaveButtons(true, true));
     }
 
     public void OnClickItem()
     {
+        Sequence seq = DOTween.Sequence();
         ClearCard(2);
         SetUIBox(textBox, false);
+
+        seq.AppendInterval(1.4f);
+        seq.Append(quickInven.transform.DOLocalMoveY(80, 0.4f));
         //StartCoroutine(MoveBehaveButtons(true, false));
     }
 
@@ -166,7 +184,8 @@ public class BattleUI : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             seq.Append(currentSkillCard[i].transform.DOLocalMoveY(-400, 0.2f));
-            seq.AppendCallback(() => Destroy(currentSkillCard[i]));
+            seq.AppendCallback(() => currentSkillCard[i].transform.SetParent(poolLocalM.transform));
+            seq.AppendCallback(() => PoolManager.Instance.Push(PoolType.Card, currentSkillCard[i]));
         }
 
         seq.AppendCallback(() => { SetUIBox(skillBox, false); SetActiveButton(true); behaveButtons[num].interactable = false; });
@@ -185,7 +204,8 @@ public class BattleUI : MonoBehaviour
 
             GameObject card = skillCard;
 
-            currentSkillCard[i] = Instantiate(card, skillBox.transform);//new Vector3(xpos, ypos, 0f), Quaternion.identity);
+            currentSkillCard[i] = PoolManager.Instance.Pop(PoolType.Card).gameObject;//Instantiate(card, skillBox.transform);//new Vector3(xpos, ypos, 0f), Quaternion.identity);
+            currentSkillCard[i].transform.SetParent(skillBox.transform);
             currentSkillCard[i].transform.localPosition = new Vector3(xpos, ypos, 0);
         }
 
@@ -206,7 +226,7 @@ public class BattleUI : MonoBehaviour
 
     public void SetCardInfo(int i)
     {
-
+        //currentSkillCard[i].GetComponent<SkillCard>().SetSkillCard();
         //currentSkillCard[i].GetComponent<SkillCard>().SetSkillCard();
     }
 }

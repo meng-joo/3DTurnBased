@@ -17,6 +17,9 @@ public class UIModule : MonoBehaviour
     private string _keyName;
     public string KeyName => _keyName;
 
+    private string _funcName;
+    public string FuncName => _funcName;
+
     public bool canInteration => _interationkeyImage.gameObject.activeSelf;
 
     private void Start()
@@ -30,7 +33,7 @@ public class UIModule : MonoBehaviour
         _keyName = "f";
     }
 
-    public void OnInteractionKeyImage(bool isOn = false, string _behave = "", string _key = "f")
+    public void OnInteractionKeyImage(bool isOn = false, string _behave = "", string _key = "f", string _func = "")
     {
         Debug.Log(isOn);
 
@@ -38,6 +41,7 @@ public class UIModule : MonoBehaviour
 
         _keyText.text = _key;
         _behaveText.text = _behave;
+        _funcName = _func;
         _interationkeyImage.gameObject.SetActive(isOn);
     }
 }

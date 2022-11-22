@@ -40,8 +40,7 @@ public class InputModule : MonoBehaviour
     {
         if (Input.GetKeyDown($"{mainModule._UIModule.KeyName}") && mainModule._UIModule.canInteration)
         {
-            mainModule.canMove = true;
-            mainModule._UIModule._uiManager.SignUIOn();
+            StartCoroutine(mainModule._UIModule.FuncName);
         }
 
         if(Input.GetKeyDown(KeyCode.Escape) && mainModule._UIModule._uiManager.isSignUp)
@@ -55,4 +54,20 @@ public class InputModule : MonoBehaviour
         mainModule.canMove = false;
         mainModule._UIModule._uiManager.SignUIOff();
     }
+
+    IEnumerator SignUI()
+    {
+        mainModule.canMove = true;
+        mainModule._UIModule._uiManager.SignUIOn();
+        yield return null;
+    }
+
+    IEnumerator ExitDoor()
+    {
+        mainModule.canMove = true;
+        mainModule.MapManager.StartInit(0);
+        yield return null;
+    }
+
+
 }

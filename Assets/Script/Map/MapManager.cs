@@ -42,17 +42,17 @@ public class MapManager : MonoBehaviour
         tipText.text = $"{tipSo.tipStr[rand]}";
         Debug.Log(rand);
     }
-    public void StartInit()
+    public void StartInit(int num)
     {
         Sequence seq = DOTween.Sequence();
 
-        fadeUI.gameObject.SetActive(true);
-        seq.Append(fadeUI.DOFade(1f, 2f));
+        seq.AppendCallback(() => fadeUI.gameObject.SetActive(true));
+        seq.Append(fadeUI.DOFade(1f, 1.6f));
 
         seq.AppendCallback(() =>
         {
             //Glitch.GlitchManager.Instance.StartSceneValue();
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene(num);
         });
 
         seq.AppendInterval(0.2f);
@@ -63,12 +63,12 @@ public class MapManager : MonoBehaviour
         });
 
         #region 글자와 로고 화면에 오기
-        seq.Append(barImage.transform.DOMoveX((1920f / 2), 0.3f));
-        seq.Join(barImage.DOFade(1, 0.2f));
+        seq.Append(barImage.transform.DOMoveX((1920f / 2), 0.6f));
+        seq.Join(barImage.DOFade(1, 0.5f));
         seq.Append(maskImage.transform.DOMoveX(1700f, 0.4f));
-        seq.AppendInterval(0.6f);
-        seq.Append(tip.transform.DOMoveX(94, 0.5f));
-        seq.Append(tipText.transform.DOMoveX(420, 0.3f));
+        seq.AppendInterval(0.3f);
+        seq.Append(tip.transform.DOMoveX(94, 0.8f));
+        seq.Append(tipText.transform.DOMoveX(280, 1.1f));
         seq.AppendInterval(0.6f);
         seq.Append(maskTargetImage.transform.DOLocalMoveX(0f, 5f));
         seq.AppendInterval(0.5f);
@@ -87,8 +87,10 @@ public class MapManager : MonoBehaviour
         #endregion
 
         #region 페이드 해제
-        seq.AppendInterval(0.7f);
+        seq.AppendInterval(0.5f);
         seq.Append(fadeUI.DOFade(0f, 1.5f));
         #endregion 
+
+        seq.AppendCallback(() => fadeUI.gameObject.SetActive(false));
     }
 }

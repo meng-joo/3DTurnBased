@@ -19,6 +19,6 @@ MonoBehaviour:
   Def: 2
   Speed: 15
   player: {fileID: 11400000, guid: e685c9983c5323c48b0883e0cfe4a469, type: 2}
-  canBattle: 1
+  canBattle: 0
   _skills:
   - {fileID: 0}
