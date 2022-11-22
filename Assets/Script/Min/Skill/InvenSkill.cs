@@ -8,6 +8,8 @@ using UnityEngine.EventSystems;
 
 public class InvenSkill : MonoBehaviour
 {
+    public static bool isFirst = true;
+
     public AllSkills allSkills;
 
     public Card card;
@@ -16,9 +18,15 @@ public class InvenSkill : MonoBehaviour
 
     public Button exitBtn;
 
-    public List<Card> deckLists = new List<Card>();
+    public Transform skillDeckTrm;
+    public Transform contentTrm;
 
-    public Transform skillDeck;
+    public SkillIInvenObj skillInvenObj;
+    public SkillIInvenObj skillDeckInvenObj;
+
+    public Card[] skillCards;
+
+    public List<Skill> tempSkill;
     public void EndInven()
     {
         Click.isSelected = false;
@@ -28,16 +36,42 @@ public class InvenSkill : MonoBehaviour
         }
         //Click.clickCard = null;
     }
-    private void CreateCard()
+    private void Awake()
+    {
+      
+
+        SetDeck();
+    }
+    public void SetDeck()
+    {
+        for (int i = 0; i < skillDeckInvenObj.cards.Count; i++)
+        {
+            skillCards[i].Skill = skillDeckInvenObj.cards[i];
+        }
+    }
+    public void CreateFirst()
     {
         for (int i = 0; i < allSkills._allSkills.Length; i++)
         {
             GameObject cardObj = Instantiate(card, Vector3.zero, Quaternion.identity).gameObject;
             cardObj.GetComponent<Card>().Skill = allSkills._allSkills[i];
             cardObj.transform.SetParent(cardParentTrm);
+            skillInvenObj.cards.Add(cardObj.GetComponent<Card>().Skill);
         }
+            Debug.Log("첫번쨰");
     }
-    private void DeleteCard()
+    public void DefaultCreate()
+    {
+        for (int i = 0; i < skillInvenObj.cards.Count; i++)
+        {
+            GameObject cardObj = Instantiate(card, Vector3.zero, Quaternion.identity).gameObject;
+            cardObj.GetComponent<Card>().Skill = skillInvenObj.cards[i];
+            cardObj.transform.SetParent(cardParentTrm);
+        }
+            Debug.Log("기본");
+    }
+
+    public void DeleteCard()
     {
         RectTransform[] childList = cardParentTrm.GetComponentsInChildren<RectTransform>();
         foreach (var deletecard in childList)
@@ -51,13 +85,5 @@ public class InvenSkill : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            CreateCard();
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            DeleteCard();
-        }
     }
 }

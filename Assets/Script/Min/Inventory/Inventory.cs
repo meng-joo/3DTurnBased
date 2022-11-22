@@ -24,6 +24,7 @@ public class Inventory
     public bool getFlagHave(int id)
     {
         return InvenSlots.FirstOrDefault(i => i.item.item_id == id) != null;
+
     }
 }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+
 public class InventoryManager : MonoBehaviour
 {
     public bool isInven = false;
@@ -19,6 +20,10 @@ public class InventoryManager : MonoBehaviour
 
     private MainModule mainModule;
 
+    [SerializeField] private InvenSkill invenSkill;
+
+
+    [SerializeField] private GameInfoSO gameInfoSO;
     private void Awake()
     {
         mainModule = FindObjectOfType<MainModule>();
@@ -48,6 +53,19 @@ public class InventoryManager : MonoBehaviour
     {
         Sequence seq = DOTween.Sequence();
 
+        seq.AppendCallback(() =>
+        {
+            if (gameInfoSO.isGameStart)
+            {
+                invenSkill.CreateFirst();
+            }
+            else
+            {
+                invenSkill.DefaultCreate();
+            }
+            gameInfoSO.isGameStart = false;
+        });
+
         seq.Append(leftInvenUI.DOLocalMoveX(-800f, 0.5f)).SetUpdate(true);
         seq.Join(rightInvenUI.DOLocalMoveX(800f, 0.5f)).SetUpdate(true);
 
@@ -59,7 +77,6 @@ public class InventoryManager : MonoBehaviour
 
         seq.Insert(0.3f, itemBtn.GetComponent<Image>().DOFade(1f, 0.5f));
         seq.Insert(0.3f, skillBtn.GetComponent<Image>().DOFade(1f, 0.5f));
-
         mainModule.canMove = true;
     }
 
@@ -82,9 +99,10 @@ public class InventoryManager : MonoBehaviour
 
         seq.Insert(0.3f, itemBtn.GetComponent<Image>().DOFade(0f, 0.5f));
         seq.Insert(0.3f, skillBtn.GetComponent<Image>().DOFade(0f, 0.5f));
-         
-        seq.AppendCallback(() => OnItemUI());                    //<<----여기도 위에 있던거 밑으로 스퀀스 내림
 
+        seq.AppendCallback(() => OnItemUI());                    //<<----여기도 위에 있던거 밑으로 스퀀스 내림
+        //seq.AppendCallback(() => invenSkill.DeleteCard());               
+        invenSkill.DeleteCard();              
         mainModule.canMove = false;
     }
 

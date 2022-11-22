@@ -26,11 +26,10 @@ public static class ExtensionList
 public class Card : PoolAbleObject
 {
     public bool isFull = false;
-
     InvenSkill invenSkill;
 
     public Button cardBtn;
-    private Image selectImage;
+    public Image selectImage;
     [SerializeField] private bool isStatic;
     Skill skill;
     public Skill Skill
@@ -56,7 +55,6 @@ public class Card : PoolAbleObject
 
     private void Awake()
     {
-        selectImage = transform.Find("SelectImage").GetComponent<Image>();
         invenSkill = FindObjectOfType<InvenSkill>();
     }
     private void Start()
@@ -75,14 +73,8 @@ public class Card : PoolAbleObject
     }
     public void OnClick(Card card, PointerEventData data)
     {
-
-        //if (isStatic && Click.clickCard.isStatic)
-        //{
-        //    return;
-        //}
-
         SetAlpha(1f);
-
+        
         if (Click.isSelected)
         {
 
@@ -90,32 +82,24 @@ public class Card : PoolAbleObject
             this.Skill = Click.clickCard.Skill;
             Click.clickCard.Skill = skillTemp;
 
-            invenSkill.deckLists.RemoveRange(0, invenSkill.skillDeck.childCount);
-
-            for (int i = 0; i < invenSkill.skillDeck.childCount; i++)
+            for (int i = 0; i < invenSkill.skillCards.Length; i++)
             {
-                invenSkill.deckLists.Add(invenSkill.skillDeck.GetChild(i).GetComponent<Card>());
+                invenSkill.skillDeckInvenObj.cards[i] = invenSkill.skillCards[i].Skill;
             }
 
+            invenSkill.tempSkill.RemoveAll(x => x as Skill);
 
-            // if (isStatic && !Click.clickCard.isStatic) //내가 스태틱이고 누른것도 스태틱이고
-            //{
-            //    Debug.Log("맹중영바보");
-            //    invenSkill.deckLists.Add(card);
-            //    invenSkill.deckLists.Remove(Click.clickCard);
-            //}
-            //else if (!isStatic && Click.clickCard.isStatic)
-            //{
-            //    Debug.Log("한민영ㅇ바");
-            //    invenSkill.deckLists.Remove(Click.clickCard);
-            //    invenSkill.deckLists.Add(card);
-            //}
+            for (int i = 0; i < invenSkill.contentTrm.childCount; i++)
+            {
+                invenSkill.tempSkill.Add(invenSkill.contentTrm.GetComponentsInChildren<Card>()[i].Skill);
+                invenSkill.skillInvenObj.cards[i] = invenSkill.tempSkill[i];
+
+            }
         }
         else
         {
             Click.clickCard = card;
         }
-
         Click.isSelected = !Click.isSelected;
     }
 
@@ -136,11 +120,9 @@ public class Card : PoolAbleObject
 
     public override void Init_Pop()
     {
-        throw new NotImplementedException();
     }
 
     public override void Init_Push()
     {
-        throw new NotImplementedException();
     }
 }
