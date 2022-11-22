@@ -27,6 +27,11 @@ public class InvenSkill : MonoBehaviour
     public Card[] skillCards;
 
     public List<Skill> tempSkill;
+
+    [SerializeField] private PlayerDataSO playerDataSO;
+
+    public PlayerDataSO PlayerDataSO => playerDataSO;
+
     public void EndInven()
     {
         Click.isSelected = false;
@@ -38,15 +43,18 @@ public class InvenSkill : MonoBehaviour
     }
     private void Awake()
     {
-      
-
         SetDeck();
     }
     public void SetDeck()
     {
-        for (int i = 0; i < skillDeckInvenObj.cards.Count; i++)
+        //for (int i = 0; i < skillDeckInvenObj.cards.Count; i++)
+        //{
+        //    skillCards[i].Skill = skillDeckInvenObj.cards[i];
+        //}     
+
+        for (int i = 0; i < playerDataSO._skills.Length; i++)
         {
-            skillCards[i].Skill = skillDeckInvenObj.cards[i];
+            skillCards[i].Skill = playerDataSO._skills[i];
         }
     }
     public void CreateFirst()

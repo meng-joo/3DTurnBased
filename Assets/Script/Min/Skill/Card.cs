@@ -77,24 +77,32 @@ public class Card : PoolAbleObject
         
         if (Click.isSelected)
         {
-
+            #region 데이터 스왑 
             Skill skillTemp = this.Skill;
             this.Skill = Click.clickCard.Skill;
             Click.clickCard.Skill = skillTemp;
+            #endregion
 
-            for (int i = 0; i < invenSkill.skillCards.Length; i++)
+            #region 덱 SO 넣어주기
+            //for (int i = 0; i < invenSkill.skillCards.Length; i++)
+            //{
+            //    invenSkill.skillDeckInvenObj.cards[i] = invenSkill.skillCards[i].Skill;
+            //}
+            for (int i = 0; i < invenSkill.PlayerDataSO._skills.Length; i++)
             {
-                invenSkill.skillDeckInvenObj.cards[i] = invenSkill.skillCards[i].Skill;
+                invenSkill.PlayerDataSO._skills[i] = invenSkill.skillCards[i].Skill;
             }
+            #endregion
 
+            #region 내가 가지고 있는 스킬 인벤 설정
             invenSkill.tempSkill.RemoveAll(x => x as Skill);
 
             for (int i = 0; i < invenSkill.contentTrm.childCount; i++)
             {
                 invenSkill.tempSkill.Add(invenSkill.contentTrm.GetComponentsInChildren<Card>()[i].Skill);
                 invenSkill.skillInvenObj.cards[i] = invenSkill.tempSkill[i];
-
             }
+            #endregion
         }
         else
         {
