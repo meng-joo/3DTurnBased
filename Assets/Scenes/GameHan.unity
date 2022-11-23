@@ -40674,6 +40674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7bdfa7057646648a44024b10dcce59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inBattle: 0
   _setBattle:
     m_PersistentCalls:
       m_Calls:
@@ -47576,6 +47577,7 @@ MonoBehaviour:
   skillBox: {fileID: 1407097579}
   behaveBox: {fileID: 1898395820}
   behaveTextBox: {fileID: 1207769989}
+  quickInven: {fileID: 0}
   skillCard: {fileID: 1557593631}
   currentSkillCard:
   - {fileID: 0}
@@ -47589,6 +47591,8 @@ MonoBehaviour:
   - {fileID: 0}
   behaveText: {fileID: 0}
   battleManager: {fileID: 2096068068}
+  poolM: {fileID: 0}
+  poolLocalM: {fileID: 0}
 --- !u!1001 &1896232709
 PrefabInstance:
   m_ObjectHideFlags: 0
