@@ -41,12 +41,10 @@ public class InvenSlot
 
     public void uploadSlot(Item item, int cnt)
     {
-        Debug.Log("upload" + cnt);
         if (cnt <= 0)
         {
             item = new Item();
         }
-        //플레이어값을바꿔야될꺼야
         OnPreUpload?.Invoke(this);
         this.item = item;
         this.itemCnt = cnt;

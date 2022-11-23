@@ -315,7 +315,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83861471a5cd2a34ba02ee3cbdfd1def, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFull: 0
   cardBtn: {fileID: 8468407584400769127}
+  selectImage: {fileID: 5865184885276388788}
+  isStatic: 0
 --- !u!1 &5257273992175321651
 GameObject:
   m_ObjectHideFlags: 0
