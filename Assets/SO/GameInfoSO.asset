@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373466c6f032f2c45b4f5fe60e55d521, type: 3}
   m_Name: GameInfoSO
   m_EditorClassIdentifier: 
-  isGameStart: 1
+  isGameStart: 0

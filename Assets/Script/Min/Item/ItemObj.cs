@@ -11,7 +11,8 @@ public enum ItemType : int
     Pants,
     Shoes,
     Weapon,
-    Jewelry
+    Jewelry,
+    Default
 }
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory System/Items/New Item")]

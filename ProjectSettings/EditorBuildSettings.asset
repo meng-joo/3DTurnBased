@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/InGame_Room1.unity
     guid: 0b489bf0b1ae90e469355f0f8097aa02
   - enabled: 0
-    path: Assets/Scenes/Menu.unity
+    path: Assets/Scenes/Min/Menu.unity
     guid: 103a675a702974144b8503bab8580bb8
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 68ca24b2353f66041884f878e70ae70a, type: 2}

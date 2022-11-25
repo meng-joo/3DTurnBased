@@ -59,14 +59,14 @@ public class InvenSkill : MonoBehaviour
     }
     public void CreateFirst()
     {
-        for (int i = 0; i < allSkills._allSkills.Length; i++)
+        for (int i = 0; i < allSkills._allSkills.Count; i++)
         {
             GameObject cardObj = Instantiate(card, Vector3.zero, Quaternion.identity).gameObject;
             cardObj.GetComponent<Card>().Skill = allSkills._allSkills[i];
             cardObj.transform.SetParent(cardParentTrm);
             skillInvenObj.cards.Add(cardObj.GetComponent<Card>().Skill);
         }
-            Debug.Log("첫번쨰");
+        Debug.Log("첫번쨰");
     }
     public void DefaultCreate()
     {
@@ -75,8 +75,9 @@ public class InvenSkill : MonoBehaviour
             GameObject cardObj = Instantiate(card, Vector3.zero, Quaternion.identity).gameObject;
             cardObj.GetComponent<Card>().Skill = skillInvenObj.cards[i];
             cardObj.transform.SetParent(cardParentTrm);
+            skillInvenObj.cards.Add(cardObj.GetComponent<Card>().Skill);
         }
-            Debug.Log("기본");
+        Debug.Log("기본");
     }
 
     public void DeleteCard()

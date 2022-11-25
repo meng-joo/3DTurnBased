@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "SO/AllSkills")]
 public class AllSkills : ScriptableObject
 {
-    public Skill[] _allSkills;
+    public List<Skill> _allSkills;
 }
