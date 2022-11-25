@@ -33,7 +33,6 @@ public class InventoryManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             isInven = !isInven;
-            //inventory.gameObject.SetActive(isInven);       <<-- ¹Î¿µ¾Æ ¿©±â¼­ ³Ê°¡ ÀÎº¥Åä¸®¸¦ ²¨Áà¼­ ¹Ù²å¾î
             if (!isInven)
             {
                 InitInvenUI();
@@ -105,7 +104,6 @@ public class InventoryManager : MonoBehaviour
         invenSkill.DeleteCard();              
         mainModule.canMove = false;
     }
-
     public void OnSkillUI()
     {
 

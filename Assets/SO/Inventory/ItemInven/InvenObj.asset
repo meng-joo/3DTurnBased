@@ -18,35 +18,35 @@ MonoBehaviour:
     InvenSlots:
     - itemTypes: 
       item:
-        item_id: 0
-        item_name: "\uB9DD\uCE58"
-        abilities:
-        - characterStack: 0
-          valStack: 4
-          min: 3
-          max: 5
-      itemCnt: 1
-    - itemTypes: 
-      item:
         item_id: 1
-        item_name: "\uC5D0\uC5B4"
+        item_name: "\uB9DD\uCE58"
         abilities:
         - characterStack: 1
-          valStack: 3
+          valStack: 5
           min: 3
           max: 5
-        - characterStack: 1
-          valStack: 4
+        - characterStack: 0
+          valStack: 5
           min: 3
           max: 5
       itemCnt: 1
     - itemTypes: 
       item:
         item_id: 0
-        item_name: "\uB9DD\uCE58"
+        item_name: "\uB3C4\uB07C"
         abilities:
         - characterStack: 0
-          valStack: 3
+          valStack: 5
+          min: 3
+          max: 5
+      itemCnt: 1
+    - itemTypes: 
+      item:
+        item_id: 0
+        item_name: "\uB3C4\uB07C"
+        abilities:
+        - characterStack: 0
+          valStack: 5
           min: 3
           max: 5
       itemCnt: 1
@@ -64,14 +64,10 @@ MonoBehaviour:
       itemCnt: 0
     - itemTypes: 
       item:
-        item_id: 0
-        item_name: "\uB9DD\uCE58"
-        abilities:
-        - characterStack: 0
-          valStack: 3
-          min: 3
-          max: 5
-      itemCnt: 1
+        item_id: -1
+        item_name: 
+        abilities: []
+      itemCnt: 0
     - itemTypes: 
       item:
         item_id: -1

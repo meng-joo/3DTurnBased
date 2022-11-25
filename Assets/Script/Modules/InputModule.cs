@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class InputModule : MonoBehaviour
 {
     MainModule mainModule;
@@ -69,5 +69,28 @@ public class InputModule : MonoBehaviour
         yield return null;
     }
 
+    IEnumerator ChestUI()
+    {
+        Sequence seq = DOTween.Sequence();
+        seq.AppendCallback(() =>
+        {
+            mainModule.ChestAnimator.Play("Fantasy_Polygon_Chest_Animation");
+        });
+        seq.AppendInterval(1.35f);
+        seq.AppendCallback(() =>
+        {
+            mainModule.ChestOpenParticle.Play();
+        });
+
+        seq.AppendInterval(2f);
+        seq.AppendCallback(() =>
+        {
+            mainModule.ChestOpenParticle.Stop();
+            mainModule._UIModule.TrophyUIManager.AppearTrophy();
+        });
+
+        yield return null;
+
+    }
 
 }

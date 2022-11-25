@@ -22,6 +22,8 @@ public class UIModule : MonoBehaviour
 
     public bool canInteration => _interationkeyImage.gameObject.activeSelf;
 
+    private TrophyUIManager _trophyUIManager;
+    public TrophyUIManager TrophyUIManager => _trophyUIManager;
     private void Start()
     {
         _playerCanvas = transform.GetComponentInChildren<Canvas>();
@@ -31,6 +33,8 @@ public class UIModule : MonoBehaviour
         _interationkeyImage.gameObject?.SetActive(false);
         _uiManager = FindObjectOfType<UIManager>();
         _keyName = "f";
+
+        _trophyUIManager = FindObjectOfType<TrophyUIManager>();
     }
 
     public void OnInteractionKeyImage(bool isOn = false, string _behave = "", string _key = "f", string _func = "")

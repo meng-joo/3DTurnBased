@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
+using UnityEngine.Playables;
 
 public class MainModule : MonoBehaviour
 {
@@ -54,6 +55,11 @@ public class MainModule : MonoBehaviour
 
     private float playerSpeed;
     private float battleTime;
+
+    [SerializeField] private Animator chestAnimator;
+    [SerializeField] private ParticleSystem chestOpenParticle;
+    public Animator ChestAnimator => chestAnimator;
+    public ParticleSystem ChestOpenParticle => chestOpenParticle;
 
     private void Awake()
     {
