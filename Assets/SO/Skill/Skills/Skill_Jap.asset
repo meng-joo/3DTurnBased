@@ -15,28 +15,18 @@ MonoBehaviour:
   skillInfo:
     _skillName: Jap
     _skillType: 0
+    target: Enemy
+    value: 5
     _skillCardColor:
       serializedVersion: 2
       rgba: 4283918333
+    _skillEffectColor:
+      serializedVersion: 2
+      rgba: 4278195711
     _skillImage: {fileID: 21300000, guid: d659f7396cd57754eba78763cf986c51, type: 3}
-    _animationClip: {fileID: 0}
+    _animationClip: {fileID: 7400000, guid: 2fff07cb8b52c854aac62366a79e969a, type: 2}
     _particle: {fileID: 0}
     _methodName: HitEnemy
     isPossession: 0
     _skillExplanation: "\uC8FC\uBA39\uC744 \uC801\uC5D0\uAC8C \uBED7\uB294\uB2E4.\n5\uC758
       \uB370\uBBF8\uC9C0\uB97C \uC900\uB2E4."
-  skillFunction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11500000, guid: 5317a5b47e58b5e48956be3f5d156bda, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2

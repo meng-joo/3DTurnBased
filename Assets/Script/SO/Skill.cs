@@ -9,16 +9,40 @@ using UnityEngine.Events;
 public class Skill : ScriptableObject
 {
     public SkillData skillInfo;
-    public UnityEvent<GameObject> skillFunction;
 
-    private SkillFunc _attackSkill;
+    private SetSkill setSkill = new SetSkill();
+    public SetSkill _SetSkill => setSkill;
 
     private void OnEnable()
     {
+        SetSkill(skillInfo);
+    }
+
+    void SetSkill(SkillData _skillInfo)
+    {
+        setSkill.AddEvent(_skillInfo);
+    }
+}
+
+public class SetSkill
+{
+    private SkillFunc _attackSkill;
+    private List<MethodInfo> methods = new List<MethodInfo>();
+
+    public List<MethodInfo> _Methods => methods;
+
+    public void AddEvent(SkillData skillInfo)
+    {
         Type type = typeof(SkillFunc);
         MethodInfo method = type.GetMethod(skillInfo._methodName);
+        methods.Add(method);
+    }
 
-        skillFunction.AddListener((x) => method.Invoke(_attackSkill, null)); 
-        //skillFunction.AddListener(() => _attackSkill.AttackSkill_Jap(null));
+    void CallEvent(GameObject enemy)
+    {
+        foreach (var method in methods)
+        {
+            method.Invoke(null, new object[] { enemy });
+        }
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - 3floor
   - ToRoom
   - SignPanel
+  - Enemy
   layers:
   - Default
   - TransparentFX

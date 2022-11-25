@@ -41,7 +41,9 @@ public class MainModule : MonoBehaviour
     private InputModule _inputModule;
     private UIModule _uIModule;
     private BattleMobule _battleMobule;
+    private HpModule _hpModule;
 
+    public HpModule _HpModule => _hpModule;
     public MoveModule _MoveModule => _moveModule;
     public InputModule _InputModule => _inputModule;
     public UIModule _UIModule => _uIModule;
@@ -60,6 +62,7 @@ public class MainModule : MonoBehaviour
         _uIModule = GetComponent<UIModule>();
         _animator = GetComponent<Animator>();
         _battleMobule = GetComponent<BattleMobule>();
+        _hpModule = GetComponent<HpModule>();
         _mapManager = GameObject.Find("MapManager").GetComponent<MapManager>();
         playerCam = Camera.main;
         SetBattleDelay();
@@ -67,6 +70,10 @@ public class MainModule : MonoBehaviour
 
     private void Start()
     {
+        _hpModule.SetAvtiveHpbar(false);
+
+        _hpModule.InitHP(playerDataSO.Health, playerDataSO.Health);
+
         for (int i = 0; i < 3; i++)
         {
             _enemySpawnPoint.Add(transform.GetChild(i + 7));

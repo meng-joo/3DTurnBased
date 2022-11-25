@@ -23,6 +23,8 @@ public class BattleManager : MonoBehaviour
         _mainModule = GameObject.Find("Player").GetComponent<MainModule>();
     }
 
+
+
     public void SetBattle()
     {
         Sequence seq = DOTween.Sequence();
@@ -53,17 +55,20 @@ public class BattleManager : MonoBehaviour
     public void BattleCameraEffect()
     {
         _mainModule._UIModule.OnInteractionKeyImage();
+        //_mainModule.battleCam.m_Lens.
         _mainModule.nomalCam.Priority -= 10;
     }
 
     public void SetBattleUI()
     {
+        _mainModule._HpModule.SetAvtiveHpbar(true);
+        _mainModule._HpModule.UpdateHPText();
         _battleUI.SetBattleUI();
     }
 
     public bool SetTurn()
     {
-        if (_mainModule.playerDataSO.Speed >= fieldEnemies[0].GetComponent<EnemyData>()._speed)
+        if (_mainModule.playerDataSO.Speed >= fieldEnemies[0].GetComponent<EnemyData>().Speed)
             return true;
         else return false;
     }

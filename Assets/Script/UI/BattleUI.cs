@@ -9,6 +9,11 @@ public class BattleUI : MonoBehaviour
 {
     [Space]
     [Header("전투 UI들")]
+    private MainModule mainModule;
+
+    [Space]
+    [Header("전투 UI들")]
+    public Button TurnEnd;
     public Image skillPanel;
     public Image textBox;
     public Image skillBox;
@@ -21,6 +26,7 @@ public class BattleUI : MonoBehaviour
 
     [Space]
     public GameObject[] currentSkillCard = new GameObject[5];
+    public List<Skill> playerSkill;
 
     [Space]
     public List<Button> behaveButtons;
@@ -32,10 +38,12 @@ public class BattleUI : MonoBehaviour
     [SerializeField] private BattleManager battleManager;
 
     public PoolManager poolM;
-    public LocalPoolManager poolLocalM;
+    public LocalPoolManager[] poolLocalM = new LocalPoolManager[2];
 
     private void Start()
     {
+        mainModule = GameObject.Find("Player").GetComponent<MainModule>();
+
         for (int i = 0; i < skillPanel.transform.childCount; i++)
         {
             behaveButtons.Add(skillPanel.transform.GetChild(i).GetComponent<Button>());
@@ -46,7 +54,10 @@ public class BattleUI : MonoBehaviour
         turnImage[1] = behaveTextBox.transform.GetChild(2).GetComponent<Image>();
 
         poolM = GameObject.Find("PoolManager").GetComponent<PoolManager>();
-        poolLocalM = poolM.GetComponentInChildren<LocalPoolManager>();
+        poolLocalM[0] = poolM.transform.GetChild(0).GetComponent<LocalPoolManager>();
+        poolLocalM[1] = poolM.transform.GetChild(1).GetComponent<LocalPoolManager>();
+
+
     }
 
     public void SetBattleUI()
@@ -54,6 +65,7 @@ public class BattleUI : MonoBehaviour
         SetActiveButton(false);
         skillPanel.transform.DOLocalMoveX(700, 0.6f);
         behaveTextBox.transform.DOLocalMoveY(430, 0.7f);
+        TurnEnd.transform.DOLocalMoveX(835, 2f);
         SetQuickInven();
         StartCoroutine(MoveBehaveButtons(true));
 
@@ -112,7 +124,7 @@ public class BattleUI : MonoBehaviour
 
     public void SetQuickInven()
     {
-        quickInven.transform.DOMoveY(-70, 1.2f);
+        quickInven.transform.DOMove(new Vector3(640, -70, 0), 0.8f);
     }
 
     IEnumerator MoveBehaveButtons(bool isOn, bool istextBox = false)
@@ -121,8 +133,8 @@ public class BattleUI : MonoBehaviour
 
         for (int i = 0; i < behaveButtons.Count; ++i)
         {
-            behaveButtons[i].transform.DOLocalMoveX(weight * 504, 0.4f);
-            yield return new WaitForSeconds(0.17f);
+            behaveButtons[i].transform.DOLocalMoveX(weight * 504, 0.3f);
+            yield return new WaitForSeconds(0.12f);
         }
 
         yield return new WaitForSeconds(0.6f);
@@ -135,12 +147,13 @@ public class BattleUI : MonoBehaviour
         {
             behaveButtons[i].interactable = isActive;
         }
+        TurnEnd.interactable = isActive;
     }
 
     private void SetUIBox(Image _boxui, bool isActive)
     {
-        if (isActive) _boxui.transform.DOLocalMoveX(-256, 0.5f);
-        else _boxui.transform.DOLocalMoveX(1686, 0.5f);
+        if (isActive) _boxui.transform.DOLocalMoveX(-256, 0.4f);
+        else _boxui.transform.DOLocalMoveX(1686, 0.4f);
     }
 
     public void OnClickSkill()
@@ -164,8 +177,8 @@ public class BattleUI : MonoBehaviour
         ClearCard(2);
         SetUIBox(textBox, false);
 
-        seq.AppendInterval(1.4f);
-        seq.Append(quickInven.transform.DOLocalMoveY(80, 0.4f));
+        seq.AppendInterval(0.5f);
+        seq.Append(quickInven.transform.DOMove(new Vector3(60, 80, 0), 0.4f));
         //StartCoroutine(MoveBehaveButtons(true, false));
     }
 
@@ -176,6 +189,12 @@ public class BattleUI : MonoBehaviour
         StartCoroutine(MoveBehaveButtons(false));
     }
 
+    public void OnClickTurnEnd()
+    {
+        SetChangeTurn(false);
+        OnClickInfo();
+    }
+
     private void ClearCard(int num)
     {
         Sequence seq = DOTween.Sequence();
@@ -183,12 +202,21 @@ public class BattleUI : MonoBehaviour
         SetActiveButton(false);
         for (int i = 0; i < 5; i++)
         {
-            seq.Append(currentSkillCard[i].transform.DOLocalMoveY(-400, 0.2f));
-            seq.AppendCallback(() => currentSkillCard[i].transform.SetParent(poolLocalM.transform));
-            seq.AppendCallback(() => PoolManager.Instance.Push(PoolType.Card, currentSkillCard[i]));
+            seq.Join(currentSkillCard[i].transform.DOLocalMoveY(-400, 0.2f));
         }
 
-        seq.AppendCallback(() => { SetUIBox(skillBox, false); SetActiveButton(true); behaveButtons[num].interactable = false; });
+        for (int i = 0; i < 5; i++)
+        {
+            currentSkillCard[i].transform.SetParent(poolLocalM[0].transform);
+            PoolManager.Instance.Push(PoolType.Card, currentSkillCard[i]);
+        }
+
+        seq.AppendCallback(() => 
+        { 
+            SetUIBox(skillBox, false); 
+            SetActiveButton(true); 
+            behaveButtons[num].interactable = false; 
+        });
     }
 
     private void SpawnCard()
@@ -210,11 +238,12 @@ public class BattleUI : MonoBehaviour
         }
 
         seq.AppendCallback(() => SetUIBox(skillBox, true));
-        seq.AppendInterval(1f);
+        seq.AppendInterval(0.7f);
 
         for (int i = 0; i < 5; i++)
         {
-            seq.Append(currentSkillCard[i].transform.DOLocalMoveY(0, 0.3f));
+            SetCardInfo(i);
+            seq.Append(currentSkillCard[i].transform.DOLocalMoveY(0, 0.2f));
         }
 
         seq.AppendCallback(() =>
@@ -226,7 +255,34 @@ public class BattleUI : MonoBehaviour
 
     public void SetCardInfo(int i)
     {
-        //currentSkillCard[i].GetComponent<SkillCard>().SetSkillCard();
-        //currentSkillCard[i].GetComponent<SkillCard>().SetSkillCard();
+        if (playerSkill.Count == 0)
+            SetDeck();
+
+        Debug.Log("ASSDD");
+        currentSkillCard[i].GetComponent<SkillCard>().SetSkillCard(playerSkill[i]);
+    }
+
+    private void SetDeck()
+    {
+        for (int i = 0; i < mainModule.playerDataSO._skills.Length; i++)
+        {
+            playerSkill.Add(mainModule.playerDataSO._skills[i]);
+        }
+    }
+
+    public void SpawnSkillEffectText(int dmg, Color32 color, Vector3 pos)
+    {
+        Sequence seq = DOTween.Sequence();
+        SkillEffectUI text = PoolManager.Instance.Pop(PoolType.UI).GetComponent<SkillEffectUI>();
+
+        seq.AppendCallback(() =>
+        {
+            text.transform.SetParent(skillBox.transform.parent);
+            text.SetText(dmg, color);
+            text.transform.position = pos;
+        });
+
+        seq.AppendInterval(1.4f);
+        seq.AppendCallback(() => PoolManager.Instance.Push(PoolType.UI, text.gameObject));
     }
 }

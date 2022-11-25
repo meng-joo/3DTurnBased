@@ -5,5 +5,6 @@ using UnityEngine;
 public enum PoolType
 {
     Card,
-    Enemy
+    Enemy,
+    UI
 }

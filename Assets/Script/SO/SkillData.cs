@@ -19,9 +19,19 @@ public class SkillData
     [Header("스킬종류")]
     public SkillType _skillType;
 
+    [Header("스킬대상")]
+    public string target;
+
+    [Header("효과 수치")]
+    public int value;
+
     [Header("스킬색깔")]
     [ColorUsage(true)]
     public Color32 _skillCardColor;
+
+    [Header("스킬수치색깔")]
+    [ColorUsage(true)]
+    public Color32 _skillEffectColor;
 
     [Header("스킬 이미지")]
     public Sprite _skillImage;

@@ -38,7 +38,7 @@ public class PoolManager : MonoSingleton<PoolManager>
     {
         localPoolDic[type].Push(obj.GetComponent<PoolAbleObject>());
     }
-}
+}   
 [Serializable]
 public class PoolData
 {

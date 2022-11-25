@@ -9,12 +9,17 @@ public class EnemyData : MonoBehaviour
 
     [Space]
     [Header("현재 적 데이터")]
-    public int _hp;
-    public int _atk;
-    public int _def;
-    public int _speed;
+    private int _hp;
+    private int _atk;
+    private int _def;
+    private int _speed;
 
-    private void Start()
+    public int Hp => _hp;
+    public int Atk => _atk;
+    public int Def => _def;
+    public int Speed => _speed;
+
+    private void Awake()
     {
         float randhp = Random.Range(0.7f, 1.3f);
         float randatk = Random.Range(0.7f, 1.3f);
