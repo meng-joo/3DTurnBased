@@ -38,7 +38,7 @@ public class TrophyUIManager : MonoBehaviour
         trophyPanel.transform.Find("TrophyImage").GetComponent<Image>().DOFade(1f, 0.8f);
         AddNewItem();
         SetTrophy(RandomSkill());
-
+       
     }
     public Skill RandomSkill()
     {
@@ -58,25 +58,26 @@ public class TrophyUIManager : MonoBehaviour
         skillObj.GetComponent<Button>().onClick.AddListener(() =>
             {
                 select.SetActive(true);
+                Skill[] skills = GetRandDataList();
+                cardsTrm[0].SetSkillCard(skills[0]);
+                cardsTrm[1].SetSkillCard(skills[1]);
+                cardsTrm[2].SetSkillCard(skills[2]);
             });
-        allSkills._allSkills.Add(skill);
-
-        Skill[] skills = GetRandDataList();
-        cardsTrm[0].SetSkillCard(skills[0]);
-        cardsTrm[1].SetSkillCard(skills[1]);
-        cardsTrm[2].SetSkillCard(skills[2]);
+        //allSkills._allSkills.Add(skill);
 
 
-        skillIInvenObj.cards.Add(skill);
+
+        //skillIInvenObj.cards.Add(skill);
     }
 
     public Skill[] GetRandDataList()
-    {
+    { 
         List<Skill> data = new();
         List<Skill> returnData = new();
+
         for (int i = 0; i < allSkills._allSkills.Count; i++)
         {
-            //data.Add(allSkills._allSkills[i]);
+            data.Add(allSkills._allSkills[i]);
         }
 
         for (int i = 0; i < 3; i++)
@@ -84,15 +85,13 @@ public class TrophyUIManager : MonoBehaviour
             int rand = Random.Range(0, allSkills._allSkills.Count);
 
             Skill generatedType = allSkills._allSkills[rand];
-            if (allSkills._allSkills.Contains(generatedType))
+
+            if (data.Contains(generatedType))
             {
                 data.Remove(generatedType);
-                i--;
-            }
-            else
-            {
                 returnData.Add(generatedType);
             }
+       
         }
         Debug.Log(returnData.ToArray());
         return returnData.ToArray();
