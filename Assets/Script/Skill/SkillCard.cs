@@ -33,7 +33,10 @@ public class SkillCard : PoolAbleObject
     MainModule _mainModule;
     BattleUI _battleUI;
 
+    AnimationClip _motion;
+
     int value;
+    string typeText;
 
     private void Init()
     {
@@ -55,10 +58,12 @@ public class SkillCard : PoolAbleObject
         skillName.text = skillData.skillInfo._skillName;
         skillInfo.text = skillData.skillInfo._skillExplanation;
 
+        typeText = skillData.skillInfo.skilltypeText;
         value = skillData.skillInfo.value;
         skillText = skillData.skillInfo._skillEffectColor;
         target = skillData.skillInfo.target;
         skillEffect = skillData._SetSkill._Methods;
+        _motion = skillData.skillInfo._animationClip;
         //skillData.SetFunc();
         //skillEffect = skillData._SetSkill.skillFunction;
     }
@@ -132,7 +137,14 @@ public class SkillCard : PoolAbleObject
                 }
 
                 //CardEffect();
-                _battleUI.SpawnSkillEffectText(value, skillText, transform.position);
+                _battleUI.SpawnSkillEffectText(value.ToString(), skillText, transform.position);
+                _battleUI.SpawnSkillEffectText(typeText, Color.white, transform.position + new Vector3(0, 30, 0));
+
+                //if(_mainModule._animation.GetClip(_motion.name) == null)
+                _mainModule._animation.AddClip(_motion, _motion.name);
+                _mainModule._animation.PlayQueued(_motion.name);
+
+                _mainModule._BattleModule.StartCoroutine("ShakeBattleCam", 1f);
 
                 //skillEffect.Invoke(hit.collider.gameObject);
                 transform.SetParent(poolLocalM.transform);

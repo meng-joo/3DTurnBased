@@ -36,6 +36,10 @@ public class MainModule : MonoBehaviour
     [Header("플레이어 움직일 수 있냐")]
     public bool canMove;
 
+    [Space]
+    [Header("애니메이션")]
+    public Animation _animation;
+
     private MapManager _mapManager;
 
     private MoveModule _moveModule;
@@ -56,8 +60,9 @@ public class MainModule : MonoBehaviour
     private float playerSpeed;
     private float battleTime;
 
-    [SerializeField] private Animator chestAnimator;
+    public Animator chestAnimator;
     [SerializeField] private ParticleSystem chestOpenParticle;
+    
     public Animator ChestAnimator => chestAnimator;
     public ParticleSystem ChestOpenParticle => chestOpenParticle;
 
@@ -69,6 +74,7 @@ public class MainModule : MonoBehaviour
         _animator = GetComponent<Animator>();
         _battleMobule = GetComponent<BattleMobule>();
         _hpModule = GetComponent<HpModule>();
+        _animation = GetComponent<Animation>();
         _mapManager = GameObject.Find("MapManager").GetComponent<MapManager>();
         playerCam = Camera.main;
         SetBattleDelay();

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Skill_Jap
   m_EditorClassIdentifier: 
   skillInfo:
-    _skillName: Jap
+    _skillName: Hand Snatch
     _skillType: 0
     target: Enemy
+    skilltypeText: 
     value: 5
     _skillCardColor:
       serializedVersion: 2
@@ -23,9 +24,9 @@ MonoBehaviour:
     _skillEffectColor:
       serializedVersion: 2
       rgba: 4278195711
-    _skillImage: {fileID: 21300000, guid: d659f7396cd57754eba78763cf986c51, type: 3}
+    _skillImage: {fileID: 21300000, guid: 08c71e4e0565fe4469d1e0a593047156, type: 3}
     _animationClip: {fileID: 7400000, guid: 2fff07cb8b52c854aac62366a79e969a, type: 2}
-    _particle: {fileID: 0}
+    _particle: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
     _methodName: HitEnemy
     isPossession: 0
     _skillExplanation: "\uC8FC\uBA39\uC744 \uC801\uC5D0\uAC8C \uBED7\uB294\uB2E4.\n5\uC758

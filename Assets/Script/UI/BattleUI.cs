@@ -57,7 +57,7 @@ public class BattleUI : MonoBehaviour
         poolLocalM[0] = poolM.transform.GetChild(0).GetComponent<LocalPoolManager>();
         poolLocalM[1] = poolM.transform.GetChild(1).GetComponent<LocalPoolManager>();
 
-
+        TurnEnd.onClick.AddListener(() => OnClickTurnEnd());
     }
 
     public void SetBattleUI()
@@ -193,6 +193,8 @@ public class BattleUI : MonoBehaviour
     {
         SetChangeTurn(false);
         OnClickInfo();
+        SetActiveButton(false);
+        battleManager.ChangeTurn(false);
     }
 
     private void ClearCard(int num)
@@ -270,7 +272,7 @@ public class BattleUI : MonoBehaviour
         }
     }
 
-    public void SpawnSkillEffectText(int dmg, Color32 color, Vector3 pos)
+    public void SpawnSkillEffectText(string dmg, Color32 color, Vector3 pos)
     {
         Sequence seq = DOTween.Sequence();
         SkillEffectUI text = PoolManager.Instance.Pop(PoolType.UI).GetComponent<SkillEffectUI>();
@@ -278,11 +280,11 @@ public class BattleUI : MonoBehaviour
         seq.AppendCallback(() =>
         {
             text.transform.SetParent(skillBox.transform.parent);
-            text.SetText(dmg, color);
             text.transform.position = pos;
+            text.SetText(dmg, color, pos);
         });
 
-        seq.AppendInterval(1.4f);
+        seq.AppendInterval(2.7f);
         seq.AppendCallback(() => PoolManager.Instance.Push(PoolType.UI, text.gameObject));
     }
 }

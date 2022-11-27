@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 using UnityEngine.Events;
 
 public class BattleMobule : MonoBehaviour
@@ -26,5 +27,15 @@ public class BattleMobule : MonoBehaviour
         
         mainModule._UIModule.OnInteractionKeyImage(true, "", "!");
         _setBattle.Invoke();
+    }
+
+    IEnumerator ShakeBattleCam(float strenght)
+    {
+        var _multichannel = mainModule.battleCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        _multichannel.m_AmplitudeGain = strenght;
+
+        yield return new WaitForSeconds(0.4f);
+
+        _multichannel.m_AmplitudeGain = 0;
     }
 }

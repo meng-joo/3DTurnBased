@@ -22,6 +22,9 @@ public class SkillData
     [Header("스킬대상")]
     public string target;
 
+    [Header("스킬효과")]
+    public string skilltypeText;
+
     [Header("효과 수치")]
     public int value;
 

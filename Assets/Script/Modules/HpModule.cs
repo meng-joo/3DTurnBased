@@ -19,8 +19,11 @@ public class HpModule : MonoBehaviour
     public TextMeshProUGUI text;
     public GameObject _hpbar;
 
+    private Animator _animator;
+
     private void Start()
     {
+        _animator = GetComponent<Animator>();
         _bar.fillAmount = 1;
         UpdateHPText();
     }
@@ -34,7 +37,7 @@ public class HpModule : MonoBehaviour
             Dead();
         }
 
-        _bar.fillAmount = hp / maxHp;
+        _bar.fillAmount = (float)hp / maxHp;
     }
 
     public void UpdateHPText()
@@ -56,5 +59,10 @@ public class HpModule : MonoBehaviour
     {
         hp = _hp;
         maxHp = _max;
+    }
+
+    public void GetDamaged()
+    {
+        _animator.SetTrigger("GetHit");
     }
 }

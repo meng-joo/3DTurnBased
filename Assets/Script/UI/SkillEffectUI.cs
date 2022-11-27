@@ -16,17 +16,14 @@ public class SkillEffectUI : PoolAbleObject
     {
     }
 
-    public void SetText(int dmg, Color32 color)
+    public void SetText(string dmg, Color32 color, Vector3 vec)
     {
         Sequence seq = DOTween.Sequence();
 
-        text.text = dmg.ToString();
+        text.text = dmg;
         text.color = color;
 
-        Vector2 pos = transform.position;
-        pos.y += 10;
-
-        seq.Append(transform.DOLocalMove(pos, 0.7f));
-        seq.Join(text.DOFade(0, 1.2f));
+        seq.Append(transform.DOMove(vec + new Vector3(0, 184, 0), 1f));
+        seq.Append(text.DOFade(0, 1.2f));
     }
 }

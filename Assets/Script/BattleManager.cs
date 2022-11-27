@@ -23,8 +23,6 @@ public class BattleManager : MonoBehaviour
         _mainModule = GameObject.Find("Player").GetComponent<MainModule>();
     }
 
-
-
     public void SetBattle()
     {
         Sequence seq = DOTween.Sequence();
@@ -64,6 +62,15 @@ public class BattleManager : MonoBehaviour
         _mainModule._HpModule.SetAvtiveHpbar(true);
         _mainModule._HpModule.UpdateHPText();
         _battleUI.SetBattleUI();
+    }
+
+    public void ChangeTurn(bool isPlayer)
+    {
+        if (isPlayer) { }
+        else 
+        {
+            
+        }
     }
 
     public bool SetTurn()

@@ -15,6 +15,8 @@ public class AIModule : MonoBehaviour
 
         enemyData = GetComponent<EnemyData>();
         hpmodule = GetComponent<HpModule>();
+        
+
         Vector3 playerPos = player.transform.position;
         playerPos.y = 0;
 
