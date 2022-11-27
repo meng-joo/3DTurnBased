@@ -25,7 +25,8 @@ public class TrophyUIManager : MonoBehaviour
     [SerializeField] private InventoryObj inventoryObj;
     [SerializeField] private ItemDBObj databaseObj;
 
-
+    public List<SkillCard> cardsTrm;
+    public GameObject select;
 
     private void Awake()
     {
@@ -54,17 +55,28 @@ public class TrophyUIManager : MonoBehaviour
         skillObj.transform.Find("SkillNameText").GetComponent<TextMeshProUGUI>().text = skill.skillInfo._skillName;
         skillObj.transform.Find("SkillCountText").GetComponent<TextMeshProUGUI>().text = skill.skillInfo._skillExplanation;
 
+        skillObj.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                select.SetActive(true);
+            });
         allSkills._allSkills.Add(skill);
+
+        Skill[] skills = GetRandDataList();
+        cardsTrm[0].SetSkillCard(skills[0]);
+        cardsTrm[1].SetSkillCard(skills[1]);
+        cardsTrm[2].SetSkillCard(skills[2]);
+
+
         skillIInvenObj.cards.Add(skill);
     }
-    public List<Skill> data;
 
     public Skill[] GetRandDataList()
     {
+        List<Skill> data = new();
         List<Skill> returnData = new();
         for (int i = 0; i < allSkills._allSkills.Count; i++)
         {
-            data.Add(allSkills._allSkills[i]);
+            //data.Add(allSkills._allSkills[i]);
         }
 
         for (int i = 0; i < 3; i++)
@@ -88,9 +100,7 @@ public class TrophyUIManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-        }
+       
     }
     /// <summary>
     /// 아이템 추가
@@ -110,27 +120,34 @@ public class TrophyUIManager : MonoBehaviour
             Item newItem = new Item(newItemObject);
 
             randomCnt = Random.Range(1, 3);
-            Debug.Log(newItemObject);
+            //Debug.Log(newItemObject);
+
+            itemTrophyObj.transform.Find("ItemImage").GetComponent<Image>().sprite = newItemObject.itemIcon;
+            itemTrophyObj.transform.Find("ItemNameText").GetComponent<TextMeshProUGUI>().text = newItemObject.itemData.item_name;
+
             if (newItemObject.getFlagStackable)
             {
                 itemTrophyObj.transform.Find("ItemCountText").GetComponent<TextMeshProUGUI>().text = randomCnt.ToString();
-
-                inventoryObj.AddItem(newItemObject.itemData, randomCnt);
-
+                Debug.Log(itemTrophy);
+                itemTrophyObj.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    inventoryObj.AddItem(newItemObject.itemData, randomCnt);
+                });
             }
             else
             {
                 itemTrophyObj.transform.Find("ItemCountText").GetComponent<TextMeshProUGUI>().text = $"1";
+                itemTrophyObj.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    inventoryObj.AddItem(newItemObject.itemData, 1);
+                });
 
-                inventoryObj.AddItem(newItemObject.itemData, 1);
+                //inventoryObj.AddItem(newItemObject.itemData, 1);
             }
-            itemTrophyObj.transform.Find("ItemImage").GetComponent<Image>().sprite = newItemObject.itemIcon;
-            itemTrophyObj.transform.Find("ItemNameText").GetComponent<TextMeshProUGUI>().text = newItemObject.itemData.item_name;
         }
-
         #endregion
     }
-
+    
     //뭐먹었는지 알려주고 
     //스킬 3개뽑아서 하나 고르게
 }

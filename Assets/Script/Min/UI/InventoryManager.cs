@@ -52,18 +52,19 @@ public class InventoryManager : MonoBehaviour
     {
         Sequence seq = DOTween.Sequence();
 
-        seq.AppendCallback(() =>
-        {
-            if (gameInfoSO.isGameStart)
-            {
-                invenSkill.CreateFirst();
-            }
-            else
-            {
-                invenSkill.DefaultCreate();
-            }
-            gameInfoSO.isGameStart = false;
-        });
+             invenSkill.DefaultCreate();
+        //seq.AppendCallback(() =>
+        //{
+        //    if (gameInfoSO.isGameStart)
+        //    {
+        //        invenSkill.CreateFirst();
+        //    }
+        //    else
+        //    {
+        //        invenSkill.DefaultCreate();
+        //    }
+        //    gameInfoSO.isGameStart = false;
+        //});
 
         seq.Append(leftInvenUI.DOLocalMoveX(-800f, 0.5f)).SetUpdate(true);
         seq.Join(rightInvenUI.DOLocalMoveX(800f, 0.5f)).SetUpdate(true);
