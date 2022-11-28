@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
-public class CardImage : MonoBehaviour
+using UnityEngine.EventSystems;
+using DG.Tweening;
+public class CardImage : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Image backGroundImage;
     public Image skillImage;
@@ -13,7 +14,7 @@ public class CardImage : MonoBehaviour
 
     public SkillIInvenObj invenObj;
 
-   // public List<MethodInfo> skillEffect = new List<MethodInfo>();
+    private TrophyUIManager trophyUIManager;
 
     private void Awake()
     {
@@ -21,6 +22,8 @@ public class CardImage : MonoBehaviour
         skillImage = transform.GetChild(0).GetComponent<Image>();
         skillName = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         skillInfo = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+
+        trophyUIManager = GameObject.Find("TrophyManager").GetComponent<TrophyUIManager>();
     }
     public void Init(Skill skillData)
     {
@@ -32,10 +35,19 @@ public class CardImage : MonoBehaviour
         transform.GetComponent<Button>().onClick.AddListener(() =>
         {
             invenObj.cards.Add(skillData);
-        });           
-        //value = skillData.skillInfo.value;
-        //skillText = skillData.skillInfo._skillEffectColor;
-        //target = skillData.skillInfo.target;
-        //skillEffect = skillData._SetSkill._Methods;
+            trophyUIManager.trophyPanel.SetActive(true);
+            trophyUIManager.selectPanel.SetActive(false);
+            trophyUIManager.InitTrophy();
+        });
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        transform.DOScale(Vector3.one, 0.4f);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        transform.DOScale(new Vector3(1.45f, 1.45f, 1.45f), 0.4f);
     }
 }

@@ -7,13 +7,10 @@ using TMPro;
 
 public class TrophyUIManager : MonoBehaviour
 {
-    [SerializeField] private GameObject trophyPanel;
+    public GameObject trophyPanel;
 
     [SerializeField] private GameObject skillTrophy;
 
-    private Image skillTrophyImage;
-    private TextMeshProUGUI skillTrophyName;
-    private TextMeshProUGUI skillTrophyCount;
 
     [SerializeField] private GameObject itemTrophy;
     [SerializeField] private Transform parentTrm;
@@ -26,8 +23,9 @@ public class TrophyUIManager : MonoBehaviour
     [SerializeField] private ItemDBObj databaseObj;
 
     public List<CardImage> cardsTrm;
-    public GameObject select;
+    public GameObject selectPanel;
 
+    public MainModule mainModule;
     private void Awake()
     {
     }
@@ -37,37 +35,41 @@ public class TrophyUIManager : MonoBehaviour
         trophyPanel.GetComponent<Image>().DOFade(1f, 0.8f);
         trophyPanel.transform.Find("TrophyImage").GetComponent<Image>().DOFade(1f, 0.8f);
         AddNewItem();
-        SetTrophy(RandomSkill());
-       
+        SetTrophy();
+        mainModule.canMove = true;
     }
     public Skill RandomSkill()
     {
         int randomSKill = Random.Range(0, allSkills._allSkills.Count);
-        Debug.Log(allSkills._allSkills[randomSKill]);
+       // Debug.Log(allSkills._allSkills[randomSKill]);
         return allSkills._allSkills[randomSKill];
     }
-    public void SetTrophy(Skill skill)
+    public void SetTrophy( )
     {
         GameObject skillObj = Instantiate(skillTrophy, parentTrm.position, Quaternion.identity);
         skillObj.transform.SetParent(parentTrm);
+        //skillObj.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        //skillObj.transform.localScale = Vector3.one;
 
-        skillObj.transform.Find("SkillImage").GetComponent<Image>().sprite = skill.skillInfo._skillImage;
-        skillObj.transform.Find("SkillNameText").GetComponent<TextMeshProUGUI>().text = skill.skillInfo._skillName;
-        skillObj.transform.Find("SkillCountText").GetComponent<TextMeshProUGUI>().text = skill.skillInfo._skillExplanation;
+        //skillObj.transform.Find("SkillImage").GetComponent<Image>().sprite = skill.skillInfo._skillImage;
+        //skillObj.transform.Find("SkillNameText").GetComponent<TextMeshProUGUI>().text = skill.skillInfo._skillName;
+        //skillObj.transform.Find("SkillCountText").GetComponent<TextMeshProUGUI>().text = skill.skillInfo._skillExplanation;
 
         skillObj.GetComponent<Button>().onClick.AddListener(() =>
             {
-                select.SetActive(true);
+                selectPanel.SetActive(true);
                 Skill[] skills = GetRandDataList();
                 cardsTrm[0].Init(skills[0]);
                 cardsTrm[1].Init(skills[1]);
                 cardsTrm[2].Init(skills[2]);
+
+                trophyPanel.SetActive(false);
+
+                cardsTrm[0].GetComponent<RectTransform>().DOLocalMoveX(-460f, 0.5f);
+                cardsTrm[2].GetComponent<RectTransform>().DOLocalMoveX(460f, 0.5f);
+
+                Destroy(skillObj);
             });
-        //allSkills._allSkills.Add(skill);
-
-
-
-        //skillIInvenObj.cards.Add(skill);
     }
 
     public Skill[] GetRandDataList()
@@ -101,10 +103,6 @@ public class TrophyUIManager : MonoBehaviour
         return returnData.ToArray();
     }
 
-    private void Update()
-    {
-       
-    }
     /// <summary>
     /// 아이템 추가
     /// </summary>
@@ -114,6 +112,8 @@ public class TrophyUIManager : MonoBehaviour
 
         GameObject itemTrophyObj = Instantiate(itemTrophy, parentTrm.position, Quaternion.identity);
         itemTrophyObj.transform.SetParent(parentTrm);
+        //itemTrophyObj.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        //itemTrophyObj.transform.localScale = Vector3.one;
 
         int randomCnt = 0;
 
@@ -131,18 +131,25 @@ public class TrophyUIManager : MonoBehaviour
             if (newItemObject.getFlagStackable)
             {
                 itemTrophyObj.transform.Find("ItemCountText").GetComponent<TextMeshProUGUI>().text = randomCnt.ToString();
-                Debug.Log(itemTrophy);
+                //Debug.Log(itemTrophy);
+                Debug.Log(itemTrophyObj.name);
+
                 itemTrophyObj.GetComponent<Button>().onClick.AddListener(() =>
                 {
                     inventoryObj.AddItem(newItemObject.itemData, randomCnt);
+                    Destroy(itemTrophyObj);
+                    InitTrophy();
                 });
             }
             else
             {
+                Debug.Log(itemTrophyObj.name);
                 itemTrophyObj.transform.Find("ItemCountText").GetComponent<TextMeshProUGUI>().text = $"1";
                 itemTrophyObj.GetComponent<Button>().onClick.AddListener(() =>
                 {
                     inventoryObj.AddItem(newItemObject.itemData, 1);
+                    Destroy(itemTrophyObj);
+                    InitTrophy();
                 });
 
                 //inventoryObj.AddItem(newItemObject.itemData, 1);
@@ -151,6 +158,22 @@ public class TrophyUIManager : MonoBehaviour
         #endregion
     }
     
-    //뭐먹었는지 알려주고 
-    //스킬 3개뽑아서 하나 고르게
+    public void InitTrophy()
+    {
+        if (parentTrm.childCount <= 0)
+        {
+            Sequence seq = DOTween.Sequence();
+            seq.AppendInterval(0.5f);
+            seq.Append(trophyPanel.transform.DOLocalMoveY(1500f, 0.5f));
+            seq.AppendCallback(()=> 
+            {
+                trophyPanel.transform.localPosition = new Vector3(0, -1500f, 0);
+            });
+        }
+        else
+        {
+            Debug.Log("자식있음");
+        }
+    }
+    
 }
