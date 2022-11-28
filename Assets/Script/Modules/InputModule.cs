@@ -74,18 +74,18 @@ public class InputModule : MonoBehaviour
         Sequence seq = DOTween.Sequence();
         seq.AppendCallback(() =>
         {
-            mainModule.ChestAnimator.Play("Fantasy_Polygon_Chest_Animation");
+            mainModule.ChestAnimator.Play("Open");
         });
         seq.AppendInterval(1.35f);
-        seq.AppendCallback(() =>
-        {
-            mainModule.ChestOpenParticle.Play();
-        });
+        //seq.AppendCallback(() =>
+        //{
+        //    mainModule.ChestOpenParticle.Play();
+        //});
 
         seq.AppendInterval(2f);
         seq.AppendCallback(() =>
         {
-            mainModule.ChestOpenParticle.Stop();
+           // mainModule.ChestOpenParticle.Stop();
             mainModule._UIModule.TrophyUIManager.AppearTrophy();
         });
 

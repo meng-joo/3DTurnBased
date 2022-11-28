@@ -75,9 +75,9 @@ public class InvenSkill : MonoBehaviour
             GameObject cardObj = Instantiate(card, Vector3.zero, Quaternion.identity).gameObject;
             cardObj.GetComponent<Card>().Skill = skillInvenObj.cards[i];
             cardObj.transform.SetParent(cardParentTrm);
-            skillInvenObj.cards.Add(cardObj.GetComponent<Card>().Skill);
+           // Debug.Log(cardObj.GetComponent<Card>().Skill);
+            //skillInvenObj.cards.Add(cardObj.GetComponent<Card>().Skill);
         }
-        Debug.Log("±âº»");
     }
 
     public void DeleteCard()

@@ -52,6 +52,7 @@ public class InventoryManager : MonoBehaviour
     {
         Sequence seq = DOTween.Sequence();
 
+             invenSkill.DefaultCreate();
         //seq.AppendCallback(() =>
         //{
         //    if (gameInfoSO.isGameStart)
