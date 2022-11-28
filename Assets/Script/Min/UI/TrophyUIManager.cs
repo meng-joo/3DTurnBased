@@ -25,7 +25,7 @@ public class TrophyUIManager : MonoBehaviour
     [SerializeField] private InventoryObj inventoryObj;
     [SerializeField] private ItemDBObj databaseObj;
 
-    public List<SkillCard> cardsTrm;
+    public List<CardImage> cardsTrm;
     public GameObject select;
 
     private void Awake()
@@ -59,9 +59,9 @@ public class TrophyUIManager : MonoBehaviour
             {
                 select.SetActive(true);
                 Skill[] skills = GetRandDataList();
-                cardsTrm[0].SetSkillCard(skills[0]);
-                cardsTrm[1].SetSkillCard(skills[1]);
-                cardsTrm[2].SetSkillCard(skills[2]);
+                cardsTrm[0].Init(skills[0]);
+                cardsTrm[1].Init(skills[1]);
+                cardsTrm[2].Init(skills[2]);
             });
         //allSkills._allSkills.Add(skill);
 
@@ -82,14 +82,18 @@ public class TrophyUIManager : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            int rand = Random.Range(0, allSkills._allSkills.Count);
+            int rand = Random.Range(0, data.Count);
 
-            Skill generatedType = allSkills._allSkills[rand];
+            Skill generatedType = data[rand];
 
             if (data.Contains(generatedType))
             {
                 data.Remove(generatedType);
                 returnData.Add(generatedType);
+            }
+            else
+            {
+                continue;
             }
        
         }
