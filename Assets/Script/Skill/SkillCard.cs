@@ -141,8 +141,8 @@ public class SkillCard : PoolAbleObject
                 _battleUI.SpawnSkillEffectText(typeText, Color.white, transform.position + new Vector3(0, 30, 0));
 
                 //if(_mainModule._animation.GetClip(_motion.name) == null)
-                _mainModule._animation.AddClip(_motion, _motion.name);
-                _mainModule._animation.PlayQueued(_motion.name);
+                //_mainModule._animation.AddClip(_motion, _motion.name);
+                //_mainModule._animation.PlayQueued(_motion.name);
 
                 _mainModule._BattleModule.StartCoroutine("ShakeBattleCam", 1f);
 

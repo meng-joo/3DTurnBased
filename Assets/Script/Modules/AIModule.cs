@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class AIModule : MonoBehaviour
 {
-    private MainModule player;
+    public MainModule player;
 
-    private EnemyData enemyData;
+    public EnemyData enemyData;
     private HpModule hpmodule;
+
+    private EnemyAISkill _enemyAISkill;
 
     void Awake()
     {
@@ -15,7 +17,7 @@ public class AIModule : MonoBehaviour
 
         enemyData = GetComponent<EnemyData>();
         hpmodule = GetComponent<HpModule>();
-        
+        _enemyAISkill = GetComponent<EnemyAISkill>();
 
         Vector3 playerPos = player.transform.position;
         playerPos.y = 0;
@@ -26,5 +28,10 @@ public class AIModule : MonoBehaviour
     private void Start()
     {
         hpmodule.InitHP(enemyData.Hp, enemyData.Hp);
+    }
+
+    public void WhatToDo()
+    {
+        _enemyAISkill.AttackPlayer();
     }
 }

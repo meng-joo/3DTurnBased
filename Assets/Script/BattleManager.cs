@@ -32,6 +32,7 @@ public class BattleManager : MonoBehaviour
         seq.AppendInterval(1f);
         seq.AppendCallback(() =>
         {
+            Debug.Log("¿Ã∑± ææπﬂ");
             BattleCameraEffect();
             SetBattleUI();
         });
@@ -52,6 +53,7 @@ public class BattleManager : MonoBehaviour
 
     public void BattleCameraEffect()
     {
+        Debug.Log("∏Õ¡÷øµ∫¥Ω≈");
         _mainModule._UIModule.OnInteractionKeyImage();
         //_mainModule.battleCam.m_Lens.
         _mainModule.nomalCam.Priority -= 10;
@@ -69,7 +71,10 @@ public class BattleManager : MonoBehaviour
         if (isPlayer) { }
         else 
         {
-            
+            for (int i = 0; i < fieldEnemies.Count; i++)
+            {
+                fieldEnemies[i].GetComponent<AIModule>().WhatToDo();
+            }
         }
     }
 
