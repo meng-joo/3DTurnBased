@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1006953871533193931}
   - component: {fileID: 1006953871533193924}
   - component: {fileID: 1582252628119082903}
+  - component: {fileID: 7942615574459972342}
   m_Layer: 0
   m_Name: ItemTrophy
   m_TagString: Untagged
@@ -124,6 +125,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7942615574459972342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006953871533193926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b14171ec70bfb3428aed57eb1bceaac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1006953871533193924}
+  nameTxt: {fileID: 1006953873382816915}
+  cntTxt: {fileID: 1006953871853916923}
 --- !u!1 &1006953871853916917
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,7 +335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

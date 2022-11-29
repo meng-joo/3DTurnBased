@@ -44,7 +44,19 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
-
+   public void OpenInven()
+    {
+        isInven = !isInven;
+        if (!isInven)
+        {
+            InitInvenUI();
+        }
+        else
+        {
+            inventory.gameObject.SetActive(isInven);
+            AppearInvenUIEffect();
+        }
+    }
     /// <summary>
     /// 인벤 나타날때 다트윈 효과
     /// </summary>
