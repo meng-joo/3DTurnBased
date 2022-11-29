@@ -39,7 +39,6 @@ public class TrophyUIManager : MonoBehaviour
         trophyPanel.transform.Find("TrophyImage").GetComponent<Image>().DOFade(1f, 0.8f);
         AddNewItem();
         SetTrophy();
-        mainModule.canMove = true;
     }
     public Skill RandomSkill()
     {
@@ -182,6 +181,7 @@ public class TrophyUIManager : MonoBehaviour
             {
                 trophyPanel.transform.localPosition = new Vector3(0, -1500f, 0);
                 mainModule.isTrophy = false;
+                mainModule.canMove = false;
             });
         }
         else

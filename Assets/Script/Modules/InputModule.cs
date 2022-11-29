@@ -78,6 +78,7 @@ public class InputModule : MonoBehaviour
         Sequence seq = DOTween.Sequence();
         seq.AppendCallback(() =>
         {
+            mainModule.canMove = true;
             mainModule.ChestAnimator.Play("Open");
             mainModule.isTrophy = true; 
         });
@@ -91,6 +92,7 @@ public class InputModule : MonoBehaviour
         seq.AppendCallback(() =>
         {
            // mainModule.ChestOpenParticle.Stop();
+
             mainModule._UIModule.TrophyUIManager.AppearTrophy();
         });
 

@@ -171,7 +171,7 @@ public class BattleUI : MonoBehaviour
         SetQuickInven();
         StartCoroutine(MoveBehaveButtons(true, true));
     }
-
+    
     public void OnClickItem()
     {
         Sequence seq = DOTween.Sequence();
