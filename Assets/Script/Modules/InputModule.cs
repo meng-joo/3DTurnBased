@@ -71,10 +71,15 @@ public class InputModule : MonoBehaviour
 
     IEnumerator ChestUI()
     {
+        if (mainModule.isTrophy)
+        {
+            yield break;
+        }
         Sequence seq = DOTween.Sequence();
         seq.AppendCallback(() =>
         {
             mainModule.ChestAnimator.Play("Open");
+            mainModule.isTrophy = true; 
         });
         seq.AppendInterval(1.35f);
         //seq.AppendCallback(() =>

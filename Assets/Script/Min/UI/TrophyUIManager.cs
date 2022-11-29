@@ -1,9 +1,8 @@
-using System.Collections;
+using DG.Tweening;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
-using TMPro;
 
 public class TrophyUIManager : MonoBehaviour
 {
@@ -13,7 +12,7 @@ public class TrophyUIManager : MonoBehaviour
 
 
     [SerializeField] private GameObject itemTrophy;
-    [SerializeField] private Transform parentTrm;
+    public Transform parentTrm;
 
     [SerializeField] private AllSkills allSkills;
     [SerializeField] private SkillIInvenObj skillIInvenObj;
@@ -26,6 +25,10 @@ public class TrophyUIManager : MonoBehaviour
     public GameObject selectPanel;
 
     public MainModule mainModule;
+
+    public GameObject targetPos;
+
+    public Image itemsprite;
     private void Awake()
     {
     }
@@ -114,7 +117,6 @@ public class TrophyUIManager : MonoBehaviour
         itemTrophyObj.transform.SetParent(parentTrm);
         //itemTrophyObj.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
         //itemTrophyObj.transform.localScale = Vector3.one;
-
         int randomCnt = 0;
 
         if (databaseObj.itemObjs.Length > 0)
@@ -128,6 +130,8 @@ public class TrophyUIManager : MonoBehaviour
             itemTrophyObj.transform.Find("ItemImage").GetComponent<Image>().sprite = newItemObject.itemIcon;
             itemTrophyObj.transform.Find("ItemNameText").GetComponent<TextMeshProUGUI>().text = newItemObject.itemData.item_name;
 
+            itemsprite.sprite = itemTrophyObj.transform.Find("ItemImage").GetComponent<Image>().sprite;
+            
             if (newItemObject.getFlagStackable)
             {
                 itemTrophyObj.transform.Find("ItemCountText").GetComponent<TextMeshProUGUI>().text = randomCnt.ToString();
@@ -137,8 +141,13 @@ public class TrophyUIManager : MonoBehaviour
                 itemTrophyObj.GetComponent<Button>().onClick.AddListener(() =>
                 {
                     inventoryObj.AddItem(newItemObject.itemData, randomCnt);
+                    Vector3.Slerp(itemsprite.rectTransform.position, targetPos.transform.position, 0.5f);
+
                     Destroy(itemTrophyObj);
-                    InitTrophy();
+                    Debug.Log(parentTrm.childCount);
+
+                    
+                    Invoke("InitTrophy", 1f);
                 });
             }
             else
@@ -148,8 +157,12 @@ public class TrophyUIManager : MonoBehaviour
                 itemTrophyObj.GetComponent<Button>().onClick.AddListener(() =>
                 {
                     inventoryObj.AddItem(newItemObject.itemData, 1);
+                    Vector3.Slerp(itemsprite.rectTransform.position, targetPos.transform.position, 0.5f);
+
                     Destroy(itemTrophyObj);
-                    InitTrophy();
+                    Debug.Log(parentTrm.childCount);
+
+                    Invoke("InitTrophy", 1f);
                 });
 
                 //inventoryObj.AddItem(newItemObject.itemData, 1);
@@ -168,6 +181,7 @@ public class TrophyUIManager : MonoBehaviour
             seq.AppendCallback(()=> 
             {
                 trophyPanel.transform.localPosition = new Vector3(0, -1500f, 0);
+                mainModule.isTrophy = false;
             });
         }
         else

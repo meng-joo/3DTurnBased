@@ -37,6 +37,7 @@ public class CardImage : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             invenObj.cards.Add(skillData);
             trophyUIManager.trophyPanel.SetActive(true);
             trophyUIManager.selectPanel.SetActive(false);
+            Debug.Log(trophyUIManager.parentTrm.childCount);
             trophyUIManager.InitTrophy();
         });
     }

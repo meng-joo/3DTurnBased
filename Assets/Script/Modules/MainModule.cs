@@ -66,6 +66,8 @@ public class MainModule : MonoBehaviour
     public Animator ChestAnimator => chestAnimator;
     public ParticleSystem ChestOpenParticle => chestOpenParticle;
 
+
+    public bool isTrophy =false;
     private void Awake()
     {
         _moveModule = GetComponent<MoveModule>();
