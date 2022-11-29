@@ -20,16 +20,20 @@ public class SkillFunc : MonoBehaviour
         GameObject player = GameObject.Find("Player");//.transform.Find("mixamorig:Hips").gameObject;
         GameObject target = player.transform.Find("Target").gameObject;
 
+        SkinnedMeshAfterImage skinnedMeshAfterImage = player.GetComponent<SkinnedMeshAfterImage>();
+
         Sequence seq = DOTween.Sequence();
 
         Vector3 originpos = player.transform.localPosition;
         target.transform.SetParent(null);
-        seq.Append(player.transform.DOLocalMove(_enemy.transform.position + _enemy.transform.forward * -2, 0.4f));
+        skinnedMeshAfterImage.enabled = true;
+        seq.Append(player.transform.DOLocalMove(_enemy.transform.position + _enemy.transform.forward * -2, 0.5f));
 
-        seq.AppendInterval(.6f);
+        seq.AppendInterval(.3f);
 
         seq.AppendCallback(() =>
         {
+            skinnedMeshAfterImage.enabled = false;
             player.transform.localPosition = originpos;
             target.transform.SetParent(player.transform);
         });

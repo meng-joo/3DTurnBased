@@ -27,6 +27,7 @@ public class BattleUI : MonoBehaviour
 
     [Space]
     public List<GameObject> currentSkillCard = new List<GameObject>();
+    public List<Skill> currentSkill = new List<Skill>();
     public List<Skill> playerSkill;
 
     [Space]
@@ -259,7 +260,7 @@ public class BattleUI : MonoBehaviour
 
             currentSkillCard.Add(PoolManager.Instance.Pop(PoolType.Card).gameObject);//Instantiate(card, skillBox.transform);//new Vector3(xpos, ypos, 0f), Quaternion.identity);
             currentSkillCard[i].transform.SetParent(skillBox.transform);
-            currentSkillCard[i].transform.localPosition = new Vector3(xpos, ypos, 0);
+            currentSkillCard[i].transform.localPosition = new Vector3(0, ypos, 0);
         }
 
         seq.AppendCallback(() => SetUIBox(skillBox, true));
@@ -268,8 +269,7 @@ public class BattleUI : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             SetCardInfo(i);
-            if (currentSkillCard[i] != null)
-                seq.Append(currentSkillCard[i].transform.DOLocalMoveY(0, 0.2f));
+            seq.Append(currentSkillCard[i]?.transform.DOLocalMoveY(0, 0.2f));
         }
 
         seq.AppendCallback(() =>
@@ -285,7 +285,9 @@ public class BattleUI : MonoBehaviour
             SetDeck();
 
         Debug.Log("ASSDD");
-        currentSkillCard[i].GetComponent<SkillCard>().SetSkillCard(playerSkill[i]);
+
+        if (currentSkillCard[i] != null)
+            currentSkillCard[i].GetComponent<SkillCard>().SetSkillCard(currentSkill[i]);
     }
 
     private void SetDeck()
@@ -293,6 +295,12 @@ public class BattleUI : MonoBehaviour
         for (int i = 0; i < mainModule.playerDataSO._skills.Length; i++)
         {
             playerSkill.Add(mainModule.playerDataSO._skills[i]);
+        }
+        Shuffle(playerSkill);
+
+        for (int i = 0; i < 5; i++)
+        {
+            currentSkill.Add(playerSkill[i]);
         }
     }
 
@@ -310,5 +318,18 @@ public class BattleUI : MonoBehaviour
 
         seq.AppendInterval(2.7f);
         seq.AppendCallback(() => PoolManager.Instance.Push(PoolType.UI, text.gameObject));
+    }
+
+    public void Shuffle<T>(IList<T> list)
+    {
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = Random.Range(0, mainModule.playerDataSO._skills.Length);
+            T value = list[k];
+            list[k] = list[n];
+            list[n] = value;
+        }
     }
 }

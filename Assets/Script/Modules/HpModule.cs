@@ -17,6 +17,7 @@ public class HpModule : MonoBehaviour
     [Space]
     [Header("UIµé")]
     public Image _bar;
+    public Image _effectBar;
     public TextMeshProUGUI text;
     public GameObject _hpbar;
 
@@ -25,12 +26,25 @@ public class HpModule : MonoBehaviour
     public UnityEvent deadEvent;
 
     private Animator _animator;
+    [SerializeField] private float effectSpeed = 0.005f;
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
         _bar.fillAmount = 1;
         UpdateHPText();
+    }
+
+    private void Update()
+    {
+        if(_bar.fillAmount < _effectBar.fillAmount)
+        {
+            _effectBar.fillAmount -= effectSpeed;
+        }
+        else
+        {
+            _effectBar.fillAmount = _bar.fillAmount;
+        }
     }
 
     public void GetHit(int dmg)

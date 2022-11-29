@@ -26,7 +26,7 @@ MonoBehaviour:
       rgba: 4278195711
     _skillImage: {fileID: 21300000, guid: c67fbf9375ad5c34399c2849430ca7f7, type: 3}
     _animationClip: {fileID: 7400000, guid: 0ad85164b4335ea46bff25e143217154, type: 2}
-    _particle: {fileID: 0}
+    _poolType: 3
     _methodName:
     - HitEnemy
     - Teleport

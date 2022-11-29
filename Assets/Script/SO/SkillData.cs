@@ -43,7 +43,7 @@ public class SkillData
     public AnimationClip _animationClip;
 
     [Header("스킬 이펙트")]
-    public GameObject _particle;
+    public PoolType _poolType;
 
     [Header("스킬 함수이름")]
     public string[] _methodName; 

@@ -5,18 +5,27 @@ using UnityEngine;
 public class ParticleEnd : MonoBehaviour
 {
     ParticleSystem particle;
-    private void Start()
+    public PoolType poolType;
+
+    bool isOne = false;
+
+    private void OnDisable()
     {
         particle = GetComponent<ParticleSystem>();
-    }
-    private void OnEnable()
-    {
-        particle.Play();
-        //StartCoroutine(PushEffect());
+        isOne = true;
     }
 
-    //IEnumerator PushEffect()
-    //{
-        
-    //}
+    private void OnEnable()
+    {
+        if (isOne)
+        {
+            particle.Play();
+            Invoke("EndParticle", particle.duration);
+        }
+    }
+
+    private void EndParticle()
+    {
+        PoolManager.Instance.Push(poolType, gameObject);
+    }
 }

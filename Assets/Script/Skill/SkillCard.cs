@@ -34,9 +34,11 @@ public class SkillCard : PoolAbleObject
     BattleUI _battleUI;
 
     AnimationClip _motion;
-
+    PoolType _skillVFX;
     int value;
     string typeText;
+
+    Skill currentSkill;
 
     private void Init()
     {
@@ -57,6 +59,7 @@ public class SkillCard : PoolAbleObject
         skillImage.sprite = skillData.skillInfo._skillImage;
         skillName.text = skillData.skillInfo._skillName;
         skillInfo.text = skillData.skillInfo._skillExplanation;
+        currentSkill = skillData;
 
         typeText = skillData.skillInfo.skilltypeText;
         value = skillData.skillInfo.value;
@@ -64,6 +67,7 @@ public class SkillCard : PoolAbleObject
         target = skillData.skillInfo.target;
         skillEffect = skillData._SetSkill._Methods;
         _motion = skillData.skillInfo._animationClip;
+        _skillVFX = skillData.skillInfo._poolType;
         //skillData.SetFunc();
         //skillEffect = skillData._SetSkill.skillFunction;
     }
@@ -145,10 +149,14 @@ public class SkillCard : PoolAbleObject
                 _mainModule._animator.Play("Motion");
                 //_mainModule._animation.PlayQueued(_motion.name);
 
+                GameObject vfx = PoolManager.Instance.Pop(_skillVFX).gameObject;
+                vfx.transform.position = hit.point;
+
                 _mainModule._BattleModule.StartCoroutine("ShakeBattleCam", 1f);
 
                 //skillEffect.Invoke(hit.collider.gameObject);
                 _battleUI.currentSkillCard.Remove(gameObject);
+                _battleUI.currentSkill.Remove(currentSkill);
                 transform.SetParent(poolLocalM.transform);
                 PoolManager.Instance.Push(PoolType.Card, gameObject);
                 return;
