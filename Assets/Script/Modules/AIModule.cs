@@ -5,7 +5,9 @@ using UnityEngine;
 public class AIModule : MonoBehaviour
 {
     public MainModule player;
+    public Animator _animator;
 
+    private BattleManager _battleManager;
     public EnemyData enemyData;
     private HpModule hpmodule;
 
@@ -14,6 +16,7 @@ public class AIModule : MonoBehaviour
     void Awake()
     {
         player = GameObject.Find("Player").GetComponent<MainModule>();
+        _battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
 
         enemyData = GetComponent<EnemyData>();
         hpmodule = GetComponent<HpModule>();
@@ -28,6 +31,23 @@ public class AIModule : MonoBehaviour
     private void Start()
     {
         hpmodule.InitHP(enemyData.Hp, enemyData.Hp);
+    }
+
+    public void EnemyDead()
+    {
+        StartCoroutine(EnemyDeadCorou());
+    }
+
+    IEnumerator EnemyDeadCorou()
+    {
+        _animator.Play("Die");
+
+        yield return new WaitForSeconds(1.3f);
+
+        _battleManager.fieldEnemies.Remove(gameObject);
+        gameObject.SetActive(false);
+        if (_battleManager.fieldEnemies.Count == 0)
+            _battleManager.EndBattle("Win");
     }
 
     public void WhatToDo()

@@ -13,6 +13,8 @@ public class BattleManager : MonoBehaviour
     public AllEnemySO currentEnemys;
     public List<GameObject> fieldEnemies;
 
+    public GameObject _wall;
+
     [Space]
     [Header("적 생성 범위 지정")]
     public float enemySpawnMinPoint;
@@ -32,6 +34,7 @@ public class BattleManager : MonoBehaviour
         seq.AppendInterval(1f);
         seq.AppendCallback(() =>
         {
+            _wall.SetActive(false);
             Debug.Log("이런 씨발");
             BattleCameraEffect();
             SetBattleUI();
@@ -53,10 +56,15 @@ public class BattleManager : MonoBehaviour
 
     public void BattleCameraEffect()
     {
-        Debug.Log("맹주영병신");
         _mainModule._UIModule.OnInteractionKeyImage();
         //_mainModule.battleCam.m_Lens.
         _mainModule.nomalCam.Priority -= 10;
+    }
+
+    public void EndBattle(string isWin)
+    {
+        _battleUI.GameEnd(isWin);
+        _mainModule._BattleModule.inBattle = false;
     }
 
     public void SetBattleUI()
@@ -68,13 +76,19 @@ public class BattleManager : MonoBehaviour
 
     public void ChangeTurn(bool isPlayer)
     {
+        Sequence seq = DOTween.Sequence();
+
         if (isPlayer) { }
-        else 
+        else
         {
             for (int i = 0; i < fieldEnemies.Count; i++)
             {
-                fieldEnemies[i].GetComponent<AIModule>().WhatToDo();
+                seq.AppendCallback(() => fieldEnemies[i].GetComponent<AIModule>().WhatToDo());
             }
+
+            seq.AppendInterval(1);
+
+            seq.AppendCallback(() => _battleUI.SetChangeTurn(true));
         }
     }
 

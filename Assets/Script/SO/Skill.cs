@@ -34,8 +34,11 @@ public class SetSkill
     public void AddEvent(SkillData skillInfo)
     {
         Type type = typeof(SkillFunc);
-        MethodInfo method = type.GetMethod(skillInfo._methodName);
-        methods.Add(method);
+        for (int i = 0; i < skillInfo._methodName.Length; i++)
+        {
+            MethodInfo method = type.GetMethod(skillInfo._methodName[i]);
+            methods.Add(method);
+        }
     }
 
     void CallEvent(GameObject enemy)

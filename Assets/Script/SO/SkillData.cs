@@ -46,7 +46,7 @@ public class SkillData
     public GameObject _particle;
 
     [Header("스킬 함수이름")]
-    public string _methodName; 
+    public string[] _methodName; 
 
     [Header("플레이어 획득 여부")]
     public bool isPossession;

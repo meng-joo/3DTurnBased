@@ -68,7 +68,7 @@ public class SkillCard : PoolAbleObject
         //skillEffect = skillData._SetSkill.skillFunction;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (m_IsButtonDowning)
         {
@@ -94,10 +94,10 @@ public class SkillCard : PoolAbleObject
                 {
                     if (hit.collider.CompareTag(target))
                     {
-                        if (fadeImage.color.a <= 1)
+                        if (fadeImage.color.a <= 0.5f)
                         {
                             Color color = fadeImage.color;
-                            color.a += 0.08f;
+                            color.a += 0.05f;
                             fadeImage.color = color;
                         }
                     }
@@ -106,7 +106,7 @@ public class SkillCard : PoolAbleObject
                         if (fadeImage.color.a >= 0)
                         {
                             Color color = fadeImage.color;
-                            color.a -= 0.08f;
+                            color.a -= 0.05f;
                             fadeImage.color = color;
                         }
                     }
@@ -141,12 +141,14 @@ public class SkillCard : PoolAbleObject
                 _battleUI.SpawnSkillEffectText(typeText, Color.white, transform.position + new Vector3(0, 30, 0));
 
                 //if(_mainModule._animation.GetClip(_motion.name) == null)
-                //_mainModule._animation.AddClip(_motion, _motion.name);
+                _mainModule._animatorOverride["Motion"] = _motion;
+                _mainModule._animator.Play("Motion");
                 //_mainModule._animation.PlayQueued(_motion.name);
 
                 _mainModule._BattleModule.StartCoroutine("ShakeBattleCam", 1f);
 
                 //skillEffect.Invoke(hit.collider.gameObject);
+                _battleUI.currentSkillCard.Remove(gameObject);
                 transform.SetParent(poolLocalM.transform);
                 PoolManager.Instance.Push(PoolType.Card, gameObject);
                 return;

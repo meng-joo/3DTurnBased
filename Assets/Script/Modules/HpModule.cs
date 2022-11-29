@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 using UnityEngine.UI;
 
@@ -18,6 +19,10 @@ public class HpModule : MonoBehaviour
     public Image _bar;
     public TextMeshProUGUI text;
     public GameObject _hpbar;
+
+    [Space]
+    [Header("Á×À»¶§ ½ÇÇà µÉ ÇÔ¼ö")]
+    public UnityEvent deadEvent;
 
     private Animator _animator;
 
@@ -52,6 +57,7 @@ public class HpModule : MonoBehaviour
 
     public void Dead()
     {
+        deadEvent.Invoke();
         Debug.Log("À¸¾Ó Á×À½!");
     }
 
