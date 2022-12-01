@@ -114,7 +114,7 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator UnlockBattleLimit()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         _mainModule.canMove = false;
         _mainModule.twoView.Priority -= 10;
     }
