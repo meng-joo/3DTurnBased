@@ -3,7 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using DG.Tweening;
 using UnityEngine.UI;
+
+[System.Serializable]
+public class HitEvent : UnityEvent<int>
+{
+}
 
 public class HpModule : MonoBehaviour
 {
@@ -20,6 +26,10 @@ public class HpModule : MonoBehaviour
     public Image _effectBar;
     public TextMeshProUGUI text;
     public GameObject _hpbar;
+
+    [Space]
+    [Header("맞을때 실행 될 함수")]
+    public HitEvent attackedEvent;
 
     [Space]
     [Header("죽을때 실행 될 함수")]
@@ -50,6 +60,7 @@ public class HpModule : MonoBehaviour
     public void GetHit(int dmg)
     {
         hp -= dmg;
+        attackedEvent?.Invoke(dmg);
         UpdateHPText();
         if (hp <= 0)
         {
@@ -83,6 +94,7 @@ public class HpModule : MonoBehaviour
 
     public void GetDamaged()
     {
+        transform.DOShakePosition(0.34f, 0.4f, 80);
         _animator.SetTrigger("GetHit");
     }
 }

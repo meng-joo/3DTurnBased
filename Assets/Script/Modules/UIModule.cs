@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class UIModule : MonoBehaviour
 {
+    [Header("메인모듈")]
+    private MainModule _mainModule;
+
+    [Space]
     [Header("메니져 받아오기")]
-    [SerializeField] public UIManager _uiManager;
+    public UIManager _uiManager;
+
+    BattleUI _battleUI;
 
     Canvas _playerCanvas;
     Image _interationkeyImage;
@@ -31,10 +38,30 @@ public class UIModule : MonoBehaviour
         _keyText = _interationkeyImage?.transform.Find("KeyText")?.GetComponent<TextMeshProUGUI>();
         _behaveText = _interationkeyImage?.transform.Find("BehaviorText")?.GetComponent<TextMeshProUGUI>();
         _interationkeyImage.gameObject?.SetActive(false);
-        _uiManager = FindObjectOfType<UIManager>();
+        _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+        _battleUI = _uiManager.GetComponent<BattleUI>();
+        _mainModule = GetComponent<MainModule>();
         _keyName = "f";
 
-        _trophyUIManager = FindObjectOfType<TrophyUIManager>();
+        _trophyUIManager = GameObject.Find("TrophyManager").GetComponent<TrophyUIManager>();
+    }
+
+    public void DamageUI(int damage)
+    {
+        Sequence seq = DOTween.Sequence();
+        GameObject player = _mainModule.gameObject;
+        GameObject target = player.transform.Find("Target").gameObject;
+
+        seq.AppendCallback(() =>
+        {
+            target.transform.parent = null;
+            Vector2 playerPos = _mainModule.playerCam.WorldToScreenPoint(gameObject.transform.position + new Vector3(0, 1, 0));
+            _battleUI.SpawnSkillEffectText(damage.ToString(), Color.white, playerPos);
+        });
+
+        seq.AppendInterval(1f);
+
+        seq.AppendCallback(() => target.transform.SetParent(player.transform));
     }
 
     public void OnInteractionKeyImage(bool isOn = false, string _behave = "", string _key = "f", string _func = "")

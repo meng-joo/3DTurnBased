@@ -35,6 +35,7 @@ public class BattleManager : MonoBehaviour
         seq.AppendCallback(() =>
         {
             _wall.SetActive(false);
+            _mainModule.SetBattleAni();
             Debug.Log("ÀÌ·± ¾¾¹ß");
             BattleCameraEffect();
             SetBattleUI();
@@ -58,13 +59,21 @@ public class BattleManager : MonoBehaviour
     {
         _mainModule._UIModule.OnInteractionKeyImage();
         //_mainModule.battleCam.m_Lens.
-        _mainModule.nomalCam.Priority -= 10;
+        _mainModule.battleCam.Priority += 10;
     }
 
     public void EndBattle(string isWin)
     {
+        _mainModule._animator.Play("Win");
+
+        _mainModule._animator.SetBool("Fight", false);
+        _mainModule.twoView.Priority += 10;
+        _mainModule.battleCam.Priority -= 10;
         _battleUI.GameEnd(isWin);
+        _wall.SetActive(true);
         _mainModule._BattleModule.inBattle = false;
+
+        StartCoroutine(UnlockBattleLimit());
     }
 
     public void SetBattleUI()
@@ -74,21 +83,25 @@ public class BattleManager : MonoBehaviour
         _battleUI.SetBattleUI();
     }
 
-    public void ChangeTurn(bool isPlayer)
+    public IEnumerator ChangeTurn(bool isPlayer)
     {
-        Sequence seq = DOTween.Sequence();
-
         if (isPlayer) { }
+
         else
         {
+            yield return new WaitForSeconds(1.1f);
+
             for (int i = 0; i < fieldEnemies.Count; i++)
             {
-                seq.AppendCallback(() => fieldEnemies[i].GetComponent<AIModule>().WhatToDo());
+                fieldEnemies[i].GetComponent<AIModule>().WhatToDo();
+                yield return new WaitForSeconds(2.3f);
             }
 
-            seq.AppendInterval(1);
-
-            seq.AppendCallback(() => _battleUI.SetChangeTurn(true));
+            _battleUI.cardCount = _battleUI.GetCardCount();
+            yield return new WaitForSeconds(1f);
+           _battleUI.SetChangeTurn(true);
+            yield return new WaitForSeconds(0.5f);
+            _battleUI.SetActiveButton(true);
         }
     }
 
@@ -97,6 +110,13 @@ public class BattleManager : MonoBehaviour
         if (_mainModule.playerDataSO.Speed >= fieldEnemies[0].GetComponent<EnemyData>().Speed)
             return true;
         else return false;
+    }
+
+    IEnumerator UnlockBattleLimit()
+    {
+        yield return new WaitForSeconds(2f);
+        _mainModule.canMove = false;
+        _mainModule.twoView.Priority -= 10;
     }
 
     //public NavMeshHit SetMonsterPos()

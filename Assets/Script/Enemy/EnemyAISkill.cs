@@ -11,9 +11,12 @@ public class EnemyAISkill : MonoBehaviour
         _aIModule = GetComponent<AIModule>();
     }
 
-    public void AttackPlayer()
+    public IEnumerator AttackPlayer()
     {
-        _aIModule.player._HpModule.GetDamaged();
+        _aIModule._animator.Play("Attack01");
+
+        yield return new WaitForSeconds(0.4f);
         _aIModule.player._HpModule.GetHit(_aIModule.enemyData.Atk);
+        _aIModule.player._HpModule.GetDamaged();
     }
 }

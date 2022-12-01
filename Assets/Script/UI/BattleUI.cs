@@ -39,6 +39,11 @@ public class BattleUI : MonoBehaviour
     [Header("적을 알기 위한 배틀 메니져")]
     [SerializeField] private BattleManager battleManager;
 
+    [Space]
+    [Header("카드 개수")]
+    public int cardCount = 0;
+
+    [Space]
     public PoolManager poolM;
     public LocalPoolManager[] poolLocalM = new LocalPoolManager[2];
 
@@ -76,9 +81,21 @@ public class BattleUI : MonoBehaviour
         seq.AppendInterval(0.7f);
         seq.Append(turnImage[0].DOFade(1, 0.6f));
         seq.Join(turnImage[1].DOFade(1, 0.6f));
-        seq.AppendCallback(() => OnClickSkill());
-        seq.AppendInterval(0.8f);
         seq.AppendCallback(() => SetChangeTurn(battleManager.SetTurn()));
+        seq.AppendInterval(0.8f);
+        seq.AppendCallback(() => OnClickSkill());
+    }
+
+    public void GetBackBattleUI()
+    {
+        behaveTextBox.transform.DOLocalMoveY(1224, 0.7f);
+
+        TurnEnd.transform.DOLocalMoveX(835, 1f);
+
+        //skillPanel.transform.DOLocalMoveX(700, 0.6f);
+        quickInven.transform.DOMove(new Vector3(60, 80, 0), 0.4f);
+        turnImage[0].DOFade(1, 0.6f);
+        turnImage[1].DOFade(1, 0.6f);
     }
 
     public void SetChangeTurn(bool isPlayerTurn)
@@ -88,6 +105,11 @@ public class BattleUI : MonoBehaviour
         //seq.AppendCallback(() => SetActiveButton(false));
         if (isPlayerTurn)
         {
+            for (int i = 0; i < cardCount; i++)
+            {
+                SetSkillInfo();
+            }
+
             turnImage[0].DOFade(1, 2.4f);
             turnImage[0].transform.DOScale(1.18f, 1.2f);
             turnImage[1].DOFade(0.13f, 2.4f);
@@ -136,14 +158,14 @@ public class BattleUI : MonoBehaviour
         for (int i = 0; i < behaveButtons.Count; ++i)
         {
             behaveButtons[i].transform.DOLocalMoveX(weight * 504, 0.3f);
-            yield return new WaitForSeconds(0.12f);
+            yield return new WaitForSeconds(0.08f);
         }
 
-        yield return new WaitForSeconds(0.6f);
+        //yield return new WaitForSeconds(0.6f);
         if (istextBox) SetUIBox(textBox, istextBox);
     }
 
-    private void SetActiveButton(bool isActive)
+    public void SetActiveButton(bool isActive)
     {
         for (int i = 0; i < behaveButtons.Count; ++i)
         {
@@ -189,6 +211,8 @@ public class BattleUI : MonoBehaviour
         SetActiveButton(false);
         SetUIBox(skillBox, false);
         StartCoroutine(MoveBehaveButtons(false));
+
+        //전투 끝 + ui 초기화 + 적 없애기 + 
     }
 
     public void GameEnd(string isWin)
@@ -211,38 +235,41 @@ public class BattleUI : MonoBehaviour
 
     }
 
-    public void OnClickTurnEnd()
+    public void OnClickTurnEnd()   //여기 턴 넘어가는 곳
     {
         SetChangeTurn(false);
-        OnClickInfo();
-        SetActiveButton(false);
-        battleManager.ChangeTurn(false);
+        ClearCard(10);
+        battleManager.StartCoroutine("ChangeTurn", false);
+        ClearSkill();
     }
 
     private void ClearCard(int num)
     {
-        Sequence seq = DOTween.Sequence();
-
         SetActiveButton(false);
-        for (int i = 0; i < currentSkillCard.Count; i++)
-        {
-            if (currentSkillCard[i] != null)
-                seq.Join(currentSkillCard[i].transform.DOLocalMoveY(-400, 0.2f));
-        }
 
         for (int i = 0; i < currentSkillCard.Count; i++)
         {
             currentSkillCard[i].transform.SetParent(poolLocalM[0].transform);
             PoolManager.Instance.Push(PoolType.Card, currentSkillCard[i]);
-            currentSkillCard.Clear();
         }
+        currentSkillCard.Clear();
+        SetUIBox(skillBox, false);
+        if (num < 10)
+        {
+            SetActiveButton(true);
+            behaveButtons[num].interactable = false;
+        }
+    }
 
-        seq.AppendCallback(() => 
-        { 
-            SetUIBox(skillBox, false); 
-            SetActiveButton(true); 
-            behaveButtons[num].interactable = false; 
-        });
+    private void ClearSkill()
+    {
+        int left = currentSkill.Count;
+        currentSkill.Clear();
+
+        //for (int i = 0; i < left; i++)
+        //{
+        //    playerSkill.Remove(playerSkill[0]);
+        //}
     }
 
     private void SpawnCard()
@@ -251,7 +278,7 @@ public class BattleUI : MonoBehaviour
 
         SetActiveButton(false);
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < cardCount; i++)
         {
             float xpos = -550 + i * 275;
             float ypos = -400;
@@ -264,13 +291,11 @@ public class BattleUI : MonoBehaviour
         }
 
         seq.AppendCallback(() => SetUIBox(skillBox, true));
-        seq.AppendInterval(0.7f);
-
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < cardCount; i++)
         {
             SetCardInfo(i);
-            seq.Append(currentSkillCard[i]?.transform.DOLocalMoveY(0, 0.2f));
         }
+        seq.AppendInterval(0.4f);
 
         seq.AppendCallback(() =>
         {
@@ -279,15 +304,19 @@ public class BattleUI : MonoBehaviour
         });
     }
 
-    public void SetCardInfo(int i)
+    public void SetSkillInfo()
     {
-        if (playerSkill.Count == 0)
+        if (playerSkill.Count < 1)
             SetDeck();
 
-        Debug.Log("ASSDD");
+        currentSkill.Add(playerSkill[0]);
+        playerSkill.Remove(playerSkill[0]);
 
-        if (currentSkillCard[i] != null)
-            currentSkillCard[i].GetComponent<SkillCard>().SetSkillCard(currentSkill[i]);
+    }
+
+    public void SetCardInfo(int i)
+    {
+        currentSkillCard[i].GetComponent<SkillCard>().SetSkillCard(currentSkill[i]);
     }
 
     private void SetDeck()
@@ -297,12 +326,15 @@ public class BattleUI : MonoBehaviour
             playerSkill.Add(mainModule.playerDataSO._skills[i]);
         }
         Shuffle(playerSkill);
-
-        for (int i = 0; i < 5; i++)
-        {
-            currentSkill.Add(playerSkill[i]);
-        }
     }
+
+    //private void SetSkill()
+    //{
+    //    for (int i = 0; i < cardCount; i++)
+    //    {
+    //        currentSkill.Add(playerSkill[i]);
+    //    }
+    //}
 
     public void SpawnSkillEffectText(string dmg, Color32 color, Vector3 pos)
     {
@@ -331,5 +363,10 @@ public class BattleUI : MonoBehaviour
             list[k] = list[n];
             list[n] = value;
         }
+    }
+
+    public int GetCardCount()
+    {
+        return 5;
     }
 }

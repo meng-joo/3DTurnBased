@@ -15,6 +15,7 @@ public class SkillCard : PoolAbleObject
     public Image skillImage;
     public TextMeshProUGUI skillName;
     public TextMeshProUGUI skillInfo;
+    public TextMeshProUGUI skillCost;
 
     public List<MethodInfo> skillEffect = new List<MethodInfo>();
 
@@ -45,11 +46,12 @@ public class SkillCard : PoolAbleObject
         _battleUI = GameObject.Find("UIManager").GetComponent<BattleUI>();
         _mainModule = GameObject.Find("Player").GetComponent<MainModule>();
         poolLocalM = GameObject.Find("LocalPool : Card").GetComponent<LocalPoolManager>();
-        backGroundImage = GetComponent<Image>();
-        skillImage = transform.GetChild(0).GetComponent<Image>();
-        skillName = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-        skillInfo = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-        fadeImage = transform.GetChild(3).GetComponent<Image>();
+        //backGroundImage = GetComponent<Image>();
+        //skillCost = transform.Find("CostText").GetComponent<TextMeshProUGUI>();
+        //skillImage = transform.Find("SkillImage").GetComponent<Image>();
+        //skillName = transform.Find("SkillName").GetComponent<TextMeshProUGUI>();
+        //skillInfo = transform.Find("SkillInfo").GetComponent<TextMeshProUGUI>();
+        //fadeImage = transform.Find("FadeImage").GetComponent<Image>();
     }
 
     public void SetSkillCard(Skill skillData)
@@ -59,7 +61,9 @@ public class SkillCard : PoolAbleObject
         skillImage.sprite = skillData.skillInfo._skillImage;
         skillName.text = skillData.skillInfo._skillName;
         skillInfo.text = skillData.skillInfo._skillExplanation;
+        skillCost.text = skillData.skillInfo._skillCost.ToString();
         currentSkill = skillData;
+
 
         typeText = skillData.skillInfo.skilltypeText;
         value = skillData.skillInfo.value;
@@ -98,7 +102,7 @@ public class SkillCard : PoolAbleObject
                 {
                     if (hit.collider.CompareTag(target))
                     {
-                        if (fadeImage.color.a <= 0.5f)
+                        if (fadeImage.color.a <= 0.4f)
                         {
                             Color color = fadeImage.color;
                             color.a += 0.05f;
@@ -157,6 +161,8 @@ public class SkillCard : PoolAbleObject
                 //skillEffect.Invoke(hit.collider.gameObject);
                 _battleUI.currentSkillCard.Remove(gameObject);
                 _battleUI.currentSkill.Remove(currentSkill);
+                _battleUI.cardCount--;
+
                 transform.SetParent(poolLocalM.transform);
                 PoolManager.Instance.Push(PoolType.Card, gameObject);
                 return;

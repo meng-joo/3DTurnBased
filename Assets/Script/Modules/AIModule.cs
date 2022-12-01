@@ -52,6 +52,7 @@ public class AIModule : MonoBehaviour
 
     public void WhatToDo()
     {
-        _enemyAISkill.AttackPlayer();
+        
+        _enemyAISkill.StartCoroutine("AttackPlayer");
     }
 }

@@ -12,7 +12,7 @@ Material:
   m_ValidKeywords:
   - _EMISSION
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -64,9 +64,9 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0.47
     - _GlossyReflections: 1
-    - _Metallic: 0
+    - _Metallic: 0.81
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -77,5 +77,5 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 0.7045614, b: 0, a: 1}
-    - _EmissionColor: {r: 1, g: 0.49615267, b: 0.2584905, a: 1}
+    - _EmissionColor: {r: 1.319508, g: 0.6157704, b: 0.2794252, a: 1}
   m_BuildTextureStacks: []

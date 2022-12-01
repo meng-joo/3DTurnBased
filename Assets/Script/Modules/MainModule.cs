@@ -22,6 +22,7 @@ public class MainModule : MonoBehaviour
     [Header("방 카메라들")]
     public CinemachineVirtualCamera nomalCam;
     public CinemachineVirtualCamera battleCam;
+    public CinemachineVirtualCamera twoView;
 
     [Space]
     [Header("적 소환위치")]
@@ -130,6 +131,11 @@ public class MainModule : MonoBehaviour
     public void SetBattleDelay()
     {
         battleTime = Random.Range(minTime, maxTime);
+    }
+
+    public void SetBattleAni()
+    {
+        _animator.SetBool("Fight", true);
     }
 
     private void OnTriggerEnter(Collider other)

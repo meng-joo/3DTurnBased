@@ -19,6 +19,9 @@ public class SkillData
     [Header("스킬종류")]
     public SkillType _skillType;
 
+    [Header("스킬비용")]
+    public int _skillCost;
+
     [Header("스킬대상")]
     public string target;
 
