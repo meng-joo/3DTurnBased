@@ -32,27 +32,35 @@ public class ApplyAbility : MonoBehaviour
         //    }
         //} 
 
+        int ad = 0;
+        int hp = 0;
         for (int i = 0; i < itemAbility.Length; i++)
         {
             switch (itemAbility[i].characterStack)
             {
                 case CharacterStack.Str:
                     PlayerData.Ad += itemAbility[i].valStack;
+                     ad = itemAbility[i].valStack;
                     break;
                 case CharacterStack.Hp:
                     PlayerData.Health += itemAbility[i].valStack;
+                    hp = itemAbility[i].valStack;
                     break;
                 case CharacterStack.Benefit_Effect:
                     break;
                 case CharacterStack.Detrimental_Effect:
                     break;
             }
+
         }
+        //PlayerData.Ad = ad;
+        //PlayerData.Health = hp;
+
 
         //옜날 아이템에 정보를 기억해서 뺴야함 ㅈㄴ어려움
 
 
-        
+
     }
 
 

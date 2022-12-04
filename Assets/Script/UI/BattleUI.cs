@@ -47,6 +47,10 @@ public class BattleUI : MonoBehaviour
     public PoolManager poolM;
     public LocalPoolManager[] poolLocalM = new LocalPoolManager[2];
 
+
+    public TextMeshProUGUI costTxt;
+    public int cost = 3; 
+    public int maxCost = 3; 
     private void Start()
     {
         mainModule = GameObject.Find("Player").GetComponent<MainModule>();

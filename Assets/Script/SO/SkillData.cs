@@ -57,4 +57,7 @@ public class SkillData
     [TextArea]
     [Header("스킬 설명")]
     public string _skillExplanation;
+
+    [Header("스킬 코스트")]
+    public int _skillCost;
 }

@@ -19,6 +19,7 @@ public class SkillCard : PoolAbleObject
 
     public List<MethodInfo> skillEffect = new List<MethodInfo>();
 
+
     Vector2 originPos;
     Vector2 mousePoint;
 
@@ -35,23 +36,21 @@ public class SkillCard : PoolAbleObject
     BattleUI _battleUI;
 
     AnimationClip _motion;
-    PoolType _skillVFX;
+
     int value;
     string typeText;
-
-    Skill currentSkill;
 
     private void Init()
     {
         _battleUI = GameObject.Find("UIManager").GetComponent<BattleUI>();
         _mainModule = GameObject.Find("Player").GetComponent<MainModule>();
         poolLocalM = GameObject.Find("LocalPool : Card").GetComponent<LocalPoolManager>();
-        //backGroundImage = GetComponent<Image>();
-        //skillCost = transform.Find("CostText").GetComponent<TextMeshProUGUI>();
-        //skillImage = transform.Find("SkillImage").GetComponent<Image>();
-        //skillName = transform.Find("SkillName").GetComponent<TextMeshProUGUI>();
-        //skillInfo = transform.Find("SkillInfo").GetComponent<TextMeshProUGUI>();
-        //fadeImage = transform.Find("FadeImage").GetComponent<Image>();
+        backGroundImage = GetComponent<Image>();
+        skillImage = transform.GetChild(0).GetComponent<Image>();
+        skillName = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        skillInfo = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        fadeImage = transform.GetChild(3).GetComponent<Image>();
+        skillCost = transform.GetChild(4).GetComponentInChildren<TextMeshProUGUI>();
     }
 
     public void SetSkillCard(Skill skillData)
@@ -62,7 +61,6 @@ public class SkillCard : PoolAbleObject
         skillName.text = skillData.skillInfo._skillName;
         skillInfo.text = skillData.skillInfo._skillExplanation;
         skillCost.text = skillData.skillInfo._skillCost.ToString();
-        currentSkill = skillData;
 
 
         typeText = skillData.skillInfo.skilltypeText;
@@ -71,7 +69,6 @@ public class SkillCard : PoolAbleObject
         target = skillData.skillInfo.target;
         skillEffect = skillData._SetSkill._Methods;
         _motion = skillData.skillInfo._animationClip;
-        _skillVFX = skillData.skillInfo._poolType;
         //skillData.SetFunc();
         //skillEffect = skillData._SetSkill.skillFunction;
     }
@@ -102,7 +99,7 @@ public class SkillCard : PoolAbleObject
                 {
                     if (hit.collider.CompareTag(target))
                     {
-                        if (fadeImage.color.a <= 0.4f)
+                        if (fadeImage.color.a <= 0.5f)
                         {
                             Color color = fadeImage.color;
                             color.a += 0.05f;
@@ -139,10 +136,19 @@ public class SkillCard : PoolAbleObject
         {
             if(hit.collider.CompareTag(target))
             {
+
+                if (_battleUI.cost <= 0)
+                {
+                    return;
+                }
+
                 foreach (var method in skillEffect)
                 {
                     method.Invoke(null, new object[] { hit.collider.gameObject, value });
                 }
+                int cost = Int32.Parse(skillCost.text);
+                _battleUI.cost -= cost;
+                _battleUI.costTxt.text = $"{_battleUI.cost + "/" + _battleUI.maxCost}";
 
                 //CardEffect();
                 _battleUI.SpawnSkillEffectText(value.ToString(), skillText, transform.position);
@@ -153,16 +159,10 @@ public class SkillCard : PoolAbleObject
                 _mainModule._animator.Play("Motion");
                 //_mainModule._animation.PlayQueued(_motion.name);
 
-                GameObject vfx = PoolManager.Instance.Pop(_skillVFX).gameObject;
-                vfx.transform.position = hit.point;
-
                 _mainModule._BattleModule.StartCoroutine("ShakeBattleCam", 1f);
 
                 //skillEffect.Invoke(hit.collider.gameObject);
                 _battleUI.currentSkillCard.Remove(gameObject);
-                _battleUI.currentSkill.Remove(currentSkill);
-                _battleUI.cardCount--;
-
                 transform.SetParent(poolLocalM.transform);
                 PoolManager.Instance.Push(PoolType.Card, gameObject);
                 return;

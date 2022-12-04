@@ -11,6 +11,7 @@ public class CardImage : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public Image skillImage;
     public TextMeshProUGUI skillName;
     public TextMeshProUGUI skillInfo;
+    public TextMeshProUGUI skillCost;
 
     public SkillIInvenObj invenObj;
 
@@ -22,7 +23,7 @@ public class CardImage : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         skillImage = transform.GetChild(0).GetComponent<Image>();
         skillName = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         skillInfo = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-
+        skillCost = transform.GetChild(3).GetComponentInChildren<TextMeshProUGUI>();
         trophyUIManager = GameObject.Find("TrophyManager").GetComponent<TrophyUIManager>();
     }
     public void Init(Skill skillData)
@@ -31,17 +32,27 @@ public class CardImage : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         skillImage.sprite = skillData.skillInfo._skillImage;
         skillName.text = skillData.skillInfo._skillName;
         skillInfo.text = skillData.skillInfo._skillExplanation;
+        skillCost.text = skillData.skillInfo._skillCost.ToString();
 
         transform.GetComponent<Button>().onClick.AddListener(() =>
         {
             invenObj.cards.Add(skillData);
             trophyUIManager.trophyPanel.SetActive(true);
             trophyUIManager.selectPanel.SetActive(false);
-            Debug.Log(trophyUIManager.parentTrm.childCount);
             trophyUIManager.InitTrophy();
+
+
+            #region 카드 들어가는 애니메이션
+            trophyUIManager.animator.gameObject.SetActive(true);
+            trophyUIManager.animator.GetComponent<Image>().sprite = skillData.skillInfo._skillImage;
+            trophyUIManager.animator.Play("MoveOne");
+            #endregion
         });
     }
-
+    public void CardInEffect()
+    {
+  
+    }
     public void OnPointerExit(PointerEventData eventData)
     {
         transform.DOScale(Vector3.one, 0.4f);

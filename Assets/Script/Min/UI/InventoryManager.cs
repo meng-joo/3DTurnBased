@@ -44,7 +44,7 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
-   public void OpenInven()
+    public void OpenInven()
     {
         isInven = !isInven;
         if (!isInven)
@@ -64,7 +64,7 @@ public class InventoryManager : MonoBehaviour
     {
         Sequence seq = DOTween.Sequence();
 
-             invenSkill.DefaultCreate();
+        invenSkill.DefaultCreate();
         //seq.AppendCallback(() =>
         //{
         //    if (gameInfoSO.isGameStart)
@@ -78,14 +78,13 @@ public class InventoryManager : MonoBehaviour
         //    gameInfoSO.isGameStart = false;
         //});
 
-        seq.Append(leftInvenUI.DOLocalMoveX(-800f, 0.5f)).SetUpdate(true);
-        seq.Join(rightInvenUI.DOLocalMoveX(800f, 0.5f)).SetUpdate(true);
+        seq.Append(leftInvenUI.DOLocalMoveX(-800f, 0.5f)).SetUpdate(true)
+            .Join(rightInvenUI.DOLocalMoveX(800f, 0.5f)).SetUpdate(true)
+            .Join(itemBtn.transform.DOLocalMoveX(307, 0.5f)).SetUpdate(true)
+            .Join(skillBtn.transform.DOLocalMoveX(534, 0.5f)).SetUpdate(true);
 
         seq.Insert(0.2f, leftInvenUI.GetComponentInChildren<Image>().DOFade(1f, 0.5f));
         seq.Insert(0.2f, rightInvenUI.GetComponentInChildren<Image>().DOFade(1f, 0.5f));
-
-        seq.Join(itemBtn.transform.DOLocalMoveX(307f, 0.3f)).SetUpdate(true);
-        seq.Join(skillBtn.transform.DOLocalMoveX(540f, 0.3f)).SetUpdate(true);
 
         seq.Insert(0.3f, itemBtn.GetComponent<Image>().DOFade(1f, 0.5f));
         seq.Insert(0.3f, skillBtn.GetComponent<Image>().DOFade(1f, 0.5f));
@@ -114,7 +113,7 @@ public class InventoryManager : MonoBehaviour
 
         seq.AppendCallback(() => OnItemUI());                    //<<----여기도 위에 있던거 밑으로 스퀀스 내림
         //seq.AppendCallback(() => invenSkill.DeleteCard());               
-        invenSkill.DeleteCard();              
+        invenSkill.DeleteCard();
         mainModule.canMove = false;
     }
     public void OnSkillUI()
