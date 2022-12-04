@@ -44061,11 +44061,16 @@ MonoBehaviour:
   maxHp: 0
   hp: 0
   _bar: {fileID: 1014609514}
+  _effectBar: {fileID: 0}
   text: {fileID: 1856865622}
   _hpbar: {fileID: 347124651}
+  attackedEvent:
+    m_PersistentCalls:
+      m_Calls: []
   deadEvent:
     m_PersistentCalls:
       m_Calls: []
+  effectSpeed: 0.005
 --- !u!114 &1562717482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52917,6 +52922,7 @@ MonoBehaviour:
   winorlose: {fileID: 1236759348}
   skillCard: {fileID: 1557593631}
   currentSkillCard: []
+  currentSkill: []
   playerSkill: []
   behaveButtons: []
   turnImage:
@@ -52924,6 +52930,7 @@ MonoBehaviour:
   - {fileID: 0}
   behaveText: {fileID: 325002837}
   battleManager: {fileID: 2096068068}
+  cardCount: 0
   poolM: {fileID: 0}
   poolLocalM:
   - {fileID: 0}
@@ -66103,6 +66110,7 @@ MonoBehaviour:
   vCam3: {fileID: 0}
   nomalCam: {fileID: 178124892}
   battleCam: {fileID: 435867082}
+  twoView: {fileID: 0}
   _enemySpawnPoint: []
   minTime: 9.54
   maxTime: 17.6

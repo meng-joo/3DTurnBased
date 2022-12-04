@@ -45,12 +45,12 @@ public class SkillCard : PoolAbleObject
         _battleUI = GameObject.Find("UIManager").GetComponent<BattleUI>();
         _mainModule = GameObject.Find("Player").GetComponent<MainModule>();
         poolLocalM = GameObject.Find("LocalPool : Card").GetComponent<LocalPoolManager>();
-        backGroundImage = GetComponent<Image>();
-        skillImage = transform.GetChild(0).GetComponent<Image>();
-        skillName = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-        skillInfo = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-        fadeImage = transform.GetChild(3).GetComponent<Image>();
-        skillCost = transform.GetChild(4).GetComponentInChildren<TextMeshProUGUI>();
+        //backGroundImage = GetComponent<Image>();
+        //skillImage = transform.GetChild(0).GetComponent<Image>();
+        //skillName = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        //skillInfo = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        //fadeImage = transform.GetChild(3).GetComponent<Image>();
+        //skillCost = transform.GetChild(4).GetComponentInChildren<TextMeshProUGUI>();
     }
 
     public void SetSkillCard(Skill skillData)
@@ -91,33 +91,31 @@ public class SkillCard : PoolAbleObject
                 //mousePoint = Camera.main.ScreenToWorldPoint(pos);
                 mousePoint = pos;
                 transform.position = mousePoint;
+            }
+        }
 
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
 
-                if (Physics.Raycast(ray, out hit, 100))
+        if (Physics.Raycast(ray, out hit, 100))
+        {
+            if (hit.collider.CompareTag(target))
+            {
+                if (fadeImage.color.a <= 1f)
                 {
-                    if (hit.collider.CompareTag(target))
-                    {
-                        if (fadeImage.color.a <= 0.5f)
-                        {
-                            Color color = fadeImage.color;
-                            color.a += 0.05f;
-                            fadeImage.color = color;
-                        }
-                    }
-                    else
-                    {
-                        if (fadeImage.color.a >= 0)
-                        {
-                            Color color = fadeImage.color;
-                            color.a -= 0.05f;
-                            fadeImage.color = color;
-                        }
-                    }
+                    Color color = fadeImage.color;
+                    color.a += 0.08f;
+                    fadeImage.color = color;
                 }
-
-                
+            }
+            else
+            {
+                if (fadeImage.color.a >= 0)
+                {
+                    Color color = fadeImage.color;
+                    color.a -= 0.08f;
+                    fadeImage.color = color;
+                }
             }
         }
     }
