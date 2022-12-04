@@ -75,6 +75,8 @@ public class SkillCard : PoolAbleObject
 
     void FixedUpdate()
     {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
         if (m_IsButtonDowning)
         {
             if (!isfirst)
@@ -91,32 +93,27 @@ public class SkillCard : PoolAbleObject
                 //mousePoint = Camera.main.ScreenToWorldPoint(pos);
                 mousePoint = pos;
                 transform.position = mousePoint;
+
+                if (Physics.Raycast(ray, out hit, 100))
+                {
+                    if (hit.collider.CompareTag(target))
+                    {
+                        if (fadeImage.color.a <= 1f)
+                        {
+                            Color color = fadeImage.color;
+                            color.a += 0.08f;
+                            fadeImage.color = color;
+                            return;
+                        }
+                    }
+                }
             }
         }
-
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, 100))
+        if (fadeImage.color.a >= 0)
         {
-            if (hit.collider.CompareTag(target))
-            {
-                if (fadeImage.color.a <= 1f)
-                {
-                    Color color = fadeImage.color;
-                    color.a += 0.08f;
-                    fadeImage.color = color;
-                }
-            }
-            else
-            {
-                if (fadeImage.color.a >= 0)
-                {
-                    Color color = fadeImage.color;
-                    color.a -= 0.08f;
-                    fadeImage.color = color;
-                }
-            }
+            Color color = fadeImage.color;
+            color.a -= 0.08f;
+            fadeImage.color = color;
         }
     }
 
