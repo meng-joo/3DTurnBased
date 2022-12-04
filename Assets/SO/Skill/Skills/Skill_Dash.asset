@@ -33,3 +33,4 @@ MonoBehaviour:
     isPossession: 0
     _skillExplanation: "\uC801\uD55C\uD14C \uB3CC\uC9C4\uD558\uC5EC \n\uCD1D 10\uC758
       \uD53C\uD574\uB97C \uC785\uD78C\uB2E4"
+    _skillCost: 1

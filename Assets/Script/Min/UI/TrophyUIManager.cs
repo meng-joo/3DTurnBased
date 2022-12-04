@@ -26,12 +26,10 @@ public class TrophyUIManager : MonoBehaviour
 
     public MainModule mainModule;
 
-    public GameObject targetPos;
+   // public Image itemsprite;
 
-    public Image itemsprite;
-    private void Awake()
-    {
-    }
+    public Animator animator;
+ 
     public void AppearTrophy()
     {
         trophyPanel.transform.DOLocalMoveY(0, 0.5f);
@@ -43,19 +41,13 @@ public class TrophyUIManager : MonoBehaviour
     public Skill RandomSkill()
     {
         int randomSKill = Random.Range(0, allSkills._allSkills.Count);
-       // Debug.Log(allSkills._allSkills[randomSKill]);
         return allSkills._allSkills[randomSKill];
     }
     public void SetTrophy( )
     {
         GameObject skillObj = Instantiate(skillTrophy, parentTrm.position, Quaternion.identity);
         skillObj.transform.SetParent(parentTrm);
-        //skillObj.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
-        //skillObj.transform.localScale = Vector3.one;
 
-        //skillObj.transform.Find("SkillImage").GetComponent<Image>().sprite = skill.skillInfo._skillImage;
-        //skillObj.transform.Find("SkillNameText").GetComponent<TextMeshProUGUI>().text = skill.skillInfo._skillName;
-        //skillObj.transform.Find("SkillCountText").GetComponent<TextMeshProUGUI>().text = skill.skillInfo._skillExplanation;
 
         skillObj.GetComponent<Button>().onClick.AddListener(() =>
             {
@@ -66,7 +58,6 @@ public class TrophyUIManager : MonoBehaviour
                 cardsTrm[2].Init(skills[2]);
 
                 trophyPanel.SetActive(false);
-
                 cardsTrm[0].GetComponent<RectTransform>().DOLocalMoveX(-460f, 0.5f);
                 cardsTrm[2].GetComponent<RectTransform>().DOLocalMoveX(460f, 0.5f);
 
@@ -129,7 +120,7 @@ public class TrophyUIManager : MonoBehaviour
             itemTrophyObj.transform.Find("ItemImage").GetComponent<Image>().sprite = newItemObject.itemIcon;
             itemTrophyObj.transform.Find("ItemNameText").GetComponent<TextMeshProUGUI>().text = newItemObject.itemData.item_name;
 
-            itemsprite.sprite = itemTrophyObj.transform.Find("ItemImage").GetComponent<Image>().sprite;
+            //itemsprite.sprite = itemTrophyObj.transform.Find("ItemImage").GetComponent<Image>().sprite;
             
             if (newItemObject.getFlagStackable)
             {
@@ -140,13 +131,14 @@ public class TrophyUIManager : MonoBehaviour
                 itemTrophyObj.GetComponent<Button>().onClick.AddListener(() =>
                 {
                     inventoryObj.AddItem(newItemObject.itemData, randomCnt);
-                    Vector3.Slerp(itemsprite.rectTransform.position, targetPos.transform.position, 0.5f);
 
                     Destroy(itemTrophyObj);
                     Debug.Log(parentTrm.childCount);
 
                     
                     Invoke("InitTrophy", 1f);
+
+                    EffectCard(itemTrophyObj.transform.Find("ItemImage").GetComponent<Image>().sprite);
                 });
             }
             else
@@ -156,12 +148,12 @@ public class TrophyUIManager : MonoBehaviour
                 itemTrophyObj.GetComponent<Button>().onClick.AddListener(() =>
                 {
                     inventoryObj.AddItem(newItemObject.itemData, 1);
-                    Vector3.Slerp(itemsprite.rectTransform.position, targetPos.transform.position, 0.5f);
 
                     Destroy(itemTrophyObj);
                     Debug.Log(parentTrm.childCount);
 
                     Invoke("InitTrophy", 1f);
+                    EffectCard(itemTrophyObj.transform.Find("ItemImage").GetComponent<Image>().sprite);
                 });
 
                 //inventoryObj.AddItem(newItemObject.itemData, 1);
@@ -169,7 +161,13 @@ public class TrophyUIManager : MonoBehaviour
         }
         #endregion
     }
-    
+
+    public void EffectCard(Sprite itemImg)
+    {
+        animator.gameObject.SetActive(true);
+        animator.GetComponent<Image>().sprite = itemImg;
+        animator.Play("MoveOne");
+    }
     public void InitTrophy()
     {
         if (parentTrm.childCount <= 0)
