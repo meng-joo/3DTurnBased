@@ -146,7 +146,8 @@ public class SkillCard : PoolAbleObject
                 {
                     method.Invoke(null, new object[] { hit.collider.gameObject, value });
                 }
-              //  _battleUI.cost -= (int)skillCost;
+                int cost = Int32.Parse(skillCost.text);
+                _battleUI.cost -= cost;
                 _battleUI.costTxt.text = $"{_battleUI.cost + "/" + _battleUI.maxCost}";
 
                 //CardEffect();
