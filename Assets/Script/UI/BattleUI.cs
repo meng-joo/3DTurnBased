@@ -71,7 +71,7 @@ public class BattleUI : MonoBehaviour
     {
         SetActiveButton(false);
         skillPanel.transform.DOLocalMoveX(700, 0.6f);
-        behaveTextBox.transform.DOLocalMoveY(430, 0.7f);
+        behaveTextBox.transform.DOLocalMoveY(478, 0.7f);
         TurnEnd.transform.DOLocalMoveX(835, 2f);
         SetQuickInven();
         StartCoroutine(MoveBehaveButtons(true));
@@ -88,7 +88,7 @@ public class BattleUI : MonoBehaviour
 
     public void GetBackBattleUI()
     {
-        behaveTextBox.transform.DOLocalMoveY(1224, 0.7f);
+        behaveTextBox.transform.DOLocalMoveY(604, 0.7f);
 
         TurnEnd.transform.DOLocalMoveX(835, 1f);
 
@@ -111,7 +111,7 @@ public class BattleUI : MonoBehaviour
             }
 
             turnImage[0].DOFade(1, 2.4f);
-            turnImage[0].transform.DOScale(1.18f, 1.2f);
+            turnImage[0].transform.DOScale(1.4f, 1.2f);
             turnImage[1].DOFade(0.13f, 2.4f);
             turnImage[1].transform.DOScale(0.7f, 1.2f);
 
@@ -128,7 +128,7 @@ public class BattleUI : MonoBehaviour
         else
         {
             turnImage[1].DOFade(1, 2.4f);
-            turnImage[1].transform.DOScale(1.18f, 1.2f);
+            turnImage[1].transform.DOScale(1.4f, 1.2f);
             turnImage[0].DOFade(0.13f, 2.4f);
             turnImage[0].transform.DOScale(0.7f, 1.2f);
 
