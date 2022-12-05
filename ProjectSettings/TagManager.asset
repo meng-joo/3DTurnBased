@@ -10,6 +10,7 @@ TagManager:
   - ToRoom
   - SignPanel
   - Enemy
+  - Chest
   layers:
   - Default
   - TransparentFX

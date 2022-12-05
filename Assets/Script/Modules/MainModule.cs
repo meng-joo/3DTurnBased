@@ -61,17 +61,18 @@ public class MainModule : MonoBehaviour
     private float playerSpeed;
     private float battleTime;
 
-    public Animator chestAnimator;
     public AnimatorOverrideController _animatorOverride;
-    [SerializeField] private ParticleSystem chestOpenParticle;
     
-    public Animator ChestAnimator => chestAnimator;
-    public ParticleSystem ChestOpenParticle => chestOpenParticle;
+    public Animator ChestAnimator;
 
+    public ChestCreateManager chestCreateManager;
+
+    public PhysicsModule physicsModule;
 
     public bool isTrophy =false;
     private void Awake()
     {
+        physicsModule = GetComponent<PhysicsModule>();
         _moveModule = GetComponent<MoveModule>();
         _inputModule = GetComponent<InputModule>();
         _uIModule = GetComponent<UIModule>();
@@ -79,6 +80,7 @@ public class MainModule : MonoBehaviour
         _battleMobule = GetComponent<BattleMobule>();
         _hpModule = GetComponent<HpModule>();
         _mapManager = GameObject.Find("MapManager").GetComponent<MapManager>();
+        chestCreateManager = GameObject.Find("ChestManager").GetComponent<ChestCreateManager>();
         _animatorOverride = new AnimatorOverrideController(_animator.runtimeAnimatorController);
         _animator.runtimeAnimatorController = _animatorOverride;
         //_animatorOverride = GetComponent<AnimatorOverrideController>();
