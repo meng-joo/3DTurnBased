@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: Skill_Upper
   m_EditorClassIdentifier: 
   skillInfo:
-    _skillName: "\uC5B4\uD37C\uCEF7"
+    _skillName: UpperCut
     _skillType: 0
     _skillCost: 1
     target: Enemy
     skilltypeText: 
-    value: 8
+    value: 08000000
     _skillCardColor:
       serializedVersion: 2
       rgba: 4283918333
     _skillEffectColor:
       serializedVersion: 2
       rgba: 4278195711
-    _skillImage: {fileID: 21300000, guid: 8b3a30b86c0bda44ba6d101f45b2664c, type: 3}
+    _skillImage: {fileID: 21300000, guid: f4bf2e67703b31d4080f867163c512d8, type: 3}
     _animationClip: {fileID: 7400000, guid: 3ec72722d8065574b89f775bdee06313, type: 2}
     _poolType: 3
     _methodName:

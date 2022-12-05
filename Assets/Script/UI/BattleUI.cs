@@ -315,7 +315,6 @@ public class BattleUI : MonoBehaviour
 
         currentSkill.Add(playerSkill[0]);
         playerSkill.Remove(playerSkill[0]);
-
     }
 
     public void SetCardInfo(int i)
@@ -345,10 +344,12 @@ public class BattleUI : MonoBehaviour
         Sequence seq = DOTween.Sequence();
         SkillEffectUI text = PoolManager.Instance.Pop(PoolType.UI).GetComponent<SkillEffectUI>();
 
+        Vector3 randPos = new Vector3(Random.Range(-10, 10f), Random.Range(-10, 10f), 0);
+
         seq.AppendCallback(() =>
         {
             text.transform.SetParent(skillBox.transform.parent);
-            text.transform.position = pos;
+            text.transform.position = pos + randPos;
             text.SetText(dmg, color, pos);
         });
 

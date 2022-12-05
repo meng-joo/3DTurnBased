@@ -29,7 +29,7 @@ public class SkillData
     public string skilltypeText;
 
     [Header("효과 수치")]
-    public int value;
+    public int[] value;
 
     [Header("스킬색깔")]
     [ColorUsage(true)]
