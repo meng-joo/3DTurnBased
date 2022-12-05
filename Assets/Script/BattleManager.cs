@@ -65,7 +65,6 @@ public class BattleManager : MonoBehaviour
     public void EndBattle(string isWin)
     {
         _mainModule._animator.Play("Win");
-
         _mainModule._animator.SetBool("Fight", false);
         _mainModule.twoView.Priority += 10;
         _mainModule.battleCam.Priority -= 10;
@@ -74,6 +73,7 @@ public class BattleManager : MonoBehaviour
         _mainModule._BattleModule.inBattle = false;
 
         StartCoroutine(UnlockBattleLimit());
+
     }
 
     public void SetBattleUI()
@@ -117,6 +117,8 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         _mainModule.canMove = false;
         _mainModule.twoView.Priority -= 10;
+        yield return new WaitForSeconds(1.5f);
+        _mainModule._UIModule.TrophyUIManager.AppearTrophy();
     }
 
     //public NavMeshHit SetMonsterPos()
