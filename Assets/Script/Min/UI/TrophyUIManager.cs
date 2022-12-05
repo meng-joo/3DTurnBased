@@ -29,7 +29,9 @@ public class TrophyUIManager : MonoBehaviour
    // public Image itemsprite;
 
     public Animator animator;
- 
+
+    public RectTransform way;
+    public Vector3[] waypoint;
     public void AppearTrophy()
     {
         trophyPanel.transform.DOLocalMoveY(0, 0.5f);
@@ -152,8 +154,8 @@ public class TrophyUIManager : MonoBehaviour
                     Destroy(itemTrophyObj);
                     Debug.Log(parentTrm.childCount);
 
-                    Invoke("InitTrophy", 1f);
                     EffectCard(itemTrophyObj.transform.Find("ItemImage").GetComponent<Image>().sprite);
+                    Invoke("InitTrophy", 1f);
                 });
 
                 //inventoryObj.AddItem(newItemObject.itemData, 1);
@@ -164,9 +166,28 @@ public class TrophyUIManager : MonoBehaviour
 
     public void EffectCard(Sprite itemImg)
     {
+        animator.transform.localPosition = new Vector3(0, 0, 0);
         animator.gameObject.SetActive(true);
         animator.GetComponent<Image>().sprite = itemImg;
-        animator.Play("MoveOne");
+        animator.enabled = false;
+
+        //DOTween.Init(false, true, LogBehaviour.ErrorsOnly);
+        Vector3 middlePoint = new Vector3();
+        float x = animator.transform.position.x + (animator.transform.position.x * Random.Range(0.2f, 0.4f));
+        float y = animator.transform.position.y + 
+            (animator.transform.position.y * Random.Range(0.35f, 0.5f) * Random.Range(0, 100) < 50 ? 1f : -1f);
+
+        middlePoint.x = x;
+        middlePoint.y = y;
+
+        waypoint = new Vector3[3];
+
+        waypoint.SetValue(animator.transform.position, 0);
+        waypoint.SetValue(middlePoint, 1);
+        waypoint.SetValue(way.position, 2);
+
+        animator.transform.DOPath(waypoint, 2f, PathType.CatmullRom).SetEase(Ease.InBack);
+        //animator.Play("MoveOne");
     }
     public void InitTrophy()
     {
@@ -180,6 +201,8 @@ public class TrophyUIManager : MonoBehaviour
                 trophyPanel.transform.localPosition = new Vector3(0, -1500f, 0);
                 mainModule.isTrophy = false;
                 mainModule.canMove = false;
+
+                Destroy(mainModule.chestCreateManager.chestAnimators[mainModule.physicsModule.index].gameObject);
             });
         }
         else

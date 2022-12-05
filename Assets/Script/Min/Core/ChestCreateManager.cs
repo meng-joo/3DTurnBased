@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class ChestCreateManager : MonoBehaviour
 {
-    [SerializeField] private List<Transform> chestTrms;
+    public List<Transform> chestTrms;
 
     [SerializeField] private int chestCnt;
 
-    [SerializeField] private GameObject chest;
+    [SerializeField] private GameObject chestPrefab;
+
+    public List<Animator> chestAnimators;
+
     void Start()
     {
         CreateChest();
@@ -28,7 +31,9 @@ public class ChestCreateManager : MonoBehaviour
             int rand = Random.Range(0, tTrms.Count);
             if (tTrms.Contains(tTrms[rand]))
             {
-                Instantiate(chest, tTrms[rand].position, Quaternion.identity);
+                GameObject chestObj = Instantiate(chestPrefab, tTrms[rand].position, tTrms[rand].rotation);
+                chestObj.name += $"_{i}";
+                chestAnimators.Add(chestObj.GetComponentInChildren<Animator>());
                 tTrms.Remove(tTrms[rand]);
             }
             else
