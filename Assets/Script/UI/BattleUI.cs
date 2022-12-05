@@ -123,7 +123,7 @@ public class BattleUI : MonoBehaviour
             seq.AppendCallback(() =>
             {
                 behaveText.color = Color.yellow;
-                behaveText.fontSize = 100;
+                behaveText.fontSize = 60;
                 behaveText.text = "Player Turn";
             });
             seq.Append(behaveText.transform.DOLocalMoveY(0, 0.4f));
@@ -140,7 +140,7 @@ public class BattleUI : MonoBehaviour
             seq.AppendCallback(() =>
             {
                 behaveText.color = Color.red;
-                behaveText.fontSize = 100;
+                behaveText.fontSize = 60;
                 behaveText.text = "Enemy Turn";
             });
             seq.Append(behaveText.transform.DOLocalMoveY(0, 0.4f));

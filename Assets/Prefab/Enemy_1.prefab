@@ -1180,6 +1180,9 @@ MonoBehaviour:
   _effectBar: {fileID: 2855133507407067073}
   text: {fileID: 1746094626508176687}
   _hpbar: {fileID: 255800678}
+  attackedEvent:
+    m_PersistentCalls:
+      m_Calls: []
   deadEvent:
     m_PersistentCalls:
       m_Calls:

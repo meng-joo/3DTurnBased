@@ -49,8 +49,6 @@ public class InvenSlot
         this.item = item;
         this.itemCnt = cnt;
         OnPostUpload?.Invoke(this);
-
-
     }
 
     public bool getFlagEquipSlot(ItemObj itemObj)
@@ -67,13 +65,13 @@ public class InvenSlot
                 Type type = typeof(ApplyAbility);
                 MethodInfo method = type.GetMethod("ChangeAbility");
 
-                object[] obj = new object[1];
+                object[] obj = new object[2];
                 obj[0] = itemObj.itemData.abilities;
+                obj[1] = (item == null) ? null : item.abilities;
                 method.Invoke(applyAbility, obj);
                 return true;
             }
         }
-
         return false;
     }
 }
