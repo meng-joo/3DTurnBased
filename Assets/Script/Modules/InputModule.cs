@@ -80,7 +80,6 @@ public class InputModule : MonoBehaviour
         {
             mainModule.canMove = true;
             mainModule.chestCreateManager.chestAnimators[mainModule.physicsModule.index].Play("Open");
-            //mainModule.ChestAnimator.Play("Open");
             mainModule.isTrophy = true; 
         });
         seq.AppendInterval(1.35f);

@@ -44,7 +44,7 @@ public class Card : PoolAbleObject
             gameObject.transform.Find("Image").GetComponent<Image>().sprite = (skill != null) ? skill.skillInfo._skillImage : null;
             //gameObject.GetComponentInChildren<TextMeshProUGUI>().text = (skill != null) ? skill.skillInfo._skillName : string.Empty;
 
-            gameObject.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = (skill != null) ? skill.skillInfo._skillName : string.Empty;
+            gameObject.transform.Find("NameBackground").GetComponentInChildren<TextMeshProUGUI>().text = (skill != null) ? skill.skillInfo._skillName : string.Empty;
             //gameObject.transform.Find("CostTxt").GetComponent<TextMeshProUGUI>().text = (skill != null) ? skill.skillInfo._skillCost.ToString() : string.Empty;
             gameObject.transform.Find("CostImage").GetComponentInChildren<TextMeshProUGUI>().text = (skill != null) ? skill.skillInfo._skillCost.ToString(): string.Empty;
             SetAlpha(0f);
