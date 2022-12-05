@@ -79,7 +79,8 @@ public class InputModule : MonoBehaviour
         seq.AppendCallback(() =>
         {
             mainModule.canMove = true;
-            mainModule.ChestAnimator.Play("Open");
+            mainModule.chestCreateManager.chestAnimators[mainModule.physicsModule.index].Play("Open");
+            //mainModule.ChestAnimator.Play("Open");
             mainModule.isTrophy = true; 
         });
         seq.AppendInterval(1.35f);
