@@ -131,8 +131,9 @@ public class SkillCard : PoolAbleObject
         {
             if(hit.collider.CompareTag(target))
             {
+                int cost = Int32.Parse(skillCost.text);
 
-                if (_battleUI.cost <= 0)
+                if (_battleUI.cost < cost)
                 {
                     return;
                 }
@@ -141,7 +142,6 @@ public class SkillCard : PoolAbleObject
                 {
                     method.Invoke(null, new object[] { hit.collider.gameObject, value });
                 }
-                int cost = Int32.Parse(skillCost.text);
                 _battleUI.cost -= cost;
                 _battleUI.costTxt.text = $"{_battleUI.cost + "/" + _battleUI.maxCost}";
 
