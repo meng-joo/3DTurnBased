@@ -3872,6 +3872,14 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5257273991323358903, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.005004883
+      objectReference: {fileID: 0}
+    - target: {fileID: 5257273991323358903, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 11.699997
+      objectReference: {fileID: 0}
     - target: {fileID: 5257273991754271805, guid: c91ea7c827933c3489627af35b345e81, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -3959,6 +3967,14 @@ PrefabInstance:
     - target: {fileID: 5257273991754271806, guid: c91ea7c827933c3489627af35b345e81, type: 3}
       propertyPath: m_Name
       value: Card (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472995107497141829, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.005004883
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834726766730311564, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0035552979
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c91ea7c827933c3489627af35b345e81, type: 3}
@@ -4093,6 +4109,14 @@ PrefabInstance:
       propertyPath: isStatic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5257273991323358903, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.005004883
+      objectReference: {fileID: 0}
+    - target: {fileID: 5257273991323358903, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 11.699997
+      objectReference: {fileID: 0}
     - target: {fileID: 5257273991754271805, guid: c91ea7c827933c3489627af35b345e81, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -4180,6 +4204,14 @@ PrefabInstance:
     - target: {fileID: 5257273991754271806, guid: c91ea7c827933c3489627af35b345e81, type: 3}
       propertyPath: m_Name
       value: Card (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472995107497141829, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.005004883
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834726766730311564, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0035552979
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c91ea7c827933c3489627af35b345e81, type: 3}
@@ -4425,6 +4457,14 @@ PrefabInstance:
       propertyPath: isStatic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5257273991323358903, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.005004883
+      objectReference: {fileID: 0}
+    - target: {fileID: 5257273991323358903, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 11.699997
+      objectReference: {fileID: 0}
     - target: {fileID: 5257273991754271805, guid: c91ea7c827933c3489627af35b345e81, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -4512,6 +4552,14 @@ PrefabInstance:
     - target: {fileID: 5257273991754271806, guid: c91ea7c827933c3489627af35b345e81, type: 3}
       propertyPath: m_Name
       value: Card (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472995107497141829, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.005004883
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834726766730311564, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0035552979
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c91ea7c827933c3489627af35b345e81, type: 3}
@@ -4646,6 +4694,14 @@ PrefabInstance:
       propertyPath: isStatic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5257273991323358903, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.005004883
+      objectReference: {fileID: 0}
+    - target: {fileID: 5257273991323358903, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 11.699997
+      objectReference: {fileID: 0}
     - target: {fileID: 5257273991754271805, guid: c91ea7c827933c3489627af35b345e81, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -4733,6 +4789,14 @@ PrefabInstance:
     - target: {fileID: 5257273991754271806, guid: c91ea7c827933c3489627af35b345e81, type: 3}
       propertyPath: m_Name
       value: Card (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472995107497141829, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.005004883
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834726766730311564, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0035552979
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c91ea7c827933c3489627af35b345e81, type: 3}
@@ -4978,6 +5042,14 @@ PrefabInstance:
       propertyPath: isStatic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5257273991323358903, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.005004883
+      objectReference: {fileID: 0}
+    - target: {fileID: 5257273991323358903, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 11.699997
+      objectReference: {fileID: 0}
     - target: {fileID: 5257273991754271805, guid: c91ea7c827933c3489627af35b345e81, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -5070,6 +5142,14 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7472995107497141829, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.005004883
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834726766730311564, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0035552979
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c91ea7c827933c3489627af35b345e81, type: 3}
 --- !u!224 &8516904142788534511 stripped
@@ -5091,6 +5171,14 @@ PrefabInstance:
     - target: {fileID: 1321499521838883403, guid: c91ea7c827933c3489627af35b345e81, type: 3}
       propertyPath: isStatic
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5257273991323358903, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.005004883
+      objectReference: {fileID: 0}
+    - target: {fileID: 5257273991323358903, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 11.699997
       objectReference: {fileID: 0}
     - target: {fileID: 5257273991754271805, guid: c91ea7c827933c3489627af35b345e81, type: 3}
       propertyPath: m_Pivot.x
@@ -5179,6 +5267,14 @@ PrefabInstance:
     - target: {fileID: 5257273991754271806, guid: c91ea7c827933c3489627af35b345e81, type: 3}
       propertyPath: m_Name
       value: Card (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472995107497141829, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.005004883
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834726766730311564, guid: c91ea7c827933c3489627af35b345e81, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0035552979
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c91ea7c827933c3489627af35b345e81, type: 3}
