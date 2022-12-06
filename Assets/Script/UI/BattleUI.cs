@@ -78,7 +78,7 @@ public class BattleUI : MonoBehaviour
     public void SetBattleUI()
     {
         SetActiveButton(false);
-        playerStat.transform.DOMoveY(-265, 0.3f);
+        playerStat.transform.DOLocalMoveX(-1128, 0.3f);
         skillPanel.transform.DOLocalMoveX(700, 0.6f);
         behaveTextBox.transform.DOLocalMoveY(478, 0.7f);
         TurnEnd.transform.DOLocalMoveX(835, 2f);
