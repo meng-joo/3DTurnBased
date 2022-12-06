@@ -44,6 +44,10 @@ public class BattleUI : MonoBehaviour
     public int cardCount = 0;
 
     [Space]
+    [Header("플레이어 스텟")]
+    public Image playerStat;
+
+    [Space]
     public PoolManager poolM;
     public LocalPoolManager[] poolLocalM = new LocalPoolManager[2];
 
@@ -74,6 +78,7 @@ public class BattleUI : MonoBehaviour
     public void SetBattleUI()
     {
         SetActiveButton(false);
+        playerStat.transform.DOMoveY(-265, 0.3f);
         skillPanel.transform.DOLocalMoveX(700, 0.6f);
         behaveTextBox.transform.DOLocalMoveY(478, 0.7f);
         TurnEnd.transform.DOLocalMoveX(835, 2f);
@@ -94,8 +99,9 @@ public class BattleUI : MonoBehaviour
     {
         behaveTextBox.transform.DOLocalMoveY(604, 0.7f);
 
-        TurnEnd.transform.DOLocalMoveX(835, 1f);
-
+        TurnEnd.transform.DORewind();
+        playerStat.transform.DORewind();
+        playerStat.transform.DORewind();
         //skillPanel.transform.DOLocalMoveX(700, 0.6f);
         quickInven.transform.DOMove(new Vector3(60, 80, 0), 0.4f);
         turnImage[0].DOFade(1, 0.6f);
