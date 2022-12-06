@@ -20,7 +20,11 @@ public abstract class UIInventory : MonoBehaviour
     private InventoryObj beforeInventoryObj;
      
     public Dictionary<GameObject, InvenSlot> uiSlotLists = new Dictionary<GameObject, InvenSlot>();
-      
+
+    public static PlayerDataSO PlayerData; //;;
+
+    private bool isMinus = false;
+
     private void Awake()
     { 
         createUISlots();
@@ -30,7 +34,9 @@ public abstract class UIInventory : MonoBehaviour
             inventoryObj.invenSlots[i].inventoryObj = inventoryObj; 
             inventoryObj.invenSlots[i].OnPostUpload += OnEquipUpdate;
         }
-         
+
+        PlayerData = AddressableManager.Instance.GetResource<PlayerDataSO>("Assets/SO/Player/PlayerDataSO.asset");
+
         AddEventAction(gameObject, EventTriggerType.PointerEnter, delegate { OnEnterInventory(gameObject); }); 
         AddEventAction(gameObject, EventTriggerType.PointerExit, delegate { OnExitInventory(gameObject); });
     }
@@ -113,6 +119,9 @@ public abstract class UIInventory : MonoBehaviour
     public void OnStartDrag(GameObject gameObj)
     { 
         MouseTransformData.mouseDragging = AddEventDragImage(gameObj);
+
+        if (MouseTransformData.mouseInventory.uiSlotLists[MouseTransformData.mouseSlot].inventoryObj.type == InterfaceType.Equipment)
+            isMinus = true;
     }
      
     public void OnMovingDrag(GameObject gameObj)
@@ -134,8 +143,64 @@ public abstract class UIInventory : MonoBehaviour
         }
         else if (MouseTransformData.mouseSlot)
         { 
-            InvenSlot mouseHoverSlotData = MouseTransformData.mouseInventory.uiSlotLists[MouseTransformData.mouseSlot]; 
+            InvenSlot mouseHoverSlotData = MouseTransformData.mouseInventory.uiSlotLists[MouseTransformData.mouseSlot]; //드래그 하고 있는애
+            //if(uiSlotLists[gameObj].inventoryObj.type == InterfaceType.Equipment)
+            Debug.Log(mouseHoverSlotData.item.item_name);
+
+            Debug.Log(uiSlotLists[gameObj].item.item_name);
+            ItemAbility[] current = mouseHoverSlotData.item.abilities;
+
             inventoryObj.SwapItems(uiSlotLists[gameObj], mouseHoverSlotData);
+            if (uiSlotLists[gameObj].inventoryObj.type != InterfaceType.Equipment && uiSlotLists[gameObj].item != null)
+            {
+                foreach (ItemAbility a in current)
+                {
+                    Debug.Log("과연한민영개병신");
+                    switch (a.characterStack)
+                    {
+                        case CharacterStack.Str:
+                            PlayerData.Ad += a.valStack;
+                            //ad = a.valStack;
+                            break;
+                        case CharacterStack.Hp:
+                            PlayerData.Health += a.valStack;
+                            //hp = mitemAbility[i].valStack;
+                            break;
+                        case CharacterStack.Benefit_Effect:
+                            break;
+                        case CharacterStack.Detrimental_Effect:
+                            break;
+                    }
+                }
+                isMinus = true;
+            Debug.Log(isMinus);
+            }
+            Debug.Log(uiSlotLists[gameObj].item.abilities);
+
+            if (isMinus)
+            {
+                    Debug.Log("과연맹주영개병신");
+                foreach (ItemAbility a in current)
+                {
+                    switch (a.characterStack)
+                    {
+                        case CharacterStack.Str:
+                            PlayerData.Ad -= a.valStack;
+                            //ad = a.valStack;
+                            break;
+                        case CharacterStack.Hp:
+                            PlayerData.Health -= a.valStack;
+                            //hp = mitemAbility[i].valStack;
+                            break;
+                        case CharacterStack.Benefit_Effect:
+                            break;
+                        case CharacterStack.Detrimental_Effect:
+                            break;
+                    }
+                }
+            }
+
+            isMinus = false;
         }
     }
 

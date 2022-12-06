@@ -62,13 +62,13 @@ public class InvenSlot
         {
             if (itemObj.itemType == itemType)
             {
-                Type type = typeof(ApplyAbility);
-                MethodInfo method = type.GetMethod("ChangeAbility");
+                //Type type = typeof(ApplyAbility);
+                //MethodInfo method = type.GetMethod("ChangeAbility");
 
-                object[] obj = new object[2];
-                obj[0] = itemObj.itemData.abilities;
-                obj[1] = (item == null) ? null : item.abilities;
-                method.Invoke(applyAbility, obj);
+                //object[] obj = new object[2];
+                //obj[0] = itemObj.itemData.abilities;
+                //obj[1] = (item == null) ? null : item.abilities;
+                //method.Invoke(applyAbility, obj);
                 return true;
             }
         }

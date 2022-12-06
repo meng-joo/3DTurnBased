@@ -89,8 +89,12 @@ public class InventoryObj : ScriptableObject
         if (itemB.getFlagEquipSlot(itemA.ItemObject) && itemA.getFlagEquipSlot(itemB.ItemObject))
         {
             InvenSlot temp = new InvenSlot(itemB.item, itemB.itemCnt);
+
             itemB.uploadSlot(itemA.item, itemA.itemCnt);
             itemA.uploadSlot(temp.item, temp.itemCnt);
+
+            //if(type == InterfaceType.Equipment)
+
         }
     }
 
