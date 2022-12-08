@@ -17,11 +17,11 @@ MonoBehaviour:
     _skillType: 0
     _skillCost: 2
     target: Enemy
-    skilltypeText: 
-    value: 0a00000000000000
+    skilltypeText: "\uC57D\uD654"
+    value: 000000000a00000002000000
     _skillCardColor:
       serializedVersion: 2
-      rgba: 4283918333
+      rgba: 4279380417
     _skillEffectColor:
       serializedVersion: 2
       rgba: 4278195711
@@ -29,8 +29,9 @@ MonoBehaviour:
     _animationClip: {fileID: 7400000, guid: 0ad85164b4335ea46bff25e143217154, type: 2}
     _poolType: 3
     _methodName:
-    - HitEnemy
     - Teleport
+    - HitEnemy
+    - Weeker
     isPossession: 0
     _skillExplanation: "\uC801\uD55C\uD14C \uB3CC\uC9C4\uD558\uC5EC \n\uCD1D 10\uC758
-      \uD53C\uD574\uB97C \uC785\uD78C\uB2E4"
+      \uD53C\uD574\uB97C \uC785\uD78C \uD6C4 \uC57D\uD654\uB97C \uAC74\uB2E4."

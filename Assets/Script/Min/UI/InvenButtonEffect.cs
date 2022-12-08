@@ -22,7 +22,7 @@ public class InvenButtonEffect : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        image.color = new Color(255, 255, 255, 255);
+        image.color = new Color(0, 0, 0, 255);
 
         rect.DOScale(Vector3.one, 0.5f).SetUpdate(true);
     }

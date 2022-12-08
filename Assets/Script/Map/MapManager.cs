@@ -8,6 +8,17 @@ using DG.Tweening;
 
 public class MapManager : MonoBehaviour
 {
+    [Header("UI캔버스")]
+    public GameObject maincanvas;
+    public GameObject minicanvas;
+
+    [Header("카메라")]
+    public Camera miniMapCam;
+    public Camera mainMapCam;
+
+    [Header("미니맵이 켜져있는가?")]
+    public bool isMiniMapUp;
+
     private Canvas loadingCanvas;
 
     private Image fadeUI;
@@ -20,6 +31,7 @@ public class MapManager : MonoBehaviour
 
     private void Start()
     {
+        isMiniMapUp = false;
         loadingCanvas = GameObject.Find("LoadingCanvas")?.GetComponent<Canvas>();
         if (loadingCanvas)
         {
@@ -36,6 +48,18 @@ public class MapManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            miniMapCam.gameObject.SetActive(!isMiniMapUp);
+            maincanvas.SetActive(isMiniMapUp);
+            minicanvas.SetActive(!isMiniMapUp);
+            mainMapCam.gameObject.SetActive(isMiniMapUp);
+
+            isMiniMapUp = !isMiniMapUp;
+        }
+    }
     public void RandomTipText()
     {
         int rand = Random.Range(0, tipSo.tipStr.Length);

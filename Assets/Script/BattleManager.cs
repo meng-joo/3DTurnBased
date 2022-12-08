@@ -71,9 +71,8 @@ public class BattleManager : MonoBehaviour
         _battleUI.GameEnd(isWin);
         _wall.SetActive(true);
         _mainModule._BattleModule.inBattle = false;
-
+        _mainModule._BattleModule.EndBattle();
         StartCoroutine(UnlockBattleLimit());
-
     }
 
     public void SetBattleUI()
@@ -89,7 +88,7 @@ public class BattleManager : MonoBehaviour
 
         else
         {
-            yield return new WaitForSeconds(1.1f);
+            yield return new WaitForSeconds(3.8f);
 
             for (int i = 0; i < fieldEnemies.Count; i++)
             {
@@ -99,7 +98,7 @@ public class BattleManager : MonoBehaviour
 
             _battleUI.cardCount = _battleUI.GetCardCount();
             yield return new WaitForSeconds(1f);
-           _battleUI.SetChangeTurn(true);
+           _battleUI.TurnChangeEffect(true);
             yield return new WaitForSeconds(0.5f);
             _battleUI.SetActiveButton(true);
         }

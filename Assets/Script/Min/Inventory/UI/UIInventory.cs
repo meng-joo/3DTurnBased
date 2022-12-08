@@ -68,8 +68,8 @@ public abstract class UIInventory : MonoBehaviour
      
     public void OnEquipUpdate(InvenSlot inventSlot)
     {
-        inventSlot.slotUI.transform.GetChild(0).GetComponent<Image>().sprite = inventSlot.item.item_id < 0 ? null : inventSlot.ItemObject.itemIcon;
-        inventSlot.slotUI.transform.GetChild(0).GetComponent<Image>().color = inventSlot.item.item_id < 0 ? new Color(1, 1, 1, 0) : new Color(1, 1, 1, 1);
+        inventSlot.slotUI.transform.Find("Image").GetChild(0).GetComponent<Image>().sprite = inventSlot.item.item_id < 0 ? null : inventSlot.ItemObject.itemIcon;
+        inventSlot.slotUI.transform.Find("Image").GetChild(0).GetComponent<Image>().color = inventSlot.item.item_id < 0 ? new Color(1, 1, 1, 0) : new Color(1, 1, 1, 1);
         inventSlot.slotUI.GetComponentInChildren<TextMeshProUGUI>().text = inventSlot.item.item_id < 0 ? string.Empty : (inventSlot.itemCnt == 1 ? string.Empty : inventSlot.itemCnt.ToString("n0"));
     }
      
@@ -132,30 +132,31 @@ public abstract class UIInventory : MonoBehaviour
         } 
         MouseTransformData.mouseDragging.GetComponent<RectTransform>().position = Input.mousePosition;
     }
-    
+
     public void OnEndDrag(GameObject gameObj)
-    { 
-        Destroy(MouseTransformData.mouseDragging); 
+    {
+        Destroy(MouseTransformData.mouseDragging);
         if (MouseTransformData.mouseInventory == null)
-        { 
+        {
             //주석친 이유는 빈칸에가면 사라지는게 아니라 원래자리로가야하기때문에
             //uiSlotLists[gameObj].destoryItem();
         }
         else if (MouseTransformData.mouseSlot)
-        { 
+        {
             InvenSlot mouseHoverSlotData = MouseTransformData.mouseInventory.uiSlotLists[MouseTransformData.mouseSlot]; //드래그 하고 있는애
-            //if(uiSlotLists[gameObj].inventoryObj.type == InterfaceType.Equipment)
-            Debug.Log(mouseHoverSlotData.item.item_name);
+            InvenSlot uIInventory = uiSlotLists[gameObj];
 
-            Debug.Log(uiSlotLists[gameObj].item.item_name);
-            ItemAbility[] current = mouseHoverSlotData.item.abilities;
+            InvenSlot currentInven = isMinus ? uIInventory : mouseHoverSlotData;
+            InvenSlot targetInven = isMinus ? mouseHoverSlotData : uIInventory;
 
-            inventoryObj.SwapItems(uiSlotLists[gameObj], mouseHoverSlotData);
-            if (uiSlotLists[gameObj].inventoryObj.type != InterfaceType.Equipment && uiSlotLists[gameObj].item != null)
+            if (inventoryObj.SwapItems(uiSlotLists[gameObj], mouseHoverSlotData) == false)
             {
-                foreach (ItemAbility a in current)
+                return;
+            }
+            if (currentInven.item.abilities != null)
+            {
+                foreach (ItemAbility a in currentInven.item.abilities)
                 {
-                    Debug.Log("과연한민영개병신");
                     switch (a.characterStack)
                     {
                         case CharacterStack.Str:
@@ -172,15 +173,11 @@ public abstract class UIInventory : MonoBehaviour
                             break;
                     }
                 }
-                isMinus = true;
-            Debug.Log(isMinus);
             }
-            Debug.Log(uiSlotLists[gameObj].item.abilities);
 
-            if (isMinus)
+            if (targetInven.item.abilities != null)
             {
-                    Debug.Log("과연맹주영개병신");
-                foreach (ItemAbility a in current)
+                foreach (ItemAbility a in targetInven.item.abilities)
                 {
                     switch (a.characterStack)
                     {
@@ -199,7 +196,6 @@ public abstract class UIInventory : MonoBehaviour
                     }
                 }
             }
-
             isMinus = false;
         }
     }

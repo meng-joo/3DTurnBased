@@ -146,8 +146,6 @@ public class SkillCard : PoolAbleObject
                 foreach (var method in skillEffect)
                 {
                     method.Invoke(null, new object[] { hit.collider.gameObject, value[count] });
-
-                    //yield return new WaitForSeconds(0.6f);
                     _battleUI.SpawnSkillEffectText(value[count].ToString(), skillText, transform.position);
                     count++;
                 }

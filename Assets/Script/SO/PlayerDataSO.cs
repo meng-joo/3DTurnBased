@@ -14,6 +14,10 @@ public class PlayerDataSO : ScriptableObject
     public int Speed;
 
     [Space]
+    [Header("코스트")]
+    public int cost;
+
+    [Space]
     [Header("기본 능력치")]
     public BaseAbilityDataSO player;
     [Space]

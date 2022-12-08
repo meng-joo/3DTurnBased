@@ -21,6 +21,9 @@ public class BattleUI : MonoBehaviour
     public Image behaveTextBox;
     public GameObject quickInven;
     public TextMeshProUGUI winorlose;
+    public Image turnChangeImage_1;
+    public Image turnChangeImage_2;
+    public TextMeshProUGUI turnText;
 
     [Space]
     public GameObject skillCard;
@@ -53,8 +56,8 @@ public class BattleUI : MonoBehaviour
 
 
     public TextMeshProUGUI costTxt;
-    public int cost = 3; 
-    public int maxCost = 3; 
+    public int cost;
+    public int maxCost => mainModule.playerDataSO.cost;
     private void Start()
     {
         mainModule = GameObject.Find("Player").GetComponent<MainModule>();
@@ -85,12 +88,14 @@ public class BattleUI : MonoBehaviour
         SetQuickInven();
         StartCoroutine(MoveBehaveButtons(true));
 
+        cardCount = GetCardCount();
+
         Sequence seq = DOTween.Sequence();
 
         seq.AppendInterval(0.7f);
         seq.Append(turnImage[0].DOFade(1, 0.6f));
         seq.Join(turnImage[1].DOFade(1, 0.6f));
-        seq.AppendCallback(() => SetChangeTurn(battleManager.SetTurn()));
+        seq.AppendCallback(() => TurnChangeEffect(battleManager.SetTurn()));
         seq.AppendInterval(0.8f);
         seq.AppendCallback(() => OnClickSkill());
     }
@@ -112,7 +117,6 @@ public class BattleUI : MonoBehaviour
     {
         Sequence seq = DOTween.Sequence();
 
-        //seq.AppendCallback(() => SetActiveButton(false));
         if (isPlayerTurn)
         {
             for (int i = 0; i < cardCount; i++)
@@ -133,6 +137,11 @@ public class BattleUI : MonoBehaviour
                 behaveText.text = "Player Turn";
             });
             seq.Append(behaveText.transform.DOLocalMoveY(0, 0.4f));
+            seq.AppendCallback(() =>
+            {
+                cost = maxCost;
+                costTxt.text = $"{cost + "/" + maxCost}";
+            });
         }
 
         else
@@ -154,6 +163,38 @@ public class BattleUI : MonoBehaviour
 
         //seq.AppendInterval(1f);
         //seq.AppendCallback(() => SetActiveButton(true));
+    }
+
+    public void TurnChangeEffect(bool isPlayer)
+    {
+        Sequence seq = DOTween.Sequence();
+        SetChangeTurn(isPlayer);
+
+        Debug.Log("skduyfgauywesgfiuyawegfkuayegfkuaywegfakueyfgkauefygkayefgkasudyfgkaygekfygkasgydfkaygekfayegkfaydgkfaysgkfyagfkjayegfk");
+        Color color = isPlayer ? turnImage[0].color : turnImage[1].color;
+        color.a = 0.8f;
+        turnChangeImage_2.color = color;
+        turnText.text = isPlayer ? "Player Turn" : "Enemy Turn";
+
+        seq.Append(turnChangeImage_1.transform.DOLocalMoveX(0, 0.4f)).SetEase(Ease.OutQuint);
+        seq.Join(turnChangeImage_2.transform.DOLocalMoveX(0, 0.4f)).SetEase(Ease.OutQuint);
+
+        seq.Append(turnText.transform.DOScale(1, 0.4f)).Join(turnText.DOFade(1, 0.4f));
+
+        seq.AppendInterval(0.6f);
+
+        seq.Append(turnText.transform.DOScale(1.4f, 0.4f)).Join(turnText.DOFade(0, 0.4f));
+        
+        seq.AppendInterval(0.6f);
+
+        seq.Append(turnChangeImage_1.transform.DOLocalMoveX(2020, 0.6f)).SetEase(Ease.InQuint).Join(turnChangeImage_2.transform.DOLocalMoveX(-2020, 0.6f)).SetEase(Ease.InQuint);
+
+        seq.AppendInterval(0.3f);
+        seq.AppendCallback(() =>
+        {
+            turnChangeImage_1.transform.localPosition = new Vector3(-2020, turnChangeImage_1.transform.localPosition.y, 0);
+            turnChangeImage_2.transform.localPosition = new Vector3(2020, turnChangeImage_2.transform.localPosition.y, 0);
+        });
     }
 
     public void SetQuickInven()
@@ -238,16 +279,25 @@ public class BattleUI : MonoBehaviour
             skillPanel.transform.DOLocalMoveX(1224, 0.6f);
             behaveTextBox.transform.DOLocalMoveY(656, 0.7f);
             TurnEnd.transform.DOLocalMoveX(1084.5f, 2f);
+            playerStat.transform.DOLocalMoveX(-796.76f, 0.2f);
+            quickInven.transform.DOMove(new Vector3(60, 80, 0), 0.4f);
+
+            ClearCard(100);
+            currentSkillCard.Clear();
+            currentSkill.Clear();
+            playerSkill.Clear();
         });
         seq.Append(winorlose.DOFade(1, 0.3f));
-        seq.Join(winorlose.transform.DOScale(1.2f, 0.4f));
+        seq.Join(winorlose.transform.DOScale(1.2f, 0.4f).SetEase(Ease.OutBack));
+        seq.AppendInterval(0.6f);
         //seq.Append(winorlose.DOFade)
-
+        seq.Append(winorlose.DOFade(0, 0.3f));
+        seq.Join(winorlose.transform.DOScale(0f, 0.4f).SetEase(Ease.InBack));
     }
 
     public void OnClickTurnEnd()   //여기 턴 넘어가는 곳
     {
-        SetChangeTurn(false);
+        TurnChangeEffect(false);
         ClearCard(10);
         battleManager.StartCoroutine("ChangeTurn", false);
         ClearSkill();

@@ -4590,7 +4590,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 138728232}
-  m_LocalRotation: {x: 0.30125958, y: -0.28341407, z: 0.09428608, w: 0.9055547}
+  m_LocalRotation: {x: 0.30125955, y: -0.28341407, z: 0.094286054, w: 0.9055548}
   m_LocalPosition: {x: 3.65, y: 6.09, z: -15.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6304,7 +6304,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 178124887}
-  m_LocalRotation: {x: 0.30125958, y: -0.28341407, z: 0.09428608, w: 0.9055547}
+  m_LocalRotation: {x: 0.30125955, y: -0.28341407, z: 0.094286054, w: 0.9055548}
   m_LocalPosition: {x: 3.65, y: 6.09, z: -15.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -57884,6 +57884,7 @@ MonoBehaviour:
   behaveText: {fileID: 325002837}
   battleManager: {fileID: 2096068068}
   cardCount: 5
+  playerStat: {fileID: 0}
   poolM: {fileID: 0}
   poolLocalM:
   - {fileID: 0}

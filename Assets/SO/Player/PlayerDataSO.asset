@@ -14,24 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 2.3
   runSpeed: 5.2
-  Health: 5
+  Health: 80
   Ad: 5
   Def: 2
   Speed: 15
+  cost: 3
   player: {fileID: 11400000, guid: e685c9983c5323c48b0883e0cfe4a469, type: 2}
   canBattle: 1
   _skills:
   - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
   - {fileID: 11400000, guid: d47fa131a483f2944a00162aa9077858, type: 2}
+  - {fileID: 11400000, guid: 30a8c573f0610824ab555b633e5912bd, type: 2}
   - {fileID: 11400000, guid: d47fa131a483f2944a00162aa9077858, type: 2}
   - {fileID: 11400000, guid: 30a8c573f0610824ab555b633e5912bd, type: 2}
   - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 30a8c573f0610824ab555b633e5912bd, type: 2}
+  - {fileID: 11400000, guid: 30a8c573f0610824ab555b633e5912bd, type: 2}
   - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
   - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
-  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
-  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
-  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
-  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 30a8c573f0610824ab555b633e5912bd, type: 2}
   - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
   - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
   - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}

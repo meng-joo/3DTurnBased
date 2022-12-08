@@ -79,11 +79,11 @@ public class InventoryObj : ScriptableObject
         return invenSlots.FirstOrDefault(i => i.item.item_id == itemObject.itemData.item_id) != null;
     }
 
-    public void SwapItems(InvenSlot itemA, InvenSlot itemB)
+    public bool SwapItems(InvenSlot itemA, InvenSlot itemB)
     {
         if (itemA == itemB)
         {
-            return;
+            return false;
         }
 
         if (itemB.getFlagEquipSlot(itemA.ItemObject) && itemA.getFlagEquipSlot(itemB.ItemObject))
@@ -94,8 +94,9 @@ public class InventoryObj : ScriptableObject
             itemA.uploadSlot(temp.item, temp.itemCnt);
 
             //if(type == InterfaceType.Equipment)
-
+            return true;
         }
+        return false;
     }
 
     public void Clear()

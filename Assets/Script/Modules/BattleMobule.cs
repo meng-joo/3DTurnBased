@@ -29,6 +29,11 @@ public class BattleMobule : MonoBehaviour
         _setBattle.Invoke();
     }
 
+    public void EndBattle()
+    {
+        mainModule._HpModule.SetAvtiveHpbar(false);
+    }
+
     IEnumerator ShakeBattleCam(float strenght)
     {
         var _multichannel = mainModule.battleCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
