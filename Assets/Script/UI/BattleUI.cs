@@ -49,8 +49,35 @@ public class BattleUI : MonoBehaviour
 
 
     public TextMeshProUGUI costTxt;
-    public int cost = 3; 
-    public int maxCost = 3; 
+    public int cost = 3;
+    public int maxCost = 3;
+
+    public List<GameObject> costObj;
+
+    public GameObject costPrefab;
+    public Transform costParentTrm;
+
+    #region ¹¦Áö¿Í µ¦ÇÈ¾÷ °ü·Ãº¯¼öµé
+    public List<Skill> cemeteryCardDeck = new List<Skill>();
+
+    public int cemeteryCardCnt = 0;
+
+    public GameObject pickCard;
+    public GameObject cemeteryCard;
+
+    public GameObject cardPrefab;
+
+    public Transform pickcardParnetTrm;
+
+    public Transform cemetrycardParnetTrm;
+
+    public bool isCemetery;
+
+
+    public GameObject cemetryBtn;
+    public GameObject pickCardBtn;
+    #endregion
+
     private void Start()
     {
         mainModule = GameObject.Find("Player").GetComponent<MainModule>();
@@ -73,6 +100,7 @@ public class BattleUI : MonoBehaviour
 
     public void SetBattleUI()
     {
+
         SetActiveButton(false);
         skillPanel.transform.DOLocalMoveX(700, 0.6f);
         behaveTextBox.transform.DOLocalMoveY(478, 0.7f);
@@ -101,7 +129,6 @@ public class BattleUI : MonoBehaviour
         turnImage[0].DOFade(1, 0.6f);
         turnImage[1].DOFade(1, 0.6f);
     }
-
     public void SetChangeTurn(bool isPlayerTurn)
     {
         Sequence seq = DOTween.Sequence();
@@ -112,6 +139,30 @@ public class BattleUI : MonoBehaviour
             for (int i = 0; i < cardCount; i++)
             {
                 SetSkillInfo();
+            }
+
+            cost = 3;
+            Transform[] childList = costParentTrm.GetComponentsInChildren<Transform>();
+
+            if (childList != null)
+            {
+                for (int i = 1; i < childList.Length; i++)
+                {
+                    Destroy(childList[i].gameObject);
+                }
+            }
+
+            for (int i = 0; i < cost; i++)
+            {
+                GameObject obj = Instantiate(costPrefab, transform.position, Quaternion.identity);
+                obj.transform.SetParent(costParentTrm.transform);
+                obj.SetActive(true);
+
+                obj.transform.localPosition = new Vector3(0f + (2*i), 0f, 0f + i);
+                obj.transform.localScale = Vector3.one;
+                obj.transform.Rotate(new Vector3(0, 0f, 0f));
+
+                costObj.Add(obj);
             }
 
             turnImage[0].DOFade(1, 2.4f);
@@ -198,7 +249,7 @@ public class BattleUI : MonoBehaviour
         SetQuickInven();
         StartCoroutine(MoveBehaveButtons(true, true));
     }
-    
+
     public void OnClickItem()
     {
         Sequence seq = DOTween.Sequence();
@@ -222,7 +273,7 @@ public class BattleUI : MonoBehaviour
     public void GameEnd(string isWin)
     {
         Sequence seq = DOTween.Sequence();
-     
+
         winorlose.text = isWin;
         seq.AppendCallback(() =>
         {
@@ -268,6 +319,13 @@ public class BattleUI : MonoBehaviour
     private void ClearSkill()
     {
         int left = currentSkill.Count;
+
+       
+
+        for (int i = 0; i < currentSkill.Count; i++)
+        {
+            cemeteryCardDeck.Add(currentSkill[i]);
+        }
         currentSkill.Clear();
 
         //for (int i = 0; i < left; i++)
@@ -324,11 +382,29 @@ public class BattleUI : MonoBehaviour
 
     private void SetDeck()
     {
-        for (int i = 0; i < mainModule.playerDataSO._skills.Length; i++)
+     
+        if (isCemetery)
         {
-            playerSkill.Add(mainModule.playerDataSO._skills[i]);
+            for (int i = 0; i < cemeteryCardDeck.Count; i++)
+            {
+                playerSkill.Add(cemeteryCardDeck[i]);
+            }
+
+            cemeteryCardDeck.Clear();
+            Shuffle(cemeteryCardDeck);
+            Debug.Log("¹¦Áö¿¡²¨ Àß°¨");
         }
-        Shuffle(playerSkill);
+        else
+        {
+            for (int i = 0; i < mainModule.playerDataSO._skills.Length; i++)
+            {
+                playerSkill.Add(mainModule.playerDataSO._skills[i]);
+            }
+            isCemetery = true;
+            Shuffle(playerSkill);
+        }
+
+
     }
 
     //private void SetSkill()
@@ -356,7 +432,6 @@ public class BattleUI : MonoBehaviour
         seq.AppendInterval(2.7f);
         seq.AppendCallback(() => PoolManager.Instance.Push(PoolType.UI, text.gameObject));
     }
-
     public void Shuffle<T>(IList<T> list)
     {
         int n = list.Count;
@@ -373,5 +448,66 @@ public class BattleUI : MonoBehaviour
     public int GetCardCount()
     {
         return 5;
+    }
+    public void OnPickCard()
+    {
+        pickCard.SetActive(true);
+
+        RectTransform[] childList = pickcardParnetTrm.GetComponentsInChildren<RectTransform>();
+
+        if (childList != null)
+        {
+            for (int i = 1; i < childList.Length; i++)
+            {
+                Destroy(childList[i].gameObject);
+            }
+        }
+
+        for (int i = 0; i < playerSkill.Count; i++)
+        {
+            GameObject cardObj = Instantiate(cardPrefab, Vector3.zero, Quaternion.identity).gameObject;
+            cardObj.GetComponent<SkillCard>().SetSkillCard( playerSkill[i]);
+            cardObj.transform.SetParent(pickcardParnetTrm);
+            cardObj.SetActive(true);
+        }
+    }
+    public void OffPickCemetryCard()
+    {
+        pickCard.SetActive(false);
+        cemeteryCard.SetActive(false);
+    }
+    public void OnCemeteryCard()
+    {
+        cemeteryCard.SetActive(true);
+
+        RectTransform[] childList = cemetrycardParnetTrm.GetComponentsInChildren<RectTransform>();
+
+        if (childList != null)
+        {
+            for (int i = 1; i < childList.Length; i++)
+            {
+                Destroy(childList[i].gameObject);
+            }
+        }
+
+        for (int i = 0; i < cemeteryCardDeck.Count; i++)
+        {
+            GameObject cardObj = Instantiate(cardPrefab, Vector3.zero, Quaternion.identity).gameObject;
+            cardObj.GetComponent<SkillCard>().SetSkillCard(cemeteryCardDeck[i]);
+            cardObj.transform.SetParent(cemetrycardParnetTrm);
+            cardObj.SetActive(true);
+        }
+    }
+    public void SetCost(int m_cost)
+    {
+        for (int i = 0; i < m_cost; i++)
+        {
+            DoFade(0, 1, 1, costObj[i].transform.Find("NGon002").GetComponent<MeshRenderer>().material);
+            costObj.Remove(costObj[i]);        
+        }
+    }
+    public void DoFade(float start, float dest, float time, Material dissolveMat)
+    {
+         DOTween.To(() => start, x => { start = x; dissolveMat.SetFloat("_Dissolve", start); }, dest, time).SetUpdate(true);
     }
 }
