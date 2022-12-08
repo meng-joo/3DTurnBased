@@ -6,6 +6,7 @@ using System.Reflection;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class SkillCard : PoolAbleObject
 {
@@ -149,8 +150,12 @@ public class SkillCard : PoolAbleObject
                     _battleUI.SpawnSkillEffectText(value[count].ToString(), skillText, transform.position);
                     count++;
                 }
+            
                 _battleUI.cost -= cost;
                 _battleUI.costTxt.text = $"{_battleUI.cost + "/" + _battleUI.maxCost}";
+
+
+                _battleUI.SetCost(cost);
 
                 //CardEffect();
                 _battleUI.SpawnSkillEffectText(typeText, Color.white, transform.position + new Vector3(0, 30, 0));
@@ -166,8 +171,13 @@ public class SkillCard : PoolAbleObject
                 _mainModule._BattleModule.StartCoroutine("ShakeBattleCam", 1f);
 
                 //skillEffect.Invoke(hit.collider.gameObject);
+
                 _battleUI.currentSkillCard.Remove(gameObject);
                 _battleUI.currentSkill.Remove(currentSkill);
+
+                _battleUI.cemeteryCardDeck.Add(currentSkill);
+
+
                 _battleUI.cardCount--;
                 transform.SetParent(poolLocalM.transform);
                 PoolManager.Instance.Push(PoolType.Card, gameObject);
@@ -175,7 +185,6 @@ public class SkillCard : PoolAbleObject
             }
         }
         transform.position = originPos;
-
         m_IsButtonDowning = false;
     }
 

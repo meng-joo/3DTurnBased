@@ -34,6 +34,14 @@ public class BattleManager : MonoBehaviour
         seq.AppendInterval(1f);
         seq.AppendCallback(() =>
         {
+            //for (int i = 0; i < 3; i++)
+           // {
+             //   _battleUI.costObj[i].SetActive(true);
+            //}
+
+            _battleUI.cemetryBtn.SetActive(true);
+            _battleUI.pickCardBtn.SetActive(true);
+            _battleUI.isCemetery = false;
             _wall.SetActive(false);
             _mainModule.SetBattleAni();
             Debug.Log("ÀÌ·± ¾¾¹ß");

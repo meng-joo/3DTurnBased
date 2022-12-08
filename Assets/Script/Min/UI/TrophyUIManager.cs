@@ -181,7 +181,7 @@ public class TrophyUIManager : MonoBehaviour
         middlePoint.y = y;
 
         waypoint = new Vector3[3];
-
+        
         waypoint.SetValue(animator.transform.position, 0);
         waypoint.SetValue(middlePoint, 1);
         waypoint.SetValue(way.position, 2);
