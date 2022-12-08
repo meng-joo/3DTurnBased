@@ -3787,7 +3787,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 138728232}
-  m_LocalRotation: {x: 0.30125955, y: -0.2834141, z: 0.09428609, w: 0.9055547}
+  m_LocalRotation: {x: 0.30125958, y: -0.28341407, z: 0.094286084, w: 0.9055547}
   m_LocalPosition: {x: 3.65, y: 6.09, z: -15.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5394,7 +5394,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 178124887}
-  m_LocalRotation: {x: 0.30125955, y: -0.2834141, z: 0.09428609, w: 0.9055547}
+  m_LocalRotation: {x: 0.30125958, y: -0.28341407, z: 0.094286084, w: 0.9055547}
   m_LocalPosition: {x: 3.65, y: 6.09, z: -15.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -25013,6 +25013,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4635aca61d077bb41a4fc10a14211259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maincanvas: {fileID: 0}
+  minicanvas: {fileID: 0}
+  miniMapCam: {fileID: 0}
+  mainMapCam: {fileID: 0}
+  isMiniMapUp: 0
 --- !u!1001 &1005037479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51141,6 +51146,9 @@ MonoBehaviour:
   behaveTextBox: {fileID: 1207769989}
   quickInven: {fileID: 1913486539}
   winorlose: {fileID: 1236759348}
+  turnChangeImage_1: {fileID: 0}
+  turnChangeImage_2: {fileID: 0}
+  turnText: {fileID: 0}
   skillCard: {fileID: 1557593631}
   currentSkillCard: []
   currentSkill: []
@@ -51152,13 +51160,13 @@ MonoBehaviour:
   behaveText: {fileID: 325002837}
   battleManager: {fileID: 2096068068}
   cardCount: 5
+  playerStat: {fileID: 0}
   poolM: {fileID: 0}
   poolLocalM:
   - {fileID: 0}
   - {fileID: 0}
   costTxt: {fileID: 2092529938}
   cost: 3
-  maxCost: 3
   costObj: []
   costPrefab: {fileID: 4362655595146076903, guid: faf7341095f26c34d8d013ee42503e24, type: 3}
   costParentTrm: {fileID: 7411466559079926151}
@@ -62047,7 +62055,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6329070947431217606}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.39, y: 3.77, z: -9.7}
+  m_LocalPosition: {x: 0.7, y: 4, z: -9.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -62791,11 +62799,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveObject: {fileID: 1979969963144461482}
   m_shaderPropertyName: _MoveToMaterialUV
-  m_shaderPropertyID: 1250
+  m_shaderPropertyID: 1203
   m_materialData:
   - m_trailRenderer: {fileID: 3778685307209307048}
     m_uvTiling: {x: 0.06, y: 0.4}
-    m_move: 0.71836054
+    m_move: 0
 --- !u!4 &3176116456277059981
 Transform:
   m_ObjectHideFlags: 0
