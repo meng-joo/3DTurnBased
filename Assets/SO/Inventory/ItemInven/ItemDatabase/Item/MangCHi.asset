@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df4ed138a84aeba418d160291dbf036b, type: 3}
   m_Name: MangCHi
   m_EditorClassIdentifier: 
+  _methodName: []
   itemType: 1
   getFlagStackable: 0
   itemIcon: {fileID: 21300000, guid: 9895f5f95566ceb47bb239149d90cb44, type: 3}
@@ -29,4 +30,6 @@ MonoBehaviour:
       min: 3
       max: 5
   boneNameLists: []
-  itemSummery: 
+  itemSummery: "\uB9DD\uCE58\uB85C \uB1CC\uC9C4\uD0D5\uC744 \uAC78\uB9AC\uAC8C \uD560
+    \uC218 \uC788\uB2E4"
+  value: 0

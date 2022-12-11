@@ -62,6 +62,10 @@ public class InvenSlot
         {
             if (itemObj.itemType == itemType)
             {
+                if (itemObj.itemType == ItemType.Default)
+                {
+                    Debug.Log("아이템추가");
+                }
                 //Type type = typeof(ApplyAbility);
                 //MethodInfo method = type.GetMethod("ChangeAbility");
 

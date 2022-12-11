@@ -23,10 +23,12 @@ public static class ExtensionList
     }
 }
 
-public class Card : PoolAbleObject
+public class Card : PoolAbleObject, IPointerEnterHandler, IPointerExitHandler
 {
     public bool isFull = false;
     InvenSkill invenSkill;
+
+    public GameObject popUp;
 
     public Button cardBtn;
     public Image selectImage;
@@ -60,6 +62,7 @@ public class Card : PoolAbleObject
     private void Awake()
     {
         invenSkill = FindObjectOfType<InvenSkill>();
+        popUp = GameObject.Find("Popup");
     }
     private void Start()
     {
@@ -136,5 +139,17 @@ public class Card : PoolAbleObject
 
     public override void Init_Push()
     {
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        popUp.SetActive(false);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        popUp.SetActive(true);
+        popUp.transform.Find("ExplainTxt").GetComponent<TextMeshProUGUI>().text = skill.skillInfo._skillExplanation;
+        popUp.transform.Find("NameTxt").GetComponent<TextMeshProUGUI>().text = skill.skillInfo._skillName;
     }
 }

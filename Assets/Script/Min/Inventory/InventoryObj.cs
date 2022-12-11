@@ -93,6 +93,7 @@ public class InventoryObj : ScriptableObject
             itemB.uploadSlot(itemA.item, itemA.itemCnt);
             itemA.uploadSlot(temp.item, temp.itemCnt);
 
+           
             //if(type == InterfaceType.Equipment)
             return true;
         }

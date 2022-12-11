@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -25,6 +26,13 @@ public abstract class UIInventory : MonoBehaviour
 
     private bool isMinus = false;
 
+    public RectTransform explainTap;
+
+    public GameObject useTap;
+
+    public List<MethodInfo> skillEffect = new List<MethodInfo>();
+    public int value;
+
     private void Awake()
     { 
         createUISlots();
@@ -39,6 +47,9 @@ public abstract class UIInventory : MonoBehaviour
 
         AddEventAction(gameObject, EventTriggerType.PointerEnter, delegate { OnEnterInventory(gameObject); }); 
         AddEventAction(gameObject, EventTriggerType.PointerExit, delegate { OnExitInventory(gameObject); });
+
+
+        AddEventAction(gameObject, EventTriggerType.PointerUp, delegate { OnUpdateSlots(gameObject); });
     }
      
     protected virtual void Start()
@@ -76,23 +87,50 @@ public abstract class UIInventory : MonoBehaviour
     public void OnEnterInventory(GameObject gameObj)
     { 
         MouseTransformData.mouseInventory = gameObj.GetComponent<UIInventory>();
+    
     }
-     
+
     public void OnExitInventory(GameObject gameObj)
     {
         MouseTransformData.mouseInventory = null;
     }
      
+    public void OnUpdateSlots(GameObject gameObj)
+    {
+        explainTap.position = Input.mousePosition;//a.origin;
+
+        if (uiSlotLists[gameObj].ItemObject != null)
+        {
+            //Ray a = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
+            explainTap.transform.Find("NameTxt").GetComponent<TextMeshProUGUI>().text = uiSlotLists[gameObj].ItemObject.itemData.item_name;
+            explainTap.transform.Find("ExplainTxt").GetComponent<TextMeshProUGUI>().text = uiSlotLists[gameObj].ItemObject.itemSummery;
+
+
+            explainTap.gameObject.SetActive(true);
+        }
+
+    }
     public void OnEnterSlots(GameObject gameObj)
     { 
         MouseTransformData.mouseSlot = gameObj;
         MouseTransformData.mouseInventory = gameObj.GetComponentInParent<UIInventory>();
+
+
+
     }
 
     public void OnExitSlots(GameObject gameObj)
     {
         MouseTransformData.mouseSlot = null;
-    } 
+
+        if (uiSlotLists[gameObj].ItemObject != null)
+        {
+
+            explainTap.gameObject.SetActive(false);
+        }
+
+    }
 
     private GameObject AddEventDragImage(GameObject gameObj)
     { 
@@ -216,6 +254,44 @@ public abstract class UIInventory : MonoBehaviour
         {
             OnRightClick(slot);
         }
+
+        if (slot.ItemObject.itemData.item_id  < 0)
+        {
+            return;
+        }
+
+        if (slot.ItemObject.itemType == ItemType.Default)
+        {
+            Debug.Log("사용아이템");
+            useTap.gameObject.SetActive(true);
+
+            useTap.transform.Find("UseBtn").GetComponent<Button>().onClick.AddListener(() =>
+            {
+                skillEffect = slot.ItemObject._SetSkill._Methods;
+
+                foreach (var method in skillEffect)
+                {
+                    method.Invoke(null, null);
+                    Debug.Log("알바비");
+                }
+
+                //slot.itemCnt--;
+                slot.uploadSlot(slot.ItemObject.itemData, --slot.itemCnt);
+                Debug.Log(slot.itemCnt);
+            });
+            useTap.transform.Find("RemoveBtn").GetComponent<Button>().onClick.AddListener(() =>
+            {
+                Debug.Log("REMOVE");
+            });
+        }
+        else
+        {
+            useTap.transform.Find("UseBtn").GetComponent<Button>().onClick.RemoveAllListeners();
+            useTap.transform.Find("RemoveBtn").GetComponent<Button>().onClick.RemoveAllListeners();
+            useTap.gameObject.SetActive(false);
+
+        }
+
     }
 
     protected virtual void OnRightClick(InvenSlot invenSlot)
