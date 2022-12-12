@@ -24,6 +24,8 @@ public class InventoryManager : MonoBehaviour
 
 
     [SerializeField] private GameInfoSO gameInfoSO;
+
+    public GameObject useTab;
     private void Awake()
     {
         mainModule = FindObjectOfType<MainModule>();
@@ -140,5 +142,10 @@ public class InventoryManager : MonoBehaviour
         {
             itemUI[i].SetActive(true);
         }
+    }
+
+    public void OutClick()
+    {
+        useTab.gameObject.SetActive(false);
     }
 }

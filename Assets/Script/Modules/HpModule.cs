@@ -69,6 +69,17 @@ public class HpModule : MonoBehaviour
 
         _bar.fillAmount = (float)hp / maxHp;
     }
+    public void GetHp(int value)
+    {
+        hp += value;
+        UpdateHPText();
+        if (hp <= 0)
+        {
+            Dead();
+        }
+
+        _bar.fillAmount = (float)hp / maxHp;
+    }
 
     public void UpdateHPText()
     {
