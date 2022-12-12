@@ -24,6 +24,16 @@ public class BattleUI : MonoBehaviour
     public Image turnChangeImage_1;
     public Image turnChangeImage_2;
     public TextMeshProUGUI turnText;
+    public TextMeshProUGUI currentPlayerInfo;
+
+    [Space]
+    [Header("인벤스킬")]
+    public SkillIInvenObj _skill;
+
+    [Space]
+    [Header("스킬 카드 위치")]
+    public Transform left;
+    public Transform right;
 
     [Space]
     public GameObject skillCard;
@@ -84,6 +94,8 @@ public class BattleUI : MonoBehaviour
 
     public GameObject cemetryBtn;
     public GameObject pickCardBtn;
+
+    public string playerInfo;
     #endregion
 
     private void Start()
@@ -104,6 +116,7 @@ public class BattleUI : MonoBehaviour
         poolLocalM[1] = poolM.transform.GetChild(1).GetComponent<LocalPoolManager>();
 
         TurnEnd.onClick.AddListener(() => OnClickTurnEnd());
+        playerInfo += "건강함";
     }
 
     public void SetBattleUI()
@@ -151,7 +164,6 @@ public class BattleUI : MonoBehaviour
             {
                 SetSkillInfo();
             }
-
 
             turnImage[0].DOFade(1, 2.4f);
             turnImage[0].transform.DOScale(1.4f, 1.2f);
@@ -220,12 +232,12 @@ public class BattleUI : MonoBehaviour
         turnChangeImage_2.color = color;
         turnText.text = isPlayer ? "Player Turn" : "Enemy Turn";
 
-        seq.Append(turnChangeImage_1.transform.DOLocalMoveX(0, 0.4f)).SetEase(Ease.OutQuint);
-        seq.Join(turnChangeImage_2.transform.DOLocalMoveX(0, 0.4f)).SetEase(Ease.OutQuint);
+        seq.Append(turnChangeImage_1.transform.DOLocalMoveX(0, 0.2f)).SetEase(Ease.OutQuint);
+        seq.Join(turnChangeImage_2.transform.DOLocalMoveX(0, 0.2f)).SetEase(Ease.OutQuint);
 
         seq.Append(turnText.transform.DOScale(1, 0.4f)).Join(turnText.DOFade(1, 0.4f));
 
-        seq.AppendInterval(0.6f);
+        seq.AppendInterval(1.2f);
 
         seq.Append(turnText.transform.DOScale(1.4f, 0.4f)).Join(turnText.DOFade(0, 0.4f));
         
@@ -285,6 +297,7 @@ public class BattleUI : MonoBehaviour
 
     public void OnClickInfo()
     {
+        SetText();
         ClearCard(1);
         SetQuickInven();
         StartCoroutine(MoveBehaveButtons(true, true));
@@ -401,6 +414,8 @@ public class BattleUI : MonoBehaviour
 
         SetActiveButton(false);
 
+       //List<Transform> t = OrderCard(left, right, cardCount, 0.5f, Vector3.one);
+
         for (int i = 0; i < cardCount; i++)
         {
             float xpos = -550 + i * 275;
@@ -410,16 +425,21 @@ public class BattleUI : MonoBehaviour
 
             currentSkillCard.Add(PoolManager.Instance.Pop(PoolType.Card).gameObject);//Instantiate(card, skillBox.transform);//new Vector3(xpos, ypos, 0f), Quaternion.identity);
             currentSkillCard[i].transform.SetParent(skillBox.transform);
-            currentSkillCard[i].transform.localPosition = new Vector3(0, ypos, 0);
+
+            //currentSkillCard[i].transform.position = t[i].position;
+            //currentSkillCard[i].transform.rotation = t[i].rotation;
+            //currentSkillCard[i].transform.localScale = t[i].localScale;
+            //currentSkillCard[i].transform.localPosition = new Vector3(0, ypos, 0);
         }
 
-        seq.AppendCallback(() => SetUIBox(skillBox, true));
         for (int i = 0; i < cardCount; i++)
         {
             SetCardInfo(i);
         }
-        seq.AppendInterval(0.4f);
 
+        seq.AppendInterval(.52f);
+        seq.AppendCallback(() => SetUIBox(skillBox, true));
+        seq.AppendInterval(.3f);
         seq.AppendCallback(() =>
         {
             SetActiveButton(true);
@@ -578,4 +598,55 @@ public class BattleUI : MonoBehaviour
     {
         DOTween.To(() => start, x => { start = x; dissolveMat.SetFloat("_Dissolve", start); }, dest, time).SetUpdate(true);
     }
+
+    public void SetText()
+    {
+        currentPlayerInfo.text = $"플레이어 정보:\n체력: {mainModule._HpModule.hp} / {mainModule._HpModule.maxHp}\n공격력: {mainModule.playerDataSO.Ad}\n방어력: {mainModule.playerDataSO.Def}\n스피드: {mainModule.playerDataSO.Speed}\n현재 카드 수집한 카드 수: {mainModule.playerDataSO._skills.Length + _skill.cards.Count}\n현재 상태: {playerInfo}";
+    }
+
+    //List<Transform> OrderCard(Transform left, Transform right, int objcount, float height, Vector3 scale)
+    //{
+    //    float[] objLerps = new float[objcount];
+    //    List<Transform> card = new List<Transform>(objcount);
+    //    Transform tt = transform;
+
+    //    switch (objcount)
+    //    {
+    //        case 1:
+    //            objLerps = new float[] { 0.5f };
+    //            break;
+    //        case 2:
+    //            objLerps = new float[] { 0.23f, 0.73f };
+    //            break;
+    //        case 3:
+    //            objLerps = new float[] { 0.1f, 0.5f, 0.9f };
+    //            break;
+    //        default:
+    //            float interval = 1f / (objcount - 1);
+    //            for (int i = 0; i < objcount; i++)
+    //            {
+    //                objLerps[i] = interval * i;
+    //            }
+    //            break;
+    //    }
+
+    //    for(int i = 0; i< objcount; i++)
+    //    {
+    //        var targetPos = Vector3.Lerp(left.position, right.position, objLerps[i]);
+    //        var targetRot = Quaternion.identity;
+    //        if(objcount >= 4)
+    //        {
+    //            float curve = Mathf.Sqrt(Mathf.Pow(height, 2) - Mathf.Pow(objLerps[i] - 0.5f, 2));
+    //            curve = height >= 0 ? curve : -curve;
+    //            targetPos.y += curve;
+    //            targetRot = Quaternion.Slerp(left.rotation, right.rotation, objLerps[i]);
+    //        }
+    //        tt.position = targetPos;
+    //        tt.rotation = targetRot;
+    //        tt.localScale = scale;
+    //        card.Add(tt);
+    //    }
+
+    //    return card;
+    //}
 }

@@ -132,28 +132,22 @@ public class SkillCard : PoolAbleObject
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+        int cost = Int32.Parse(skillCost.text);
+        int count = 0;
 
         if (Physics.Raycast(ray, out hit, 100))
         {
-            if (hit.collider.CompareTag(target))
+            if (hit.collider.CompareTag(target) && _battleUI.cost >= cost)
             {
-                int cost = Int32.Parse(skillCost.text);
-
-                if (_battleUI.cost < cost)
-                {
-                    return;
-                }
-                int count = 0;
                 foreach (var method in skillEffect)
                 {
                     method.Invoke(null, new object[] { hit.collider.gameObject, value[count] });
                     _battleUI.SpawnSkillEffectText(value[count].ToString(), skillText, transform.position);
                     count++;
                 }
-            
+
                 _battleUI.cost -= cost;
                 _battleUI.costTxt.text = $"{_battleUI.cost + "/" + _battleUI.maxCost}";
-
 
                 _battleUI.SetCost(cost);
 
@@ -162,7 +156,7 @@ public class SkillCard : PoolAbleObject
 
                 //if(_mainModule._animation.GetClip(_motion.name) == null)
                 _mainModule._animatorOverride["Motion"] = _motion;
-                _mainModule._animator.Play("Motion");
+                _mainModule._animator.Play("Motion", 0);
 
                 GameObject vfx = PoolManager.Instance.Pop(_skillVFX).gameObject;
                 vfx.transform.position = hit.point;
@@ -176,7 +170,6 @@ public class SkillCard : PoolAbleObject
                 _battleUI.currentSkill.Remove(currentSkill);
 
                 _battleUI.cemeteryCardDeck.Add(currentSkill);
-
 
                 _battleUI.cardCount--;
                 transform.SetParent(poolLocalM.transform);
