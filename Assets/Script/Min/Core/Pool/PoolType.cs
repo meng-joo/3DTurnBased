@@ -12,5 +12,6 @@ public enum PoolType
     VFX4,
     VFX5,
     VFX6,
-    VFX7
+    VFX7,
+    Sound
 }

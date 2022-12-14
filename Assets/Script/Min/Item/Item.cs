@@ -18,7 +18,6 @@ public class Item
 
     public ItemAbility[] abilities;
 
-
     public Item(ItemObj itemObj)
     {
         item_name = itemObj.name;
@@ -32,9 +31,5 @@ public class Item
                 characterStack = itemObj.itemData.abilities[i].characterStack
             };
         }
-
     }
-   
-
- 
 }

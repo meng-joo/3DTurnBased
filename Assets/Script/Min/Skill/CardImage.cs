@@ -43,8 +43,9 @@ public class CardImage : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
 
             #region 카드 들어가는 애니메이션
-            trophyUIManager.animator.GetComponent<Image>().sprite = skillData.skillInfo._skillImage;
-            trophyUIManager.EffectCard(trophyUIManager.animator.GetComponent<Image>().sprite);
+            trophyUIManager.inImage.GetComponent<Image>().sprite = skillData.skillInfo._skillImage;
+            trophyUIManager.inImage.GetComponent<Image>().color = new Color(1, 0, 0);
+            trophyUIManager.EffectCard(trophyUIManager.inImage.GetComponent<Image>().sprite);
 
             //trophyUIManager.animator.Play("MoveOne");
             #endregion

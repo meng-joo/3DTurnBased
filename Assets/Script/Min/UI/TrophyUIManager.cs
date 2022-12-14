@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections.Generic;
+using System.Reflection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,30 +27,74 @@ public class TrophyUIManager : MonoBehaviour
 
     public MainModule mainModule;
 
-   // public Image itemsprite;
+    // public Image itemsprite;
 
     public Animator animator;
 
+    public Image inImage;
+
     public RectTransform way;
     public Vector3[] waypoint;
+
+    public Ease ease;
+
+    public GameObject trail;
+
+    public AnimationCurve asda;
+
+    public RelicDataSO allRelic;
+    public RelicDataSO playerRelic;
+
+    public GameObject relicTrophy;
+
+    public List<MethodInfo> relicEffect = new List<MethodInfo>();
+
+
+    public GameObject relicPrefab;
+    public Transform relicParent;
+
+
+    private void Awake()
+    {
+        Transform[] childList = relicParent.GetComponentsInChildren<RectTransform>();
+        foreach (var deletecard in childList)
+        {
+            if (deletecard == relicParent)
+                continue;
+
+            Destroy(deletecard.gameObject);
+        }
+
+        for (int i = 0; i < playerRelic.relics.Count; i++)
+        {
+            GameObject relicdObj = Instantiate(relicPrefab, relicParent.transform.position, Quaternion.identity).gameObject;
+            relicdObj.transform.SetParent(relicParent);
+            relicdObj.GetComponent<RelicImage>().Set(playerRelic.relics[i]);
+        }
+    }
+
+
     public void AppearTrophy()
     {
         trophyPanel.transform.DOLocalMoveY(0, 0.5f);
         trophyPanel.GetComponent<Image>().DOFade(1f, 0.8f);
         trophyPanel.transform.Find("TrophyImage").GetComponent<Image>().DOFade(1f, 0.8f);
+        mainModule.canInven = false;
         AddNewItem();
         SetTrophy();
+        AddRelic();
     }
     public Skill RandomSkill()
     {
         int randomSKill = Random.Range(0, allSkills._allSkills.Count);
         return allSkills._allSkills[randomSKill];
     }
-    public void SetTrophy( )
+    public void SetTrophy()
     {
         GameObject skillObj = Instantiate(skillTrophy, parentTrm.position, Quaternion.identity);
         skillObj.transform.SetParent(parentTrm);
-
+        skillObj.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        skillObj.transform.localScale = Vector3.one;
 
         skillObj.GetComponent<Button>().onClick.AddListener(() =>
             {
@@ -68,7 +113,7 @@ public class TrophyUIManager : MonoBehaviour
     }
 
     public Skill[] GetRandDataList()
-    { 
+    {
         List<Skill> data = new();
         List<Skill> returnData = new();
 
@@ -92,7 +137,7 @@ public class TrophyUIManager : MonoBehaviour
             {
                 continue;
             }
-       
+
         }
         Debug.Log(returnData.ToArray());
         return returnData.ToArray();
@@ -107,8 +152,8 @@ public class TrophyUIManager : MonoBehaviour
 
         GameObject itemTrophyObj = Instantiate(itemTrophy, parentTrm.position, Quaternion.identity);
         itemTrophyObj.transform.SetParent(parentTrm);
-        //itemTrophyObj.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
-        //itemTrophyObj.transform.localScale = Vector3.one;
+        itemTrophyObj.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        itemTrophyObj.transform.localScale = Vector3.one;
         int randomCnt = 0;
 
         if (databaseObj.itemObjs.Length > 0)
@@ -123,7 +168,7 @@ public class TrophyUIManager : MonoBehaviour
             itemTrophyObj.transform.Find("ItemNameText").GetComponent<TextMeshProUGUI>().text = newItemObject.itemData.item_name;
 
             //itemsprite.sprite = itemTrophyObj.transform.Find("ItemImage").GetComponent<Image>().sprite;
-            
+
             if (newItemObject.getFlagStackable)
             {
                 itemTrophyObj.transform.Find("ItemCountText").GetComponent<TextMeshProUGUI>().text = randomCnt.ToString();
@@ -137,10 +182,10 @@ public class TrophyUIManager : MonoBehaviour
                     Destroy(itemTrophyObj);
                     Debug.Log(parentTrm.childCount);
 
-                    
+                    EffectCard(itemTrophyObj.transform.Find("ItemImage").GetComponent<Image>().sprite);
+
                     Invoke("InitTrophy", 1f);
 
-                    EffectCard(itemTrophyObj.transform.Find("ItemImage").GetComponent<Image>().sprite);
                 });
             }
             else
@@ -164,30 +209,139 @@ public class TrophyUIManager : MonoBehaviour
         #endregion
     }
 
+    /// <summary>
+    /// 유물추가
+    /// </summary>
+    public RelicSO GetRandomRelic()
+    {
+        int randomRelic = Random.Range(0, allRelic.relics.Count);
+
+        foreach (var item in playerRelic.relics)
+        {
+            if (allRelic.relics[randomRelic] == item)
+            {
+                randomRelic = Random.Range(0, allRelic.relics.Count);
+                Debug.Log(randomRelic);
+                //같은게있으면 다시찾아라
+                continue;
+            }
+        }
+        playerRelic.relics.Add(allRelic.relics[randomRelic]);
+        return allRelic.relics[randomRelic];
+    }
+
+    public void AddRelic()
+    {
+        GameObject relicObj = Instantiate(relicTrophy, parentTrm.position, Quaternion.identity);
+        relicObj.transform.SetParent(parentTrm);
+        relicObj.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        relicObj.transform.localScale = Vector3.one;
+
+        RelicSO so = GetRandomRelic();
+        Debug.Log(so);
+
+        relicObj.transform.Find("relicImage").GetComponent<Image>().sprite = so.relicImage;
+        relicObj.GetComponentInChildren<TextMeshProUGUI>().text = so.relicName;
+
+        relicObj.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            relicEffect = so._SetRelick._Methods;
+
+            foreach (var method in relicEffect)
+            {
+                method.Invoke(null, null);
+            }
+
+
+            //slot.uploadSlot(slot.ItemObject.itemData, --slot.itemCnt);
+            //useTap.gameObject.SetActive(false);
+            EffectRelic(so);
+            Destroy(relicObj);
+            Invoke("InitTrophy", 1f);
+        });
+    }
+    public void EffectRelic(RelicSO relicSO)
+    {
+        GameObject relic = Instantiate(relicPrefab, relicParent.position, Quaternion.identity);
+        relic.transform.SetParent(relicParent);
+
+        relic.GetComponent<RelicImage>().Set(relicSO);
+
+        relic.GetComponent<Image>().sprite = relicSO.relicImage;
+        relic.GetComponent<Image>().color = new Vector4(1, 1, 1, 0);
+
+        Sequence seq = DOTween.Sequence();
+        seq.Append(relic.GetComponent<Image>().DOFade(1f, 1f));
+        seq.Join(relic.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.5f));
+        seq.Append(relic.transform.DOScale(Vector3.one, 0.5f));
+    }
     public void EffectCard(Sprite itemImg)
     {
-        animator.transform.localPosition = new Vector3(0, 0, 0);
-        animator.gameObject.SetActive(true);
-        animator.GetComponent<Image>().sprite = itemImg;
-        animator.enabled = false;
+        inImage.transform.DOKill();
+        inImage.transform.localPosition = new Vector3(0, 0, 0);
+        inImage.gameObject.SetActive(true);
+        inImage.sprite = itemImg;
 
-        //DOTween.Init(false, true, LogBehaviour.ErrorsOnly);
+        //  DOTween.Init(false, true, LogBehaviour.ErrorsOnly);
+
+        Vector3 firstPos = Camera.main.WorldToScreenPoint(inImage.transform.position);
+
+
         Vector3 middlePoint = new Vector3();
-        float x = animator.transform.position.x + (animator.transform.position.x * Random.Range(0.2f, 0.4f));
-        float y = animator.transform.position.y + 
-            (animator.transform.position.y * Random.Range(0.35f, 0.5f) * Random.Range(0, 100) < 50 ? 1f : -1f);
+        Vector3 lastPoint = new Vector3();
+        float x = firstPos.x + (firstPos.x * Random.Range(0.3f, 0.5f));
+        float y = firstPos.y + (firstPos.y * Random.Range(0.1f, 0.2f) * (Random.Range(0, 100) < 50 ? 1f : -1f));
 
-        middlePoint.x = x;
-        middlePoint.y = y;
+        middlePoint.x = x - Screen.currentResolution.width * 0.5f;
+        middlePoint.y = y - Screen.currentResolution.height * 0.5f;
+        firstPos.x = firstPos.x - Screen.currentResolution.width * 0.5f;
+        firstPos.y = firstPos.y - Screen.currentResolution.height * 0.5f;
+        lastPoint.x = way.position.x - Screen.currentResolution.width * 0.5f;
+        lastPoint.y = way.position.y - Screen.currentResolution.height * 0.5f;
 
-        waypoint = new Vector3[3];
         
-        waypoint.SetValue(animator.transform.position, 0);
-        waypoint.SetValue(middlePoint, 1);
-        waypoint.SetValue(way.position, 2);
+        firstPos.z = 0;
+        middlePoint.z = firstPos.z;
+        lastPoint.z = firstPos.z;
+        Debug.Log(firstPos.z + middlePoint.z + lastPoint.z);
+        waypoint = new Vector3[3];
 
-        animator.transform.DOPath(waypoint, 2f, PathType.CatmullRom).SetEase(Ease.InBack);
-        //animator.Play("MoveOne");
+
+        waypoint.SetValue(firstPos, 0);
+        waypoint.SetValue(middlePoint, 1);
+        waypoint.SetValue(lastPoint, 2);
+
+        inImage.rectTransform.DOLocalPath(waypoint, 1.2f, PathType.CatmullRom).SetEase(asda);//    .SetEase(asda);
+
+        Sequence seq = DOTween.Sequence();
+        seq.AppendCallback(() =>
+        {
+            trail.SetActive(true);
+            trail.transform.Find("Trail").GetComponent<ParticleSystem>().Play();
+            trail.transform.Find("TrailSmoke").GetComponent<ParticleSystem>().Play();
+        });
+        seq.AppendInterval(2f);
+
+        seq.AppendCallback(() =>
+        {
+            inImage.gameObject.SetActive(false);
+            inImage.color = new Color(1, 1, 1);
+
+            trail.SetActive(false);
+            trail.transform.Find("Trail").GetComponent<ParticleSystem>().Stop();
+            trail.transform.Find("TrailSmoke").GetComponent<ParticleSystem>().Stop();
+        });
+
+
+       // Invoke("OffImage", 2.2f);
+    }
+    public void OffImage()
+    {
+        inImage.gameObject.SetActive(false);
+
+        trail.SetActive(false);
+        trail.transform.Find("Trail").GetComponent<ParticleSystem>().Stop();
+        trail.transform.Find("TrailSmoke").GetComponent<ParticleSystem>().Stop();
     }
     public void InitTrophy()
     {
@@ -196,11 +350,12 @@ public class TrophyUIManager : MonoBehaviour
             Sequence seq = DOTween.Sequence();
             seq.AppendInterval(0.5f);
             seq.Append(trophyPanel.transform.DOLocalMoveY(1500f, 0.5f));
-            seq.AppendCallback(()=> 
+            seq.AppendCallback(() =>
             {
                 trophyPanel.transform.localPosition = new Vector3(0, -1500f, 0);
                 mainModule.isTrophy = false;
                 mainModule.canMove = false;
+                mainModule.canInven = true;
 
                 Destroy(mainModule.chestCreateManager.chestAnimators[mainModule.physicsModule.index].gameObject);
             });
@@ -210,5 +365,5 @@ public class TrophyUIManager : MonoBehaviour
             Debug.Log("자식있음");
         }
     }
-    
+
 }

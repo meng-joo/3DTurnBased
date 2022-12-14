@@ -35,10 +35,10 @@ public class BattleManager : MonoBehaviour
         seq.AppendCallback(() =>
         {
             //for (int i = 0; i < 3; i++)
-           // {
-             //   _battleUI.costObj[i].SetActive(true);
+            // {
+            //   _battleUI.costObj[i].SetActive(true);
             //}
-
+            _mainModule.canInven = false;
             _battleUI.cemetryBtn.SetActive(true);
             _battleUI.pickCardBtn.SetActive(true);
             _battleUI.isCemetery = false;
@@ -72,6 +72,9 @@ public class BattleManager : MonoBehaviour
 
     public void EndBattle(string isWin)
     {
+        _mainModule.canInven = true;
+
+
         _mainModule._animator.Play("Win");
         _mainModule._animator.SetBool("Fight", false);
         _mainModule.twoView.Priority += 10;

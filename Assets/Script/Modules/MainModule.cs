@@ -37,6 +37,10 @@ public class MainModule : MonoBehaviour
     [Header("플레이어 움직일 수 있냐")]
     public bool canMove;
 
+    [Space]
+    [Header("인벤을 열수 있냐")]
+    public bool canInven;
+
     //[Space]
     //[Header("애니메이션")]
     //public Animation _animation;
