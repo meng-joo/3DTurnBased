@@ -36,6 +36,8 @@ public abstract class UIInventory : MonoBehaviour
     public GameObject useOffBtn;
 
     public AudioClip audioClip;
+
+    public MainModule mainModule;
     private void Awake()
     {
         createUISlots();
@@ -51,7 +53,7 @@ public abstract class UIInventory : MonoBehaviour
         AddEventAction(gameObject, EventTriggerType.PointerEnter, delegate { OnEnterInventory(gameObject); });
         AddEventAction(gameObject, EventTriggerType.PointerExit, delegate { OnExitInventory(gameObject); });
 
-
+        mainModule = GameObject.Find("Player").GetComponent<MainModule>();
     }
 
     protected virtual void Start()
@@ -108,7 +110,6 @@ public abstract class UIInventory : MonoBehaviour
         {
             //Ray a = Camera.main.ScreenPointToRay(Input.mousePosition);
             //(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
-            Debug.Log(explainTap.gameObject);
             explainTap.transform.position = Input.mousePosition;
 
             AudioManager.PlayAudio(audioClip);
@@ -262,11 +263,11 @@ public abstract class UIInventory : MonoBehaviour
         {
             return;
         }
-            
+
         //  if (slot.ItemObject.itemType == ItemType.Default)
         if (inventoryObj.type == InterfaceType.QuickSlot)
         {
-           
+
 
             Debug.Log("사용아이템");
             useOffBtn.SetActive(true);
@@ -274,23 +275,36 @@ public abstract class UIInventory : MonoBehaviour
 
             useTap.transform.position = pointerEventdata.position;
             useTap.transform.position += new Vector3(0f, 200f, 0f);
-            Debug.Log(pointerEventdata + "   " + useTap.transform.position);
+
             useTap.transform.Find("UseBtn").GetComponent<Button>().onClick.AddListener(() =>
             {
                 skillEffect = slot.ItemObject._SetSkill._Methods;
+                int value = slot.ItemObject.value[0];
+
+                // 아이템이 배틀에서만 사용할수 있거나 전투중이면
+                if (mainModule.canInven == true)
+                {
+                    if (slot.ItemObject.itemData.inBattle == true)
+                    {
+                        return;
+                    }
+                }
 
                 foreach (var method in skillEffect)
                 {
-                    method.Invoke(null, null);
+                    method.Invoke(null, new object[] { value });
+                    //_battleUI.SpawnSkillEffectText(value[count].ToString(), skillText, transform.position);
                 }
 
                 slot.uploadSlot(slot.ItemObject.itemData, --slot.itemCnt);
                 useTap.gameObject.SetActive(false);
+                useOffBtn.gameObject.SetActive(false);
             });
             useTap.transform.Find("RemoveBtn").GetComponent<Button>().onClick.AddListener(() =>
             {
                 slot.uploadSlot(null, 0);
                 useTap.gameObject.SetActive(false);
+                useOffBtn.gameObject.SetActive(false);
             });
         }
         else

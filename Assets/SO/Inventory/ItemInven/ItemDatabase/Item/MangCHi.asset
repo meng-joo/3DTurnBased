@@ -33,3 +33,4 @@ MonoBehaviour:
   itemSummery: "\uB9DD\uCE58\uB85C \uB1CC\uC9C4\uD0D5\uC744 \uAC78\uB9AC\uAC8C \uD560
     \uC218 \uC788\uB2E4"
   value: 0
+  itemObj: {fileID: 11400000}

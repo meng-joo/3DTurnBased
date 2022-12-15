@@ -40,15 +40,17 @@ public class ItemObj : ScriptableObject
     private SetItem setItem = new SetItem();
     public SetItem _SetSkill => setItem;
 
-    public int value;
+    public int[] value;
 
     private void OnEnable()
     {
         SetItem(this);
+        //SetItem(itemObj);
     }
 
     void SetItem(ItemObj _itemInfo)
     {
+        Debug.Log(_itemInfo);
         setItem.AddEvent(_itemInfo);
     }
 
@@ -88,6 +90,7 @@ public class SetItem
 
     public void AddEvent(ItemObj itemInfo)
     {
+        Debug.Log(itemInfo);  
         Type type = typeof(ItemFunc);
         for (int i = 0; i < itemInfo._methodName.Length; i++)
         {

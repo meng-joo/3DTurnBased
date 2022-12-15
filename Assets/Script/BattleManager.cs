@@ -86,6 +86,15 @@ public class BattleManager : MonoBehaviour
     {
         _mainModule.canInven = true;
 
+        Transform[] childList = _battleUI.costParentTrm.GetComponentsInChildren<Transform>();
+
+        if (childList != null)
+        {
+            for (int i = 1; i < childList.Length; i++)
+            {
+                Destroy(childList[i].gameObject);
+            }
+        }
 
         _mainModule._animator.Play("Win");
         _mainModule._animator.SetBool("Fight", false);

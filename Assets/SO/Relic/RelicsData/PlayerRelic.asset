@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8db3cf317e1b4429ef64b181850500, type: 3}
   m_Name: PlayerRelic
   m_EditorClassIdentifier: 
-  relics: []
+  relics:
+  - {fileID: 11400000, guid: ec88d4eb90763f346b153794b2c9a99d, type: 2}

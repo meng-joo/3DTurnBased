@@ -10,22 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4ed138a84aeba418d160291dbf036b, type: 3}
-  m_Name: Doggi
+  m_Name: DamagePotion
   m_EditorClassIdentifier: 
-  _methodName: []
-  itemType: 0
-  getFlagStackable: 0
-  itemIcon: {fileID: 21300000, guid: 719c2201c2f5f6c4aafffaeb5abdf5f9, type: 3}
+  _methodName:
+  - DamagePotion
+  itemType: 6
+  getFlagStackable: 1
+  itemIcon: {fileID: 21300000, guid: 2a5c892bdd014164da633b8c6fd0f246, type: 3}
   objModelPrefab: {fileID: 0}
   itemData:
-    item_id: 0
-    item_name: "\uB3C4\uB07C"
-    abilities:
-    - characterStack: 0
-      valStack: 5
-      min: 3
-      max: 5
+    item_id: 2
+    item_name: "\uB370\uBBF8\uC9C0\uD3EC\uC158"
+    inBattle: 1
+    abilities: []
   boneNameLists: []
   itemSummery: 
-  value: 0
-  itemObj: {fileID: 11400000}
+  value: 14000000

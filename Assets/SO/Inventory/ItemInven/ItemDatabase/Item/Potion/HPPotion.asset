@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4ed138a84aeba418d160291dbf036b, type: 3}
-  m_Name: Potion
+  m_Name: HPPotion
   m_EditorClassIdentifier: 
   _methodName:
   - HPPotion
@@ -24,4 +24,4 @@ MonoBehaviour:
     abilities: []
   boneNameLists: []
   itemSummery: 
-  value: 5
+  value: 05000000

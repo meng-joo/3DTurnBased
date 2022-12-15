@@ -186,6 +186,7 @@ public class TrophyUIManager : MonoBehaviour
 
                     Invoke("InitTrophy", 1f);
 
+
                 });
             }
             else
@@ -201,6 +202,8 @@ public class TrophyUIManager : MonoBehaviour
 
                     EffectCard(itemTrophyObj.transform.Find("ItemImage").GetComponent<Image>().sprite);
                     Invoke("InitTrophy", 1f);
+
+
                 });
 
                 //inventoryObj.AddItem(newItemObject.itemData, 1);
@@ -347,8 +350,9 @@ public class TrophyUIManager : MonoBehaviour
     {
         if (parentTrm.childCount <= 0)
         {
+            Debug.Log(parentTrm.childCount);
             Sequence seq = DOTween.Sequence();
-            seq.AppendInterval(0.5f);
+            seq.AppendInterval(.5f);
             seq.Append(trophyPanel.transform.DOLocalMoveY(1500f, 0.5f));
             seq.AppendCallback(() =>
             {

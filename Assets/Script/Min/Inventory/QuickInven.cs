@@ -21,11 +21,12 @@ public class QuickInven : MonoBehaviour
     public void SetItemSkill(ItemObj itemobj, int a)
     {
         SetInven();
+
         skillEffect = itemobj._SetSkill._Methods;
     }
     public void SetInven()
     {
-        skillEffect = null;
+     //   skillEffect = null;
     }
     public void ClickBtn(int A)
     {
