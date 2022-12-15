@@ -7842,7 +7842,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skills: {fileID: 11400000, guid: 7939c93a7a49ab243a3021f89175492a, type: 2}
   miniMapCamera: {fileID: 1579422602}
-  playerPosUI: {fileID: 730994056}
   clockText: {fileID: 210638467}
   hpText: {fileID: 589033033}
   cardText: {fileID: 701117645}
@@ -14307,6 +14306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2accacbd1967794ea6519f13cbf8c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &507617172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26735,6 +26735,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4635aca61d077bb41a4fc10a14211259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mainModule: {fileID: 0}
+  _playerCanvas: {fileID: 0}
   maincanvas: {fileID: 399507896}
   minicanvas: {fileID: 270335321}
   miniMapCam: {fileID: 1579422602}
@@ -42866,6 +42868,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 0
+  _battleUI: {fileID: 0}
+  shieldUI: {fileID: 0}
   hp: 0
   _bar: {fileID: 1014609514}
   _effectBar: {fileID: 371886153}
@@ -42889,6 +42893,7 @@ MonoBehaviour:
   deadEvent:
     m_PersistentCalls:
       m_Calls: []
+  shield: 0
   effectSpeed: 0.09
 --- !u!114 &1562717482
 MonoBehaviour:
@@ -51115,6 +51120,10 @@ MonoBehaviour:
   turnChangeImage_1: {fileID: 424906969}
   turnChangeImage_2: {fileID: 1404164216}
   turnText: {fileID: 821734973}
+  currentPlayerInfo: {fileID: 0}
+  _skill: {fileID: 0}
+  left: {fileID: 0}
+  right: {fileID: 0}
   skillCard: {fileID: 1557593631}
   currentSkillCard: []
   currentSkill: []
@@ -51136,6 +51145,7 @@ MonoBehaviour:
   costObj: []
   costPrefab: {fileID: 4362655595146076903, guid: faf7341095f26c34d8d013ee42503e24, type: 3}
   costParentTrm: {fileID: 1494104838}
+  enemyKillCount: {fileID: 0}
   cemeteryCardDeck: []
   cemeteryCardCnt: 0
   pickCard: {fileID: 3221850509430471729}
@@ -51146,6 +51156,7 @@ MonoBehaviour:
   isCemetery: 0
   cemetryBtn: {fileID: 3221850509472376209}
   pickCardBtn: {fileID: 3221850508748573183}
+  playerInfo: 
 --- !u!1001 &1896232709
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56514,6 +56525,7 @@ MonoBehaviour:
   _wall: {fileID: 1366097103}
   enemySpawnMinPoint: 0
   enemySpawnMaxPoint: 0
+  killenemyCount: 0
 --- !u!4 &2096068069
 Transform:
   m_ObjectHideFlags: 0
@@ -56820,6 +56832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2accacbd1967794ea6519f13cbf8c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &2099701136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74524,7 +74537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveObject: {fileID: 8952710947488234556}
   m_shaderPropertyName: _MoveToMaterialUV
-  m_shaderPropertyID: 1237
+  m_shaderPropertyID: 1232
   m_materialData:
   - m_trailRenderer: {fileID: 5995620793840603966}
     m_uvTiling: {x: 0.15, y: 1}
@@ -76995,7 +77008,6 @@ MonoBehaviour:
   chestCreateManager: {fileID: 0}
   physicsModule: {fileID: 0}
   isTrophy: 0
-  dirObj: {fileID: 1358624589}
 --- !u!114 &9175644270623422101
 MonoBehaviour:
   m_ObjectHideFlags: 0

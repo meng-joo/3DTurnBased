@@ -9,7 +9,6 @@ public class TrailEffect : MonoBehaviour
     
     private void Update()
     {
-        Debug.Log(Camera.main.ScreenToWorldPoint(followObj.transform.position));
         transform.position = followObj.transform.position + new Vector3(1, 1,-1);
     }
 }

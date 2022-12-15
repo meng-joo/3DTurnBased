@@ -37,6 +37,10 @@ public class MainModule : MonoBehaviour
     [Header("플레이어 움직일 수 있냐")]
     public bool canMove;
 
+    [Space]
+    [Header("인벤 열수있냐")]
+    public bool canInven;
+
     //[Space]
     //[Header("애니메이션")]
     //public Animation _animation;
@@ -70,6 +74,8 @@ public class MainModule : MonoBehaviour
     public PhysicsModule physicsModule;
 
     public bool isTrophy =false;
+
+    public GameObject dirObj;
 
 
     private void Awake()

@@ -26,5 +26,6 @@ public enum PoolType
     Enemy8,
     Boss1,
     Boss2,
-    Boss3
+    Boss3,
+    Sound
 }

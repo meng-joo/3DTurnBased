@@ -107,6 +107,18 @@ public class SkillCard : PoolAbleObject
 
                 if (Physics.Raycast(ray, out hit, 100))
                 {
+                    Vector3 mPosition = pos;
+                    Vector3 oPosition = _mainModule.dirObj.transform.position;
+
+                    mPosition.z = oPosition.z - Camera.main.transform.position.z;
+
+                    float dy = mPosition.y - oPosition.y;
+                    float dx = mPosition.x - oPosition.x;
+
+                    float rotateDegree = Mathf.Atan2(dy, dx) * Mathf.Rad2Deg;
+
+                    _mainModule.dirObj.transform.rotation = Quaternion.Euler(90f, -rotateDegree - 6f, 0);
+
                     if (hit.collider.CompareTag(target))
                     {
                         if (fadeImage.color.a <= 1f)
