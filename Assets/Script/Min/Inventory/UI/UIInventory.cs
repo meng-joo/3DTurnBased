@@ -33,6 +33,9 @@ public abstract class UIInventory : MonoBehaviour
     public List<MethodInfo> skillEffect = new List<MethodInfo>();
     public int value;
 
+    public GameObject useOffBtn;
+
+    public AudioClip audioClip;
     private void Awake()
     {
         createUISlots();
@@ -107,6 +110,8 @@ public abstract class UIInventory : MonoBehaviour
             //(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
             Debug.Log(explainTap.gameObject);
             explainTap.transform.position = Input.mousePosition;
+
+            AudioManager.PlayAudio(audioClip);
 
             explainTap.gameObject.SetActive(true);
             explainTap.transform.Find("NameTxt").GetComponent<TextMeshProUGUI>().text = uiSlotLists[gameObj].ItemObject.itemData.item_name;
@@ -264,6 +269,7 @@ public abstract class UIInventory : MonoBehaviour
            
 
             Debug.Log("사용아이템");
+            useOffBtn.SetActive(true);
             useTap.gameObject.SetActive(true);
 
             useTap.transform.position = pointerEventdata.position;

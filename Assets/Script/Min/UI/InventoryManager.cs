@@ -26,12 +26,19 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private GameInfoSO gameInfoSO;
 
     public GameObject useTab;
+    public GameObject exitBtn;
+    public GameObject useTapOffBtn;
     private void Awake()
     {
         mainModule = FindObjectOfType<MainModule>();
     }
     void Update()
     {
+        if (mainModule.canInven == false)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             isInven = !isInven;
@@ -57,6 +64,8 @@ public class InventoryManager : MonoBehaviour
         {
             inventory.gameObject.SetActive(isInven);
             AppearInvenUIEffect();
+            exitBtn.SetActive(true);
+            useTapOffBtn.SetActive(true);
         }
     }
     /// <summary>
@@ -117,6 +126,8 @@ public class InventoryManager : MonoBehaviour
         //seq.AppendCallback(() => invenSkill.DeleteCard());               
         invenSkill.DeleteCard();
         mainModule.canMove = false;
+        exitBtn.SetActive(false);
+        useTapOffBtn.SetActive(false);
     }
     public void OnSkillUI()
     {
