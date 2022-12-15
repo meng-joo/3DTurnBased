@@ -45,17 +45,16 @@ public class SkillCard : PoolAbleObject
     int[] value;
     string typeText;
 
+    public Image arrow;
+
+    //public LineRenderer lineRenderer;
+
     private void Init()
     {
         _battleUI = GameObject.Find("UIManager").GetComponent<BattleUI>();
         _mainModule = GameObject.Find("Player").GetComponent<MainModule>();
         poolLocalM = GameObject.Find("LocalPool : Card").GetComponent<LocalPoolManager>();
-        //backGroundImage = GetComponent<Image>();
-        //skillImage = transform.GetChild(0).GetComponent<Image>();
-        //skillName = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-        //skillInfo = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-        //fadeImage = transform.GetChild(3).GetComponent<Image>();
-        //skillCost = transform.GetChild(4).GetComponentInChildren<TextMeshProUGUI>();
+        //lineRenderer = GameObject.Find("LineRender").GetComponent<LineRenderer>();
     }
 
     public void SetSkillCard(Skill skillData)
@@ -78,7 +77,9 @@ public class SkillCard : PoolAbleObject
         //skillData.SetFunc();
         //skillEffect = skillData._SetSkill.skillFunction;
     }
-
+    Quaternion q;
+    Vector3 a;
+    float f;
     void FixedUpdate()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -96,12 +97,23 @@ public class SkillCard : PoolAbleObject
                 Vector3 pos = Input.mousePosition;
                 //pos.z = Camera.main.farClipPlane;
 
-                //mousePoint = Camera.main.ScreenToWorldPoint(pos);
+                mousePoint = Camera.main.ScreenToWorldPoint(pos);
                 mousePoint = pos;
-                transform.position = mousePoint;
 
                 if (Physics.Raycast(ray, out hit, 100))
                 {
+                    Vector3 mPosition = pos;
+                    Vector3 oPosition = _mainModule.dirObj.transform.position;
+
+                    mPosition.z = oPosition.z - Camera.main.transform.position.z;
+
+                    float dy = mPosition.y - oPosition.y;
+                    float dx = mPosition.x - oPosition.x;
+
+                    float rotateDegree = Mathf.Atan2(dy, dx) * Mathf.Rad2Deg;
+
+                    _mainModule.dirObj.transform.rotation = Quaternion.Euler(90f, -rotateDegree, 0);
+
                     if (hit.collider.CompareTag(target))
                     {
                         if (fadeImage.color.a <= 1f)
@@ -133,12 +145,12 @@ public class SkillCard : PoolAbleObject
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
+
         if (Physics.Raycast(ray, out hit, 100))
         {
             if (hit.collider.CompareTag(target))
             {
                 int cost = Int32.Parse(skillCost.text);
-
                 if (_battleUI.cost < cost)
                 {
                     return;

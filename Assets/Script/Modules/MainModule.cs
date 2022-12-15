@@ -74,6 +74,8 @@ public class MainModule : MonoBehaviour
     public PhysicsModule physicsModule;
 
     public bool isTrophy =false;
+
+    public GameObject dirObj;
     private void Awake()
     {
         physicsModule = GetComponent<PhysicsModule>();
