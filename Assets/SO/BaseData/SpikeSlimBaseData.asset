@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3fd7464eec7dfc4a991033f715f63f1, type: 3}
   m_Name: SpikeSlimBaseData
   m_EditorClassIdentifier: 
-  _hp: 50
+  _hp: 40
   _def: 3
   _atk: 6
-  _speed: 5
+  _speed: 6

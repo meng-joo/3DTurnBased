@@ -75,6 +75,9 @@ public class BattleUI : MonoBehaviour
     public GameObject costPrefab;
     public Transform costParentTrm;
 
+    [Space]
+    public Slider enemyKillCount;
+
     #region 묘지와 덱픽업 관련변수들
     public List<Skill> cemeteryCardDeck = new List<Skill>();
 
@@ -100,6 +103,7 @@ public class BattleUI : MonoBehaviour
 
     private void Start()
     {
+        enemyKillCount.maxValue = 8;
         mainModule = GameObject.Find("Player").GetComponent<MainModule>();
 
         for (int i = 0; i < skillPanel.transform.childCount; i++)
@@ -119,10 +123,15 @@ public class BattleUI : MonoBehaviour
         playerInfo += "건강함";
     }
 
+    private void Update()
+    {
+        enemyKillCount.value = mainModule.playerDataSO.killEnemy;
+    }
+
     public void SetBattleUI()
     {
         SetActiveButton(false);
-        playerStat.transform.DOLocalMoveX(-1128, 0.3f);
+        playerStat.transform.DOMoveY(1080 + 40, 0.3f);
         skillPanel.transform.DOLocalMoveX(700, 0.6f);
         behaveTextBox.transform.DOLocalMoveY(478, 0.7f);
         TurnEnd.transform.DOLocalMoveX(835, 2f);
@@ -149,7 +158,7 @@ public class BattleUI : MonoBehaviour
         playerStat.transform.DORewind();
         playerStat.transform.DORewind();
         //skillPanel.transform.DOLocalMoveX(700, 0.6f);
-        quickInven.transform.DOMove(new Vector3(60, 80, 0), 0.4f);
+        quickInven.transform.DOLocalMoveY(-481.17f, 0.4f);
         turnImage[0].DOFade(1, 0.6f);
         turnImage[1].DOFade(1, 0.6f);
     }
@@ -165,19 +174,19 @@ public class BattleUI : MonoBehaviour
                 SetSkillInfo();
             }
 
-            turnImage[0].DOFade(1, 2.4f);
-            turnImage[0].transform.DOScale(1.4f, 1.2f);
-            turnImage[1].DOFade(0.13f, 2.4f);
-            turnImage[1].transform.DOScale(0.7f, 1.2f);
+            turnImage[0].DOFade(1, 1.2f);
+            turnImage[0].transform.DOScale(1.4f, 0.6f);
+            turnImage[1].DOFade(0.13f, 1f);
+            turnImage[1].transform.DOScale(0.7f, .5f);
 
-            seq.Append(behaveText.transform.DOLocalMoveY(170, 0.4f));
+            seq.Append(behaveText.transform.DOLocalMoveY(170, 0.2f));
             seq.AppendCallback(() =>
             {
                 behaveText.color = Color.yellow;
                 behaveText.fontSize = 60;
                 behaveText.text = "Player Turn";
             });
-            seq.Append(behaveText.transform.DOLocalMoveY(0, 0.4f));
+            seq.Append(behaveText.transform.DOLocalMoveY(0, 0.1f));
             seq.AppendCallback(() =>
             {
                 cost = maxCost;
@@ -185,7 +194,6 @@ public class BattleUI : MonoBehaviour
             });
             seq.AppendCallback(() =>
             {
-
                 for (int i = 0; i < cost; i++)
                 {
                     GameObject obj = Instantiate(costPrefab, transform.position, Quaternion.identity);
@@ -203,23 +211,21 @@ public class BattleUI : MonoBehaviour
 
         else
         {
-            turnImage[1].DOFade(1, 2.4f);
-            turnImage[1].transform.DOScale(1.4f, 1.2f);
-            turnImage[0].DOFade(0.13f, 2.4f);
-            turnImage[0].transform.DOScale(0.7f, 1.2f);
+            turnImage[1].DOFade(1, 1.2f);
+            turnImage[1].transform.DOScale(1.4f, .6f);
+            turnImage[0].DOFade(0.13f, 1f);
+            turnImage[0].transform.DOScale(0.7f, .5f);
 
-            seq.Append(behaveText.transform.DOLocalMoveY(170, 0.4f));
+            seq.Append(behaveText.transform.DOLocalMoveY(170, 0.2f));
             seq.AppendCallback(() =>
             {
                 behaveText.color = Color.red;
                 behaveText.fontSize = 60;
                 behaveText.text = "Enemy Turn";
             });
-            seq.Append(behaveText.transform.DOLocalMoveY(0, 0.4f));
+            seq.Append(behaveText.transform.DOLocalMoveY(0, 0.1f));
+            battleManager.StartCoroutine("ChangeTurn", false);
         }
-
-        //seq.AppendInterval(1f);
-        //seq.AppendCallback(() => SetActiveButton(true));
     }
 
     public void TurnChangeEffect(bool isPlayer)
@@ -232,18 +238,19 @@ public class BattleUI : MonoBehaviour
         turnChangeImage_2.color = color;
         turnText.text = isPlayer ? "Player Turn" : "Enemy Turn";
 
-        seq.Append(turnChangeImage_1.transform.DOLocalMoveX(0, 0.2f)).SetEase(Ease.OutQuint);
-        seq.Join(turnChangeImage_2.transform.DOLocalMoveX(0, 0.2f)).SetEase(Ease.OutQuint);
+        seq.Append(turnChangeImage_1.transform.DOLocalMoveX(0, 0.1f)).SetEase(Ease.OutQuint);
+        seq.Join(turnChangeImage_2.transform.DOLocalMoveX(0, 0.1f)).SetEase(Ease.OutQuint);
 
-        seq.Append(turnText.transform.DOScale(1, 0.4f)).Join(turnText.DOFade(1, 0.4f));
+        seq.Append(turnText.transform.DOScale(1, 0.2f)).Join(turnText.DOFade(1, 0.1f));
 
-        seq.AppendInterval(1.2f);
+        seq.AppendInterval(0.3f);
 
-        seq.Append(turnText.transform.DOScale(1.4f, 0.4f)).Join(turnText.DOFade(0, 0.4f));
+        seq.Append(turnText.transform.DOScale(1.4f, 0.2f)).Join(turnText.DOFade(0, 0.1f));
         
-        seq.AppendInterval(0.6f);
+        seq.AppendInterval(0.2f);
 
-        seq.Append(turnChangeImage_1.transform.DOLocalMoveX(2020, 0.6f)).SetEase(Ease.InQuint).Join(turnChangeImage_2.transform.DOLocalMoveX(-2020, 0.6f)).SetEase(Ease.InQuint);
+        seq.Append(turnChangeImage_2.transform.DOLocalMoveX(-2020, 0.3f)).SetEase(Ease.InQuint);
+        seq.Append(turnChangeImage_1.transform.DOLocalMoveX(2020, 0.4f)).SetEase(Ease.InQuint);
 
         seq.AppendInterval(0.3f);
         seq.AppendCallback(() =>
@@ -255,7 +262,7 @@ public class BattleUI : MonoBehaviour
 
     public void SetQuickInven()
     {
-        quickInven.transform.DOMove(new Vector3(640, -70, 0), 0.8f);
+        quickInven.transform.DOLocalMoveY(-601, 0.8f);
     }
 
     IEnumerator MoveBehaveButtons(bool isOn, bool istextBox = false)
@@ -264,8 +271,8 @@ public class BattleUI : MonoBehaviour
 
         for (int i = 0; i < behaveButtons.Count; ++i)
         {
-            behaveButtons[i].transform.DOLocalMoveX(weight * 504, 0.3f);
-            yield return new WaitForSeconds(0.08f);
+            behaveButtons[i].transform.DOLocalMoveX(weight * 504, 0.1f);
+            yield return new WaitForSeconds(0.04f);
         }
 
         //yield return new WaitForSeconds(0.6f);
@@ -283,8 +290,8 @@ public class BattleUI : MonoBehaviour
 
     private void SetUIBox(Image _boxui, bool isActive)
     {
-        if (isActive) _boxui.transform.DOLocalMoveX(-256, 0.4f);
-        else _boxui.transform.DOLocalMoveX(1686, 0.4f);
+        if (isActive) _boxui.transform.DOLocalMoveY(-371, 0.2f);
+        else _boxui.transform.DOLocalMoveY(-700.92f, 0.2f);
     }
 
     public void OnClickSkill()
@@ -309,8 +316,8 @@ public class BattleUI : MonoBehaviour
         ClearCard(2);
         SetUIBox(textBox, false);
 
-        seq.AppendInterval(0.5f);
-        seq.Append(quickInven.transform.DOMove(new Vector3(60, 80, 0), 0.4f));
+        seq.AppendInterval(0.25f);
+        seq.Append(quickInven.transform.DOLocalMoveY(-481.17f, 0.2f));
         //StartCoroutine(MoveBehaveButtons(true, false));
     }
 
@@ -336,16 +343,16 @@ public class BattleUI : MonoBehaviour
             skillPanel.transform.DOLocalMoveX(1224, 0.6f);
             behaveTextBox.transform.DOLocalMoveY(656, 0.7f);
             TurnEnd.transform.DOLocalMoveX(1084.5f, 2f);
-            playerStat.transform.DOLocalMoveX(-796.76f, 0.2f);
-            quickInven.transform.DOMove(new Vector3(60, 80, 0), 0.4f);
+            playerStat.transform.DOMoveY(1080 - 28, 0.2f);
+            quickInven.transform.DOLocalMoveY(-481.17f, 0.4f);
 
             ClearCard(100);
             currentSkillCard.Clear();
             currentSkill.Clear();
             playerSkill.Clear();
         });
-        seq.Append(winorlose.DOFade(1, 0.3f));
-        seq.Join(winorlose.transform.DOScale(1.2f, 0.4f).SetEase(Ease.OutBack));
+        seq.Append(winorlose.DOFade(1, 0.2f));
+        seq.Join(winorlose.transform.DOScale(1.2f, 0.3f).SetEase(Ease.OutBack));
         seq.AppendInterval(0.6f);
         //seq.Append(winorlose.DOFade)
         seq.Append(winorlose.DOFade(0, 0.3f));
@@ -356,7 +363,7 @@ public class BattleUI : MonoBehaviour
     {
         TurnChangeEffect(false);
         ClearCard(10);
-        battleManager.StartCoroutine("ChangeTurn", false);
+        
         ClearSkill();
 
         Transform[] childList = costParentTrm.GetComponentsInChildren<Transform>();
@@ -394,7 +401,6 @@ public class BattleUI : MonoBehaviour
     {
         int left = currentSkill.Count;
 
-
         for (int i = 0; i < currentSkill.Count; i++)
         {
             cemeteryCardDeck.Add(currentSkill[i]);
@@ -418,8 +424,10 @@ public class BattleUI : MonoBehaviour
 
         for (int i = 0; i < cardCount; i++)
         {
-            float xpos = -550 + i * 275;
-            float ypos = -400;
+            //float xpos = -570 + (1140f / (cardCount - 1)) * i;
+            //float ypos = -400;
+
+            //Vector3 pos = new Vector3(xpos, 0, 0);
 
             GameObject card = skillCard;
 
@@ -429,7 +437,7 @@ public class BattleUI : MonoBehaviour
             //currentSkillCard[i].transform.position = t[i].position;
             //currentSkillCard[i].transform.rotation = t[i].rotation;
             //currentSkillCard[i].transform.localScale = t[i].localScale;
-            //currentSkillCard[i].transform.localPosition = new Vector3(0, ypos, 0);
+            //currentSkillCard[i].transform.localPosition = pos;
         }
 
         for (int i = 0; i < cardCount; i++)
@@ -499,12 +507,13 @@ public class BattleUI : MonoBehaviour
         Sequence seq = DOTween.Sequence();
         SkillEffectUI text = PoolManager.Instance.Pop(PoolType.UI).GetComponent<SkillEffectUI>();
 
-        Vector3 randPos = new Vector3(Random.Range(-10, 10f), Random.Range(-10, 10f), 0);
-
+        Vector3 randPos = new Vector3(Random.Range(-0.1f, 0.1f), 0f, Random.Range(-0.1f, 0.1f));
+        Vector3 v = pos + randPos;
+        
         seq.AppendCallback(() =>
         {
-            text.transform.SetParent(skillBox.transform.parent);
-            text.transform.position = pos + randPos;
+            //text.transform.SetParent(skillBox.transform.parent);
+            text.transform.position = v;
             text.SetText(dmg, color, pos);
         });
 

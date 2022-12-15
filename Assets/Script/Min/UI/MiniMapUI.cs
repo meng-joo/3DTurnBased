@@ -14,10 +14,6 @@ public class MiniMapUI : MonoBehaviour
     public Camera miniMapCamera;
 
     [Space]
-    [Header("플레이어 위치UI")]
-    public Image playerPosUI;
-
-    [Space]
     [Header("시계")]
     public TextMeshProUGUI clockText;
 
@@ -39,13 +35,6 @@ public class MiniMapUI : MonoBehaviour
         hpText.text = $"{player._HpModule.hp} / {player._HpModule.maxHp}";
         int count = player.playerDataSO._skills.Length + skills.cards.Count;
         cardText.text = count.ToString();
-    }
-
-    private void Update()
-    {
-        Vector3 vec = miniMapCamera.WorldToScreenPoint(player.transform.position);
-        vec.z = 0;
-        playerPosUI.transform.position = vec;
     }
 
     private void UpdateTime()

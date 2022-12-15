@@ -20,8 +20,12 @@ public class BattleManager : MonoBehaviour
     public float enemySpawnMinPoint;
     public float enemySpawnMaxPoint;
 
+    [Space]
+    public int killenemyCount;
+
     private void Start()
     {
+        killenemyCount = 0;
         _mainModule = GameObject.Find("Player").GetComponent<MainModule>();
     }
 
@@ -52,14 +56,22 @@ public class BattleManager : MonoBehaviour
 
     public void SpawnMonster()
     {
-        _mainModule.playerCam.cullingMask &= ~(1 << LayerMask.NameToLayer("Wall"));
-        
-        for (int i = 0; i < 1; i++)
+        if (_mainModule.playerDataSO.killEnemy < 8)
         {
-            GameObject enemyPrefab = currentEnemys.floor_1[0]._enemyModle;
-            Debug.Log(enemyPrefab);
-            fieldEnemies.Add(Instantiate(enemyPrefab, _mainModule._enemySpawnPoint[i].position, Quaternion.identity));
-            fieldEnemies[i].transform.DOScale(1, 1f);
+            for (int i = 0; i < GetEnemy(); i++)
+            {
+                GameObject enemyPrefab = PoolManager.Instance.Pop(EnemyType()).gameObject;
+                fieldEnemies.Add(enemyPrefab);
+                fieldEnemies[i].transform.position = _mainModule._enemySpawnPoint[i].position;
+                fieldEnemies[i].transform.DOScale(1, 1f);
+            }
+        }
+        else
+        {
+            GameObject enemyPrefab = PoolManager.Instance.Pop(PoolType.Boss1 + (_mainModule.playerDataSO.stage - 1)).gameObject;
+            enemyPrefab.transform.position = _mainModule._enemySpawnPoint[0].position;
+            fieldEnemies.Add(enemyPrefab);
+            fieldEnemies[0].transform.DOScale(1, 1f);
         }
     }
 
@@ -76,6 +88,8 @@ public class BattleManager : MonoBehaviour
         _mainModule._animator.SetBool("Fight", false);
         _mainModule.twoView.Priority += 10;
         _mainModule.battleCam.Priority -= 10;
+        _mainModule.playerDataSO.killEnemy++;
+        killenemyCount++;
         _battleUI.GameEnd(isWin);
         _wall.SetActive(true);
         _mainModule._BattleModule.inBattle = false;
@@ -96,19 +110,24 @@ public class BattleManager : MonoBehaviour
 
         else
         {
-            yield return new WaitForSeconds(3.8f);
+            for (int i = 0; i < fieldEnemies.Count; i++)
+            {
+                fieldEnemies[i].GetComponent<HpModule>().shield = 0;
+            }
+            yield return new WaitForSeconds(1.5f);
 
             for (int i = 0; i < fieldEnemies.Count; i++)
             {
                 fieldEnemies[i].GetComponent<AIModule>().WhatToDo();
-                yield return new WaitForSeconds(2.3f);
+                yield return new WaitForSeconds(1f);
             }
 
             _battleUI.cardCount = _battleUI.GetCardCount();
-            yield return new WaitForSeconds(1f);
-           _battleUI.TurnChangeEffect(true);
             yield return new WaitForSeconds(0.5f);
+           _battleUI.TurnChangeEffect(true);
+            yield return new WaitForSeconds(0.2f);
             _battleUI.SetActiveButton(true);
+            /*if(!shieldMaintain)*/_mainModule._HpModule.shield = 0;
         }
     }
 
@@ -124,8 +143,21 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         _mainModule.canMove = false;
         _mainModule.twoView.Priority -= 10;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         _mainModule._UIModule.TrophyUIManager.AppearTrophy();
+    }
+
+    int GetEnemy()
+    {
+        int n = Mathf.Min(Random.Range(1, _mainModule.playerDataSO.stage + 2), 3);
+
+        return n;
+    }
+
+    PoolType EnemyType()
+    {
+        var enumValues = System.Enum.GetValues(enumType: typeof(PoolType));
+        return (PoolType)enumValues.GetValue(Random.Range((int)PoolType.Enemy1 + (_mainModule.playerDataSO.stage - 1), (int)PoolType.Enemy5 + _mainModule.playerDataSO.stage));
     }
 
     //public NavMeshHit SetMonsterPos()

@@ -6,15 +6,17 @@ using DG.Tweening;
 
 public class SkillEffectUI : PoolAbleObject
 {
-    TextMeshProUGUI text;
+    TextMeshPro text;
     public override void Init_Pop()
     {
-        text = GetComponent<TextMeshProUGUI>();
+        text = GetComponent<TextMeshPro>();
     }
 
     public override void Init_Push()
     {
     }
+
+
 
     public void SetText(string dmg, Color32 color, Vector3 vec)
     {
@@ -23,7 +25,7 @@ public class SkillEffectUI : PoolAbleObject
         text.text = dmg;
         text.color = color;
 
-        seq.Append(transform.DOMove(vec + new Vector3(0, 184, 0), 1f));
+        seq.Append(transform.DOMove(vec + new Vector3(0, 1.5f, 0), 1f));
         seq.Append(text.DOFade(0, 1.2f));
     }
 }

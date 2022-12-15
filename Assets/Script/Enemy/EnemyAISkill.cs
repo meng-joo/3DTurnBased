@@ -16,7 +16,16 @@ public class EnemyAISkill : MonoBehaviour
         _aIModule._animator.Play("Attack01");
 
         yield return new WaitForSeconds(0.4f);
-        _aIModule.player._HpModule.GetHit(_aIModule.enemyData.Atk);
+        _aIModule.player._HpModule.GetHit(_aIModule.enemyData.Atk, Color.red);
+        _aIModule.player._HpModule.GetDamaged();
+    }
+
+    public IEnumerator Defend()
+    {
+        _aIModule._animator.Play("Attack01");
+
+        yield return new WaitForSeconds(0.4f);
+        _aIModule.player._HpModule.GetHit(_aIModule.enemyData.Atk, Color.red);
         _aIModule.player._HpModule.GetDamaged();
     }
 }

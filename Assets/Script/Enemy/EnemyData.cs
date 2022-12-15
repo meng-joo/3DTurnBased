@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyData : MonoBehaviour
+public class EnemyData : PoolAbleObject
 {
     [Header("적 기본 데이터")]
     public EnemyDataSO enemyData;
+
+    [Header("모듈")]
+    public AIModule _aIModule;
 
     [Space]
     [Header("현재 적 데이터")]
@@ -19,7 +22,7 @@ public class EnemyData : MonoBehaviour
     public int Def => _def;
     public int Speed => _speed;
 
-    private void Awake()
+    public override void Init_Pop()
     {
         float randhp = Random.Range(0.7f, 1.3f);
         float randatk = Random.Range(0.7f, 1.3f);
@@ -30,5 +33,12 @@ public class EnemyData : MonoBehaviour
         _atk = (int)(enemyData._enemyAbility._atk * randatk);
         _def = (int)(enemyData._enemyAbility._def * randdef);
         _speed = (int)(enemyData._enemyAbility._speed * randspeed);
+
+        _aIModule = GetComponent<AIModule>();
+        _aIModule.SetEnemy();
+    }
+
+    public override void Init_Push()
+    {
     }
 }

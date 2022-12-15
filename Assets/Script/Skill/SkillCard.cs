@@ -45,6 +45,11 @@ public class SkillCard : PoolAbleObject
     int[] value;
     string typeText;
 
+    private void OnEnable()
+    {
+        m_IsButtonDowning = false;
+    }
+
     private void Init()
     {
         _battleUI = GameObject.Find("UIManager").GetComponent<BattleUI>();
@@ -141,8 +146,8 @@ public class SkillCard : PoolAbleObject
             {
                 foreach (var method in skillEffect)
                 {
-                    method.Invoke(null, new object[] { hit.collider.gameObject, value[count] });
-                    _battleUI.SpawnSkillEffectText(value[count].ToString(), skillText, transform.position);
+                    method.Invoke(null, new object[] { hit.collider.gameObject, value[count], skillText });
+                    //_battleUI.SpawnSkillEffectText(value[count].ToString(), skillText, transform.position);
                     count++;
                 }
 
@@ -151,9 +156,9 @@ public class SkillCard : PoolAbleObject
 
                 _battleUI.SetCost(cost);
 
-                //CardEffect();
-                _battleUI.SpawnSkillEffectText(typeText, Color.white, transform.position + new Vector3(0, 30, 0));
+                hit.collider.gameObject.GetComponent<HpModule>();
 
+                //CardEffect();
                 //if(_mainModule._animation.GetClip(_motion.name) == null)
                 _mainModule._animatorOverride["Motion"] = _motion;
                 _mainModule._animator.Play("Motion", 0);
@@ -174,6 +179,8 @@ public class SkillCard : PoolAbleObject
                 _battleUI.cardCount--;
                 transform.SetParent(poolLocalM.transform);
                 PoolManager.Instance.Push(PoolType.Card, gameObject);
+
+                _battleUI.SpawnSkillEffectText(typeText, Color.white, hit.point);//transform.position + new Vector3(0, 35, 0));
                 return;
             }
         }

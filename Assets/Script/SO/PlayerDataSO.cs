@@ -13,6 +13,10 @@ public class PlayerDataSO : ScriptableObject
     public int Def;
     public int Speed;
 
+    [Header("현재 스테이지 그리고 잡은 적")]
+    public int stage;
+    public int killEnemy;
+
     [Space]
     [Header("코스트")]
     public int cost;

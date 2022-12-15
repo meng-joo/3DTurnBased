@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e057b33da7bb24abf3950eafd9a63f, type: 3}
+  m_Name: Skill_Barrier
+  m_EditorClassIdentifier: 
+  skillInfo:
+    _skillName: Barrier
+    _skillType: 1
+    _skillCost: 1
+    target: Player
+    skilltypeText: "\uBC29\uC5B4"
+    value: 05000000
+    _skillCardColor:
+      serializedVersion: 2
+      rgba: 4292596010
+    _skillEffectColor:
+      serializedVersion: 2
+      rgba: 4290820681
+    _skillImage: {fileID: 21300000, guid: 1582ecaf46d527443943441dd07d69ac, type: 3}
+    _animationClip: {fileID: 7400000, guid: f5e6898c57f51014eaa3292dd2a94c9e, type: 2}
+    _poolType: 6
+    _methodName:
+    - AddShield
+    isPossession: 0
+    _skillExplanation: "\uBC30\uB9AC\uC5B4\uB97C \uAD6C\uCD95\uD55C\uB2E4. \uBC29\uC5B4\uB3C4
+      5\uB97C \uC5BB\uB294\uB2E4."

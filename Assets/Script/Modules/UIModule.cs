@@ -46,23 +46,23 @@ public class UIModule : MonoBehaviour
         _trophyUIManager = GameObject.Find("TrophyManager").GetComponent<TrophyUIManager>();
     }
 
-    public void DamageUI(int damage)
-    {
-        Sequence seq = DOTween.Sequence();
-        GameObject player = _mainModule.gameObject;
-        GameObject target = player.transform.Find("Target").gameObject;
+    //public void DamageUI(int damage)
+    //{
+    //    Sequence seq = DOTween.Sequence();
+    //    GameObject player = _mainModule.gameObject;
+    //    GameObject target = player.transform.Find("Target").gameObject;
 
-        seq.AppendCallback(() =>
-        {
-            target.transform.parent = null;
-            Vector2 playerPos = _mainModule.playerCam.WorldToScreenPoint(gameObject.transform.position + new Vector3(0, 1, 0));
-            _battleUI.SpawnSkillEffectText(damage.ToString(), Color.white, playerPos);
-        });
+    //    seq.AppendCallback(() =>
+    //    {
+    //        target.transform.parent = null;
+    //        Vector2 playerPos = _mainModule.playerCam.WorldToScreenPoint(gameObject.transform.position + new Vector3(0, 1, 0));
+    //        _battleUI.SpawnSkillEffectText(damage.ToString(), Color.white, playerPos);
+    //    });
 
-        seq.AppendInterval(1f);
+    //    seq.AppendInterval(1f);
 
-        seq.AppendCallback(() => target.transform.SetParent(player.transform));
-    }
+    //    seq.AppendCallback(() => target.transform.SetParent(player.transform));
+    //}
 
     public void OnInteractionKeyImage(bool isOn = false, string _behave = "", string _key = "f", string _func = "")
     {

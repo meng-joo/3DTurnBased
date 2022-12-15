@@ -29,7 +29,7 @@ MonoBehaviour:
     _animationClip: {fileID: 7400000, guid: 739be3473db53184eaec3dd55b25df4b, type: 2}
     _poolType: 4
     _methodName:
-    - HitEnemy
+    - AttackAll
     isPossession: 0
     _skillExplanation: "\uB545\uC744 \uD798\uAECF \uB0B4\uB824\uCCD0\uC11C \uC801
       \uC804\uCCB4\uC5D0\uAC8C \uCD1D 20\uC758 \uB370\uBBF8\uC9C0\uB97C \uC900\uB2E4."

@@ -12,23 +12,26 @@ public class AIModule : MonoBehaviour
     private HpModule hpmodule;
 
     private EnemyAISkill _enemyAISkill;
+    public PoolType enemyType;
+    private GameObject target;
 
     void Awake()
     {
         player = GameObject.Find("Player").GetComponent<MainModule>();
         _battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+        target = player.transform.Find("Target").gameObject;
 
         enemyData = GetComponent<EnemyData>();
         hpmodule = GetComponent<HpModule>();
         _enemyAISkill = GetComponent<EnemyAISkill>();
-
-        Vector3 playerPos = player.transform.position;
-        playerPos.y = 0;
-
-        transform.LookAt(playerPos);
     }
 
-    private void Start()
+    private void Update()
+    {
+        transform.LookAt(target.transform.position);
+    }
+
+    public void SetEnemy()
     {
         hpmodule.InitHP(enemyData.Hp, enemyData.Hp);
     }
@@ -45,14 +48,15 @@ public class AIModule : MonoBehaviour
         yield return new WaitForSeconds(1.3f);
 
         _battleManager.fieldEnemies.Remove(gameObject);
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        PoolManager.Instance.Push(enemyType, gameObject);
+        
         if (_battleManager.fieldEnemies.Count == 0)
             _battleManager.EndBattle("Win");
     }
 
     public void WhatToDo()
     {
-        
         _enemyAISkill.StartCoroutine("AttackPlayer");
     }
 }

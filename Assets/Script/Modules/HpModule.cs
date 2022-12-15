@@ -16,6 +16,13 @@ public class HpModule : MonoBehaviour
     [Header("총 피")]
     public int maxHp;
 
+    [Header("배틀 UI")]
+    public BattleUI _battleUI;
+
+    [Space]
+    [Header("방어막UI")]
+    public TextMeshProUGUI shieldUI;
+
     [Space]
     [Header("현재 피")]
     public int hp;
@@ -35,19 +42,30 @@ public class HpModule : MonoBehaviour
     [Header("죽을때 실행 될 함수")]
     public UnityEvent deadEvent;
 
+    [Space]
+    [Header("현재 방어도")]
+    public int shield;
+
     private Animator _animator;
     [SerializeField] private float effectSpeed = 0.005f;
 
+    //private Color textColor = Color.white;
+
     private void Start()
     {
+        shield = 0;
         _animator = GetComponent<Animator>();
         _bar.fillAmount = 1;
         UpdateHPText();
+
+        _battleUI = FindObjectOfType<BattleUI>();
     }
 
     private void Update()
     {
-        if(_bar.fillAmount < _effectBar.fillAmount)
+        shieldUI.text = shield.ToString();
+
+        if (_bar.fillAmount < _effectBar.fillAmount)
         {
             _effectBar.fillAmount -= effectSpeed;
         }
@@ -57,10 +75,17 @@ public class HpModule : MonoBehaviour
         }
     }
 
-    public void GetHit(int dmg)
+    public void GetHit(int dmg, Color32 _color)
     {
-        hp -= dmg;
+        dmg = Mathf.Max(dmg - shield, 0);
+        shield = Mathf.Max(shield - dmg, 0);
+
+        hp = Mathf.Max(0, hp - dmg);
         attackedEvent?.Invoke(dmg);
+
+        if (dmg != 0) _battleUI.SpawnSkillEffectText(dmg.ToString(), _color, transform.position + new Vector3(0.5f, 1, -0.5f));
+        else _battleUI.SpawnSkillEffectText("방어함", Color.white, transform.position + new Vector3(0.5f, 1, -0.5f));
+        
         UpdateHPText();
         if (hp <= 0)
         {
@@ -96,5 +121,11 @@ public class HpModule : MonoBehaviour
     {
         transform.DOShakePosition(0.34f, 0.4f, 80);
         _animator.SetTrigger("GetHit");
+    }
+
+    public void OnShield(int value)
+    {
+        shield += value;
+        
     }
 }

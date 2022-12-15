@@ -70,6 +70,8 @@ public class MainModule : MonoBehaviour
     public PhysicsModule physicsModule;
 
     public bool isTrophy =false;
+
+
     private void Awake()
     {
         physicsModule = GetComponent<PhysicsModule>();

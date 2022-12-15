@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da271e91a28ae3b43922ea0e84c8d2bf, type: 3}
+  m_Name: PoolData
+  m_EditorClassIdentifier: 
+  poolDatas:
+  - poolType: 0
+    initCount: 20
+    poolAbleObject: {fileID: 5142918735167294347, guid: 78ee7773641def54587cb944cc92d7e2, type: 3}
+  - poolType: 1
+    initCount: 20
+    poolAbleObject: {fileID: 8072109670589096018, guid: 63f530de164326a40aa6cc487f754fdb, type: 3}
+  - poolType: 2
+    initCount: 20
+    poolAbleObject: {fileID: 7982119554727429613, guid: f5507a8c6a22c404ab324980c4e8a11b, type: 3}
+  - poolType: 3
+    initCount: 20
+    poolAbleObject: {fileID: 3552320374448391492, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
+  - poolType: 4
+    initCount: 20
+    poolAbleObject: {fileID: -4846377160157641269, guid: 8d86912f907580c4eb0ed7379482ca17, type: 3}
+  - poolType: 5
+    initCount: 20
+    poolAbleObject: {fileID: 271227197975169233, guid: 3a3ebdd477adb6444969752e68f9e55e, type: 3}
+  - poolType: 6
+    initCount: 20
+    poolAbleObject: {fileID: 7818077488606477890, guid: 2ca11e713087b5445b3decfd0cab570d, type: 3}
+  - poolType: 12
+    initCount: 3
+    poolAbleObject: {fileID: 8857551245557506804, guid: a1ca057777a341c449d1c62fd8b2a13f, type: 3}
+  - poolType: 13
+    initCount: 3
+    poolAbleObject: {fileID: 796485735717129018, guid: 8f3cc623255b3ec49a43766cf8cf4791, type: 3}
+  - poolType: 14
+    initCount: 3
+    poolAbleObject: {fileID: 2423495290411961352, guid: 05b990d06809556419d706f1e62823e8, type: 3}
+  - poolType: 15
+    initCount: 3
+    poolAbleObject: {fileID: 777800861798890474, guid: de350556ce06a2240b8b38ee6cc55d03, type: 3}
+  - poolType: 16
+    initCount: 3
+    poolAbleObject: {fileID: 4896641924014861084, guid: 0b171f7510790df4cb39dac5805f8985, type: 3}
+  - poolType: 18
+    initCount: 3
+    poolAbleObject: {fileID: 3732882965767671941, guid: 1eb09d37b852f4c4aafe9414eec3a80c, type: 3}

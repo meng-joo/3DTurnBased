@@ -8,14 +8,21 @@ using DG.Tweening;
 
 public class MapManager : MonoBehaviour
 {
+    [Header("플레이어")]
+    public MainModule _mainModule;
+    public Canvas _playerCanvas;
+
+    [Space]
     [Header("UI캔버스")]
     public GameObject maincanvas;
     public GameObject minicanvas;
 
+    [Space]
     [Header("카메라")]
     public Camera miniMapCam;
     public Camera mainMapCam;
 
+    [Space]
     [Header("미니맵이 켜져있는가?")]
     public bool isMiniMapUp;
 
@@ -57,6 +64,8 @@ public class MapManager : MonoBehaviour
             minicanvas.SetActive(!isMiniMapUp);
             mainMapCam.gameObject.SetActive(isMiniMapUp);
 
+            _playerCanvas.gameObject.SetActive(!isMiniMapUp);
+            _mainModule.canMove = !isMiniMapUp;
             isMiniMapUp = !isMiniMapUp;
         }
     }

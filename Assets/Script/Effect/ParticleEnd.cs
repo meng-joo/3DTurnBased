@@ -19,8 +19,14 @@ public class ParticleEnd : MonoBehaviour
     {
         if (isOne)
         {
-            particle.Play();
-            Invoke("EndParticle", particle.duration);
+            if (particle == null)
+                Invoke("EndParticle", 0.8f);
+
+            else
+            {
+                particle?.Play();
+                Invoke("EndParticle", particle.duration);
+            }
         }
     }
 

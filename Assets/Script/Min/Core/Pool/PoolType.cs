@@ -12,5 +12,19 @@ public enum PoolType
     VFX4,
     VFX5,
     VFX6,
-    VFX7
+    VFX7,
+    VFX8,
+    VFX9,
+    VFX10,
+    Enemy1,
+    Enemy2,
+    Enemy3,
+    Enemy4,
+    Enemy5,
+    Enemy6,
+    Enemy7,
+    Enemy8,
+    Boss1,
+    Boss2,
+    Boss3
 }
