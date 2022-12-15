@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df4ed138a84aeba418d160291dbf036b, type: 3}
   m_Name: Potion
   m_EditorClassIdentifier: 
+  _methodName:
+  - HPPotion
   itemType: 6
   getFlagStackable: 1
   itemIcon: {fileID: 21300000, guid: 108ca3e7dda90d945b0914bf9259ec94, type: 3}
@@ -22,3 +24,4 @@ MonoBehaviour:
     abilities: []
   boneNameLists: []
   itemSummery: 
+  value: 5

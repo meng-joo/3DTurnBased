@@ -23,14 +23,17 @@ public static class ExtensionList
     }
 }
 
-public class Card : PoolAbleObject
+public class Card : PoolAbleObject, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler
 {
     public bool isFull = false;
     InvenSkill invenSkill;
 
+    public GameObject explainTap;
+
     public Button cardBtn;
     public Image selectImage;
     [SerializeField] private bool isStatic;
+
     Skill skill;
     public Skill Skill
     {
@@ -60,10 +63,14 @@ public class Card : PoolAbleObject
     private void Awake()
     {
         invenSkill = FindObjectOfType<InvenSkill>();
+        
+        explainTap = GameObject.Find("InventoryCanvas").transform.Find("ExplainTap").gameObject;
     }
     private void Start()
     {
         AddEventAction(this, EventTriggerType.PointerClick, (data) => { OnClick(this, (PointerEventData)data); });
+
+        
     }
     public void SelectClick()
     {
@@ -136,5 +143,25 @@ public class Card : PoolAbleObject
 
     public override void Init_Push()
     {
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        explainTap.SetActive(false);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        explainTap.transform.position = Input.mousePosition;
+
+        explainTap.SetActive(true);
+        explainTap.transform.Find("ExplainTxt").GetComponent<TextMeshProUGUI>().text = skill.skillInfo._skillExplanation;
+        explainTap.transform.Find("NameTxt").GetComponent<TextMeshProUGUI>().text = skill.skillInfo._skillName;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        explainTap.transform.position = Input.mousePosition;//a.origin;
+        Debug.Log("ASD");
     }
 }
