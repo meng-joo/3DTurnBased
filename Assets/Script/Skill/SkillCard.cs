@@ -112,7 +112,7 @@ public class SkillCard : PoolAbleObject
 
                     float rotateDegree = Mathf.Atan2(dy, dx) * Mathf.Rad2Deg;
 
-                    _mainModule.dirObj.transform.rotation = Quaternion.Euler(90f, -rotateDegree, 0);
+                    _mainModule.dirObj.transform.rotation = Quaternion.Euler(90f, -rotateDegree - 6f, 0);
 
                     if (hit.collider.CompareTag(target))
                     {
