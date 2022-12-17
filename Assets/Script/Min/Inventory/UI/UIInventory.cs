@@ -276,27 +276,32 @@ public abstract class UIInventory : MonoBehaviour
             useTap.transform.position = pointerEventdata.position;
             useTap.transform.position += new Vector3(0f, 200f, 0f);
 
+            useTap.transform.Find("UseBtn").GetComponent<Button>().onClick.RemoveAllListeners();
+
             useTap.transform.Find("UseBtn").GetComponent<Button>().onClick.AddListener(() =>
             {
-                skillEffect = slot.ItemObject._SetSkill._Methods;
-                int value = slot.ItemObject.value[0];
+                skillEffect = slot.ItemObject._SetItem._Methods;
 
-                // 아이템이 배틀에서만 사용할수 있거나 전투중이면
-                if (mainModule.canInven == true)
+                int value = slot.ItemObject.value[0];
+                //선한쌤한테 할진물들
+                // 밸류가 중첩이됨
+
+                // 아이템이 배틀에서만 사용할수 있고 전투중이아니면
+                if (mainModule.isBattle == false && slot.ItemObject.itemData.inBattle == true)
                 {
-                    if (slot.ItemObject.itemData.inBattle == true)
-                    {
-                        return;
-                    }
+                    DialogManager.Instance.ShowText("전투중에 사용할수 있는 아이템입니다");
+                    return;
                 }
 
                 foreach (var method in skillEffect)
                 {
                     method.Invoke(null, new object[] { value });
-                    //_battleUI.SpawnSkillEffectText(value[count].ToString(), skillText, transform.position);
                 }
+                    //_battleUI.SpawnSkillEffectText(value[count].ToString(), skillText, transform.position);
 
+                //밑의 줄이 복수 딴것도잘되
                 slot.uploadSlot(slot.ItemObject.itemData, --slot.itemCnt);
+                Debug.Log(slot.itemCnt);
                 useTap.gameObject.SetActive(false);
                 useOffBtn.gameObject.SetActive(false);
             });

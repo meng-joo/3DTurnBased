@@ -76,6 +76,7 @@ public class MainModule : MonoBehaviour
     public bool isTrophy =false;
 
     public GameObject dirObj;
+    public bool isBattle = false;
 
 
     private void Awake()

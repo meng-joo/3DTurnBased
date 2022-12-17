@@ -38,7 +38,7 @@ public class ItemObj : ScriptableObject
 
 
     private SetItem setItem = new SetItem();
-    public SetItem _SetSkill => setItem;
+    public SetItem _SetItem => setItem;
 
     public int[] value;
 
@@ -90,7 +90,6 @@ public class SetItem
 
     public void AddEvent(ItemObj itemInfo)
     {
-        Debug.Log(itemInfo);  
         Type type = typeof(ItemFunc);
         for (int i = 0; i < itemInfo._methodName.Length; i++)
         {
@@ -99,11 +98,4 @@ public class SetItem
         }
     }
 
-    void CallEvent(GameObject enemy)
-    {
-        foreach (var method in methods)
-        {
-            method.Invoke(null, new object[] { enemy });
-        }
-    }
 }

@@ -43,6 +43,7 @@ public class BattleManager : MonoBehaviour
             //   _battleUI.costObj[i].SetActive(true);
             //}
             _mainModule.canInven = false;
+            _mainModule.isBattle = true;
             _battleUI.cemetryBtn.SetActive(true);
             _battleUI.pickCardBtn.SetActive(true);
             _battleUI.isCemetery = false;
@@ -95,6 +96,7 @@ public class BattleManager : MonoBehaviour
                 Destroy(childList[i].gameObject);
             }
         }
+        _mainModule.isBattle = false;
 
         _mainModule._animator.Play("Win");
         _mainModule._animator.SetBool("Fight", false);

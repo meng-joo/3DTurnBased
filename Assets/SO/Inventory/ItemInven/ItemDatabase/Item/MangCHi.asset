@@ -18,8 +18,9 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: 9895f5f95566ceb47bb239149d90cb44, type: 3}
   objModelPrefab: {fileID: 0}
   itemData:
-    item_id: 1
+    item_id: 0
     item_name: "\uB9DD\uCE58"
+    inBattle: 0
     abilities:
     - characterStack: 1
       valStack: 5
@@ -32,5 +33,4 @@ MonoBehaviour:
   boneNameLists: []
   itemSummery: "\uB9DD\uCE58\uB85C \uB1CC\uC9C4\uD0D5\uC744 \uAC78\uB9AC\uAC8C \uD560
     \uC218 \uC788\uB2E4"
-  value: 0
-  itemObj: {fileID: 11400000}
+  value: 
