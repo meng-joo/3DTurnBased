@@ -53,7 +53,6 @@ public class TrophyUIManager : MonoBehaviour
     public GameObject relicPrefab;
     public Transform relicParent;
 
-
     private void Awake()
     {
         Transform[] childList = relicParent.GetComponentsInChildren<RectTransform>();
@@ -158,7 +157,7 @@ public class TrophyUIManager : MonoBehaviour
 
         if (databaseObj.itemObjs.Length > 0)
         {
-            ItemObj newItemObject = databaseObj.itemObjs[Random.Range(0, databaseObj.itemObjs.Length)];
+            ItemObj newItemObject = databaseObj.itemObjs[Random.Range(0, databaseObj.itemObjs.Length)]; 
             Item newItem = new Item(newItemObject);
 
             randomCnt = Random.Range(1, 3);
@@ -186,6 +185,7 @@ public class TrophyUIManager : MonoBehaviour
 
                     Invoke("InitTrophy", 1f);
 
+
                 });
             }
             else
@@ -201,6 +201,8 @@ public class TrophyUIManager : MonoBehaviour
 
                     EffectCard(itemTrophyObj.transform.Find("ItemImage").GetComponent<Image>().sprite);
                     Invoke("InitTrophy", 1f);
+
+
                 });
 
                 //inventoryObj.AddItem(newItemObject.itemData, 1);
@@ -256,12 +258,14 @@ public class TrophyUIManager : MonoBehaviour
             //slot.uploadSlot(slot.ItemObject.itemData, --slot.itemCnt);
             //useTap.gameObject.SetActive(false);
             EffectRelic(so);
-            Destroy(relicObj);
+            OffImage();
             Invoke("InitTrophy", 1f);
+            Destroy(relicObj);
         });
     }
     public void EffectRelic(RelicSO relicSO)
     {
+
         GameObject relic = Instantiate(relicPrefab, relicParent.position, Quaternion.identity);
         relic.transform.SetParent(relicParent);
 
@@ -274,10 +278,13 @@ public class TrophyUIManager : MonoBehaviour
         seq.Append(relic.GetComponent<Image>().DOFade(1f, 1f));
         seq.Join(relic.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.5f));
         seq.Append(relic.transform.DOScale(Vector3.one, 0.5f));
+         inImage.transform.DOKill();
+        DOTween.Clear();
     }
     public void EffectCard(Sprite itemImg)
     {
         inImage.transform.DOKill();
+
         inImage.transform.localPosition = new Vector3(0, 0, 0);
         inImage.gameObject.SetActive(true);
         inImage.sprite = itemImg;
@@ -303,7 +310,6 @@ public class TrophyUIManager : MonoBehaviour
         firstPos.z = 0;
         middlePoint.z = firstPos.z;
         lastPoint.z = firstPos.z;
-        Debug.Log(firstPos.z + middlePoint.z + lastPoint.z);
         waypoint = new Vector3[3];
 
 
@@ -313,42 +319,46 @@ public class TrophyUIManager : MonoBehaviour
 
         inImage.rectTransform.DOLocalPath(waypoint, 1.2f, PathType.CatmullRom).SetEase(asda);//    .SetEase(asda);
 
-        Sequence seq = DOTween.Sequence();
-        seq.AppendCallback(() =>
-        {
-            trail.SetActive(true);
-            trail.transform.Find("Trail").GetComponent<ParticleSystem>().Play();
-            trail.transform.Find("TrailSmoke").GetComponent<ParticleSystem>().Play();
-        });
-        seq.AppendInterval(2f);
+        trail.SetActive(true);
 
-        seq.AppendCallback(() =>
-        {
-            inImage.gameObject.SetActive(false);
-            inImage.color = new Color(1, 1, 1);
+        Invoke("OffImage", 2.2f);
 
-            trail.SetActive(false);
-            trail.transform.Find("Trail").GetComponent<ParticleSystem>().Stop();
-            trail.transform.Find("TrailSmoke").GetComponent<ParticleSystem>().Stop();
-        });
+        //Sequence seq = DOTween.Sequence();
+        //seq.AppendCallback(() =>
+        //{
+        //    trail.SetActive(true);
+        //    trail.transform.Find("Trail").GetComponent<ParticleSystem>().Play();
+        //    trail.transform.Find("TrailSmoke").GetComponent<ParticleSystem>().Play();
+        //});
+        //seq.AppendInterval(2f);
+
+        //seq.AppendCallback(() =>
+        //{
+        //    inImage.gameObject.SetActive(false);
+        //    inImage.color = new Color(1, 1, 1);
+
+        //    trail.SetActive(false);
+        //    trail.transform.Find("Trail").GetComponent<ParticleSystem>().Stop();
+        //    trail.transform.Find("TrailSmoke").GetComponent<ParticleSystem>().Stop();
+        //});
 
 
-       // Invoke("OffImage", 2.2f);
     }
     public void OffImage()
     {
         inImage.gameObject.SetActive(false);
-
+        inImage.color = new Color(1, 1, 1);
         trail.SetActive(false);
-        trail.transform.Find("Trail").GetComponent<ParticleSystem>().Stop();
-        trail.transform.Find("TrailSmoke").GetComponent<ParticleSystem>().Stop();
+        //trail.transform.Find("Trail").GetComponent<ParticleSystem>().Stop();
+        //trail.transform.Find("TrailSmoke").GetComponent<ParticleSystem>().Stop();
     }
     public void InitTrophy()
     {
         if (parentTrm.childCount <= 0)
         {
+            Debug.Log(parentTrm.childCount);
             Sequence seq = DOTween.Sequence();
-            seq.AppendInterval(0.5f);
+            seq.AppendInterval(.5f);
             seq.Append(trophyPanel.transform.DOLocalMoveY(1500f, 0.5f));
             seq.AppendCallback(() =>
             {
@@ -362,6 +372,9 @@ public class TrophyUIManager : MonoBehaviour
         }
         else
         {
+            Debug.Log(parentTrm.childCount);
+
+
             Debug.Log("자식있음");
         }
     }

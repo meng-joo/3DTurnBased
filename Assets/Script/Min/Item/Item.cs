@@ -7,9 +7,10 @@ using UnityEngine;
 [System.Serializable]
 public class Item
 {
+
     public int item_id = -1;
     public string item_name;
-
+    public bool inBattle;
     public Item()
     {
         item_id = -1;
