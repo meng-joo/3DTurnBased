@@ -91956,6 +91956,7 @@ MonoBehaviour:
   maxTime: 17.6
   canMove: 0
   canInven: 1
+  stageClear: 0
   _animator: {fileID: 0}
   _animatorOverride: {fileID: 22100000, guid: 13868d158241b40438fb380c7fd861c6, type: 2}
   ChestAnimator: {fileID: 0}

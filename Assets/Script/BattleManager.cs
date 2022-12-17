@@ -8,7 +8,6 @@ public class BattleManager : MonoBehaviour
 {
     MainModule _mainModule;
 
-    public EffectUI effectUI;
     public BattleUI _battleUI;
 
     public AllEnemySO currentEnemys;
@@ -34,44 +33,30 @@ public class BattleManager : MonoBehaviour
     {
         Sequence seq = DOTween.Sequence();
 
-        seq.AppendCallback(() => effectUI.StartBattleEffectUI());
-        seq.AppendInterval(3f);
+        seq.AppendInterval(0.5f);
         seq.AppendCallback(() => SpawnMonster());
-        if (_mainModule.playerDataSO.killEnemy < 2)
+        seq.AppendInterval(1f);
+        seq.AppendCallback(() =>
         {
-            seq.AppendInterval(1f);
-            seq.AppendCallback(() =>
-            {
-                _mainModule.canInven = false;
-                _battleUI.cemetryBtn.SetActive(true);
-                _battleUI.pickCardBtn.SetActive(true);
-                _battleUI.isCemetery = false;
-                _wall.SetActive(false);
-                _mainModule.SetBattleAni();
-                BattleCameraEffect();
-                SetBattleUI();
-            });
-        }
-        else
-        {
-            seq.AppendInterval(3f);
-            seq.AppendCallback(() =>
-            {
-                _mainModule.canInven = false;
-                _battleUI.cemetryBtn.SetActive(true);
-                _battleUI.pickCardBtn.SetActive(true);
-                _battleUI.isCemetery = false;
-                _wall.SetActive(false);
-                _mainModule.SetBattleAni();
-                BattleCameraEffect();
-                SetBattleUI();
-            });
-        }
+            //for (int i = 0; i < 3; i++)
+            // {
+            //   _battleUI.costObj[i].SetActive(true);
+            //}
+            _mainModule.canInven = false;
+            _mainModule.isBattle = true;
+            _battleUI.cemetryBtn.SetActive(true);
+            _battleUI.pickCardBtn.SetActive(true);
+            _battleUI.isCemetery = false;
+            _wall.SetActive(false);
+            _mainModule.SetBattleAni();
+            BattleCameraEffect();
+            SetBattleUI();
+        });
     }
 
     public void SpawnMonster()
     {
-        if (_mainModule.playerDataSO.killEnemy < 2)
+        if (_mainModule.playerDataSO.killEnemy < 8)
         {
             for (int i = 0; i < GetEnemy(); i++)
             {
@@ -86,7 +71,7 @@ public class BattleManager : MonoBehaviour
             GameObject enemyPrefab = PoolManager.Instance.Pop(PoolType.Boss1 + (_mainModule.playerDataSO.stage - 1)).gameObject;
             enemyPrefab.transform.position = _mainModule._enemySpawnPoint[0].position;
             fieldEnemies.Add(enemyPrefab);
-            fieldEnemies[0].transform.DOScale(0.65f, 1f);
+            fieldEnemies[0].transform.DOScale(1, 1f);
         }
     }
 
@@ -101,6 +86,16 @@ public class BattleManager : MonoBehaviour
     {
         _mainModule.canInven = true;
 
+        Transform[] childList = _battleUI.costParentTrm.GetComponentsInChildren<Transform>();
+
+        if (childList != null)
+        {
+            for (int i = 1; i < childList.Length; i++)
+            {
+                Destroy(childList[i].gameObject);
+            }
+        }
+        _mainModule.isBattle = false;
 
         _mainModule._animator.Play("Win");
         _mainModule._animator.SetBool("Fight", false);
@@ -124,21 +119,10 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator ChangeTurn(bool isPlayer)
     {
-        if (isPlayer)
-        {
-            for (int i = 0; i < fieldEnemies.Count; i++)
-            {
-                int randDef = Random.Range(fieldEnemies[i].GetComponent<EnemyData>().Def - 1, fieldEnemies[i].GetComponent<EnemyData>().Def + 2);
-                fieldEnemies[i].GetComponent<HpModule>().OnShield(randDef);
-                yield return new WaitForSeconds(1f);
-            }
-        }
+        if (isPlayer) { }
 
         else
         {
-            _mainModule._HpModule.OnShield(_mainModule.playerDataSO.Def);
-            yield return new WaitForSeconds(0.3f);
-
             for (int i = 0; i < fieldEnemies.Count; i++)
             {
                 fieldEnemies[i].GetComponent<HpModule>().shield = 0;
@@ -153,18 +137,10 @@ public class BattleManager : MonoBehaviour
 
             _battleUI.cardCount = _battleUI.GetCardCount();
             yield return new WaitForSeconds(0.5f);
-
-            //for (int i = 0; i < fieldEnemies.Count; i++)
-            //{
-            //    fieldEnemies[i].GetComponent<HpModule>().OnShield();
-            //    yield return new WaitForSeconds(1f);
-            //}
-
-            _battleUI.TurnChangeEffect(true);
+           _battleUI.TurnChangeEffect(true);
             yield return new WaitForSeconds(0.2f);
             _battleUI.SetActiveButton(true);
-            /*if(!shieldMaintain)*/
-            _mainModule._HpModule.shield = 0;
+            /*if(!shieldMaintain)*/_mainModule._HpModule.shield = 0;
         }
     }
 
@@ -194,7 +170,7 @@ public class BattleManager : MonoBehaviour
     PoolType EnemyType()
     {
         var enumValues = System.Enum.GetValues(enumType: typeof(PoolType));
-        return (PoolType)enumValues.GetValue(Random.Range((int)PoolType.Enemy1 + ((_mainModule.playerDataSO.stage - 1) * 5 ), (int)PoolType.Enemy4 + (_mainModule.playerDataSO.stage - 1) * 5));
+        return (PoolType)enumValues.GetValue(Random.Range((int)PoolType.Enemy1 + (_mainModule.playerDataSO.stage - 1), (int)PoolType.Enemy5 + _mainModule.playerDataSO.stage));
     }
 
     //public NavMeshHit SetMonsterPos()
