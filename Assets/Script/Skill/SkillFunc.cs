@@ -11,7 +11,6 @@ public class SkillFunc : MonoBehaviour
     {
         HpModule hp = _enemy.GetComponent<HpModule>();
         hp.GetHit(dmg, _color);
-        hp.GetDamaged();
         //여기서 적때리는 기능 구현해야합
     }
 
@@ -23,7 +22,6 @@ public class SkillFunc : MonoBehaviour
 
         HpModule hp = _enemy.GetComponent<HpModule>();
         hp.GetHit(dmg, _color);
-        hp.GetDamaged();
     }
 
     public static void Teleport(GameObject _enemy, int dmg, Color32 _color)
@@ -55,7 +53,6 @@ public class SkillFunc : MonoBehaviour
         for(int i = 0; i < battleManager.fieldEnemies.Count; i++)
         {
             battleManager.fieldEnemies[i].GetComponent<HpModule>().GetHit(dmg, _color);
-            battleManager.fieldEnemies[i].GetComponent<HpModule>().GetDamaged();
         }
     }
 

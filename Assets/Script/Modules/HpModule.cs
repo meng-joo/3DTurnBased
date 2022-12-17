@@ -77,15 +77,15 @@ public class HpModule : MonoBehaviour
 
     public void GetHit(int dmg, Color32 _color)
     {
-        dmg = Mathf.Max(dmg - shield, 0);
+        int realDmg = Mathf.Max(dmg - shield, 0);
         shield = Mathf.Max(shield - dmg, 0);
 
-        hp = Mathf.Max(0, hp - dmg);
-        attackedEvent?.Invoke(dmg);
+        hp = Mathf.Max(0, hp - realDmg);
+        attackedEvent?.Invoke(realDmg);
 
-        if (dmg != 0) _battleUI.SpawnSkillEffectText(dmg.ToString(), _color, transform.position + new Vector3(0.5f, 1, -0.5f));
+        if (realDmg > 0) { _battleUI.SpawnSkillEffectText(realDmg.ToString(), _color, transform.position + new Vector3(0.5f, 1, -0.5f)); GetDamaged(); }
         else _battleUI.SpawnSkillEffectText("¹æ¾îÇÔ", Color.white, transform.position + new Vector3(0.5f, 1, -0.5f));
-        
+
         UpdateHPText();
         if (hp <= 0)
         {
@@ -96,7 +96,7 @@ public class HpModule : MonoBehaviour
     }
     public void GetHp(int value)
     {
-        hp += value;
+        hp = Mathf.Min(hp + value, maxHp);
         UpdateHPText();
         if (hp <= 0)
         {
@@ -109,6 +109,7 @@ public class HpModule : MonoBehaviour
     public void UpdateHPText()
     {
         text.text = $"{hp} / {maxHp}";
+        _bar.fillAmount = (float)hp / maxHp;
     }
 
     public void SetAvtiveHpbar(bool isOn)
@@ -137,6 +138,5 @@ public class HpModule : MonoBehaviour
     public void OnShield(int value)
     {
         shield += value;
-        
     }
 }

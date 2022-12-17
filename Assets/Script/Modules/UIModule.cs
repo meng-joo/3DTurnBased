@@ -43,7 +43,7 @@ public class UIModule : MonoBehaviour
         _mainModule = GetComponent<MainModule>();
         _keyName = "f";
 
-        _trophyUIManager = GameObject.Find("TrophyManager").GetComponent<TrophyUIManager>();
+        _trophyUIManager = GameObject.Find("TrophyManager")?.GetComponent<TrophyUIManager>();
     }
 
     //public void DamageUI(int damage)

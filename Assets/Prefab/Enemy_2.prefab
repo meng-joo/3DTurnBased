@@ -506,7 +506,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   _animator: {fileID: 747522062521880435}
+  skillName:
+  - Attack
+  - Defend
   enemyData: {fileID: 0}
+  hpmodule: {fileID: 0}
   enemyType: 13
 --- !u!114 &796485735717129018
 MonoBehaviour:

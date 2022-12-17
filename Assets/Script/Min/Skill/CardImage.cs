@@ -21,7 +21,7 @@ public class CardImage : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         backGroundImage = GetComponent<Image>();
         skillImage = transform.GetChild(0).GetComponent<Image>();
-        skillName = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        skillName = transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
         skillInfo = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         skillCost = transform.GetChild(3).GetComponentInChildren<TextMeshProUGUI>();
         trophyUIManager = GameObject.Find("TrophyManager").GetComponent<TrophyUIManager>();

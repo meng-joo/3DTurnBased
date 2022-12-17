@@ -91,8 +91,8 @@ public class InventoryManager : MonoBehaviour
 
         seq.Append(leftInvenUI.DOLocalMoveX(-800f, 0.5f)).SetUpdate(true)
             .Join(rightInvenUI.DOLocalMoveX(800f, 0.5f)).SetUpdate(true)
-            .Join(itemBtn.transform.DOLocalMoveX(307, 0.5f)).SetUpdate(true)
-            .Join(skillBtn.transform.DOLocalMoveX(534, 0.5f)).SetUpdate(true);
+            .Join(itemBtn.transform.DOLocalMoveX(330, 0.5f)).SetUpdate(true)
+            .Join(skillBtn.transform.DOLocalMoveX(640, 0.5f)).SetUpdate(true);
 
         seq.Insert(0.2f, leftInvenUI.GetComponentInChildren<Image>().DOFade(1f, 0.5f));
         seq.Insert(0.2f, rightInvenUI.GetComponentInChildren<Image>().DOFade(1f, 0.5f));

@@ -103,7 +103,7 @@ public class BattleUI : MonoBehaviour
 
     private void Start()
     {
-        enemyKillCount.maxValue = 8;
+        enemyKillCount.maxValue = 2;
         mainModule = GameObject.Find("Player").GetComponent<MainModule>();
 
         for (int i = 0; i < skillPanel.transform.childCount; i++)

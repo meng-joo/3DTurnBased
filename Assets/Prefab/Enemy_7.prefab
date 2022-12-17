@@ -261,7 +261,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   _animator: {fileID: 6450918201913804124}
+  skillName:
+  - Attack
+  - Defend
+  - Heal
   enemyData: {fileID: 0}
+  hpmodule: {fileID: 0}
   enemyType: 18
 --- !u!65 &3732882965767671943
 BoxCollider:

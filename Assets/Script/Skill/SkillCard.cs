@@ -21,8 +21,8 @@ public class SkillCard : PoolAbleObject
     public List<MethodInfo> skillEffect = new List<MethodInfo>();
 
 
-    Vector2 originPos;
-    Vector2 mousePoint;
+    //Vector2 originPos;
+    //Vector2 mousePoint;
 
     bool isfirst = false;
     bool m_IsButtonDowning = false;
@@ -90,20 +90,20 @@ public class SkillCard : PoolAbleObject
         RaycastHit hit;
         if (m_IsButtonDowning)
         {
-            if (!isfirst)
-            {
-                originPos = transform.position;
-                isfirst = !isfirst;
-            }
+            //if (!isfirst)
+            //{
+            //    //originPos = transform.position;
+            //    isfirst = !isfirst;
+            //}
 
-            if (isfirst)
-            {
+            //if (isfirst)
+            //{
                 Vector3 pos = Input.mousePosition;
                 //pos.z = Camera.main.farClipPlane;
 
                 //mousePoint = Camera.main.ScreenToWorldPoint(pos);
-                mousePoint = pos;
-                transform.position = mousePoint;
+                //mousePoint = pos;
+                //transform.position = mousePoint;
 
                 if (Physics.Raycast(ray, out hit, 100))
                 {
@@ -129,7 +129,7 @@ public class SkillCard : PoolAbleObject
                             return;
                         }
                     }
-                }
+                //}
             }
         }
         if (fadeImage.color.a >= 0)
@@ -196,7 +196,7 @@ public class SkillCard : PoolAbleObject
                 return;
             }
         }
-        transform.position = originPos;
+        //transform.position = originPos;
         m_IsButtonDowning = false;
     }
 

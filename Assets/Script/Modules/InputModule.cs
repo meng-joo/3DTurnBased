@@ -64,8 +64,15 @@ public class InputModule : MonoBehaviour
 
     IEnumerator ExitDoor()
     {
-        mainModule.canMove = true;
-        mainModule.MapManager.StartInit(0);
+        if (mainModule.stageClear)
+        {
+            mainModule.canMove = true;
+            mainModule.MapManager.StartInit(mainModule.playerDataSO.stage);
+        }
+        else
+        {
+
+        }
         yield return null;
     }
 

@@ -11,21 +11,36 @@ public class EnemyAISkill : MonoBehaviour
         _aIModule = GetComponent<AIModule>();
     }
 
-    public IEnumerator AttackPlayer()
+    public IEnumerator Attack()
     {
         _aIModule._animator.Play("Attack01");
 
         yield return new WaitForSeconds(0.4f);
-        _aIModule.player._HpModule.GetHit(_aIModule.enemyData.Atk, Color.red);
-        _aIModule.player._HpModule.GetDamaged();
+
+        int dmg = (int)Random.Range(_aIModule.enemyData.Atk / 2f, _aIModule.enemyData.Atk);
+
+        _aIModule.player._HpModule.GetHit(dmg, Color.red);
     }
 
     public IEnumerator Defend()
     {
-        _aIModule._animator.Play("Attack01");
+        _aIModule._animator.Play("Defend");
+
+        int value = Random.Range(_aIModule.enemyData.Def, _aIModule.enemyData.Def * 2);
+
+
 
         yield return new WaitForSeconds(0.4f);
-        _aIModule.player._HpModule.GetHit(_aIModule.enemyData.Atk, Color.red);
-        _aIModule.player._HpModule.GetDamaged();
+        _aIModule.hpmodule.OnShield(value);
+    }
+
+    public IEnumerator Heal()
+    {
+        _aIModule._animator.Play("Heal");
+
+        int value = Random.Range(_aIModule.enemyData.Hp / 5, _aIModule.enemyData.Hp / 2);
+
+        yield return new WaitForSeconds(0.4f);
+        _aIModule.hpmodule.GetHp(value);
     }
 }

@@ -152,3 +152,33 @@ MonoBehaviour:
         item_name: 
         abilities: []
       itemCnt: 0
+    - itemTypes: 
+      item:
+        item_id: -1
+        item_name: 
+        abilities: []
+      itemCnt: 0
+    - itemTypes: 
+      item:
+        item_id: -1
+        item_name: 
+        abilities: []
+      itemCnt: 0
+    - itemTypes: 
+      item:
+        item_id: -1
+        item_name: 
+        abilities: []
+      itemCnt: 0
+    - itemTypes: 
+      item:
+        item_id: -1
+        item_name: 
+        abilities: []
+      itemCnt: 0
+    - itemTypes: 
+      item:
+        item_id: -1
+        item_name: 
+        abilities: []
+      itemCnt: 0

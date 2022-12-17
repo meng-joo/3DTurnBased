@@ -41,6 +41,10 @@ public class MainModule : MonoBehaviour
     [Header("인벤 열수있냐")]
     public bool canInven;
 
+    [Space]
+    [Header("이 스테이지 클리어?")]
+    public bool stageClear;
+
     //[Space]
     //[Header("애니메이션")]
     //public Animation _animation;
@@ -88,7 +92,7 @@ public class MainModule : MonoBehaviour
         _battleMobule = GetComponent<BattleMobule>();
         _hpModule = GetComponent<HpModule>();
         _mapManager = GameObject.Find("MapManager").GetComponent<MapManager>();
-        chestCreateManager = GameObject.Find("ChestManager").GetComponent<ChestCreateManager>();
+        chestCreateManager = GameObject.Find("ChestManager")?.GetComponent<ChestCreateManager>();
         _animatorOverride = new AnimatorOverrideController(_animator.runtimeAnimatorController);
         _animator.runtimeAnimatorController = _animatorOverride;
         //_animatorOverride = GetComponent<AnimatorOverrideController>();
