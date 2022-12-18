@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 using TMPro;
-public class RelicImage : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class RelicImage : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,IPointerMoveHandler
 {
     public RelicSO relicSO;
     public GameObject explainTap;
@@ -30,11 +30,16 @@ public class RelicImage : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     }
 
+
+
     public void OnPointerExit(PointerEventData eventData)
     {
         transform.DOScale((Vector3.one), 0.5f);
         explainTap.SetActive(false);
     }
 
-  
+    public void OnPointerMove(PointerEventData eventData)
+    {
+
+    }
 }

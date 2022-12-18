@@ -22,6 +22,7 @@ public class BattleManager : MonoBehaviour
 
     [Space]
     public int killenemyCount;
+    public int maxEnemyCount;
 
     private void Start()
     {
@@ -56,7 +57,7 @@ public class BattleManager : MonoBehaviour
 
     public void SpawnMonster()
     {
-        if (_mainModule.playerDataSO.killEnemy < 8)
+        if (_mainModule.playerDataSO.killEnemy < maxEnemyCount)
         {
             for (int i = 0; i < GetEnemy(); i++)
             {
@@ -102,6 +103,8 @@ public class BattleManager : MonoBehaviour
         _mainModule.twoView.Priority += 10;
         _mainModule.battleCam.Priority -= 10;
         _mainModule.playerDataSO.killEnemy++;
+        _battleUI.cemetryBtn.SetActive(false);
+        _battleUI.pickCardBtn.SetActive(false);
         killenemyCount++;
         _battleUI.GameEnd(isWin);
         _wall.SetActive(true);
