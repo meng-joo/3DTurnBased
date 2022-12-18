@@ -48,6 +48,7 @@ public class Card : PoolAbleObject, IPointerEnterHandler, IPointerExitHandler, I
             //gameObject.GetComponentInChildren<TextMeshProUGUI>().text = (skill != null) ? skill.skillInfo._skillName : string.Empty;
 
             gameObject.transform.Find("NameBackground").GetComponentInChildren<TextMeshProUGUI>().text = (skill != null) ? skill.skillInfo._skillName : string.Empty;
+            gameObject.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = (skill != null) ? skill.skillInfo._skillExplanation : string.Empty;
             //gameObject.transform.Find("CostTxt").GetComponent<TextMeshProUGUI>().text = (skill != null) ? skill.skillInfo._skillCost.ToString() : string.Empty;
             gameObject.transform.Find("CostImage").GetComponentInChildren<TextMeshProUGUI>().text = (skill != null) ? skill.skillInfo._skillCost.ToString(): string.Empty;
             SetAlpha(0f);
