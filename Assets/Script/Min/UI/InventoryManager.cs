@@ -23,7 +23,6 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private InvenSkill invenSkill;
 
 
-    [SerializeField] private GameInfoSO gameInfoSO;
 
     public GameObject useTab;
     public GameObject exitBtn;
