@@ -134,6 +134,12 @@ public class BattleUI : MonoBehaviour
     private void Update()
     {
         enemyKillCount.value = mainModule.playerDataSO.killEnemy;
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            CreateCost(5);
+        }
+
     }
 
     public void SetBattleUI()
@@ -187,6 +193,8 @@ public class BattleUI : MonoBehaviour
             turnImage[1].DOFade(0.13f, 1f);
             turnImage[1].transform.DOScale(0.7f, .5f);
 
+          
+
             seq.Append(behaveText.transform.DOLocalMoveY(170, 0.2f));
             seq.AppendCallback(() =>
             {
@@ -202,18 +210,8 @@ public class BattleUI : MonoBehaviour
             });
             seq.AppendCallback(() =>
             {
-                for (int i = 0; i < cost; i++)
-                {
-                    GameObject obj = Instantiate(costPrefab, transform.position, Quaternion.identity);
-                    obj.transform.SetParent(costParentTrm.transform);
-                    obj.SetActive(true);
-
-                    obj.transform.localPosition = new Vector3(0f + (2 * i), 0f, 0f + i);
-                    obj.transform.localScale = Vector3.one;
-                    obj.transform.Rotate(new Vector3(0, 0f, 0f));
-
-                    costObj.Add(obj);
-                }
+                CreateCost(cost);
+              
             });
         }
 
@@ -223,6 +221,12 @@ public class BattleUI : MonoBehaviour
             turnImage[1].transform.DOScale(1.4f, .6f);
             turnImage[0].DOFade(0.13f, 1f);
             turnImage[0].transform.DOScale(0.7f, .5f);
+
+            if (mainModule.playerDataSO.isClockClasp)
+            {
+                HpModule hp = GameObject.Find("Player").GetComponent<HpModule>();
+                hp.OnShield(currentSkillCard.Count);
+            }
 
             seq.Append(behaveText.transform.DOLocalMoveY(170, 0.2f));
             seq.AppendCallback(() =>
@@ -235,7 +239,30 @@ public class BattleUI : MonoBehaviour
             battleManager.StartCoroutine("ChangeTurn", false);
         }
     }
+    public void CreateCost(int _cost)
+    {
+        Transform[] cardchildList = costParentTrm.GetComponentsInChildren<RectTransform>();
+        foreach (var deletecard in cardchildList)
+        {
+            if (deletecard == costParentTrm)
+                continue;
 
+            Destroy(deletecard.gameObject);
+        }
+
+        for (int i = 0; i < _cost; i++)
+        {
+            GameObject obj = Instantiate(costPrefab, transform.position, Quaternion.identity);
+            obj.transform.SetParent(costParentTrm.transform);
+            obj.SetActive(true);
+
+            obj.transform.localPosition = new Vector3(0f + (2 * i), 0f, 0f + i);
+            obj.transform.localScale = Vector3.one;
+            obj.transform.Rotate(new Vector3(0, 0f, 0f));
+
+            costObj.Add(obj);
+        }
+    }
     public void TurnChangeEffect(bool isPlayer)
     {
         Sequence seq = DOTween.Sequence();

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4ed138a84aeba418d160291dbf036b, type: 3}
+  m_Name: LeatherGlove
+  m_EditorClassIdentifier: 
+  _methodName: []
+  itemType: 5
+  getFlagStackable: 0
+  itemIcon: {fileID: 21300000, guid: 8cb3d9c163d2e8b4695d0207b58ce606, type: 3}
+  objModelPrefab: {fileID: 0}
+  itemData:
+    item_id: 17
+    item_name: LeatherGlove
+    inBattle: 0
+    abilities:
+    - characterStack: 1
+      valStack: 3
+      min: 3
+      max: 3
+    - characterStack: 3
+      valStack: 1
+      min: 1
+      max: 1
+  boneNameLists: []
+  itemSummery: "\uB2E4\uC774\uC544 \uBCF4\uC11D\uC774 \uBC15\uD600\uC788\uB294 \uC7A5\uAC11\n"
+  value: 

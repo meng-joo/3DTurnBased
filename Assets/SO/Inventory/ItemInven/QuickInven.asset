@@ -16,45 +16,52 @@ MonoBehaviour:
   type: 2
   inventory:
     InvenSlots:
-    - itemTypes: 06000000
+    - itemTypes: 
       item:
         item_id: -1
         item_name: 
+        inBattle: 0
         abilities: []
       itemCnt: 0
-    - itemTypes: 06000000
+    - itemTypes: 
       item:
         item_id: -1
         item_name: 
+        inBattle: 0
         abilities: []
       itemCnt: 0
-    - itemTypes: 06000000
+    - itemTypes: 
       item:
         item_id: -1
         item_name: 
+        inBattle: 0
         abilities: []
       itemCnt: 0
-    - itemTypes: 06000000
+    - itemTypes: 
       item:
         item_id: -1
         item_name: 
+        inBattle: 0
         abilities: []
       itemCnt: 0
-    - itemTypes: 06000000
+    - itemTypes: 
       item:
         item_id: -1
         item_name: 
+        inBattle: 0
         abilities: []
       itemCnt: 0
-    - itemTypes: 06000000
+    - itemTypes: 
       item:
         item_id: -1
         item_name: 
+        inBattle: 0
         abilities: []
       itemCnt: 0
-    - itemTypes: 06000000
+    - itemTypes: 
       item:
         item_id: -1
         item_name: 
+        inBattle: 0
         abilities: []
       itemCnt: 0

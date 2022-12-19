@@ -119,16 +119,23 @@ public class SkillCard : PoolAbleObject
 
                     _mainModule.dirObj.transform.rotation = Quaternion.Euler(90f, -rotateDegree - 6f, 0);
 
-                    if (hit.collider.CompareTag(target))
+
+                if (hit.collider.CompareTag(target))
                     {
                         if (fadeImage.color.a <= 1f)
                         {
+                            _mainModule.dirObj.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
                             Color color = fadeImage.color;
                             color.a += 0.08f;
                             fadeImage.color = color;
                             return;
                         }
                     }
+                else
+                {
+                     _mainModule.dirObj.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
+
+                }
                 //}
             }
         }
@@ -147,6 +154,8 @@ public class SkillCard : PoolAbleObject
 
     public void PointerUp()
     {
+        _mainModule.dirObj.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         int cost = Int32.Parse(skillCost.text);
@@ -161,6 +170,20 @@ public class SkillCard : PoolAbleObject
                     method.Invoke(null, new object[] { hit.collider.gameObject, value[count], skillText });
                     //_battleUI.SpawnSkillEffectText(value[count].ToString(), skillText, transform.position);
                     count++;
+                }
+                if (_mainModule.playerDataSO.isLetterOpener)
+                {
+                    _mainModule.playerDataSO.threeCnt++;
+                }
+                if (_mainModule.playerDataSO.threeCnt % 3 == 0)
+                {
+                    BattleManager battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+
+                    for (int i = 0; i < battleManager.fieldEnemies.Count; i++)
+                    {
+                        HpModule hp = battleManager.fieldEnemies[i].GetComponent<HpModule>();
+                        hp.GetHit(5, Color.red);
+                    }
                 }
 
                 _battleUI.cost -= cost;

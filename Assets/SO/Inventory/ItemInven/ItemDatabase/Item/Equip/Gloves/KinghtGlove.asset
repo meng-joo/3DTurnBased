@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4ed138a84aeba418d160291dbf036b, type: 3}
+  m_Name: KinghtGlove
+  m_EditorClassIdentifier: 
+  _methodName: []
+  itemType: 5
+  getFlagStackable: 0
+  itemIcon: {fileID: 21300000, guid: 525004654fa91bc46afa229e16ebf2e1, type: 3}
+  objModelPrefab: {fileID: 0}
+  itemData:
+    item_id: 51
+    item_name: KinghtGlove
+    inBattle: 0
+    abilities:
+    - characterStack: 1
+      valStack: 5
+      min: 5
+      max: 5
+    - characterStack: 0
+      valStack: 5
+      min: 5
+      max: 5
+  boneNameLists: []
+  itemSummery: "\uC544\uC11C\uAC00 \uC5D1\uC2A4\uCE7C\uB9AC\uBC84\uB97C \uB4E4\uB54C
+    \uCC29\uC6A9\uD55C \uC7A5"
+  value: 

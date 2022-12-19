@@ -32,6 +32,19 @@ public class PlayerDataSO : ScriptableObject
     [Header("플레이어 보유 스킬")]
     public Skill[] _skills;
 
+    #region 유물관련 불변수들
+    public bool isBuringBlood = false;
+    public bool isAnchor = false;
+    public bool isBagOfMarbles = false;
+    public bool isStrawberry = false;
+    public bool isLantern = false;
+    public bool isBloodVial = false;
+    public bool isPantograph = false;
+    public bool isClockClasp = false;
+    public bool isLetterOpener = false;
+    public int threeCnt = 0;
+    #endregion
+
     //public void ChangeStat(string statName, int addState)
     //{
     //    switch(statName)

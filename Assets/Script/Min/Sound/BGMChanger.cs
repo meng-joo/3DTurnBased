@@ -1,0 +1,65 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+using DG.Tweening;
+
+public class BGMChanger : MonoSingleton<BGMChanger>
+{
+    [SerializeField] private ClipMatch[] clipMatch;
+    private Dictionary<BGMType, AudioClip> clipDic = new();
+    AudioSource bgmSource;
+
+    public void Awake()
+    {
+        bgmSource = GetComponent<AudioSource>();
+        foreach (ClipMatch match in clipMatch)
+        {
+            clipDic.Add(match.type, match.clip);
+        }
+    }
+
+    public void ActiveAudio(BGMType type)
+    {
+        StartCoroutine(ChangeBGM(clipDic[type]));
+    }
+
+    IEnumerator ChangeBGM(AudioClip newClip)
+    {
+        float vol;
+
+        if (bgmSource.clip != null)
+        {
+            vol = 1;
+            while (vol >= 0)
+            {
+                bgmSource.volume = vol;
+                vol -= 0.05f;
+                yield return new WaitForSecondsRealtime(0.05f);
+            }
+        }
+        bgmSource.clip = newClip;
+        bgmSource.Play();
+        vol = 0;
+        while (vol <= 1)
+        {
+            bgmSource.volume = vol;
+            vol += 0.05f;
+            yield return new WaitForSecondsRealtime(0.05f);
+        }
+    }
+
+    [Serializable]
+    public class ClipMatch
+    {
+        public BGMType type;
+        public AudioClip clip;
+    }
+}
+public enum BGMType
+{
+    Default,
+    Start,
+    Select,
+    Fight,
+}

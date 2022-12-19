@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4ed138a84aeba418d160291dbf036b, type: 3}
+  m_Name: KinghtArmor
+  m_EditorClassIdentifier: 
+  _methodName: []
+  itemType: 1
+  getFlagStackable: 0
+  itemIcon: {fileID: 21300000, guid: c720139856ac0f44d894498956e1b55f, type: 3}
+  objModelPrefab: {fileID: 0}
+  itemData:
+    item_id: 20
+    item_name: KinghtArmor
+    inBattle: 0
+    abilities:
+    - characterStack: 1
+      valStack: 3
+      min: 3
+      max: 3
+    - characterStack: 3
+      valStack: 3
+      min: 3
+      max: 3
+  boneNameLists: []
+  itemSummery: "\uB79C\uC2AC\uB86F \uAC00\uBB38\uC758 \uAC00\uBCF4\uB85C \uBB3C\uB824\uC624\uB294
+    \uAC11\uC637"
+  value: 

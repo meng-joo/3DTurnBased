@@ -207,9 +207,11 @@ public abstract class UIInventory : MonoBehaviour
                             PlayerData.Health += a.valStack;
                             //hp = mitemAbility[i].valStack;
                             break;
-                        case CharacterStack.Benefit_Effect:
+                        case CharacterStack.Speed:
+                            PlayerData.Speed += a.valStack;
                             break;
-                        case CharacterStack.Detrimental_Effect:
+                        case CharacterStack.Defend:
+                            PlayerData.Def += a.valStack;
                             break;
                     }
                 }
@@ -229,9 +231,11 @@ public abstract class UIInventory : MonoBehaviour
                             PlayerData.Health -= a.valStack;
                             //hp = mitemAbility[i].valStack;
                             break;
-                        case CharacterStack.Benefit_Effect:
+                        case CharacterStack.Speed:
+                            PlayerData.Speed -= a.valStack;
                             break;
-                        case CharacterStack.Detrimental_Effect:
+                        case CharacterStack.Defend:
+                            PlayerData.Def -= a.valStack;
                             break;
                     }
                 }
