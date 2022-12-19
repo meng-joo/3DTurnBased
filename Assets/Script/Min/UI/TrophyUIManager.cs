@@ -53,6 +53,10 @@ public class TrophyUIManager : MonoBehaviour
     public GameObject relicPrefab;
     public Transform relicParent;
 
+
+    public Button bagBtn;
+    public Button settingBtn;
+
     private void Awake()
     {
         Transform[] childList = relicParent.GetComponentsInChildren<RectTransform>();
@@ -78,7 +82,7 @@ public class TrophyUIManager : MonoBehaviour
         trophyPanel.transform.DOLocalMoveY(0, 0.5f);
         trophyPanel.GetComponent<Image>().DOFade(1f, 0.8f);
         trophyPanel.transform.Find("TrophyImage").GetComponent<Image>().DOFade(1f, 0.8f);
-        mainModule.canInven = false;
+       
         AddNewItem();
         SetTrophy();
         AddRelic();
@@ -265,6 +269,7 @@ public class TrophyUIManager : MonoBehaviour
     }
     public void EffectRelic(RelicSO relicSO)
     {
+        inImage.transform.DOKill();
 
         GameObject relic = Instantiate(relicPrefab, relicParent.position, Quaternion.identity);
         relic.transform.SetParent(relicParent);
@@ -279,7 +284,6 @@ public class TrophyUIManager : MonoBehaviour
         seq.Join(relic.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.5f));
         seq.Append(relic.transform.DOScale(Vector3.one, 0.5f));
          inImage.transform.DOKill();
-        DOTween.Clear();
     }
     public void EffectCard(Sprite itemImg)
     {
@@ -366,6 +370,9 @@ public class TrophyUIManager : MonoBehaviour
                 mainModule.isTrophy = false;
                 mainModule.canMove = false;
                 mainModule.canInven = true;
+
+                bagBtn.interactable = true;
+                settingBtn.interactable = true;
 
                 Destroy(mainModule.chestCreateManager.chestAnimators[mainModule.physicsModule.index].gameObject);
             });

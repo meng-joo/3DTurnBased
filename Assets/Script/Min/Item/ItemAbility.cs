@@ -7,8 +7,8 @@ public enum CharacterStack
 {
     Str, //힘
     Hp, // 체력
-    Benefit_Effect, //버프 
-    Detrimental_Effect, // 저주
+    Speed,
+    Defend,
 }
 
 [System.Serializable]

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class VolumeManager : MonoBehaviour
@@ -66,5 +67,13 @@ public class VolumeManager : MonoBehaviour
     public void ExitVolume()
     {
         volumeUI.SetActive(false);
+    }
+    public void Quit()
+    {
+        Application.Quit();
+    }
+    public void ExitScene()
+    {
+        SceneManager.LoadScene("Start");
     }
 }

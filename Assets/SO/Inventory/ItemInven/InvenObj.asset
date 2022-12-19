@@ -18,6 +18,17 @@ MonoBehaviour:
     InvenSlots:
     - itemTypes: 
       item:
+        item_id: 6
+        item_name: Axe
+        inBattle: 0
+        abilities:
+        - characterStack: 0
+          valStack: 5
+          min: 5
+          max: 5
+      itemCnt: 1
+    - itemTypes: 
+      item:
         item_id: -1
         item_name: 
         inBattle: 0
@@ -147,42 +158,5 @@ MonoBehaviour:
         item_id: -1
         item_name: 
         inBattle: 0
-        abilities: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        inBattle: 0
-        abilities: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        abilities: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        abilities: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        abilities: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        abilities: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
         abilities: []
       itemCnt: 0

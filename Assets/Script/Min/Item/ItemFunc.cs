@@ -28,4 +28,20 @@ public class ItemFunc : MonoBehaviour
             hp.GetHit(dmg, Color.red);
         }
     }
+
+    public static void AgilityPotion(int dmg)
+    {
+
+        //민첩 2를 얻습니다
+    }
+    public static void EnergyPotion(int dmg)
+    {
+        MainModule main = GameObject.Find("Player").GetComponent<MainModule>();
+        main.isEnergy = true;
+        //에너지 2를 얻습니다
+    }
+    public static void PowerPotion(int dmg)
+    {
+        //힘 2를 얻습니다
+    }
 }

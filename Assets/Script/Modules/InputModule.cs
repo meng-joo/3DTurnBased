@@ -85,9 +85,13 @@ public class InputModule : MonoBehaviour
         Sequence seq = DOTween.Sequence();
         seq.AppendCallback(() =>
         {
-            mainModule.canMove = true;
+            mainModule.canInven = false;
             mainModule.chestCreateManager.chestAnimators[mainModule.physicsModule.index].Play("Open");
             mainModule.isTrophy = true; 
+            mainModule.canMove = true;
+            
+            mainModule.trophyUI.bagBtn.interactable = false;
+            mainModule.trophyUI.settingBtn.interactable = false;
         });
         seq.AppendInterval(1.35f);
         //seq.AppendCallback(() =>

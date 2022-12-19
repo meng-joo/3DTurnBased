@@ -82,7 +82,14 @@ public class MainModule : MonoBehaviour
     public GameObject dirObj;
     public bool isBattle = false;
 
+    public TrophyUIManager trophyUI;
 
+  
+
+    public bool isEnergy =false;
+
+
+    public BattleManager bm;
     private void Awake()
     {
         physicsModule = GetComponent<PhysicsModule>();
@@ -103,6 +110,8 @@ public class MainModule : MonoBehaviour
 
     private void Start()
     {
+        BGMChanger.Instance.ActiveAudio(BGMType.Default);
+
         _hpModule.SetAvtiveHpbar(false);
 
         _hpModule.InitHP(playerDataSO.Health, playerDataSO.Health);
@@ -122,6 +131,25 @@ public class MainModule : MonoBehaviour
             _battleMobule.StartBattle();
             _moveModule.moveTime = 0;
             SetBattleDelay();
+        }
+        if (playerDataSO.isStrawberry)
+        {
+            HpModule hp = GameObject.Find("Player").GetComponent<HpModule>();
+            hp.maxHp += 7;
+            hp.GetHp(hp.maxHp);
+            playerDataSO.isStrawberry = false;
+        }
+        if (playerDataSO.isLantern)
+        {
+            playerDataSO.cost = 4;
+        }
+        if (isEnergy)
+        {
+            int a = bm._battleUI.cost;
+            a += 2;
+            bm._battleUI.CreateCost(a);
+
+            isEnergy = false;
         }
     }
 

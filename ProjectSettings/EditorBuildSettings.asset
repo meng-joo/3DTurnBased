@@ -8,9 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/InGame_Hollway.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/Scenes/Meng.unity
-    guid: c217598481543ee4b8bd9aef67ae8ce6
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/Scenes/Game.unity
     guid: 7611b3f5960cb0b4cafb82f6e14576e5

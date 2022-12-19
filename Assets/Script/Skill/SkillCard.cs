@@ -162,6 +162,20 @@ public class SkillCard : PoolAbleObject
                     //_battleUI.SpawnSkillEffectText(value[count].ToString(), skillText, transform.position);
                     count++;
                 }
+                if (_mainModule.playerDataSO.isLetterOpener)
+                {
+                    _mainModule.playerDataSO.threeCnt++;
+                }
+                if (_mainModule.playerDataSO.threeCnt % 3 == 0)
+                {
+                    BattleManager battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+
+                    for (int i = 0; i < battleManager.fieldEnemies.Count; i++)
+                    {
+                        HpModule hp = battleManager.fieldEnemies[i].GetComponent<HpModule>();
+                        hp.GetHit(5, Color.red);
+                    }
+                }
 
                 _battleUI.cost -= cost;
                 _battleUI.costTxt.text = $"{_battleUI.cost + "/" + _battleUI.maxCost}";

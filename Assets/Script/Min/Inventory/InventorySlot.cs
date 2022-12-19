@@ -29,7 +29,6 @@ public class InvenSlot
             return item.item_id >= 0 ? inventoryObj.itemDBObj.itemObjs[item.item_id] : null;
         }
     }
-    private ApplyAbility applyAbility;
 
     public InvenSlot() => uploadSlot(new Item(), 0);
     public InvenSlot(Item item, int cnt) => uploadSlot(item, cnt);
