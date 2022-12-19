@@ -26,6 +26,10 @@ public class BattleManager : MonoBehaviour
     public GameObject bagImage;
     public GameObject settingImage;
 
+    public GameObject relicParent;
+    public GameObject battleRelicParent;
+
+    public GameObject dirSprite;
     private void Start()
     {
         killenemyCount = 0;
@@ -45,6 +49,7 @@ public class BattleManager : MonoBehaviour
             // {
             //   _battleUI.costObj[i].SetActive(true);
             //}
+            dirSprite.SetActive(true);
             _mainModule.canInven = false;
             _mainModule.isBattle = true;
             _battleUI.cemetryBtn.SetActive(true);
@@ -56,6 +61,8 @@ public class BattleManager : MonoBehaviour
             SetBattleUI();
             bagImage.transform.DOMoveX(2000f, 0.5f);
             settingImage.transform.DOMoveX(2000f, 0.5f);
+            relicParent.SetActive(false);
+            battleRelicParent.SetActive(true);
         });
     }
 
@@ -106,6 +113,10 @@ public class BattleManager : MonoBehaviour
             }
         }
         _mainModule.isBattle = false;
+        dirSprite.SetActive(false);
+
+        battleRelicParent.SetActive(false);
+        relicParent.SetActive(true);
 
         bagImage.transform.DOMoveX(1900f, 0.3f);
         settingImage.transform.DOMoveX(1900f, 0.3f);

@@ -119,16 +119,23 @@ public class SkillCard : PoolAbleObject
 
                     _mainModule.dirObj.transform.rotation = Quaternion.Euler(90f, -rotateDegree - 6f, 0);
 
-                    if (hit.collider.CompareTag(target))
+
+                if (hit.collider.CompareTag(target))
                     {
                         if (fadeImage.color.a <= 1f)
                         {
+                            _mainModule.dirObj.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
                             Color color = fadeImage.color;
                             color.a += 0.08f;
                             fadeImage.color = color;
                             return;
                         }
                     }
+                else
+                {
+                     _mainModule.dirObj.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
+
+                }
                 //}
             }
         }
@@ -147,6 +154,8 @@ public class SkillCard : PoolAbleObject
 
     public void PointerUp()
     {
+        _mainModule.dirObj.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         int cost = Int32.Parse(skillCost.text);

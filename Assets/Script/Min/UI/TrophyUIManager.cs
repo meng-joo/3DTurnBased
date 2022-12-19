@@ -52,6 +52,7 @@ public class TrophyUIManager : MonoBehaviour
 
     public GameObject relicPrefab;
     public Transform relicParent;
+    public Transform battlerelicParent;
 
 
     public Button bagBtn;
@@ -74,6 +75,23 @@ public class TrophyUIManager : MonoBehaviour
         {
             GameObject relicdObj = Instantiate(relicPrefab, relicParent.transform.position, Quaternion.identity).gameObject;
             relicdObj.transform.SetParent(relicParent);
+            relicdObj.GetComponent<RelicImage>().Set(playerRelic.relics[i]);
+        }
+
+
+        Transform[] rellicList = battlerelicParent.GetComponentsInChildren<RectTransform>();
+        foreach (var deletecard in rellicList)
+        {
+            if (deletecard == battlerelicParent)
+                continue;
+
+            Destroy(deletecard.gameObject);
+        }
+
+        for (int i = 0; i < playerRelic.relics.Count; i++)
+        {
+            GameObject relicdObj = Instantiate(relicPrefab, battlerelicParent.transform.position, Quaternion.identity).gameObject;
+            relicdObj.transform.SetParent(battlerelicParent);
             relicdObj.GetComponent<RelicImage>().Set(playerRelic.relics[i]);
         }
     }

@@ -127,7 +127,11 @@ public class BattleUI : MonoBehaviour
     {
         enemyKillCount.value = mainModule.playerDataSO.killEnemy;
 
-      
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            CreateCost(5);
+        }
+
     }
 
     public void SetBattleUI()

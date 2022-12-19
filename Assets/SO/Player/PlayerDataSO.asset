@@ -19,7 +19,7 @@ MonoBehaviour:
   Def: 3
   Speed: 15
   stage: 1
-  killEnemy: 8
+  killEnemy: 0
   cost: 3
   player: {fileID: 11400000, guid: e685c9983c5323c48b0883e0cfe4a469, type: 2}
   canBattle: 1
@@ -48,5 +48,5 @@ MonoBehaviour:
   isBloodVial: 0
   isPantograph: 0
   isClockClasp: 0
-  isLetterOpener: 0
-  threeCnt: 11
+  isLetterOpener: 1
+  threeCnt: 23
