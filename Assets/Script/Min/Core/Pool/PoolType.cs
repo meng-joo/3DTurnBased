@@ -24,8 +24,12 @@ public enum PoolType
     Enemy6,
     Enemy7,
     Enemy8,
+    Enemy9,
     Boss1,
     Boss2,
     Boss3,
-    Sound
+    Sound,
+    Status_Week,
+    Status_Fear,
+    Status_Shock
 }

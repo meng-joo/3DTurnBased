@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: b8369390ac8998e459f9abb0b6569a5e
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - LeeSeoyun
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 7b5f9d2f12374b041849827258bf66bf, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

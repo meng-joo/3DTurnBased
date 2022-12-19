@@ -79,9 +79,14 @@ public class TrophyUIManager : MonoBehaviour
         trophyPanel.GetComponent<Image>().DOFade(1f, 0.8f);
         trophyPanel.transform.Find("TrophyImage").GetComponent<Image>().DOFade(1f, 0.8f);
         mainModule.canInven = false;
+        mainModule.canMove = true;
         AddNewItem();
         SetTrophy();
-        AddRelic();
+
+        if (mainModule.canRelic)
+        {
+            AddRelic();
+        }
     }
     public Skill RandomSkill()
     {
@@ -366,8 +371,12 @@ public class TrophyUIManager : MonoBehaviour
                 mainModule.isTrophy = false;
                 mainModule.canMove = false;
                 mainModule.canInven = true;
+                mainModule.canRelic = false;
 
-                Destroy(mainModule.chestCreateManager.chestAnimators[mainModule.physicsModule.index].gameObject);
+
+                Destroy(mainModule.chestCreateManager.chestAnimators
+                [mainModule.physicsModule.index].gameObject.transform.parent.gameObject);
+                mainModule._UIModule.OnInteractionKeyImage(false, "", "j", " ");
             });
         }
         else

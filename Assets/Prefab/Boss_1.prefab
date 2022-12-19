@@ -1207,6 +1207,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   shield: 0
+  isPlayer: 0
+  weekness: 0
+  fear: 0
   effectSpeed: 0.002
 --- !u!114 &8001286511258810936
 MonoBehaviour:
@@ -1228,7 +1231,7 @@ MonoBehaviour:
   - Heal
   enemyData: {fileID: 0}
   hpmodule: {fileID: 0}
-  enemyType: 20
+  enemyType: 21
 --- !u!114 &8001286511258810937
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -22,9 +22,14 @@ public class EnemyData : PoolAbleObject
     public int Def => _def;
     public int Speed => _speed;
 
+    public void Awake()
+    {
+        _aIModule = GetComponent<AIModule>();
+    }
+
     public override void Init_Pop()
     {
-        float randhp = Random.Range(0.7f, 1.3f);
+        float randhp = Random.Range(0.7f, 1.3f) * Mathf.Min(Mathf.Min(_aIModule.player.playerDataSO.stage * Random.Range(0.4f, 1.5f), 1), 2);
         float randatk = Random.Range(0.7f, 1.3f);
         float randdef = Random.Range(0.7f, 1.3f);
         float randspeed = Random.Range(0.7f, 1.3f);

@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 using UnityEngine.AI;
 using DG.Tweening;
 
 public class BattleManager : MonoBehaviour
 {
     MainModule _mainModule;
+
+    public CinemachineVirtualCamera playerHitCam;
 
     public BattleUI _battleUI;
 
@@ -24,6 +27,7 @@ public class BattleManager : MonoBehaviour
     public int killenemyCount;
     public int maxEnemyCount;
 
+    public ChestCreateManager ccm;
     private void Start()
     {
         killenemyCount = 0;
@@ -43,6 +47,7 @@ public class BattleManager : MonoBehaviour
             // {
             //   _battleUI.costObj[i].SetActive(true);
             //}
+            ccm.parentTrm.SetActive(false);
             _mainModule.canInven = false;
             _mainModule.isBattle = true;
             _battleUI.cemetryBtn.SetActive(true);
@@ -61,7 +66,9 @@ public class BattleManager : MonoBehaviour
         {
             for (int i = 0; i < GetEnemy(); i++)
             {
+                Debug.Log("[이거 실행 된다? ㅋㅋ]");
                 GameObject enemyPrefab = PoolManager.Instance.Pop(EnemyType()).gameObject;
+                Debug.Log(enemyPrefab);
                 fieldEnemies.Add(enemyPrefab);
                 fieldEnemies[i].transform.position = _mainModule._enemySpawnPoint[i].position;
                 fieldEnemies[i].transform.DOScale(1, 1f);
@@ -96,8 +103,10 @@ public class BattleManager : MonoBehaviour
                 Destroy(childList[i].gameObject);
             }
         }
-        _mainModule.isBattle = false;
+        ccm.parentTrm.SetActive(true);
 
+        _mainModule.isBattle = false;
+        _battleUI.costObj.Clear();
         _mainModule._animator.Play("Win");
         _mainModule._animator.SetBool("Fight", false);
         _mainModule.twoView.Priority += 10;
@@ -126,6 +135,15 @@ public class BattleManager : MonoBehaviour
 
         else
         {
+            SkillFunc.AddShield(_mainModule.gameObject, _mainModule.playerDataSO.Def, Color.blue);
+            GameObject a = PoolManager.Instance.Pop(PoolType.VFX5).gameObject;
+            a.transform.position = _mainModule.transform.position + new Vector3(0, 1, 0);
+
+            playerHitCam.Priority += 100;
+            _mainModule._HpModule.TurnEndAbnormalStatus();
+
+            yield return new WaitForSeconds(0.7f);
+
             for (int i = 0; i < fieldEnemies.Count; i++)
             {
                 fieldEnemies[i].GetComponent<HpModule>().shield = 0;
@@ -136,6 +154,7 @@ public class BattleManager : MonoBehaviour
             {
                 fieldEnemies[i].GetComponent<AIModule>().WhatToDo();
                 yield return new WaitForSeconds(1f);
+                fieldEnemies[i].GetComponent<HpModule>().TurnEndAbnormalStatus();
             }
 
             _battleUI.cardCount = _battleUI.GetCardCount();
@@ -143,7 +162,10 @@ public class BattleManager : MonoBehaviour
            _battleUI.TurnChangeEffect(true);
             yield return new WaitForSeconds(0.2f);
             _battleUI.SetActiveButton(true);
-            /*if(!shieldMaintain)*/_mainModule._HpModule.shield = 0;
+
+            playerHitCam.Priority -= 100;
+            /*if(!shieldMaintain)*/
+            _mainModule._HpModule.shield = 0;
         }
     }
 
@@ -173,7 +195,8 @@ public class BattleManager : MonoBehaviour
     PoolType EnemyType()
     {
         var enumValues = System.Enum.GetValues(enumType: typeof(PoolType));
-        return (PoolType)enumValues.GetValue(Random.Range((int)PoolType.Enemy1 + (_mainModule.playerDataSO.stage - 1), (int)PoolType.Enemy5 + _mainModule.playerDataSO.stage));
+        Debug.Log((PoolType)enumValues.GetValue(Random.Range((int)PoolType.Enemy1 + ((_mainModule.playerDataSO.stage - 1) * 3), (int)PoolType.Enemy1 + (_mainModule.playerDataSO.stage * 3))));
+        return (PoolType)enumValues.GetValue(Random.Range((int)PoolType.Enemy1 + ((_mainModule.playerDataSO.stage - 1) * 3), (int)PoolType.Enemy1 + (_mainModule.playerDataSO.stage * 3)));
     }
 
     //public NavMeshHit SetMonsterPos()

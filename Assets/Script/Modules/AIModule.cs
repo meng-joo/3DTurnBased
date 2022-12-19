@@ -9,7 +9,7 @@ public class AIModule : MonoBehaviour
     public Animator _animator;
 
     public string[] skillName = new string[0];
-
+    
     private BattleManager _battleManager;
     public EnemyData enemyData;
     public HpModule hpmodule;

@@ -1032,7 +1032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 5b760a0b81992734fb420750eab00f0e, type: 2}
-  _aIModule: {fileID: 0}
+  _aIModule: {fileID: 2500624003818557016}
 --- !u!114 &405912189441032923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1072,6 +1072,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   shield: 0
+  isPlayer: 0
+  weekness: 0
+  fear: 0
   effectSpeed: 0.002
 --- !u!65 &1310607497269877539
 BoxCollider:
@@ -1084,8 +1087,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.48, z: 0}
+  m_Size: {x: 1.1910067, y: 1.1370661, z: 1.2190781}
+  m_Center: {x: -0.029909968, y: 0.5485331, z: 0.0103931725}
 --- !u!114 &3277517670792680490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1360,6 +1363,10 @@ PrefabInstance:
     - target: {fileID: 82764548911053091, guid: 10642cff72d178241a5bb25efdca6a9d, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867480868093038220, guid: 10642cff72d178241a5bb25efdca6a9d, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7592232756793733921, guid: 10642cff72d178241a5bb25efdca6a9d, type: 3}
       propertyPath: m_Pivot.x

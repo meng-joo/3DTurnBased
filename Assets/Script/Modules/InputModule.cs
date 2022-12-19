@@ -98,8 +98,8 @@ public class InputModule : MonoBehaviour
         seq.AppendInterval(2f);
         seq.AppendCallback(() =>
         {
-           // mainModule.ChestOpenParticle.Stop();
-
+            // mainModule.ChestOpenParticle.Stop();
+            mainModule.canRelic = true;
             mainModule._UIModule.TrophyUIManager.AppearTrophy();
         });
 

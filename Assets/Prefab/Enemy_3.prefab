@@ -1439,6 +1439,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   shield: 0
+  isPlayer: 0
   effectSpeed: 0.005
 --- !u!114 &2423495290411961354
 MonoBehaviour:
@@ -1498,8 +1499,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.67, y: 1.65, z: 0.79}
-  m_Center: {x: 0, y: 0.98, z: 0}
+  m_Size: {x: 1.006443, y: 1.8457698, z: 1.087373}
+  m_Center: {x: -0.0006543398, y: 0.9588639, z: 0.013068914}
 --- !u!1 &2731760135151409356
 GameObject:
   m_ObjectHideFlags: 0

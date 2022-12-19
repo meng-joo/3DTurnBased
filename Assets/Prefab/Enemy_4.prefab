@@ -237,6 +237,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   shield: 0
+  isPlayer: 0
   effectSpeed: 0.002
 --- !u!65 &777800861798890478
 BoxCollider:
@@ -249,8 +250,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.66, y: 1.76, z: 0.63}
-  m_Center: {x: 0, y: 0.91, z: 0}
+  m_Size: {x: 1.0680763, y: 1.8679258, z: 0.9196841}
+  m_Center: {x: -0.030471504, y: 0.96396285, z: -0.02158621}
 --- !u!114 &777800861798890474
 MonoBehaviour:
   m_ObjectHideFlags: 0

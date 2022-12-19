@@ -99,18 +99,16 @@ public abstract class UIInventory : MonoBehaviour
         MouseTransformData.mouseInventory = null;
     }
 
-
     public void OnEnterSlots(GameObject gameObj)
     {
         MouseTransformData.mouseSlot = gameObj;
         MouseTransformData.mouseInventory = gameObj.GetComponentInParent<UIInventory>();
 
-
         if (uiSlotLists[gameObj].ItemObject != null)
         {
             //Ray a = Camera.main.ScreenPointToRay(Input.mousePosition);
             //(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
-            explainTap.transform.position = Input.mousePosition;
+            //explainTap.transform.position = Input.mousePosition;
 
             AudioManager.PlayAudio(audioClip);
 

@@ -19,6 +19,7 @@ public class EnemyAISkill : MonoBehaviour
 
         int dmg = (int)Random.Range(_aIModule.enemyData.Atk / 2f, _aIModule.enemyData.Atk);
 
+        dmg = Mathf.Max(dmg, 1);
         _aIModule.player._HpModule.GetHit(dmg, Color.red);
     }
 
@@ -28,7 +29,8 @@ public class EnemyAISkill : MonoBehaviour
 
         int value = Random.Range(_aIModule.enemyData.Def, _aIModule.enemyData.Def * 2);
 
-
+        GameObject a = PoolManager.Instance.Pop(PoolType.VFX5).gameObject;
+        a.transform.position = transform.position + new Vector3(0, 1, 0);
 
         yield return new WaitForSeconds(0.4f);
         _aIModule.hpmodule.OnShield(value);

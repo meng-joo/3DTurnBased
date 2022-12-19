@@ -41,6 +41,9 @@ public class MainModule : MonoBehaviour
     [Header("인벤 열수있냐")]
     public bool canInven;
 
+    public bool canRelic = false;
+
+
     [Space]
     [Header("이 스테이지 클리어?")]
     public bool stageClear;

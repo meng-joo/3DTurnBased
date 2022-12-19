@@ -12,6 +12,8 @@ public class ChestCreateManager : MonoBehaviour
 
     public List<Animator> chestAnimators;
 
+    public GameObject parentTrm;
+
     void Start()
     {
         CreateChest();
@@ -32,6 +34,7 @@ public class ChestCreateManager : MonoBehaviour
             if (tTrms.Contains(tTrms[rand]))
             {
                 GameObject chestObj = Instantiate(chestPrefab, tTrms[rand].position, tTrms[rand].rotation);
+                chestObj.transform.SetParent(parentTrm.transform);
                 chestObj.name += $"_{i}";
                 chestAnimators.Add(chestObj.GetComponentInChildren<Animator>());
                 tTrms.Remove(tTrms[rand]);

@@ -27,6 +27,14 @@ public class BattleUI : MonoBehaviour
     public TextMeshProUGUI currentPlayerInfo;
 
     [Space]
+    [Header("효과들 이미지")]
+    public StatusSO statusSO;
+
+    [Space]
+    [Header("이펙트")]
+    public Image _hitEffect;
+
+    [Space]
     [Header("인벤스킬")]
     public SkillIInvenObj _skill;
 

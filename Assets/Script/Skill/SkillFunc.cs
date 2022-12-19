@@ -10,6 +10,11 @@ public class SkillFunc : MonoBehaviour
     public static void HitEnemy(GameObject _enemy, int dmg, Color32 _color)
     {
         HpModule hp = _enemy.GetComponent<HpModule>();
+        MainModule player = GameObject.Find("Player").GetComponent<MainModule>();
+        if(player._HpModule.fear >= 1)
+        {
+            dmg = (int)(dmg / 0.7f);
+        }
         hp.GetHit(dmg, _color);
         //여기서 적때리는 기능 구현해야합
     }
@@ -69,7 +74,24 @@ public class SkillFunc : MonoBehaviour
 
     public static void Weeker(GameObject _enemy, int weekValue, Color32 _color)
     {
+        if (_enemy.GetComponent<HpModule>().weekness < 1)
+        {
+            GameObject a = PoolManager.Instance.Pop(PoolType.Status_Week).gameObject;
+            a.transform.SetParent(_enemy.GetComponent<HpModule>().statusImage.transform);
+        }
+        _enemy.GetComponent<HpModule>().weekness += weekValue;
+        //_enemy.GetComponent<HpModule>().AddStatus("Week");
+    }
 
+    public static void Fear(GameObject _enemy, int fearValue, Color32 _color)
+    {
+        if (_enemy.GetComponent<HpModule>().fear < 1)
+        {
+            GameObject a = PoolManager.Instance.Pop(PoolType.Status_Fear).gameObject;
+            a.transform.SetParent(_enemy.GetComponent<HpModule>().statusImage.transform);
+        }
+        _enemy.GetComponent<HpModule>().fear += fearValue;
+        //_enemy.GetComponent<HpModule>().AddStatus("Fear");
     }
 }
 
