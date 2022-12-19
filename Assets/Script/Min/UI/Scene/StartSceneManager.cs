@@ -45,6 +45,7 @@ public class StartSceneManager : MonoBehaviour
     public RectTransform exitTrm;
     public void GameStartBtn()
     {
+        SceneManager.LoadScene("InGame_Hollway");
         //탑으로 가는 씬
     }
 
@@ -65,9 +66,9 @@ public class StartSceneManager : MonoBehaviour
             escBtn.GetComponent<Image>().DOFade(1f, 0.5f);
             escBtn.GetComponentInChildren<TextMeshProUGUI>().DOFade(1f, 0.5f);
 
-            startTrm.DOMoveX(-120f, 0.5f);
-            dicTrm.DOMoveX(-120f, 0.5f);
-            exitTrm.DOMoveX(-120f, 0.5f);
+            startTrm.DOMoveX(-160f, 0.5f);
+            dicTrm.DOMoveX(-160f, 0.5f);
+            exitTrm.DOMoveX(-160f, 0.5f);
         });
     }
    
@@ -84,10 +85,10 @@ public class StartSceneManager : MonoBehaviour
             GameObject skillObj = Instantiate(card, transform.position, Quaternion.identity);
             skillObj.transform.SetParent(skillParentTrm);
             skillObj.GetComponent<StartCardImage>().Set(all._allSkills[i]);
-            skillObj.transform.Find("Image").GetComponent<Image>().sprite = all._allSkills[i].skillInfo._skillImage;
-            skillObj.transform.Find("NameBackground").GetComponentInChildren<TextMeshProUGUI>().text = all._allSkills[i].skillInfo._skillName;
+            skillObj.transform.Find("Deco").transform.Find("SkillImageBackground").transform.Find("Image").GetComponentInChildren<Image>().sprite = all._allSkills[i].skillInfo._skillImage;
+            skillObj.transform.Find("Deco").transform.Find("NameImage").GetComponentInChildren<TextMeshProUGUI>().text = all._allSkills[i].skillInfo._skillName;
             skillObj.transform.Find("CostImage").GetComponentInChildren<TextMeshProUGUI>().text = $"{all._allSkills[i].skillInfo._skillCost}";
-            skillObj.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = all._allSkills[i].skillInfo._skillExplanation;
+            skillObj.transform.Find("Deco").transform.Find("SkillInfoImage").GetComponentInChildren<TextMeshProUGUI>().text = all._allSkills[i].skillInfo._skillExplanation;
         }
         skillObj.transform.DOLocalMoveY(0, 0.3f);
     }
@@ -136,9 +137,9 @@ public class StartSceneManager : MonoBehaviour
         //  scroll[i].SetActive(false);
         //  }
 
-        startTrm.DOMoveX(120f, 0.5f);
-        dicTrm.DOMoveX(120f, 0.5f);
-        exitTrm.DOMoveX(120f, 0.5f);
+        startTrm.DOMoveX(180f, 0.5f);
+        dicTrm.DOMoveX(180f, 0.5f);
+        exitTrm.DOMoveX(180f, 0.5f);
 
     }
     public void Delete()

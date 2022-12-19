@@ -25,8 +25,8 @@ public class StartRelicImage : MonoBehaviour, IPointerExitHandler, IPointerEnter
         explainTap.SetActive(true);
 
         transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.5f);
-        explainTap.transform.Find("NameTxt").GetComponent<TextMeshProUGUI>().text = relicSo.relicName;
-        explainTap.transform.Find("ExplainTxt").GetComponent<TextMeshProUGUI>().text = relicSo.relicExplain;
+        explainTap.transform.Find("NameText").GetComponent<TextMeshProUGUI>().text = relicSo.relicName;
+        explainTap.transform.Find("ExplainText").GetComponent<TextMeshProUGUI>().text = relicSo.relicExplain;
     }
 
     public void OnPointerExit(PointerEventData eventData)
