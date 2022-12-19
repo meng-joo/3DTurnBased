@@ -245,6 +245,17 @@ public class TrophyUIManager : MonoBehaviour
     public RelicSO GetRandomRelic()
     {
         int randomRelic = Random.Range(0, allRelic.relics.Count);
+        
+        //foreach (var item in playerRelic.relics)
+        //{
+        //    if (allRelic.relics[randomRelic] == item)
+        //    {
+        //        randomRelic = Random.Range(0, allRelic.relics.Count);
+        //        Debug.Log(randomRelic);
+        //        //같은게있으면 다시찾아라
+        //        continue;
+        //    }
+        //}
 
         foreach (var item in playerRelic.relics)
         {
@@ -255,7 +266,12 @@ public class TrophyUIManager : MonoBehaviour
                 //같은게있으면 다시찾아라
                 continue;
             }
+            else
+            {
+                break;
+            }
         }
+
         playerRelic.relics.Add(allRelic.relics[randomRelic]);
         return allRelic.relics[randomRelic];
     }
