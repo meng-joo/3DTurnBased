@@ -22,8 +22,8 @@ public class StartItemImage : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         explainTap.SetActive(true);
 
         transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.5f);
-        explainTap.transform.Find("NameTxt").GetComponent<TextMeshProUGUI>().text = itemObj.itemData.item_name;
-        explainTap.transform.Find("ExplainTxt").GetComponent<TextMeshProUGUI>().text = itemObj.itemSummery;
+        explainTap.transform.Find("NameText").GetComponent<TextMeshProUGUI>().text = itemObj.itemData.item_name;
+        explainTap.transform.Find("ExplainText").GetComponent<TextMeshProUGUI>().text = itemObj.itemSummery;
     }
 
     public void OnPointerExit(PointerEventData eventData)
