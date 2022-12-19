@@ -193,55 +193,62 @@ public abstract class UIInventory : MonoBehaviour
             {
                 return;
             }
-            if (currentInven.item.abilities != null)
+            //내가 지금 잡은애가 장비가 아니고 도착할애도 장비가 아니야 그러면 아바가없는거지
+            if (currentInven.inventoryObj.type !=  InterfaceType.Equipment && targetInven.inventoryObj.type != InterfaceType.Equipment)
             {
-                foreach (ItemAbility a in currentInven.item.abilities)
+                return;
+            }
+            else
+            {
+                if (currentInven.item.abilities != null)
                 {
-                    switch (a.characterStack)
+                    foreach (ItemAbility a in currentInven.item.abilities)
                     {
-
-                        case CharacterStack.Str:
-                            PlayerData.Ad += a.valStack;
-                            //ad = a.valStack;
-                            break;
-                        case CharacterStack.Hp:
-                            PlayerData.Health += a.valStack;
-                            //hp = mitemAbility[i].valStack;
-                            break;
-                        case CharacterStack.Speed:
-                            PlayerData.Speed += a.valStack;
-                            break;
-                        case CharacterStack.Defend:
-                            PlayerData.Def += a.valStack;
-                            break;
+                        switch (a.characterStack)
+                        {
+                            case CharacterStack.Str:
+                                PlayerData.Ad += a.valStack;
+                                //ad = a.valStack;
+                                break;
+                            case CharacterStack.Hp:
+                                PlayerData.Health += a.valStack;
+                                //hp = mitemAbility[i].valStack;
+                                break;
+                            case CharacterStack.Speed:
+                                PlayerData.Speed += a.valStack;
+                                break;
+                            case CharacterStack.Defend:
+                                PlayerData.Def += a.valStack;
+                                break;
+                        }
                     }
                 }
-            }
 
-            if (targetInven.item.abilities != null)
-            {
-                foreach (ItemAbility a in targetInven.item.abilities)
+                if (targetInven.item.abilities != null)
                 {
-                    switch (a.characterStack)
+                    foreach (ItemAbility a in targetInven.item.abilities)
                     {
-                        case CharacterStack.Str:
-                            PlayerData.Ad -= a.valStack;
-                            //ad = a.valStack;
-                            break;
-                        case CharacterStack.Hp:
-                            PlayerData.Health -= a.valStack;
-                            //hp = mitemAbility[i].valStack;
-                            break;
-                        case CharacterStack.Speed:
-                            PlayerData.Speed -= a.valStack;
-                            break;
-                        case CharacterStack.Defend:
-                            PlayerData.Def -= a.valStack;
-                            break;
+                        switch (a.characterStack)
+                        {
+                            case CharacterStack.Str:
+                                PlayerData.Ad -= a.valStack;
+                                //ad = a.valStack;
+                                break;
+                            case CharacterStack.Hp:
+                                PlayerData.Health -= a.valStack;
+                                //hp = mitemAbility[i].valStack;
+                                break;
+                            case CharacterStack.Speed:
+                                PlayerData.Speed -= a.valStack;
+                                break;
+                            case CharacterStack.Defend:
+                                PlayerData.Def -= a.valStack;
+                                break;
+                        }
                     }
                 }
+                isMinus = false;
             }
-            isMinus = false;
         }
     }
 

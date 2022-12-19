@@ -58,6 +58,7 @@ public class AIModule : MonoBehaviour
         if (enemyType >= PoolType.Boss1) {
             player.playerDataSO.canBattle = false;
             player.playerDataSO.killEnemy = 0;
+            player.canRelic = true;
             player.playerDataSO.stage++;
 
             player.stageClear = true;;

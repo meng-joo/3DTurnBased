@@ -41,6 +41,8 @@ public class EnemyData : PoolAbleObject
 
         _aIModule = GetComponent<AIModule>();
         _aIModule.SetEnemy();
+        _aIModule.hpmodule.weekness = 0;
+        _aIModule.hpmodule.fear = 0;
     }
 
     public override void Init_Push()

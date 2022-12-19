@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 2.3
   runSpeed: 5.2
-  Health: 78
-  Ad: 5
-  Def: 2
-  Speed: 20
-  stage: 1
-  killEnemy: 0
-  cost: 3
+  Health: 97
+  Ad: 17
+  Def: 7
+  Speed: 29
+  stage: 2
+  killEnemy: 2
+  cost: 4
   player: {fileID: 11400000, guid: e685c9983c5323c48b0883e0cfe4a469, type: 2}
   canBattle: 1
   _skills:
@@ -44,9 +44,9 @@ MonoBehaviour:
   isAnchor: 0
   isBagOfMarbles: 0
   isStrawberry: 0
-  isLantern: 0
+  isLantern: 1
   isBloodVial: 0
-  isPantograph: 0
+  isPantograph: 1
   isClockClasp: 0
   isLetterOpener: 0
-  threeCnt: 9
+  threeCnt: 0
