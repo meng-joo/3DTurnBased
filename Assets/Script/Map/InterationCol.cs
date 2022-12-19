@@ -12,6 +12,7 @@ public class InterationCol : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
+            Debug.Log("A");
             other.GetComponent<MainModule>()._UIModule.OnInteractionKeyImage(true, _behave, _keyName, _func);
         }
     }

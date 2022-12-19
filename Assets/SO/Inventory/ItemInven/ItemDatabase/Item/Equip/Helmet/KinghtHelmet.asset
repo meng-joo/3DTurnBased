@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4ed138a84aeba418d160291dbf036b, type: 3}
+  m_Name: KinghtHelmet
+  m_EditorClassIdentifier: 
+  _methodName: []
+  itemType: 0
+  getFlagStackable: 0
+  itemIcon: {fileID: 21300000, guid: 5c43a34aaf5811442a3197d0b97a3940, type: 3}
+  objModelPrefab: {fileID: 0}
+  itemData:
+    item_id: 14
+    item_name: KinghtHelmet
+    inBattle: 0
+    abilities:
+    - characterStack: 1
+      valStack: 5
+      min: 5
+      max: 5
+    - characterStack: 3
+      valStack: 2
+      min: 2
+      max: 2
+  boneNameLists: []
+  itemSummery: "\uC0B4\uBA74\uC11C \uD22C\uAD6C\uB97C \uD55C\uBC88\uB3C4 \uBC97\uC9C0
+    \uC54A\uC558\uB358 \uAE30\uC0AC\uC758 \uBAA8\uC790"
+  value: 

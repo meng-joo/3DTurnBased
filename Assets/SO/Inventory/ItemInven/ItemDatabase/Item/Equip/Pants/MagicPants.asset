@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4ed138a84aeba418d160291dbf036b, type: 3}
+  m_Name: MagicPants
+  m_EditorClassIdentifier: 
+  _methodName: []
+  itemType: 2
+  getFlagStackable: 0
+  itemIcon: {fileID: 21300000, guid: a27aa50f2bcbc2646a8c6f4f579dac1d, type: 3}
+  objModelPrefab: {fileID: 0}
+  itemData:
+    item_id: 13
+    item_name: MagicPants
+    inBattle: 0
+    abilities:
+    - characterStack: 1
+      valStack: 6
+      min: 6
+      max: 6
+    - characterStack: 2
+      valStack: 2
+      min: 2
+      max: 2
+  boneNameLists: []
+  itemSummery: "\uB9C8\uBC95\uC0AC\uAC00 \uC6B4\uB3D9\uAC08\uB54C \uC785\uB294 \uB808\uAE45\uC2A4"
+  value: 

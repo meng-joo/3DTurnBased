@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4ed138a84aeba418d160291dbf036b, type: 3}
+  m_Name: Staff
+  m_EditorClassIdentifier: 
+  _methodName: []
+  itemType: 4
+  getFlagStackable: 0
+  itemIcon: {fileID: 21300000, guid: 3fa53af4c50543b469421a6895537de8, type: 3}
+  objModelPrefab: {fileID: 0}
+  itemData:
+    item_id: 7
+    item_name: Staff
+    inBattle: 0
+    abilities:
+    - characterStack: 0
+      valStack: 3
+      min: 3
+      max: 3
+    - characterStack: 3
+      valStack: 1
+      min: 1
+      max: 1
+  boneNameLists: []
+  itemSummery: "\uBCFC\uB4DC\uBAA8\uD2B8\uAC00 \uC0AC\uC6A9\uD588\uB358 \uB531\uCD1D\uB098\uBB34
+    \uC9C0\uD321\uC774"
+  value: 

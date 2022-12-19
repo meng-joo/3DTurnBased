@@ -50,7 +50,6 @@ public class ItemObj : ScriptableObject
 
     void SetItem(ItemObj _itemInfo)
     {
-        Debug.Log(_itemInfo);
         setItem.AddEvent(_itemInfo);
     }
 

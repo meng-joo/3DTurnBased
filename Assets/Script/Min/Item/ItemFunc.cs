@@ -28,4 +28,22 @@ public class ItemFunc : MonoBehaviour
             hp.GetHit(dmg, Color.red);
         }
     }
+
+    public static void AgilityPotion(int dmg)
+    {
+
+        //민첩 2를 얻습니다
+    }
+    public static void EnergyPotion(int dmg)
+    {
+        BattleManager bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+        int a = bm._battleUI.cost;
+        bm._battleUI.CreateCost(a + dmg);
+        
+        //에너지 2를 얻습니다
+    }
+    public static void PowerPotion(int dmg)
+    {
+        //힘 2를 얻습니다
+    }
 }

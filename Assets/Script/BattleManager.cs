@@ -24,6 +24,13 @@ public class BattleManager : MonoBehaviour
     public int killenemyCount;
     public int maxEnemyCount;
 
+    public GameObject bagImage;
+    public GameObject settingImage;
+
+    public GameObject relicParent;
+    public GameObject battleRelicParent;
+
+    public GameObject dirSprite;
     private void Start()
     {
         killenemyCount = 0;
@@ -43,6 +50,7 @@ public class BattleManager : MonoBehaviour
             // {
             //   _battleUI.costObj[i].SetActive(true);
             //}
+            dirSprite.SetActive(true);
             _mainModule.canInven = false;
             _mainModule.isBattle = true;
             _battleUI.cemetryBtn.SetActive(true);
@@ -52,6 +60,10 @@ public class BattleManager : MonoBehaviour
             _mainModule.SetBattleAni();
             BattleCameraEffect();
             SetBattleUI();
+            bagImage.transform.DOMoveX(2000f, 0.5f);
+            settingImage.transform.DOMoveX(2000f, 0.5f);
+            relicParent.SetActive(false);
+            battleRelicParent.SetActive(true);
         });
     }
 
@@ -69,6 +81,11 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
+            if (_mainModule.playerDataSO.isPantograph)
+            {
+                HpModule hp = GameObject.Find("Player").GetComponent<HpModule>();
+                hp.GetHp(25);
+            }
             GameObject enemyPrefab = PoolManager.Instance.Pop(PoolType.Boss1 + (_mainModule.playerDataSO.stage - 1)).gameObject;
             enemyPrefab.transform.position = _mainModule._enemySpawnPoint[0].position;
             fieldEnemies.Add(enemyPrefab);
@@ -97,7 +114,14 @@ public class BattleManager : MonoBehaviour
             }
         }
         _mainModule.isBattle = false;
+        dirSprite.SetActive(false);
 
+        battleRelicParent.SetActive(false);
+        relicParent.SetActive(true);
+
+        bagImage.transform.DOMoveX(1900f, 0.3f);
+        settingImage.transform.DOMoveX(1900f, 0.3f);
+        _mainModule.playerDataSO.threeCnt = 0;
         _mainModule._animator.Play("Win");
         _mainModule._animator.SetBool("Fight", false);
         _mainModule.twoView.Priority += 10;
@@ -111,6 +135,12 @@ public class BattleManager : MonoBehaviour
         _mainModule._BattleModule.inBattle = false;
         _mainModule._BattleModule.EndBattle();
         StartCoroutine(UnlockBattleLimit());
+
+        if (_mainModule.playerDataSO.isBuringBlood)
+        {
+            HpModule hp = GameObject.Find("Player").GetComponent<HpModule>();
+            hp.GetHp(6);
+        }
     }
 
     public void SetBattleUI()
@@ -118,6 +148,17 @@ public class BattleManager : MonoBehaviour
         _mainModule._HpModule.SetAvtiveHpbar(true);
         _mainModule._HpModule.UpdateHPText();
         _battleUI.SetBattleUI();
+
+        if (_mainModule.playerDataSO.isAnchor)
+        {
+            HpModule hp = GameObject.Find("Player").GetComponent<HpModule>();
+            hp.OnShield(10);
+        }
+        if (_mainModule.playerDataSO.isBloodVial)
+        {
+            HpModule hp = GameObject.Find("Player").GetComponent<HpModule>();
+            hp.GetHp(2);
+        }
     }
 
     public IEnumerator ChangeTurn(bool isPlayer)

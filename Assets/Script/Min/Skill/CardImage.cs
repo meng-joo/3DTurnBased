@@ -45,16 +45,14 @@ public class CardImage : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             #region 카드 들어가는 애니메이션
             trophyUIManager.inImage.GetComponent<Image>().sprite = skillData.skillInfo._skillImage;
             trophyUIManager.inImage.GetComponent<Image>().color = new Color(1, 0, 0);
+
+            trophyUIManager.waitBtn.SetActive(true);
             trophyUIManager.EffectCard(trophyUIManager.inImage.GetComponent<Image>().sprite);
 
-            //trophyUIManager.animator.Play("MoveOne");
             #endregion
         });
     }
-    public void CardInEffect()
-    {
-  
-    }
+
     public void OnPointerExit(PointerEventData eventData)
     {
         transform.DOScale(Vector3.one, 0.4f);

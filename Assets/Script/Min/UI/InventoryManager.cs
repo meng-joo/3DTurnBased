@@ -158,5 +158,6 @@ public class InventoryManager : MonoBehaviour
     public void OutClick()
     {
         useTab.gameObject.SetActive(false);
+        useTapOffBtn.gameObject.SetActive(false);
     }
 }
