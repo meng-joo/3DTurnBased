@@ -57,6 +57,8 @@ public class TrophyUIManager : MonoBehaviour
     public Button bagBtn;
     public Button settingBtn;
 
+    public GameObject waitBtn;
+
     private void Awake()
     {
         Transform[] childList = relicParent.GetComponentsInChildren<RectTransform>();
@@ -185,6 +187,8 @@ public class TrophyUIManager : MonoBehaviour
                     Destroy(itemTrophyObj);
                     Debug.Log(parentTrm.childCount);
 
+                    waitBtn.SetActive(true);
+
                     EffectCard(itemTrophyObj.transform.Find("ItemImage").GetComponent<Image>().sprite);
 
                     Invoke("InitTrophy", 1f);
@@ -202,6 +206,8 @@ public class TrophyUIManager : MonoBehaviour
 
                     Destroy(itemTrophyObj);
                     Debug.Log(parentTrm.childCount);
+
+                    waitBtn.SetActive(true);
 
                     EffectCard(itemTrophyObj.transform.Find("ItemImage").GetComponent<Image>().sprite);
                     Invoke("InitTrophy", 1f);
@@ -248,7 +254,7 @@ public class TrophyUIManager : MonoBehaviour
 
         relicObj.transform.Find("relicImage").GetComponent<Image>().sprite = so.relicImage;
         relicObj.GetComponentInChildren<TextMeshProUGUI>().text = so.relicName;
-
+        
         relicObj.GetComponent<Button>().onClick.AddListener(() =>
         {
             relicEffect = so._SetRelick._Methods;
@@ -258,11 +264,11 @@ public class TrophyUIManager : MonoBehaviour
                 method.Invoke(null, null);
             }
 
+            waitBtn.SetActive(true);
 
             //slot.uploadSlot(slot.ItemObject.itemData, --slot.itemCnt);
             //useTap.gameObject.SetActive(false);
             EffectRelic(so);
-            OffImage();
             Invoke("InitTrophy", 1f);
             Destroy(relicObj);
         });
@@ -283,7 +289,10 @@ public class TrophyUIManager : MonoBehaviour
         seq.Append(relic.GetComponent<Image>().DOFade(1f, 1f));
         seq.Join(relic.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.5f));
         seq.Append(relic.transform.DOScale(Vector3.one, 0.5f));
-         inImage.transform.DOKill();
+
+        trail.SetActive(true);
+        Invoke("Dont", 2.5f);
+        Invoke("OffImage", 2.2f);
     }
     public void EffectCard(Sprite itemImg)
     {
@@ -292,8 +301,6 @@ public class TrophyUIManager : MonoBehaviour
         inImage.transform.localPosition = new Vector3(0, 0, 0);
         inImage.gameObject.SetActive(true);
         inImage.sprite = itemImg;
-
-        //  DOTween.Init(false, true, LogBehaviour.ErrorsOnly);
 
         Vector3 firstPos = Camera.main.WorldToScreenPoint(inImage.transform.position);
 
@@ -324,37 +331,18 @@ public class TrophyUIManager : MonoBehaviour
         inImage.rectTransform.DOLocalPath(waypoint, 1.2f, PathType.CatmullRom).SetEase(asda);//    .SetEase(asda);
 
         trail.SetActive(true);
-
+        Invoke("Dont", 2.5f);
         Invoke("OffImage", 2.2f);
-
-        //Sequence seq = DOTween.Sequence();
-        //seq.AppendCallback(() =>
-        //{
-        //    trail.SetActive(true);
-        //    trail.transform.Find("Trail").GetComponent<ParticleSystem>().Play();
-        //    trail.transform.Find("TrailSmoke").GetComponent<ParticleSystem>().Play();
-        //});
-        //seq.AppendInterval(2f);
-
-        //seq.AppendCallback(() =>
-        //{
-        //    inImage.gameObject.SetActive(false);
-        //    inImage.color = new Color(1, 1, 1);
-
-        //    trail.SetActive(false);
-        //    trail.transform.Find("Trail").GetComponent<ParticleSystem>().Stop();
-        //    trail.transform.Find("TrailSmoke").GetComponent<ParticleSystem>().Stop();
-        //});
-
-
+    }
+    public void Dont()
+    {
+        waitBtn.SetActive(false);
     }
     public void OffImage()
     {
         inImage.gameObject.SetActive(false);
         inImage.color = new Color(1, 1, 1);
         trail.SetActive(false);
-        //trail.transform.Find("Trail").GetComponent<ParticleSystem>().Stop();
-        //trail.transform.Find("TrailSmoke").GetComponent<ParticleSystem>().Stop();
     }
     public void InitTrophy()
     {
@@ -370,6 +358,7 @@ public class TrophyUIManager : MonoBehaviour
                 mainModule.isTrophy = false;
                 mainModule.canMove = false;
                 mainModule.canInven = true;
+                waitBtn.SetActive(false);
 
                 bagBtn.interactable = true;
                 settingBtn.interactable = true;
@@ -379,10 +368,6 @@ public class TrophyUIManager : MonoBehaviour
         }
         else
         {
-            Debug.Log(parentTrm.childCount);
-
-
-            Debug.Log("자식있음");
         }
     }
 
