@@ -9,7 +9,7 @@ public class BattleUI : MonoBehaviour
 {
     [Space]
     [Header("전투 UI들")]
-    private MainModule mainModule;
+    public MainModule mainModule;
 
     [Space]
     [Header("전투 UI들")]
@@ -135,11 +135,6 @@ public class BattleUI : MonoBehaviour
     {
         enemyKillCount.value = mainModule.playerDataSO.killEnemy;
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            CreateCost(5);
-        }
-
     }
 
     public void SetBattleUI()
@@ -225,7 +220,8 @@ public class BattleUI : MonoBehaviour
             if (mainModule.playerDataSO.isClockClasp)
             {
                 HpModule hp = GameObject.Find("Player").GetComponent<HpModule>();
-                hp.OnShield(currentSkillCard.Count);
+                hp.OnShield(currentSkillCard.Count); 
+                Debug.Log(currentSkillCard.Count); 
             }
 
             seq.Append(behaveText.transform.DOLocalMoveY(170, 0.2f));

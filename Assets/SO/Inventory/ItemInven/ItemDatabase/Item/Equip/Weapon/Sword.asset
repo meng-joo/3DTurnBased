@@ -18,7 +18,7 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: da3489a989b315644b2918cb9df15709, type: 3}
   objModelPrefab: {fileID: 0}
   itemData:
-    item_id: 8
+    item_id: 4
     item_name: Sword
     inBattle: 0
     abilities:
@@ -27,5 +27,6 @@ MonoBehaviour:
       min: 7
       max: 7
   boneNameLists: []
-  itemSummery: "\uC870\uC120\uC81C\uC77C\uAC80 \uC774\uBC29\uC9C0\uC758 \uAC80"
+  itemSummery: "\uC870\uC120\uC81C\uC77C\uAC80 \uC774\uBC29\uC9C0\uC758 \uAC80\nStr
+    + 7"
   value: 

@@ -32,5 +32,5 @@ MonoBehaviour:
       max: 3
   boneNameLists: []
   itemSummery: "\uCC3D\uD638\uAC00 \uBB34\uB450\uC9C8\uACFC \uACBD\uD654\uCC98\uB9AC\uB97C
-    \uAC70\uCCD0 \uB9CC\uB4E0 \uAC00\uC8FD \uAC11\uC637"
+    \uAC70\uCCD0 \uB9CC\uB4E0 \uAC00\uC8FD \uAC11\uC637\nHp +10, Speed + 3"
   value: 

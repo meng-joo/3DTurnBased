@@ -2270,6 +2270,7 @@ MonoBehaviour:
   _effectBar: {fileID: 2450009701128154437}
   text: {fileID: 2135842930868217771}
   _hpbar: {fileID: 405137168075206626}
+  statusImage: {fileID: 5694657317521997219}
   attackedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2494,5 +2495,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5694657317521997219 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3860331199630178300, guid: 10642cff72d178241a5bb25efdca6a9d, type: 3}
+  m_PrefabInstance: {fileID: 8833206407138003551}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

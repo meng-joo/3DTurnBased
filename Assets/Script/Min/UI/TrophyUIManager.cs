@@ -105,7 +105,10 @@ public class TrophyUIManager : MonoBehaviour
        
         AddNewItem();
         SetTrophy();
-        AddRelic();
+        if (mainModule.canRelic)
+        {
+            AddRelic();
+        }
     }
     public Skill RandomSkill()
     {
@@ -262,6 +265,8 @@ public class TrophyUIManager : MonoBehaviour
 
     public void AddRelic()
     {
+    
+
         GameObject relicObj = Instantiate(relicTrophy, parentTrm.position, Quaternion.identity);
         relicObj.transform.SetParent(parentTrm);
         relicObj.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
@@ -290,6 +295,8 @@ public class TrophyUIManager : MonoBehaviour
             Invoke("InitTrophy", 1f);
             Destroy(relicObj);
         });
+
+     
     }
     public void EffectRelic(RelicSO relicSO)
     {
@@ -302,6 +309,11 @@ public class TrophyUIManager : MonoBehaviour
 
         relic.GetComponent<Image>().sprite = relicSO.relicImage;
         relic.GetComponent<Image>().color = new Vector4(1, 1, 1, 0);
+
+        GameObject reObj = Instantiate(relicPrefab, battlerelicParent.position, Quaternion.identity);
+        reObj.transform.SetParent(battlerelicParent);
+        reObj.GetComponent<Image>().sprite = relicSO.relicImage;
+
 
         Sequence seq = DOTween.Sequence();
         seq.Append(relic.GetComponent<Image>().DOFade(1f, 1f));
@@ -375,6 +387,7 @@ public class TrophyUIManager : MonoBehaviour
                 trophyPanel.transform.localPosition = new Vector3(0, -1500f, 0);
                 mainModule.isTrophy = false;
                 mainModule.canMove = false;
+                mainModule.canRelic = false;
                 mainModule.canInven = true;
                 waitBtn.SetActive(false);
 
@@ -382,6 +395,8 @@ public class TrophyUIManager : MonoBehaviour
                 settingBtn.interactable = true;
 
                 Destroy(mainModule.chestCreateManager.chestAnimators[mainModule.physicsModule.index].gameObject);
+                mainModule._UIModule.OnInteractionKeyImage(false, "", "j", "");
+
             });
         }
         else

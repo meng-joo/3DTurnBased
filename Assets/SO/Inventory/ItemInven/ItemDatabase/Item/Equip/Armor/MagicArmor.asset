@@ -18,7 +18,7 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: 8b44c1c64aeb7184cae04c8850adea85, type: 3}
   objModelPrefab: {fileID: 0}
   itemData:
-    item_id: 22
+    item_id: 18
     item_name: MagicArmor
     inBattle: 0
     abilities:
@@ -32,5 +32,5 @@ MonoBehaviour:
       max: 3
   boneNameLists: []
   itemSummery: "\uB9D0\uD3EC\uC774\uAC00 \uC0DD\uC804\uC5D0 \uCC29\uC6A9\uD588\uB358
-    \uD22C\uBA85 \uB9DD"
+    \uD22C\uBA85 \uB9DD\uD1A0\nHp +10, Str+ 3"
   value: 

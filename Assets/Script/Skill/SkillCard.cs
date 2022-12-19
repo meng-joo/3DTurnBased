@@ -175,7 +175,7 @@ public class SkillCard : PoolAbleObject
                 {
                     _mainModule.playerDataSO.threeCnt++;
                 }
-                if (_mainModule.playerDataSO.threeCnt % 3 == 0)
+                if (_mainModule.playerDataSO.isLetterOpener && _mainModule.playerDataSO.threeCnt % 3 == 0)
                 {
                     BattleManager battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
 

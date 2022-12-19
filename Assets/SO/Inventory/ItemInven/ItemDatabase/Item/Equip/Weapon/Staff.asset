@@ -32,5 +32,5 @@ MonoBehaviour:
       max: 1
   boneNameLists: []
   itemSummery: "\uBCFC\uB4DC\uBAA8\uD2B8\uAC00 \uC0AC\uC6A9\uD588\uB358 \uB531\uCD1D\uB098\uBB34
-    \uC9C0\uD321\uC774"
+    \uC9C0\uD321\uC774\nStr + 3, Defend + 1"
   value: 

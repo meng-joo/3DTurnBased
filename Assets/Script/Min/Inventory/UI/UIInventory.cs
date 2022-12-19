@@ -199,6 +199,7 @@ public abstract class UIInventory : MonoBehaviour
                 {
                     switch (a.characterStack)
                     {
+
                         case CharacterStack.Str:
                             PlayerData.Ad += a.valStack;
                             //ad = a.valStack;
@@ -303,7 +304,6 @@ public abstract class UIInventory : MonoBehaviour
 
                 //밑의 줄이 복수 딴것도잘되
                 slot.uploadSlot(slot.ItemObject.itemData, --slot.itemCnt);
-                Debug.Log(slot.itemCnt);
                 useTap.gameObject.SetActive(false);
                 useOffBtn.gameObject.SetActive(false);
             });

@@ -18,7 +18,7 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: a27aa50f2bcbc2646a8c6f4f579dac1d, type: 3}
   objModelPrefab: {fileID: 0}
   itemData:
-    item_id: 13
+    item_id: 10
     item_name: MagicPants
     inBattle: 0
     abilities:
@@ -31,5 +31,6 @@ MonoBehaviour:
       min: 2
       max: 2
   boneNameLists: []
-  itemSummery: "\uB9C8\uBC95\uC0AC\uAC00 \uC6B4\uB3D9\uAC08\uB54C \uC785\uB294 \uB808\uAE45\uC2A4"
+  itemSummery: "\uB9C8\uBC95\uC0AC\uAC00 \uC6B4\uB3D9\uAC08\uB54C \uC785\uB294 \uB808\uAE45\uC2A4\nHp
+    + 6, Speed + 2"
   value: 

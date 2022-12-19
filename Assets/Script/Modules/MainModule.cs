@@ -138,7 +138,7 @@ public class MainModule : MonoBehaviour
         if (playerDataSO.isStrawberry)
         {
             HpModule hp = GameObject.Find("Player").GetComponent<HpModule>();
-            hp.maxHp += 7;
+            playerDataSO.Health += 7;
             hp.GetHp(hp.maxHp);
             playerDataSO.isStrawberry = false;
         }

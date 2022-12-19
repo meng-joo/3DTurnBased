@@ -21,7 +21,7 @@ MonoBehaviour:
     m_Address: Assets/SO/TipSO
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 6f0a5b89e0c0fb3499c4ef5438bb2b14
+  - m_GUID: de8a6403f7d0675478f21fa28ee7e868
     m_Address: Assets/SO/Player/PlayerDataSO.asset
     m_ReadOnly: 0
     m_SerializedLabels: []

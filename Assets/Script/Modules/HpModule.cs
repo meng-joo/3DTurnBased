@@ -84,6 +84,8 @@ public class HpModule : MonoBehaviour
         {
             _effectBar.fillAmount = _bar.fillAmount;
         }
+
+        if (isPlayer) maxHp = _battleUI.mainModule.playerDataSO.Health;
     }
 
     public void GetHit(int dmg, Color32 _color)

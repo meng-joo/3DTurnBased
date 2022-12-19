@@ -28,5 +28,5 @@ MonoBehaviour:
       max: 5
   boneNameLists: []
   itemSummery: "\uB098\uBB34\uAFBC\uC774 \uC7A5\uC791\uC744 \uD330 \uB54C \uC0AC\uC6A9\uD558\uB294
-    \uB3C4\uB07C"
+    \uB3C4\uB07C\nStr + 5"
   value: 

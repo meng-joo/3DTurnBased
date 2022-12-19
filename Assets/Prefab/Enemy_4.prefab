@@ -218,6 +218,7 @@ MonoBehaviour:
   _effectBar: {fileID: 5935385291335512637}
   text: {fileID: 7924820742431930579}
   _hpbar: {fileID: 8485276158346047642}
+  statusImage: {fileID: 4564938111462318811}
   attackedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -238,6 +239,8 @@ MonoBehaviour:
         m_CallState: 2
   shield: 0
   isPlayer: 0
+  weekness: 0
+  fear: 0
   effectSpeed: 0.002
 --- !u!65 &777800861798890478
 BoxCollider:
@@ -5864,6 +5867,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10642cff72d178241a5bb25efdca6a9d, type: 3}
+--- !u!114 &4564938111462318811 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3860331199630178300, guid: 10642cff72d178241a5bb25efdca6a9d, type: 3}
+  m_PrefabInstance: {fileID: 777800862009054503}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4675898105178200061 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5345611465210151642, guid: 10642cff72d178241a5bb25efdca6a9d, type: 3}

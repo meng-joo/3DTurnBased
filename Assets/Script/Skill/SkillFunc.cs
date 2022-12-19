@@ -77,7 +77,17 @@ public class SkillFunc : MonoBehaviour
         if (_enemy.GetComponent<HpModule>().weekness < 1)
         {
             GameObject a = PoolManager.Instance.Pop(PoolType.Status_Week).gameObject;
+            RectTransform rectA = a.GetComponent<RectTransform>();
             a.transform.SetParent(_enemy.GetComponent<HpModule>().statusImage.transform);
+            Vector3 vec3 = rectA.anchoredPosition;
+            vec3.z = 0;
+            //rectA.
+            rectA.anchoredPosition = vec3;
+
+            Debug.Log(a.transform.position);
+            Debug.Log(a.transform.localPosition);
+            //a.transform.rotation = Quaternion.Euler(0, 0, 0);
+            Debug.Log(a.transform.rotation);
         }
         _enemy.GetComponent<HpModule>().weekness += weekValue;
         //_enemy.GetComponent<HpModule>().AddStatus("Week");
@@ -89,6 +99,10 @@ public class SkillFunc : MonoBehaviour
         {
             GameObject a = PoolManager.Instance.Pop(PoolType.Status_Fear).gameObject;
             a.transform.SetParent(_enemy.GetComponent<HpModule>().statusImage.transform);
+            a.transform.position = Vector3.zero;
+            Debug.Log(a.transform.position);
+            a.transform.rotation = Quaternion.Euler(0, 0, 0);
+            Debug.Log(a.transform.rotation);
         }
         _enemy.GetComponent<HpModule>().fear += fearValue;
         //_enemy.GetComponent<HpModule>().AddStatus("Fear");

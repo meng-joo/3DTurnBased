@@ -1188,6 +1188,7 @@ MonoBehaviour:
   _effectBar: {fileID: 4008119051470663467}
   text: {fileID: 593230543950095813}
   _hpbar: {fileID: 1153145558690262412}
+  statusImage: {fileID: 6528215554985656269}
   attackedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2913,6 +2914,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9114893869080706374, guid: 10642cff72d178241a5bb25efdca6a9d, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10642cff72d178241a5bb25efdca6a9d, type: 3}
 --- !u!224 &456905114696776464 stripped
@@ -2961,6 +2966,17 @@ MonoBehaviour:
 --- !u!114 &4008119051470663467 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6383277130346358554, guid: 10642cff72d178241a5bb25efdca6a9d, type: 3}
+  m_PrefabInstance: {fileID: 8001286511251753009}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6528215554985656269 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3860331199630178300, guid: 10642cff72d178241a5bb25efdca6a9d, type: 3}
   m_PrefabInstance: {fileID: 8001286511251753009}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

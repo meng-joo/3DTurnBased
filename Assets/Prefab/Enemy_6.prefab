@@ -449,6 +449,7 @@ MonoBehaviour:
   _effectBar: {fileID: 2043548644532437197}
   text: {fileID: 2591825613240830499}
   _hpbar: {fileID: 4306387262103962218}
+  statusImage: {fileID: 8168253007221051435}
   attackedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -469,6 +470,8 @@ MonoBehaviour:
         m_CallState: 2
   shield: 0
   isPlayer: 0
+  weekness: 0
+  fear: 0
   effectSpeed: 0.002
 --- !u!65 &-4130367836720548417
 BoxCollider:
@@ -1976,6 +1979,17 @@ GameObject:
 --- !u!114 &4306387262589904898 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9154283635116675029, guid: 10642cff72d178241a5bb25efdca6a9d, type: 3}
+  m_PrefabInstance: {fileID: 4956721635789711319}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8168253007221051435 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3860331199630178300, guid: 10642cff72d178241a5bb25efdca6a9d, type: 3}
   m_PrefabInstance: {fileID: 4956721635789711319}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

@@ -89,7 +89,8 @@ public class InputModule : MonoBehaviour
             mainModule.chestCreateManager.chestAnimators[mainModule.physicsModule.index].Play("Open");
             mainModule.isTrophy = true; 
             mainModule.canMove = true;
-            
+            mainModule.canRelic = true;
+
             mainModule.trophyUI.bagBtn.interactable = false;
             mainModule.trophyUI.settingBtn.interactable = false;
         });
