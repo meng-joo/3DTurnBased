@@ -71,7 +71,7 @@ MonoBehaviour:
     initCount: 3
     poolAbleObject: {fileID: 769063307198458805, guid: 96319bc385f8aae4dbf1b7c1dbd2a2f3, type: 3}
   - poolType: 24
-    initCount: 120
+    initCount: 10
     poolAbleObject: {fileID: 5431631861084733585, guid: 8ccba996d825fe54598ce0b5e31cf36b, type: 3}
   - poolType: 25
     initCount: 3

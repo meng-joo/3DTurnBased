@@ -35,3 +35,4 @@ MonoBehaviour:
     isPossession: 0
     _skillExplanation: "\uC801\uD55C\uD14C \uB3CC\uC9C4\uD558\uC5EC \n\uCD1D 10\uC758
       \uD53C\uD574\uB97C \uC785\uD78C \uD6C4 \uC57D\uD654\uB97C \uAC74\uB2E4."
+    clip: {fileID: 8300000, guid: 3be604cd9d16cb541bcff7d6d7735f25, type: 3}

@@ -110,7 +110,17 @@ public abstract class UIInventory : MonoBehaviour
             //(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
             //explainTap.transform.position = Input.mousePosition;
 
-            AudioManager.PlayAudio(audioClip);
+            AudioManager.PlayAudio(UISoundManager.Instance.data.foucusClip);
+
+            if (uiSlotLists[gameObj].inventoryObj.type == InterfaceType.QuickSlot)
+            {
+                explainTap.localPosition = new Vector3(-610f, -340f, 0f);
+                explainTap.GetComponent<RelicInfoImage>().enabled = false;
+            }
+            else
+            {
+                explainTap.GetComponent<RelicInfoImage>().enabled = true;
+            }
 
             explainTap.gameObject.SetActive(true);
             explainTap.transform.Find("NameTxt").GetComponent<TextMeshProUGUI>().text = uiSlotLists[gameObj].ItemObject.itemData.item_name;
@@ -283,8 +293,8 @@ public abstract class UIInventory : MonoBehaviour
             useOffBtn.SetActive(true);
             useTap.gameObject.SetActive(true);
 
-            useTap.transform.position = pointerEventdata.position;
-            useTap.transform.position += new Vector3(0f, 200f, 0f);
+            //useTap.transform.position = pointerEventdata.position;
+            //useTap.transform.position += new Vector3(0f, 200f, 0f);
 
             useTap.transform.Find("UseBtn").GetComponent<Button>().onClick.RemoveAllListeners();
 
@@ -299,7 +309,7 @@ public abstract class UIInventory : MonoBehaviour
                 // 아이템이 배틀에서만 사용할수 있고 전투중이아니면
                 if (mainModule.isBattle == false && slot.ItemObject.itemData.inBattle == true)
                 {
-                    DialogManager.Instance.ShowText("전투중에 사용할수 있는 아이템입니다");
+                    DialogManager.Instance.ShowText("전투중에만 사용할수 있는 아이템입니다");
                     return;
                 }
 

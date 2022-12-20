@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef3dc158439bae1409533827ded1b0da, type: 3}
+  m_Name: UIsound
+  m_EditorClassIdentifier: 
+  clickClip: {fileID: 8300000, guid: 31e7e992d18233b49a817a24a9b62e69, type: 3}
+  foucusClip: {fileID: 8300000, guid: 6953fb6b8373bf04a8b7afcd7107dfd3, type: 3}
+  clickAndSlideClip: {fileID: 8300000, guid: 6d29d59f4115847b790bf26aa92d0378, type: 3}

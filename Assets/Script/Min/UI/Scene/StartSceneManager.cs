@@ -43,6 +43,10 @@ public class StartSceneManager : MonoBehaviour
     public RectTransform startTrm;
     public RectTransform dicTrm;
     public RectTransform exitTrm;
+
+    private void Start()
+    {
+    }
     public void GameStartBtn()
     {
         SceneManager.LoadScene("InGame_Hollway");

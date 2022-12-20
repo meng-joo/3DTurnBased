@@ -15,6 +15,7 @@ public class StartCardImage : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
+        AudioManager.PlayAudio(UISoundManager.Instance.data.foucusClip);
         transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.5f);
     }
 

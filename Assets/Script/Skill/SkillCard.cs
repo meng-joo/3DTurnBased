@@ -45,6 +45,7 @@ public class SkillCard : PoolAbleObject
     int[] value;
     string typeText;
 
+    AudioClip soundClip;
     private void OnEnable()
     {
         m_IsButtonDowning = false;
@@ -72,6 +73,8 @@ public class SkillCard : PoolAbleObject
         skillInfo.text = skillData.skillInfo._skillExplanation;
         skillCost.text = skillData.skillInfo._skillCost.ToString();
         currentSkill = skillData;
+
+        soundClip = skillData.skillInfo.clip;
 
         _skillVFX = skillData.skillInfo._poolType;
         typeText = skillData.skillInfo.skilltypeText;
@@ -171,6 +174,7 @@ public class SkillCard : PoolAbleObject
         {
             if (hit.collider.CompareTag(target) && _battleUI.cost >= cost)
             {
+                AudioManager.PlayAudio(soundClip);
                 foreach (var method in skillEffect)
                 {
                     method.Invoke(null, new object[] { hit.collider.gameObject, value[count], skillText });
@@ -203,6 +207,8 @@ public class SkillCard : PoolAbleObject
                 //if(_mainModule._animation.GetClip(_motion.name) == null)
                 _mainModule._animatorOverride["Motion"] = _motion;
                 _mainModule._animator.Play("Motion", 0);
+
+                
 
                 GameObject vfx = PoolManager.Instance.Pop(_skillVFX).gameObject;
                 vfx.transform.position = hit.point;

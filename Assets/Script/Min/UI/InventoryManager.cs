@@ -27,6 +27,8 @@ public class InventoryManager : MonoBehaviour
     public GameObject useTab;
     public GameObject exitBtn;
     public GameObject useTapOffBtn;
+    public GameObject relic;
+    public GameObject relicExplain;
     private void Awake()
     {
         mainModule = FindObjectOfType<MainModule>();
@@ -99,6 +101,11 @@ public class InventoryManager : MonoBehaviour
         seq.Insert(0.3f, itemBtn.GetComponent<Image>().DOFade(1f, 0.5f));
         seq.Insert(0.3f, skillBtn.GetComponent<Image>().DOFade(1f, 0.5f));
         mainModule.canMove = true;
+        useTab.SetActive(false);
+        relic.SetActive(false);
+        relicExplain.SetActive(false);
+
+
     }
 
     /// <summary>
@@ -127,6 +134,8 @@ public class InventoryManager : MonoBehaviour
         mainModule.canMove = false;
         exitBtn.SetActive(false);
         useTapOffBtn.SetActive(false);
+        useTab.SetActive(false);
+        relic.SetActive(true);
     }
     public void OnSkillUI()
     {
