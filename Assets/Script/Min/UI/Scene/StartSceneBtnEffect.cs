@@ -9,6 +9,8 @@ public class StartSceneBtnEffect : MonoBehaviour, IPointerEnterHandler, IPointer
 {
     public void OnPointerEnter(PointerEventData eventData)
     {
+       AudioManager.PlayAudio( UISoundManager.Instance.data.foucusClip);
+
         transform.DOLocalMoveX(-700f, 0.5f);
         transform.GetComponent<Image>().DOColor(new Color(1, 1, 0), 0.5f);
     }

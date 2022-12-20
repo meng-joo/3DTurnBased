@@ -58,4 +58,5 @@ public class SkillData
     [Header("스킬 설명")]
     public string _skillExplanation;
 
+    public AudioClip clip;
 }
