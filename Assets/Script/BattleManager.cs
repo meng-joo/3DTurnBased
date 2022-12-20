@@ -36,6 +36,8 @@ public class BattleManager : MonoBehaviour
     public GameObject battleRelicParent;
 
     public GameObject dirSprite;
+
+    public EffectUI _effectUI;
     private void Start()
     {
         killenemyCount = 0;
@@ -46,7 +48,11 @@ public class BattleManager : MonoBehaviour
     {
         Sequence seq = DOTween.Sequence();
 
-        seq.AppendInterval(0.5f);
+        bool isf = _mainModule.playerDataSO.killEnemy < maxEnemyCount ? false : true;
+        float timea = isf ? 1 : 2;
+
+        seq.AppendCallback(() => _effectUI.SetBattleEffect(isf));
+        seq.AppendInterval(timea);
         seq.AppendCallback(() => SpawnMonster());
         seq.AppendInterval(1f);
         seq.AppendCallback(() =>

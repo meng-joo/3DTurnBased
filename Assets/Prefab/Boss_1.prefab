@@ -1228,6 +1228,7 @@ MonoBehaviour:
   _animator: {fileID: 8001286511249518710}
   skillName:
   - Attack
+  - Attack
   - Defend
   - Heal
   enemyData: {fileID: 0}

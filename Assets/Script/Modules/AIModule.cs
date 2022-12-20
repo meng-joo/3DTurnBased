@@ -54,7 +54,7 @@ public class AIModule : MonoBehaviour
         if (_battleManager.fieldEnemies.Count == 0)
         {
             Time.timeScale = 0.3f;
-            yield return new WaitForSecondsRealtime(1f);
+            yield return new WaitForSecondsRealtime(2.5f);
             Time.timeScale = 1;
         }
         _animator.Play("Die");

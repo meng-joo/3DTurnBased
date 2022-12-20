@@ -87,8 +87,6 @@ public class MainModule : MonoBehaviour
 
     public TrophyUIManager trophyUI;
 
-  
-
     public bool isEnergy =false;
 
 
