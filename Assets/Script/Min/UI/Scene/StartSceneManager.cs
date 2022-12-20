@@ -70,6 +70,10 @@ public class StartSceneManager : MonoBehaviour
             dicTrm.DOLocalMoveX(-1200f, 0.3f);
             exitTrm.DOLocalMoveX(-1200f, 0.3f);
         });
+        seq.AppendCallback(() =>
+        {
+            dicTrm.gameObject.SetActive(false);
+        });
     }
    
     public void ExitBtn()
@@ -80,6 +84,7 @@ public class StartSceneManager : MonoBehaviour
     {
         dicObj.SetActive(false);
         skillObj.SetActive(true);
+
         for (int i = 0; i < all._allSkills.Count; i++)
         {
             GameObject skillObj = Instantiate(card, transform.position, Quaternion.identity);
@@ -147,6 +152,7 @@ public class StartSceneManager : MonoBehaviour
         //  {
         //  scroll[i].SetActive(false);
         //  }
+        dicTrm.gameObject.SetActive(true);
 
         startTrm.DOLocalMoveX(-780f, 0.5f);
         dicTrm.DOLocalMoveX(-780f, 0.5f);
