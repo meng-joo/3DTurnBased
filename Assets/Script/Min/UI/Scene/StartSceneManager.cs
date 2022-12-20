@@ -66,9 +66,9 @@ public class StartSceneManager : MonoBehaviour
             escBtn.GetComponent<Image>().DOFade(1f, 0.5f);
             escBtn.GetComponentInChildren<TextMeshProUGUI>().DOFade(1f, 0.5f);
 
-            startTrm.DOMoveX(-160f, 0.5f);
-            dicTrm.DOMoveX(-160f, 0.5f);
-            exitTrm.DOMoveX(-160f, 0.5f);
+            startTrm.DOLocalMoveX(-1200f, 0.3f);
+            dicTrm.DOLocalMoveX(-1200f, 0.3f);
+            exitTrm.DOLocalMoveX(-1200f, 0.3f);
         });
     }
    
@@ -89,6 +89,10 @@ public class StartSceneManager : MonoBehaviour
             skillObj.transform.Find("Deco").transform.Find("NameImage").GetComponentInChildren<TextMeshProUGUI>().text = all._allSkills[i].skillInfo._skillName;
             skillObj.transform.Find("CostImage").GetComponentInChildren<TextMeshProUGUI>().text = $"{all._allSkills[i].skillInfo._skillCost}";
             skillObj.transform.Find("Deco").transform.Find("SkillInfoImage").GetComponentInChildren<TextMeshProUGUI>().text = all._allSkills[i].skillInfo._skillExplanation;
+
+            skillObj.transform.localPosition = Vector3.zero;
+            skillObj.transform.localScale = Vector3.one;
+            skillObj.transform.localRotation = Quaternion.Euler(Vector3.zero);
         }
         skillObj.transform.DOLocalMoveY(0, 0.3f);
     }
@@ -109,6 +113,9 @@ public class StartSceneManager : MonoBehaviour
             }
             itemObj.GetComponent<StartItemImage>().Set(itemDB.itemObjs[i]);
             itemObj.GetComponent<Image>().sprite = itemDB.itemObjs[i].itemIcon;
+            itemObj.transform.localPosition = Vector3.zero;
+            itemObj.transform.localScale = Vector3.one;
+            itemObj.transform.localRotation = Quaternion.Euler(Vector3.zero);
         }
         itemObj.transform.DOLocalMoveY(0, 0.3f);
     }
@@ -121,6 +128,10 @@ public class StartSceneManager : MonoBehaviour
         {
             GameObject relicObj = Instantiate(relic, transform.position, Quaternion.identity);
             relicObj.transform.SetParent(relicParentTrm);
+            relicObj.transform.localPosition = Vector3.zero;
+            relicObj.transform.localScale = Vector3.one;
+            relicObj.transform.localRotation = Quaternion.Euler(Vector3.zero);
+
             relicObj.GetComponent<StartRelicImage>().Set(relicAllSo.relics[i]);
             relicObj.GetComponent<Image>().sprite = relicAllSo.relics[i].relicImage;
         }
@@ -137,9 +148,9 @@ public class StartSceneManager : MonoBehaviour
         //  scroll[i].SetActive(false);
         //  }
 
-        startTrm.DOMoveX(180f, 0.5f);
-        dicTrm.DOMoveX(180f, 0.5f);
-        exitTrm.DOMoveX(180f, 0.5f);
+        startTrm.DOLocalMoveX(-780f, 0.5f);
+        dicTrm.DOLocalMoveX(-780f, 0.5f);
+        exitTrm.DOLocalMoveX(-780f, 0.5f);
 
     }
     public void Delete()
