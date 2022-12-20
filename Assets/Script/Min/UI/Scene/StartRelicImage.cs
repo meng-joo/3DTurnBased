@@ -23,6 +23,7 @@ public class StartRelicImage : MonoBehaviour, IPointerExitHandler, IPointerEnter
     public void OnPointerEnter(PointerEventData eventData)
     {
         explainTap.SetActive(true);
+        AudioManager.PlayAudio(UISoundManager.Instance.data.foucusClip);
 
         transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.5f);
         explainTap.transform.Find("NameText").GetComponent<TextMeshProUGUI>().text = relicSo.relicName;

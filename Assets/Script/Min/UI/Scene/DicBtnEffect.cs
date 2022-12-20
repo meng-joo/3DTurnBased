@@ -9,6 +9,8 @@ public class DicBtnEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 {
     public void OnPointerEnter(PointerEventData eventData)
     {
+        AudioManager.PlayAudio(UISoundManager.Instance.data.clickAndSlideClip);
+
         transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.5f);
         transform.GetComponent<Image>().DOColor(new Color32(255, 255, 255, 255), 0.5f);
     }

@@ -59,7 +59,6 @@ public class BGMChanger : MonoSingleton<BGMChanger>
 public enum BGMType
 {
     Default,
-    Start,
     Select,
     Fight,
 }
