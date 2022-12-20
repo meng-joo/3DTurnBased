@@ -9,7 +9,7 @@ public class StartSceneBtnEffect : MonoBehaviour, IPointerEnterHandler, IPointer
 {
     public void OnPointerEnter(PointerEventData eventData)
     {
-        transform.DOMoveX(210f, 0.5f);
+        transform.DOLocalMoveX(-700f, 0.5f);
         transform.GetComponent<Image>().DOColor(new Color(1, 1, 0), 0.5f);
     }
     public void DoFade(Color startColor, Color endColor, float time, Image image)
@@ -19,7 +19,7 @@ public class StartSceneBtnEffect : MonoBehaviour, IPointerEnterHandler, IPointer
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        transform.DOMoveX(180f, 0.5f);
+        transform.DOLocalMoveX(-780f, 0.5f);
         transform.GetComponent<Image>().DOColor(new Color(1, 1, 1), 0.5f);
     }
 
