@@ -10279,6 +10279,7 @@ GameObject:
   - component: {fileID: 7106211750285728637}
   - component: {fileID: 7106211750285728635}
   - component: {fileID: 7106211750285728636}
+  - component: {fileID: 7822029859350663985}
   m_Layer: 0
   m_Name: Col
   m_TagString: Chest
@@ -10327,8 +10328,24 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8.044339, y: 3.0892632, z: 3.8735185}
-  m_Center: {x: 0.27049664, y: 1.0446314, z: 0.85559344}
+  m_Size: {x: 8, y: 3.5, z: 4}
+  m_Center: {x: 0.27, y: 1, z: 0.85}
+--- !u!208 &7822029859350663985
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7106211750285728638}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 4.5, y: 1.5, z: 2}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &7106211750971861131
 GameObject:
   m_ObjectHideFlags: 0
