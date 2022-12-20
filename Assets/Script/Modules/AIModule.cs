@@ -50,6 +50,13 @@ public class AIModule : MonoBehaviour
 
     IEnumerator EnemyDeadCorou()
     {
+        _battleManager.fieldEnemies.Remove(gameObject);
+        if (_battleManager.fieldEnemies.Count == 0)
+        {
+            Time.timeScale = 0.3f;
+            yield return new WaitForSecondsRealtime(1f);
+            Time.timeScale = 1;
+        }
         _animator.Play("Die");
 
         yield return new WaitForSeconds(0.8f);
@@ -65,12 +72,22 @@ public class AIModule : MonoBehaviour
         }
         yield return new WaitForSeconds(.5f);
 
-        _battleManager.fieldEnemies.Remove(gameObject);
         //gameObject.SetActive(false);
         PoolManager.Instance.Push(enemyType, gameObject);
 
+
+
         if (_battleManager.fieldEnemies.Count == 0)
-            _battleManager.EndBattle("Win");
+        {
+            if (enemyType >= PoolType.Boss1)
+            {
+                _battleManager.EndBattle("Win", true);
+            }
+            else
+            {
+                _battleManager.EndBattle("Win", false);
+            }
+        }
     }
 
     public void WhatToDo()

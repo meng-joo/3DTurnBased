@@ -107,24 +107,30 @@ public class SkillCard : PoolAbleObject
 
                 if (Physics.Raycast(ray, out hit, 100))
                 {
-                    Vector3 mPosition = pos;
-                    Vector3 oPosition = _mainModule.dirObj.transform.position;
+                //Vector3 mPosition = pos;
+                //Vector3 oPosition = _mainModule.dirObj.transform.position;
 
-                    mPosition.z = oPosition.z - Camera.main.transform.position.z;
+                //mPosition.z = oPosition.z - Camera.main.transform.position.z;
 
-                    float dy = mPosition.y - oPosition.y;
-                    float dx = mPosition.x - oPosition.x;
+                //float dy = mPosition.y - oPosition.y;
+                //float dx = mPosition.x - oPosition.x;
 
-                    float rotateDegree = Mathf.Atan2(dy, dx) * Mathf.Rad2Deg;
+                //float rotateDegree = Mathf.Atan2(dy, dx) * Mathf.Rad2Deg;
 
-                    _mainModule.dirObj.transform.rotation = Quaternion.Euler(90f, -rotateDegree - 6f, 0);
+                float angle = Mathf.Atan2(_mainModule.dirObj.transform.position.y - pos.y, 
+                    _mainModule.dirObj.transform.position.x - pos.x) * Mathf.Rad2Deg;
+
+                //_mainModule.dirObj.transform.transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
+                // _mainModule.dirObj.transform.rotation = Quaternion.Euler(0f, rotateDegree - 6f, 0);
+                _mainModule.dirObj.transform.LookAt(hit.point);
+                _mainModule.dirObj.transform.eulerAngles = new Vector3(0 , _mainModule.dirObj.transform.eulerAngles.y, 0);
 
 
                 if (hit.collider.CompareTag(target))
                     {
                         if (fadeImage.color.a <= 1f)
                         {
-                            _mainModule.dirObj.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
+                            _mainModule.dirObj.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 0, 0);
                             Color color = fadeImage.color;
                             color.a += 0.08f;
                             fadeImage.color = color;
@@ -133,7 +139,7 @@ public class SkillCard : PoolAbleObject
                     }
                 else
                 {
-                     _mainModule.dirObj.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
+                     _mainModule.dirObj.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1);
 
                 }
                 //}
@@ -154,7 +160,7 @@ public class SkillCard : PoolAbleObject
 
     public void PointerUp()
     {
-        _mainModule.dirObj.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
+        _mainModule.dirObj.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1);
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;

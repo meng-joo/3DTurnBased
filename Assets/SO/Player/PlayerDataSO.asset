@@ -14,39 +14,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 2.3
   runSpeed: 5.2
-  Health: 97
-  Ad: 17
-  Def: 7
-  Speed: 29
-  stage: 2
-  killEnemy: 2
-  cost: 4
+  Health: 83
+  Ad: 10
+  Def: 2
+  Speed: 20
+  stage: 1
+  killEnemy: 0
+  cost: 3
   player: {fileID: 11400000, guid: e685c9983c5323c48b0883e0cfe4a469, type: 2}
   canBattle: 1
   _skills:
-  - {fileID: 11400000, guid: d1a4d772f14b63143819c7773a712a7a, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 7dc0f0fefd52a724ebb240075e7abf33, type: 2}
+  - {fileID: 11400000, guid: 30a8c573f0610824ab555b633e5912bd, type: 2}
+  - {fileID: 11400000, guid: 30a8c573f0610824ab555b633e5912bd, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: d47fa131a483f2944a00162aa9077858, type: 2}
   - {fileID: 11400000, guid: d47fa131a483f2944a00162aa9077858, type: 2}
   - {fileID: 11400000, guid: 30a8c573f0610824ab555b633e5912bd, type: 2}
-  - {fileID: 11400000, guid: 7dc0f0fefd52a724ebb240075e7abf33, type: 2}
-  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
-  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
-  - {fileID: 11400000, guid: 7dc0f0fefd52a724ebb240075e7abf33, type: 2}
-  - {fileID: 11400000, guid: 30a8c573f0610824ab555b633e5912bd, type: 2}
-  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
-  - {fileID: 11400000, guid: 7dc0f0fefd52a724ebb240075e7abf33, type: 2}
-  - {fileID: 11400000, guid: d47fa131a483f2944a00162aa9077858, type: 2}
-  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
-  - {fileID: 11400000, guid: 7dc0f0fefd52a724ebb240075e7abf33, type: 2}
-  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
-  - {fileID: 11400000, guid: d9f196ca2d1712b4086451c2b4716021, type: 2}
-  - {fileID: 11400000, guid: 7dc0f0fefd52a724ebb240075e7abf33, type: 2}
   isBuringBlood: 0
   isAnchor: 0
   isBagOfMarbles: 0
   isStrawberry: 0
-  isLantern: 1
+  isLantern: 0
   isBloodVial: 0
-  isPantograph: 1
+  isPantograph: 0
   isClockClasp: 0
   isLetterOpener: 0
   threeCnt: 0

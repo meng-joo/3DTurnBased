@@ -15,18 +15,18 @@ MonoBehaviour:
   typeInven: 0
   cards:
   - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
   - {fileID: 11400000, guid: d47fa131a483f2944a00162aa9077858, type: 2}
-  - {fileID: 11400000, guid: 30a8c573f0610824ab555b633e5912bd, type: 2}
-  - {fileID: 11400000, guid: 30a8c573f0610824ab555b633e5912bd, type: 2}
-  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
-  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
-  - {fileID: 11400000, guid: 30a8c573f0610824ab555b633e5912bd, type: 2}
-  - {fileID: 11400000, guid: 30a8c573f0610824ab555b633e5912bd, type: 2}
-  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
-  - {fileID: 11400000, guid: 7dc0f0fefd52a724ebb240075e7abf33, type: 2}
   - {fileID: 11400000, guid: d47fa131a483f2944a00162aa9077858, type: 2}
-  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
-  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
-  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
-  - {fileID: 11400000, guid: d9f196ca2d1712b4086451c2b4716021, type: 2}
   - {fileID: 11400000, guid: 30a8c573f0610824ab555b633e5912bd, type: 2}

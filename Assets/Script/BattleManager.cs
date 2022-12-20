@@ -110,7 +110,7 @@ public class BattleManager : MonoBehaviour
         _mainModule.battleCam.Priority += 10;
     }
 
-    public void EndBattle(string isWin)
+    public void EndBattle(string isWin, bool boss)
     {
         _mainModule.canInven = true;
 
@@ -143,7 +143,8 @@ public class BattleManager : MonoBehaviour
         _mainModule._animator.SetBool("Fight", false);
         _mainModule.twoView.Priority += 10;
         _mainModule.battleCam.Priority -= 10;
-        _mainModule.playerDataSO.killEnemy++;
+        
+        if(!boss)_mainModule.playerDataSO.killEnemy++;
         _battleUI.cemetryBtn.SetActive(false);
         _battleUI.pickCardBtn.SetActive(false);
         killenemyCount++;
