@@ -51320,6 +51320,7 @@ MonoBehaviour:
   - "\uCE74\uB4DC\uB97C \uACE8\uB77C \uB371\uC744 \uAD6C\uC131\uD560 \uC218 \uC788\uC5B4"
   - "\uC624\uB978\uCABD \uC704 \uAC8C\uC774\uC9C0\uAC00 \uB2E4 \uCC28\uBA74 \uBCF4\uC2A4\uAC00
     \uB098\uC640"
+  mainModule: {fileID: 0}
 --- !u!1001 &1213698129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55415,6 +55416,7 @@ MonoBehaviour:
   useTapOffBtn: {fileID: 1491903423613285973}
   relic: {fileID: 8528898578303722494}
   relicExplain: {fileID: 8528898579773504712}
+  cardInfo: {fileID: 0}
 --- !u!1 &1314867202
 GameObject:
   m_ObjectHideFlags: 0
@@ -77727,6 +77729,10 @@ MonoBehaviour:
   battleStartImage_2: {fileID: 574164531}
   _battleText: {fileID: 1778210760}
   _startText: {fileID: 1827884297}
+  "_\uBCF4": {fileID: 0}
+  "_\uC2A4": {fileID: 0}
+  "_\uCD9C": {fileID: 0}
+  "_\uD604": {fileID: 0}
 --- !u!1 &1894388722
 GameObject:
   m_ObjectHideFlags: 0
@@ -85793,6 +85799,7 @@ MonoBehaviour:
   relicParent: {fileID: 8528898578303722494}
   battleRelicParent: {fileID: 760093626}
   dirSprite: {fileID: 416791804}
+  _effectUI: {fileID: 0}
 --- !u!4 &2096068069
 Transform:
   m_ObjectHideFlags: 0

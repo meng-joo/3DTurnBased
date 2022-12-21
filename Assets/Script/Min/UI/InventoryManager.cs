@@ -29,6 +29,8 @@ public class InventoryManager : MonoBehaviour
     public GameObject useTapOffBtn;
     public GameObject relic;
     public GameObject relicExplain;
+
+    public GameObject cardInfo;
     private void Awake()
     {
         mainModule = FindObjectOfType<MainModule>();
@@ -136,6 +138,7 @@ public class InventoryManager : MonoBehaviour
         useTapOffBtn.SetActive(false);
         useTab.SetActive(false);
         relic.SetActive(true);
+        cardInfo.SetActive(false);
     }
     public void OnSkillUI()
     {

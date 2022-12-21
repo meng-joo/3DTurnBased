@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3237240834698492326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3237240834698492325}
+  - component: {fileID: 3237240834698492324}
+  m_Layer: 0
+  m_Name: ToolTipManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3237240834698492325
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3237240834698492326}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3237240834698492324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3237240834698492326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e446fb6b2e0af7d4ca8c455c55450539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  s:
+  - "WASD\uB85C \uC6C0\uC9C1\uC5EC\uBCF4\uC790"
+  - "\uCE74\uB4DC\uB97C \uB4DC\uB798\uADF8\uD574\uC11C \uC801\uC744 \uACF5\uACA9\uD574\uBCF4\uC790"
+  - "E\uB97C \uB20C\uB7EC\uC11C \uC778\uBCA4\uD1A0\uB9AC\uB97C \uD655\uC778\uD558\uC790"
+  - "\uC7A5\uBE44\uB97C \uC7A5\uCC29\uD574\uC11C \uB2A5\uB825\uCE58\uB97C \uC62C\uB824\uBCF4\uC790"
+  - "\uBB3C\uC57D\uC740 \uD035 \uC2AC\uB86F\uC5D0\uC11C\uB9CC \uC0AC\uC6A9\uD560
+    \uC218 \uC788\uC5B4"
+  - "\uCF54\uC2A4\uD2B8\uB97C \uB2E4 \uC4F0\uBA74 \uD134 \uC885\uB8CC\uB97C \uD558\uB294
+    \uAC83\uC774 \uC88B\uC544"
+  - "\uC720\uBB3C\uC740 \uAC15\uB825\uD55C \uD328\uC2DC\uBE0C \uD6A8\uACFC\uB97C
+    \uAC00\uC9C0\uACE0 \uC788\uC5B4"
+  - "\uC0C1\uC790\uB294 \uAF2D \uC5F4\uC5B4\uBCF4\uAE38 \uBC14\uB784\uAED8"
+  - "\uCE74\uB4DC\uB97C \uACE8\uB77C \uB371\uC744 \uAD6C\uC131\uD560 \uC218 \uC788\uC5B4"
+  - "\uC624\uB978\uCABD \uC704 \uAC8C\uC774\uC9C0\uAC00 \uB2E4 \uCC28\uBA74 \uBCF4\uC2A4\uAC00
+    \uB098\uC640"
+  mainModule: {fileID: 0}

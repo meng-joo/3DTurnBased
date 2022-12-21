@@ -103,6 +103,7 @@ public class InputModule : MonoBehaviour
         seq.AppendInterval(2f);
         seq.AppendCallback(() =>
         {
+            mainModule.chestCreateManager.chestAnimators[mainModule.physicsModule.index].GetComponentInParent<DestroyCheast>().Des();
             // mainModule.ChestOpenParticle.Stop();
             mainModule.canRelic = true;
             mainModule._UIModule.TrophyUIManager.AppearTrophy();

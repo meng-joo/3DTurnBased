@@ -20,9 +20,9 @@ public class AIModule : MonoBehaviour
 
     void Awake()
     {
-        player = GameObject.Find("Player").GetComponent<MainModule>();
-        _battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
-        target = player.transform.Find("Target").gameObject;
+        player = GameObject.Find("Player")?.GetComponent<MainModule>();
+        _battleManager = GameObject.Find("BattleManager")?.GetComponent<BattleManager>();
+        target = player?.transform.Find("Target").gameObject;
 
         enemyData = GetComponent<EnemyData>();
         hpmodule = GetComponent<HpModule>();

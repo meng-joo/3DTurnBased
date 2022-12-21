@@ -36,7 +36,7 @@ public class StartSceneManager : MonoBehaviour
 
     public List<GameObject> scroll;
 
-
+    public MapManager m;
 
     public GameObject escBtn;
 
@@ -49,7 +49,8 @@ public class StartSceneManager : MonoBehaviour
     }
     public void GameStartBtn()
     {
-        SceneManager.LoadScene("InGame_Hollway");
+        m.StartInit(1);
+        //SceneManager.LoadScene("InGame_Hollway");
         //탑으로 가는 씬
     }
 
