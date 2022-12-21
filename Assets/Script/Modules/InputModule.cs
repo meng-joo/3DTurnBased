@@ -104,6 +104,8 @@ public class InputModule : MonoBehaviour
         seq.AppendCallback(() =>
         {
             mainModule.chestCreateManager.chestAnimators[mainModule.physicsModule.index].GetComponentInParent<DestroyCheast>().Des();
+            //
+            mainModule._UIModule.OnInteractionKeyImage(false, "", "f", "");
             // mainModule.ChestOpenParticle.Stop();
             mainModule.canRelic = true;
             mainModule._UIModule.TrophyUIManager.AppearTrophy();

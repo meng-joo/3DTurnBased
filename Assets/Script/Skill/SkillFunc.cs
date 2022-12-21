@@ -74,21 +74,21 @@ public class SkillFunc : MonoBehaviour
 
     public static void Weeker(GameObject _enemy, int weekValue, Color32 _color)
     {
-        if (_enemy.GetComponent<HpModule>().weekness < 1)
-        {
-            GameObject a = PoolManager.Instance.Pop(PoolType.Status_Week).gameObject;
-            RectTransform rectA = a.GetComponent<RectTransform>();
-            a.transform.SetParent(_enemy.GetComponent<HpModule>().statusImage.transform);
-            Vector3 vec3 = rectA.anchoredPosition;
-            vec3.z = 0;
-            //rectA.
-            rectA.anchoredPosition = vec3;
+        //if (_enemy.GetComponent<HpModule>().weekness < 1)
+        //{
+        //    //GameObject a = PoolManager.Instance.Pop(PoolType.Status_Week).gameObject;
+        //    //RectTransform rectA = a.GetComponent<RectTransform>();
+        //    //a.transform.SetParent(_enemy.GetComponent<HpModule>().statusImage.transform);
+        //    //Vector3 vec3 = rectA.anchoredPosition;
+        //    //vec3.z = 0;
+        //    ////rectA.
+        //    //rectA.anchoredPosition = vec3;
 
-            Debug.Log(a.transform.position);
-            Debug.Log(a.transform.localPosition);
-            //a.transform.rotation = Quaternion.Euler(0, 0, 0);
-            Debug.Log(a.transform.rotation);
-        }
+        //    Debug.Log(a.transform.position);
+        //    Debug.Log(a.transform.localPosition);
+        //    //a.transform.rotation = Quaternion.Euler(0, 0, 0);
+        //    Debug.Log(a.transform.rotation);
+        //}
         _enemy.GetComponent<HpModule>().weekness += weekValue;
         //_enemy.GetComponent<HpModule>().AddStatus("Week");
     }

@@ -52,7 +52,7 @@ public class InvenSkill : MonoBehaviour
         //    skillCards[i].Skill = skillDeckInvenObj.cards[i];
         //}     
 
-        for (int i = 0; i < playerDataSO._skills.Length; i++)
+        for (int i = 0; i < playerDataSO._skills.Count; i++)
         {
             skillCards[i].Skill = playerDataSO._skills[i];
         }

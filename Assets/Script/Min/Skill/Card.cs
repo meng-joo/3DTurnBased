@@ -100,7 +100,7 @@ public class Card : PoolAbleObject, IPointerEnterHandler, IPointerExitHandler, I
             //{
             //    invenSkill.skillDeckInvenObj.cards[i] = invenSkill.skillCards[i].Skill;
             //}
-            for (int i = 0; i < invenSkill.PlayerDataSO._skills.Length; i++)
+            for (int i = 0; i < invenSkill.PlayerDataSO._skills.Count; i++)
             {
                 invenSkill.PlayerDataSO._skills[i] = invenSkill.skillCards[i].Skill;
             }

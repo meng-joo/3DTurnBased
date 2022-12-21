@@ -516,7 +516,7 @@ public class BattleUI : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < mainModule.playerDataSO._skills.Length; i++)
+            for (int i = 0; i < mainModule.playerDataSO._skills.Count; i++)
             {
                 playerSkill.Add(mainModule.playerDataSO._skills[i]);
             }
@@ -558,7 +558,7 @@ public class BattleUI : MonoBehaviour
         while (n > 1)
         {
             n--;
-            int k = Random.Range(0, mainModule.playerDataSO._skills.Length);
+            int k = Random.Range(0, mainModule.playerDataSO._skills.Count);
             T value = list[k];
             list[k] = list[n];
             list[n] = value;
@@ -641,7 +641,7 @@ public class BattleUI : MonoBehaviour
 
     public void SetText()
     {
-        currentPlayerInfo.text = $"플레이어 정보:\n체력: {mainModule._HpModule.hp} / {mainModule._HpModule.maxHp}\n공격력: {mainModule.playerDataSO.Ad}\n방어력: {mainModule.playerDataSO.Def}\n스피드: {mainModule.playerDataSO.Speed}\n현재 카드 수집한 카드 수: {mainModule.playerDataSO._skills.Length + _skill.cards.Count}\n현재 상태: {playerInfo}";
+        currentPlayerInfo.text = $"플레이어 정보:\n체력: {mainModule._HpModule.hp} / {mainModule._HpModule.maxHp}\n공격력: {mainModule.playerDataSO.Ad}\n방어력: {mainModule.playerDataSO.Def}\n스피드: {mainModule.playerDataSO.Speed}\n현재 카드 수집한 카드 수: {mainModule.playerDataSO._skills.Count + _skill.cards.Count}\n현재 상태: {playerInfo}";
     }
 
     //List<Transform> OrderCard(Transform left, Transform right, int objcount, float height, Vector3 scale)

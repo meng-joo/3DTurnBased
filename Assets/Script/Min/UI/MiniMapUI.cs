@@ -33,7 +33,7 @@ public class MiniMapUI : MonoBehaviour
     {
         InvokeRepeating("UpdateTime", 0, 0.4f);
         hpText.text = $"{player._HpModule.hp} / {player._HpModule.maxHp}";
-        int count = player.playerDataSO._skills.Length + skills.cards.Count;
+        int count = player.playerDataSO._skills.Count + skills.cards.Count;
         cardText.text = count.ToString();
     }
 

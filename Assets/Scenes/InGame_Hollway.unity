@@ -20485,7 +20485,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781912147}
-  m_LocalRotation: {x: 0.24964155, y: 0.7499888, z: -0.44650647, w: 0.41931838}
+  m_LocalRotation: {x: 0.24964154, y: 0.7499888, z: -0.44650647, w: 0.41931835}
   m_LocalPosition: {x: 3.17, y: 10.23, z: 3.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -26583,7 +26583,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950607068}
-  m_LocalRotation: {x: 0.27566403, y: 0.7202451, z: -0.49304986, w: 0.40268877}
+  m_LocalRotation: {x: 0.27566403, y: 0.7202451, z: -0.4930498, w: 0.4026888}
   m_LocalPosition: {x: 3.17, y: 14.696, z: 3.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -34513,7 +34513,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1340991476}
   - component: {fileID: 1340991475}
-  - component: {fileID: 1340991477}
   m_Layer: 0
   m_Name: BGM
   m_TagString: Untagged
@@ -34632,19 +34631,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1340991477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1340991473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 281baf7883ed1c34b8a4fcc2e2496cd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clipMatch: []
 --- !u!224 &1344169273 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4450182917246461753, guid: f0a2f563cc9adfb4ca77f0464e253f5c, type: 3}

@@ -30,7 +30,7 @@ public class PlayerDataSO : ScriptableObject
 
     [Space]
     [Header("플레이어 보유 스킬")]
-    public Skill[] _skills;
+    public List<Skill> _skills;
 
     #region 유물관련 불변수들
     public bool isBuringBlood = false;

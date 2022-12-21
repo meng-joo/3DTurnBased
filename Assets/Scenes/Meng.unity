@@ -21819,7 +21819,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435867081}
-  m_LocalRotation: {x: 0.11779183, y: -0.39380544, z: 0.050964177, w: 0.91018957}
+  m_LocalRotation: {x: 0.11779181, y: -0.3938054, z: 0.050964165, w: 0.91018957}
   m_LocalPosition: {x: 8.57, y: 3.79, z: -14.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -34409,13 +34409,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 817266939}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1737915808}
-  m_RootOrder: 11
+  m_Father: {fileID: 0}
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &817266941
 MonoBehaviour:
@@ -73058,7 +73058,6 @@ Transform:
   - {fileID: 638879455}
   - {fileID: 1485896705}
   - {fileID: 213663665}
-  - {fileID: 817266940}
   - {fileID: 6117295064514072527}
   - {fileID: 1884958277}
   m_Father: {fileID: 0}
@@ -74824,14 +74823,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f7f681cd213d9a7488500ce745f2d4f8, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -77995,7 +77994,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1737915808}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1884958278
 MonoBehaviour:
@@ -78365,6 +78364,14 @@ MonoBehaviour:
   gameOverImage: {fileID: 1797758324}
   gameOverText: {fileID: 1270467877}
   _text: {fileID: 843613415}
+  platerDataSO: {fileID: 11400000, guid: de8a6403f7d0675478f21fa28ee7e868, type: 2}
+  playerRelic: {fileID: 11400000, guid: 7b9c8418ea5b8254587230fdddada114, type: 2}
+  deckSkill: {fileID: 11400000, guid: c4673a5e02110df458eca17c2370e4c3, type: 2}
+  addSkill: {fileID: 11400000, guid: 7939c93a7a49ab243a3021f89175492a, type: 2}
+  initSkill: {fileID: 11400000, guid: f962d18af139d4143b927bf79de1fd02, type: 2}
+  quickInven: {fileID: 11400000, guid: 7ec63ad837096b74282fe308b1329313, type: 2}
+  equipInven: {fileID: 11400000, guid: 336ca25fb92ee684caf69fc760ba61bf, type: 2}
+  itemInven: {fileID: 11400000, guid: 52f83e4cd211e5441a4e622c96da737c, type: 2}
 --- !u!1 &1894388722
 GameObject:
   m_ObjectHideFlags: 0
@@ -86215,7 +86222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atkText: {fileID: 1416435048188873223}
   hpText: {fileID: 1416435048117693166}
-  playerDataSO: {fileID: 11400000, guid: 6f0a5b89e0c0fb3499c4ef5438bb2b14, type: 2}
+  playerDataSO: {fileID: 11400000, guid: de8a6403f7d0675478f21fa28ee7e868, type: 2}
   mainModule: {fileID: 9175644270623422100}
 --- !u!4 &2086865578 stripped
 Transform:
@@ -106777,7 +106784,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1737915808}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6128245575580382344
 GameObject:
