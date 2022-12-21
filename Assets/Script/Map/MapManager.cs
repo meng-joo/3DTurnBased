@@ -36,6 +36,8 @@ public class MapManager : MonoBehaviour
     private TextMeshProUGUI maskImage;
     private Image barImage;
 
+
+
     private void Start()
     {
         isMiniMapUp = false;
@@ -125,5 +127,18 @@ public class MapManager : MonoBehaviour
         #endregion 
 
         seq.AppendCallback(() => fadeUI.gameObject.SetActive(false));
+    }
+
+
+    public void Ending()
+    {
+        if (_mainModule.playerDataSO.isClear == true)
+        {
+            GameObject.Find("UIManager").GetComponent<GameOverUI>().Init();
+            SceneManager.LoadScene("Start");
+
+
+            //¤±¸Ó¤Ã
+        }
     }
 }

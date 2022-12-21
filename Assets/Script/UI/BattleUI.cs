@@ -246,13 +246,13 @@ public class BattleUI : MonoBehaviour
             Destroy(deletecard.gameObject);
         }
 
-        for (int i = 0; i < _cost; i++)
+        for (int i = _cost; i > 0; i--)
         {
             GameObject obj = Instantiate(costPrefab, transform.position, Quaternion.identity);
             obj.transform.SetParent(costParentTrm.transform);
             obj.SetActive(true);
 
-            obj.transform.localPosition = new Vector3(0f + (2 * i), 0f, 0f + i);
+            obj.transform.localPosition = new Vector3(i * 3, 0, i * -2f); // new Vector3(0f + (2 * i), 0f, 0f + i); 
             obj.transform.localScale = Vector3.one;
             obj.transform.Rotate(new Vector3(0, 0f, 0f));
 
@@ -627,6 +627,7 @@ public class BattleUI : MonoBehaviour
     IEnumerator DiscardCost(int m_cost)
     {
         for (int i = 0; i < m_cost; i++)
+        //for (int i = m_cost; i > 0; i--)
         {
             DoFade(0, 1, 1, costObj[0].transform.Find("NGon002").GetComponent<MeshRenderer>().material);
             costObj.Remove(costObj[0]);

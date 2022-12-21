@@ -67,7 +67,7 @@ public class InputModule : MonoBehaviour
         if (mainModule.stageClear)
         {
             mainModule.canMove = true;
-            mainModule.MapManager.StartInit(mainModule.playerDataSO.stage);
+            mainModule.MapManager.StartInit(mainModule.playerDataSO.stage + 1);
         }
         else
         {

@@ -5429,7 +5429,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 5.960013
+  orthographic size: 5.600014
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -6946,7 +6946,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 5.960013
+    OrthographicSize: 5.600014
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -21047,7 +21047,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416791804}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.77}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21849,7 +21849,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 9175644268671502752}
   m_Follow: {fileID: 9175644268671502752}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 46
     OrthographicSize: 3
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -28591,7 +28591,7 @@ MonoBehaviour:
   chestTrms:
   - {fileID: 902193775444059795}
   chestCnt: 1
-  chestPrefab: {fileID: 7106211750971861131, guid: 2c016ab420e81dc4697970a5a7785698, type: 3}
+  chestPrefab: {fileID: 7106211750971861131, guid: d320c919fa7a92b46b7f76e2082c970e, type: 3}
   chestAnimators: []
   parentTrm: {fileID: 1732202218}
 --- !u!4 &640332549 stripped
@@ -57470,7 +57470,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 9175644268671502752}
   m_Follow: {fileID: 9175644268671502752}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 53.59216
     OrthographicSize: 5.840011
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -62967,8 +62967,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1469667227}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0.2, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0.855}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 416791805}
@@ -63995,14 +63995,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1494104837}
-  m_LocalRotation: {x: 0, y: -0.27563733, z: 0, w: 0.96126175}
-  m_LocalPosition: {x: -1, y: 0.3, z: 2.8}
+  m_LocalRotation: {x: -0, y: -0.62895465, z: -0, w: 0.777442}
+  m_LocalPosition: {x: -1.811, y: 0.51, z: -3.953}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8709071779448361315}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: -32, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -77.946, z: 0}
 --- !u!1 &1494328585
 GameObject:
   m_ObjectHideFlags: 0
@@ -102416,7 +102416,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 107.6, y: -228}
+  m_AnchoredPosition: {x: -530, y: -330}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1491903421995054971
@@ -102498,14 +102498,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0.98745537, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5abb7c95c702b674fa7c029837eeb51d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 047b929beb10565479851d39b452dfb6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -102884,8 +102884,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -103069,14 +103069,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0.98745537, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5abb7c95c702b674fa7c029837eeb51d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 047b929beb10565479851d39b452dfb6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -103152,7 +103152,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tochuck
+  m_text: Use
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74c2a336f1e89c34cbe6d83292e25e29, type: 2}
   m_sharedMaterial: {fileID: -1405302690972908582, guid: 74c2a336f1e89c34cbe6d83292e25e29, type: 2}
@@ -103161,8 +103161,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -103537,7 +103537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -106771,6 +106771,7 @@ MonoBehaviour:
   - "\uC624\uB978\uCABD \uC704 \uAC8C\uC774\uC9C0\uAC00 \uB2E4 \uCC28\uBA74 \uBCF4\uC2A4\uAC00
     \uB098\uC640"
   mainModule: {fileID: 9175644270623422100}
+  im: {fileID: 1313596755}
 --- !u!4 &6117295064514072527
 Transform:
   m_ObjectHideFlags: 0

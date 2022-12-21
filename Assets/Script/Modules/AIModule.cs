@@ -69,6 +69,13 @@ public class AIModule : MonoBehaviour
             player.playerDataSO.stage++;
 
             player.stageClear = true;;
+
+            if(enemyType == PoolType.Boss3)
+            {
+                
+                player.playerDataSO.isClear = true;
+                player.MapManager.Ending();
+            }
         }
         yield return new WaitForSeconds(.5f);
 

@@ -415,6 +415,7 @@ MonoBehaviour:
   _isEnding: 1
   _text: {fileID: 524144425}
   fadeObj: {fileID: 1765814127}
+  data: {fileID: 11400000, guid: de8a6403f7d0675478f21fa28ee7e868, type: 2}
 --- !u!4 &196099756
 Transform:
   m_ObjectHideFlags: 0
@@ -2162,7 +2163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2170,11 +2171,11 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uAC1C\uBC1C\n\n\uB9F9\uC8FC\uC601\n\uD55C\uBBFC\uC601\n\n\n\n\uAE30\uD68D\n\n\uB9F9\uC8FC\uC601\n\uD55C\uBBFC\uC601\n\n\n\uC720\uB2C8\uD2F0
     \uD0AC\uB7EC\n\n\uD55C\uBBFC\uC601\n\n\n\n\uAC1C\uBC1C \uC911\uB3C5\uC790\n\n\uB9F9\uC8FC\uC601\n\n\nSpecial
-    Thanks\n\n\uC774\uC0C1\uC9C4 \uC120\uC0DD\uB2D8\nSlay the Spire\n\n\n\uAC8C\uC784
+    Thanks\n\n\uC774\uC0C1\uC9C4 \n\uC120\uC0DD\uB2D8\n\nSlay the Spire\n\n\n\uAC8C\uC784
     \uD074\uB9AC\uC5B4\n\uD574\uC8FC\uC154\uC11C \uAC10\uC0AC\uD569\uB2C8\uB2E4!!\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 74c2a336f1e89c34cbe6d83292e25e29, type: 2}
-  m_sharedMaterial: {fileID: -1405302690972908582, guid: 74c2a336f1e89c34cbe6d83292e25e29, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e69e05d7fabfdda469f13788f7a77881, type: 2}
+  m_sharedMaterial: {fileID: 2186547725955828359, guid: e69e05d7fabfdda469f13788f7a77881, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6590,7 +6591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6599,8 +6600,8 @@ MonoBehaviour:
   m_text: "\uC2A4\uD398\uC774\uC2A4 \uBC14\uB97C \uAFB9 \uB20C\uB7EC\uC11C \uBE60\uB974\uAC8C
     \uB118\uAE30\uC138\uC694"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 74c2a336f1e89c34cbe6d83292e25e29, type: 2}
-  m_sharedMaterial: {fileID: -1405302690972908582, guid: 74c2a336f1e89c34cbe6d83292e25e29, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e69e05d7fabfdda469f13788f7a77881, type: 2}
+  m_sharedMaterial: {fileID: 2186547725955828359, guid: e69e05d7fabfdda469f13788f7a77881, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6720,7 +6721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -12111,7 +12112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 1051527975}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1

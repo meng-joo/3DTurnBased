@@ -102,7 +102,7 @@ public class BattleManager : MonoBehaviour
                 hp.GetHp(25);
             }
 
-            GameObject enemyPrefab = PoolManager.Instance.Pop(PoolType.Boss1 + (_mainModule.playerDataSO.stage - 1)).gameObject;
+            GameObject enemyPrefab = PoolManager.Instance.Pop((PoolType)(PoolType.Boss1 + (_mainModule.playerDataSO.stage - 1))).gameObject;
             enemyPrefab.transform.position = _mainModule._enemySpawnPoint[0].position;
             fieldEnemies.Add(enemyPrefab);
             fieldEnemies[0].transform.DOScale(1, 1f);

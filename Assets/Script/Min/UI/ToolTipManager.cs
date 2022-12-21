@@ -6,6 +6,7 @@ public class ToolTipManager : MonoBehaviour
 {
     public List<string> s;
     public MainModule mainModule;
+    public InventoryManager im;
 
     void Start()
     {
@@ -14,16 +15,19 @@ public class ToolTipManager : MonoBehaviour
 
     IEnumerator ToolTip()
     {
-        while(true)
+        while (true)
         {
-            if (mainModule.isBattle || mainModule.isTrophy || mainModule.canInven == false)
+            if (mainModule.isBattle == false && mainModule.isTrophy == false && mainModule.canInven == true && mainModule.MapManager.isMiniMapUp == false && im.isInven  == false)
             {
-                yield break;
+                Debug.Log("A");
+                int randTxt = Random.Range(0, s.Count);
+                float rand = Random.Range(30f, 40f);
+                DialogManager.Instance.ShowText(s[randTxt]);
+                yield return new WaitForSeconds(rand);
+                
             }
-            int randTxt = Random.Range(0, s.Count);
-            float rand = Random.Range(1f, 5f);
-            yield return new WaitForSeconds(rand);
-            DialogManager.Instance.ShowText(s[randTxt]);
+            yield return null;
+            
         }
     }
 }

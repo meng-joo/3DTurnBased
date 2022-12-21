@@ -1188,7 +1188,7 @@ MonoBehaviour:
   _effectBar: {fileID: 4008119051470663467}
   text: {fileID: 593230543950095813}
   _hpbar: {fileID: 1153145558690262412}
-  statusImage: {fileID: 6528215554985656269}
+  statusImage: {fileID: 0}
   attackedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2775,8 +2775,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.45}
-  m_SizeDelta: {x: 0.6, y: 0.6}
+  m_AnchoredPosition: {x: -0.951, y: 0.15695}
+  m_SizeDelta: {x: 0.3139, y: 0.3139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3481824584142154866
 CanvasRenderer:
@@ -2901,7 +2901,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7592232756793733921, guid: 10642cff72d178241a5bb25efdca6a9d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 3.89
+      value: 1.07
       objectReference: {fileID: 0}
     - target: {fileID: 7592232756793733921, guid: 10642cff72d178241a5bb25efdca6a9d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2967,17 +2967,6 @@ MonoBehaviour:
 --- !u!114 &4008119051470663467 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6383277130346358554, guid: 10642cff72d178241a5bb25efdca6a9d, type: 3}
-  m_PrefabInstance: {fileID: 8001286511251753009}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6528215554985656269 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3860331199630178300, guid: 10642cff72d178241a5bb25efdca6a9d, type: 3}
   m_PrefabInstance: {fileID: 8001286511251753009}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

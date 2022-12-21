@@ -18,10 +18,11 @@ public class DialogManager : MonoSingleton<DialogManager>
     }
     IEnumerator ShowStoreBehave(string text)
     {
+
         _ischatting = true;
         _tipText.DOFade(1f, 0.5f);
         dialog.DOFade(1f, 0.5f);
-
+            
        GameObject obj =  Instantiate(ps, Camera.main.ScreenToWorldPoint(dialog.transform.position), Quaternion.identity).gameObject;
 
         Debug.Log(ps);

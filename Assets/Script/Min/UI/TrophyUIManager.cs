@@ -337,7 +337,7 @@ public class TrophyUIManager : MonoBehaviour
         seq.Append(relic.transform.DOScale(Vector3.one, 0.5f));
 
         trail.SetActive(true);
-        Invoke("Dont", 2.5f);
+        Invoke("Dont", 1f);
         Invoke("OffImage", 2.2f);
     }
     public void EffectCard(Sprite itemImg)
@@ -374,10 +374,10 @@ public class TrophyUIManager : MonoBehaviour
         waypoint.SetValue(middlePoint, 1);
         waypoint.SetValue(lastPoint, 2);
 
-        inImage.rectTransform.DOLocalPath(waypoint, 1.2f, PathType.CatmullRom).SetEase(asda);//    .SetEase(asda);
+        inImage.rectTransform.DOLocalPath(waypoint, 0.5f, PathType.CatmullRom).SetEase(asda);//    .SetEase(asda);
 
         trail.SetActive(true);
-        Invoke("Dont", 2.5f);
+        Invoke("Dont", 1f);
         Invoke("OffImage", 2.2f);
     }
     public void Dont()

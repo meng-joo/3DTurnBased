@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 2.3
   runSpeed: 5.2
-  Health: 83
-  Ad: 10
+  Health: 78
+  Ad: 5
   Def: 2
   Speed: 20
   stage: 1
-  killEnemy: 2
+  killEnemy: 0
   cost: 3
   player: {fileID: 11400000, guid: e685c9983c5323c48b0883e0cfe4a469, type: 2}
-  canBattle: 1
+  canBattle: 0
   _skills:
   - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
   - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
@@ -31,15 +31,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
   - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
   - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
-  - {fileID: 11400000, guid: 7dc0f0fefd52a724ebb240075e7abf33, type: 2}
-  - {fileID: 11400000, guid: 30a8c573f0610824ab555b633e5912bd, type: 2}
-  - {fileID: 11400000, guid: 30a8c573f0610824ab555b633e5912bd, type: 2}
   - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
   - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
-  - {fileID: 11400000, guid: 7dc0f0fefd52a724ebb240075e7abf33, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
   - {fileID: 11400000, guid: d47fa131a483f2944a00162aa9077858, type: 2}
   - {fileID: 11400000, guid: d47fa131a483f2944a00162aa9077858, type: 2}
   - {fileID: 11400000, guid: 30a8c573f0610824ab555b633e5912bd, type: 2}
+  isClear: 0
   isBuringBlood: 0
   isAnchor: 0
   isBagOfMarbles: 0
@@ -49,4 +50,4 @@ MonoBehaviour:
   isPantograph: 0
   isClockClasp: 0
   isLetterOpener: 0
-  threeCnt: 0
+  threeCnt: 1

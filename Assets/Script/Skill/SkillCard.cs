@@ -101,15 +101,15 @@ public class SkillCard : PoolAbleObject
 
             //if (isfirst)
             //{
-                Vector3 pos = Input.mousePosition;
-                //pos.z = Camera.main.farClipPlane;
+            Vector3 pos = Input.mousePosition;
+            //pos.z = Camera.main.farClipPlane;
 
-                //mousePoint = Camera.main.ScreenToWorldPoint(pos);
-                //mousePoint = pos;
-                //transform.position = mousePoint;
+            //mousePoint = Camera.main.ScreenToWorldPoint(pos);
+            //mousePoint = pos;
+            //transform.position = mousePoint;
 
-                if (Physics.Raycast(ray, out hit, 100))
-                {
+            if (Physics.Raycast(ray, out hit, 100))
+            {
                 //Vector3 mPosition = pos;
                 //Vector3 oPosition = _mainModule.dirObj.transform.position;
 
@@ -120,29 +120,31 @@ public class SkillCard : PoolAbleObject
 
                 //float rotateDegree = Mathf.Atan2(dy, dx) * Mathf.Rad2Deg;
 
-                float angle = Mathf.Atan2(_mainModule.dirObj.transform.position.y - pos.y, 
+                float angle = Mathf.Atan2(_mainModule.dirObj.transform.position.y - pos.y,
                     _mainModule.dirObj.transform.position.x - pos.x) * Mathf.Rad2Deg;
 
                 //_mainModule.dirObj.transform.transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
                 // _mainModule.dirObj.transform.rotation = Quaternion.Euler(0f, rotateDegree - 6f, 0);
                 _mainModule.dirObj.transform.LookAt(hit.point);
-                _mainModule.dirObj.transform.eulerAngles = new Vector3(0 , _mainModule.dirObj.transform.eulerAngles.y, 0);
+                _mainModule.dirObj.transform.eulerAngles = new Vector3(0, _mainModule.dirObj.transform.eulerAngles.y, 0);
 
 
                 if (hit.collider.CompareTag(target))
+                {
+                    if (fadeImage.color.a <= 1f)
                     {
-                        if (fadeImage.color.a <= 1f)
-                        {
-                            _mainModule.dirObj.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 0, 0);
-                            Color color = fadeImage.color;
-                            color.a += 0.08f;
-                            fadeImage.color = color;
-                            return;
-                        }
+                        //_mainModule.dirObj.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 0, 0);
+                        _mainModule.dirObj.SetActive(true);
+                        Color color = fadeImage.color;
+                        color.a += 0.08f;
+                        fadeImage.color = color;
+                        return;
                     }
+                }
                 else
                 {
-                     _mainModule.dirObj.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1);
+                    _mainModule.dirObj.SetActive(false);
+                    //_mainModule.dirObj.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1);
 
                 }
                 //}
@@ -208,7 +210,7 @@ public class SkillCard : PoolAbleObject
                 _mainModule._animatorOverride["Motion"] = _motion;
                 _mainModule._animator.Play("Motion", 0);
 
-                
+
 
                 GameObject vfx = PoolManager.Instance.Pop(_skillVFX).gameObject;
                 vfx.transform.position = hit.point;
@@ -232,6 +234,7 @@ public class SkillCard : PoolAbleObject
             }
         }
         //transform.position = originPos;
+        _mainModule.dirObj.SetActive(false);
         m_IsButtonDowning = false;
     }
 

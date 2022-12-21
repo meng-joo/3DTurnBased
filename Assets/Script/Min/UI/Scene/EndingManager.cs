@@ -20,6 +20,8 @@ public class EndingManager : MonoBehaviour
     public GameObject _text = null;
 
     public GameObject fadeObj;
+
+    public PlayerDataSO data;
     private void Start()
     {
         _originSpeed = _textSpeed;
@@ -35,8 +37,14 @@ public class EndingManager : MonoBehaviour
             _textSpeed = _originSpeed;
         }
 
+        if (data.isClear == true)
+        {
+            _isEnding = true;
+        }
+
         if (_isEnding)
         {
+            fadeObj.SetActive(true);
             _text.transform.Translate(Vector3.up * _textSpeed * Time.deltaTime);
 
             if (_text.transform.position.y >= _lastPos.position.y)
@@ -44,6 +52,8 @@ public class EndingManager : MonoBehaviour
                 fadeObj.GetComponent<Image>().DOFade(0f, 0.5f);
                 _text.GetComponent<TextMeshProUGUI>().DOFade(0f, 0.3f);
                 _tooltipText.GetComponent<TextMeshProUGUI>().DOFade(0f, 0.3f);
+                fadeObj.GetComponent<Image>().raycastTarget = false;
+
                 _isEnding = false;
             }
         }

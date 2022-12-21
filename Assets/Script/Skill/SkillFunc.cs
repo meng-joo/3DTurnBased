@@ -69,6 +69,14 @@ public class SkillFunc : MonoBehaviour
     {
         _player.GetComponent<HpModule>().OnShield(shieldValue);
     }
+    public static void AddCost(GameObject _player, int value, Color32 _color)
+    {
+        BattleManager bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+        int a = bm._battleUI.cost;
+        bm._battleUI.CreateCost(a + value);
+
+        bm._battleUI.cost = a + value;
+    }
 
     #endregion
 
@@ -107,6 +115,7 @@ public class SkillFunc : MonoBehaviour
         _enemy.GetComponent<HpModule>().fear += fearValue;
         //_enemy.GetComponent<HpModule>().AddStatus("Fear");
     }
+
 }
 
 // 클래스 설계도

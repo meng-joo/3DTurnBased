@@ -57,6 +57,19 @@ public class GameOverUI : MonoBehaviour
     }
     public void Init()
     {
+        platerDataSO.isBuringBlood= false; 
+        platerDataSO.isAnchor     = false;
+        platerDataSO.isBagOfMarbles = false;
+        platerDataSO.isStrawberry = false;
+        platerDataSO.isLantern    = false;
+        platerDataSO.isBloodVial  = false;
+        platerDataSO.isPantograph = false;
+        platerDataSO.isClockClasp = false;
+        platerDataSO.isLetterOpener = false;
+
+
+        platerDataSO.threeCnt = 0;
+
         platerDataSO.canBattle = false;
         
         platerDataSO.Health = 78;   

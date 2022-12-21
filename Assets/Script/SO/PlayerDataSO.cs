@@ -32,6 +32,8 @@ public class PlayerDataSO : ScriptableObject
     [Header("플레이어 보유 스킬")]
     public List<Skill> _skills;
 
+    public bool isClear;
+
     #region 유물관련 불변수들
     public bool isBuringBlood = false;
     public bool isAnchor = false;
