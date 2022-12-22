@@ -81,6 +81,8 @@ public class MapManager : MonoBehaviour
     {
         Sequence seq = DOTween.Sequence();
 
+        Vector3 pos = maskTargetImage.transform.position;
+
         seq.AppendCallback(() => fadeUI.gameObject.SetActive(true));
         seq.Append(fadeUI.DOFade(1f, 1.6f));
 
@@ -125,6 +127,8 @@ public class MapManager : MonoBehaviour
         seq.AppendInterval(0.5f);
         seq.Append(fadeUI.DOFade(0f, 1.5f));
         #endregion 
+
+        seq.AppendCallback(() => maskTargetImage.transform.position = pos);
 
         seq.AppendCallback(() => fadeUI.gameObject.SetActive(false));
     }

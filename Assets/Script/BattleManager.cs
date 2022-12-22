@@ -213,6 +213,8 @@ public class BattleManager : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
             _battleUI.SetActiveButton(true);
 
+
+
             playerHitCam.Priority -= 100;
             /*if(!shieldMaintain)*/
             _mainModule._HpModule.shield = 0;

@@ -237,7 +237,9 @@ public class BattleUI : MonoBehaviour
     }
     public void CreateCost(int _cost)
     {
-        Transform[] cardchildList = costParentTrm.GetComponentsInChildren<RectTransform>();
+        costObj.Clear();
+
+        Transform[] cardchildList = costParentTrm.GetComponentsInChildren<Transform>();
         foreach (var deletecard in cardchildList)
         {
             if (deletecard == costParentTrm)

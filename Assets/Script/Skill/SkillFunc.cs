@@ -73,9 +73,10 @@ public class SkillFunc : MonoBehaviour
     {
         BattleManager bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
         int a = bm._battleUI.cost;
-        bm._battleUI.CreateCost(a + value);
-
         bm._battleUI.cost = a + value;
+        Debug.Log(bm._battleUI.cost);
+
+        bm._battleUI.CreateCost(bm._battleUI.cost);
     }
 
     #endregion
