@@ -86,7 +86,6 @@ public class BattleManager : MonoBehaviour
         {
             for (int i = 0; i < GetEnemy(); i++)
             {
-                Debug.Log("[이거 실행 된다? ㅋㅋ]");
                 GameObject enemyPrefab = PoolManager.Instance.Pop(EnemyType()).gameObject;
                 Debug.Log(enemyPrefab);
                 fieldEnemies.Add(enemyPrefab);
@@ -129,6 +128,7 @@ public class BattleManager : MonoBehaviour
                 Destroy(childList[i].gameObject);
             }
         }
+
         dirSprite.SetActive(false);
 
         battleRelicParent.SetActive(false);

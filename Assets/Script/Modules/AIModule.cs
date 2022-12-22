@@ -53,13 +53,17 @@ public class AIModule : MonoBehaviour
         _battleManager.fieldEnemies.Remove(gameObject);
         if (_battleManager.fieldEnemies.Count == 0)
         {
+            _battleManager._battleUI.TurnEnd.interactable = false;  
             Time.timeScale = 0.3f;
             yield return new WaitForSecondsRealtime(2.5f);
             Time.timeScale = 1;
         }
+
         _animator.Play("Die");
 
         yield return new WaitForSeconds(0.8f);
+        _battleManager._battleUI.TurnEnd.interactable = true;
+
         transform.DOScale(0, 0.5f);
 
         if (enemyType >= PoolType.Boss1) {
@@ -72,7 +76,6 @@ public class AIModule : MonoBehaviour
 
             if(enemyType == PoolType.Boss3)
             {
-                
                 player.playerDataSO.isClear = true;
                 player.MapManager.Ending();
             }

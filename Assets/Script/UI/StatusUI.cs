@@ -27,7 +27,7 @@ public class StatusUI : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(UpdateText());
+     //   StartCoroutine(UpdateText());
     }
 
     IEnumerator UpdateText()
@@ -46,7 +46,7 @@ public class StatusUI : MonoBehaviour
 
             speed_Inven.text = $"SPEED : {mainModule.playerDataSO.Speed}";
             speed_NomalCam.text = $"{mainModule.playerDataSO.Speed}";
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(3f);
         }
     }
 }
