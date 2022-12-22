@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Reflection;
 using TMPro;
 using UnityEngine;
@@ -22,7 +21,8 @@ public abstract class UIInventory : MonoBehaviour
 
     public Dictionary<GameObject, InvenSlot> uiSlotLists = new Dictionary<GameObject, InvenSlot>();
 
-    public static PlayerDataSO PlayerData; //;;
+    //public static PlayerDataSO PlayerData; //;;
+    public PlayerDataSO PlayerData; //;;
 
     private bool isMinus = false;
 
@@ -38,6 +38,22 @@ public abstract class UIInventory : MonoBehaviour
     public AudioClip audioClip;
 
     public MainModule mainModule;
+
+    public TextMeshProUGUI hp_NomalCam;
+    public TextMeshProUGUI hp_Inven;
+    public TextMeshProUGUI hp_Mini;
+
+    [Space]
+    public TextMeshProUGUI atk_Inven;
+    public TextMeshProUGUI atk_NomalCam;
+
+    [Space]
+    public TextMeshProUGUI def_Inven;
+    public TextMeshProUGUI def_NomalCam;
+
+    [Space]
+    public TextMeshProUGUI speed_Inven;
+    public TextMeshProUGUI speed_NomalCam;
     private void Awake()
     {
         createUISlots();
@@ -48,8 +64,8 @@ public abstract class UIInventory : MonoBehaviour
             inventoryObj.invenSlots[i].OnPostUpload += OnEquipUpdate;
         }
 
-        PlayerData = AddressableManager.Instance.GetResource<PlayerDataSO>("Assets/SO/Player/PlayerDataSO.asset");
-
+        //PlayerData = AddressableManager.Instance.GetResource<PlayerDataSO>("Assets/SO/Player/PlayerDataSO.asset");
+        
         AddEventAction(gameObject, EventTriggerType.PointerEnter, delegate { OnEnterInventory(gameObject); });
         AddEventAction(gameObject, EventTriggerType.PointerExit, delegate { OnExitInventory(gameObject); });
 
@@ -62,6 +78,11 @@ public abstract class UIInventory : MonoBehaviour
         {
             inventoryObj.invenSlots[i].uploadSlot(inventoryObj.invenSlots[i].item, inventoryObj.invenSlots[i].itemCnt);
         }
+
+
+        hp_NomalCam.text = $"{mainModule._HpModule.hp} / {PlayerData.Health}"; //._HpModule.maxHp}";
+        hp_Inven.text = $"HP : {mainModule._HpModule.hp} /  {PlayerData.Health}"; //{ mainModule._HpModule.maxHp}";
+        hp_Mini.text = $"{mainModule._HpModule.hp} / {PlayerData.Health}"; //{ mainModule._HpModule.maxHp}";
     }
 
     public abstract void createUISlots();
@@ -188,6 +209,7 @@ public abstract class UIInventory : MonoBehaviour
         Destroy(MouseTransformData.mouseDragging);
         if (MouseTransformData.mouseInventory == null)
         {
+            isMinus = false;
             //주석친 이유는 빈칸에가면 사라지는게 아니라 원래자리로가야하기때문에
             //uiSlotLists[gameObj].destoryItem();
         }
@@ -201,36 +223,63 @@ public abstract class UIInventory : MonoBehaviour
 
             if (inventoryObj.SwapItems(uiSlotLists[gameObj], mouseHoverSlotData) == false)
             {
+                isMinus = false;
                 return;
             }
             //내가 지금 잡은애가 장비가 아니고 도착할애도 장비가 아니야 그러면 아바가없는거지
             if (currentInven.inventoryObj.type !=  InterfaceType.Equipment && targetInven.inventoryObj.type != InterfaceType.Equipment)
             {
+                isMinus = false;
                 return;
             }
             else
             {
-                if (currentInven.item.abilities != null)
+                if (currentInven.item.abilities != null && !isMinus)
                 {
                     foreach (ItemAbility a in currentInven.item.abilities)
                     {
+                        Debug.Log($"{a.characterStack} +{a.valStack}");
+
                         switch (a.characterStack)
                         {
                             case CharacterStack.Str:
+
                                 PlayerData.Ad += a.valStack;
-                                //ad = a.valStack;
+
+                                atk_Inven.text = $"ATK : {PlayerData.Ad}";
+                                atk_NomalCam.text = $"{PlayerData.Ad}";
+
+                                Debug.Log(PlayerData.Ad);
                                 break;
                             case CharacterStack.Hp:
                                 PlayerData.Health += a.valStack;
-                                //hp = mitemAbility[i].valStack;
+
+                                hp_NomalCam.text = $"{mainModule._HpModule.hp} / {PlayerData.Health}"; //._HpModule.maxHp}";
+                                hp_Inven.text = $"HP : {mainModule._HpModule.hp} /  {PlayerData.Health}"; //{ mainModule._HpModule.maxHp}";
+                                hp_Mini.text = $"{mainModule._HpModule.hp} / {PlayerData.Health}"; //{ mainModule._HpModule.maxHp}";
+                                Debug.Log(mainModule._HpModule.hp);
+                                Debug.Log(mainModule._HpModule.maxHp);
+
+                                Debug.Log(PlayerData.Health);
                                 break;
                             case CharacterStack.Speed:
                                 PlayerData.Speed += a.valStack;
+
+                                speed_Inven.text = $"SPEED : {PlayerData.Speed}";
+                                speed_NomalCam.text = $"{PlayerData.Speed}";
+
+                                Debug.Log(PlayerData.Speed);
                                 break;
                             case CharacterStack.Defend:
                                 PlayerData.Def += a.valStack;
+
+                                def_Inven.text = $"DEF : {PlayerData.Def}";
+                                def_NomalCam.text = $"{PlayerData.Def}";
+
+                                Debug.Log(PlayerData.Def);
                                 break;
                         }
+
                     }
                 }
 
@@ -242,17 +291,34 @@ public abstract class UIInventory : MonoBehaviour
                         {
                             case CharacterStack.Str:
                                 PlayerData.Ad -= a.valStack;
+
+
+                                atk_Inven.text = $"ATK : {PlayerData.Ad}";
+                                atk_NomalCam.text = $"{PlayerData.Ad}";
                                 //ad = a.valStack;
                                 break;
                             case CharacterStack.Hp:
                                 PlayerData.Health -= a.valStack;
-                                //hp = mitemAbility[i].valStack;
+
+                                hp_NomalCam.text = $"{mainModule._HpModule.hp} / {PlayerData.Health}"; //._HpModule.maxHp}";
+                                hp_Inven.text = $"HP : {mainModule._HpModule.hp} /  {PlayerData.Health}"; //{ mainModule._HpModule.maxHp}";
+                                hp_Mini.text = $"{mainModule._HpModule.hp} / {PlayerData.Health}"; //{ mainModule._HpModule.maxHp}";
+
+
                                 break;
                             case CharacterStack.Speed:
                                 PlayerData.Speed -= a.valStack;
+
+                                speed_Inven.text = $"SPEED : {PlayerData.Speed}";
+                                speed_NomalCam.text = $"{PlayerData.Speed}";
+
                                 break;
                             case CharacterStack.Defend:
                                 PlayerData.Def -= a.valStack;
+
+                                def_Inven.text = $"DEF : {PlayerData.Def}";
+                                def_NomalCam.text = $"{PlayerData.Def}";
+
                                 break;
                         }
                     }
