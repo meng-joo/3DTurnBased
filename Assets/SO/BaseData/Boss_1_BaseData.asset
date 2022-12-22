@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3fd7464eec7dfc4a991033f715f63f1, type: 3}
   m_Name: Boss_1_BaseData
   m_EditorClassIdentifier: 
-  _hp: 10
+  _hp: 280
   _def: 12
-  _atk: 30
+  _atk: 33
   _speed: 10

@@ -364,7 +364,7 @@ public class BattleUI : MonoBehaviour
     public void GameEnd(string isWin)
     {
         Sequence seq = DOTween.Sequence();
-     
+
         winorlose.text = isWin;
         seq.AppendCallback(() =>
         {
@@ -388,9 +388,19 @@ public class BattleUI : MonoBehaviour
         //seq.Append(winorlose.DOFade)
         seq.Append(winorlose.DOFade(0, 0.3f));
         seq.Join(winorlose.transform.DOScale(0f, 0.4f).SetEase(Ease.InBack));
+
+        Transform[] cardchildList = costParentTrm.GetComponentsInChildren<RectTransform>();
+        foreach (var deletecard in cardchildList)
+        {
+            if (deletecard == costParentTrm)
+                continue;
+
+            Destroy(deletecard.gameObject);
+
+        }
     }
 
-    public void OnClickTurnEnd()   //여기 턴 넘어가는 곳
+        public void OnClickTurnEnd()   //여기 턴 넘어가는 곳
     {
         TurnChangeEffect(false);
         ClearCard(10);

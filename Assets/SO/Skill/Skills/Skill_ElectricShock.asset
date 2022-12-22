@@ -18,7 +18,7 @@ MonoBehaviour:
     _skillCost: 2
     target: Enemy
     skilltypeText: 
-    value: 4b000000
+    value: 4b00000001000000
     _skillCardColor:
       serializedVersion: 2
       rgba: 4279380417
@@ -30,7 +30,8 @@ MonoBehaviour:
     _poolType: 5
     _methodName:
     - HitEnemyDamageValue
+    - Fear
     isPossession: 0
     _skillExplanation: "\uC0C1\uB300\uB97C '\uACF5\uD3EC'\uC2DC\uD0A8\uB2E4. \uD50C\uB808\uC774\uC5B4
       \uACF5\uACA9\uB825\uC758 75%\uC758 \uD53C\uD574\uB97C \uC900\uB2E4."
-    clip: {fileID: 8300000, guid: 1ca3c350562eb4a1db390ad75ac0dc10, type: 3}
+    clip: {fileID: 8300000, guid: 4a6724f606a7f72429bfc58dbdebf0b0, type: 3}

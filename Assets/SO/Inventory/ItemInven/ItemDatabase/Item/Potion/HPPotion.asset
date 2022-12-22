@@ -19,10 +19,10 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: 78d352f689f84b141bd7bc770b3e9c5b, type: 3}
   objModelPrefab: {fileID: 0}
   itemData:
-    item_id: 1
+    item_id: 2
     item_name: "\uCCB4\uB825 \uD3EC\uC158"
     inBattle: 0
     abilities: []
   boneNameLists: []
-  itemSummery: "\uCCB4\uB825 7\uC744 \uD68C\uBCF5\uD558\uB294 \uD3EC\uC158"
-  value: 07000000
+  itemSummery: "\uCCB4\uB825 17\uC744 \uD68C\uBCF5\uD558\uB294 \uD3EC\uC158"
+  value: 11000000

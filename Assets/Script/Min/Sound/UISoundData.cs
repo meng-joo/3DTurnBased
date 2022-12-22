@@ -15,4 +15,5 @@ public class UISoundData : ScriptableObject
 
     public AudioClip tiperrorClip;
 
+    public AudioClip sanhojacyoung;
 }

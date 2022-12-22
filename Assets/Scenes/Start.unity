@@ -412,7 +412,7 @@ MonoBehaviour:
   _lastPos: {fileID: 820421807}
   _textSpeed: 100
   _tooltipText: {fileID: 1742107120}
-  _isEnding: 1
+  _isEnding: 0
   _text: {fileID: 524144425}
   fadeObj: {fileID: 1765814127}
   data: {fileID: 11400000, guid: de8a6403f7d0675478f21fa28ee7e868, type: 2}

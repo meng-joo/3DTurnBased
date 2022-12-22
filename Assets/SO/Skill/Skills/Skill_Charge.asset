@@ -33,4 +33,4 @@ MonoBehaviour:
     isPossession: 0
     _skillExplanation: "\uD50C\uB808\uC774\uC5B4\uAC00 \uAE30\uB97C \uBAA8\uC544
       \uCF54\uC2A4\uD2B8\uB97C 2 \uD68C\uBCF5\uD55C\uB2E4."
-    clip: {fileID: 8300000, guid: 1ca3c350562eb4a1db390ad75ac0dc10, type: 3}
+    clip: {fileID: 8300000, guid: 4a6724f606a7f72429bfc58dbdebf0b0, type: 3}

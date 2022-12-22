@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Meng_2Stage.unity
     guid: 5d78c3ec2a6585d438238af8cd1ac012
+  - enabled: 1
+    path: Assets/Scenes/Meng_3Stage.unity
+    guid: 2f90a33216836f34b8d8c98bc1d2f2ba
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 68ca24b2353f66041884f878e70ae70a, type: 2}

@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: TipSO
   m_EditorClassIdentifier: 
   tipStr:
-  - A-turn-around game
-  - have a strong enemy
-  - Maeng Jooyoung is mine.
-  - I dont like UNITY
-  - Papago is God
+  - This game is a turn-based game
+  - Run around and fight enemies
+  - Be sure to equip items to become stronger

@@ -103,15 +103,15 @@ public class SkillFunc : MonoBehaviour
 
     public static void Fear(GameObject _enemy, int fearValue, Color32 _color)
     {
-        if (_enemy.GetComponent<HpModule>().fear < 1)
-        {
-            GameObject a = PoolManager.Instance.Pop(PoolType.Status_Fear).gameObject;
-            a.transform.SetParent(_enemy.GetComponent<HpModule>().statusImage.transform);
-            a.transform.position = Vector3.zero;
-            Debug.Log(a.transform.position);
-            a.transform.rotation = Quaternion.Euler(0, 0, 0);
-            Debug.Log(a.transform.rotation);
-        }
+        //if (_enemy.GetComponent<HpModule>().fear < 1)
+        //{
+        //    GameObject a = PoolManager.Instance.Pop(PoolType.Status_Fear).gameObject;
+        //    a.transform.SetParent(_enemy.GetComponent<HpModule>().statusImage.transform);
+        //    a.transform.position = Vector3.zero;
+        //    Debug.Log(a.transform.position);
+        //    a.transform.rotation = Quaternion.Euler(0, 0, 0);
+        //    Debug.Log(a.transform.rotation);
+        //}
         _enemy.GetComponent<HpModule>().fear += fearValue;
         //_enemy.GetComponent<HpModule>().AddStatus("Fear");
     }

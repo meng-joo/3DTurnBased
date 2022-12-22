@@ -111,12 +111,12 @@ public class MapManager : MonoBehaviour
 
         #region 글자와 로고 날려보내면서 투명도 없애기
         seq.Append(maskImage.transform.DOMoveX(2100, 0.93f));
-        seq.Join(maskImage.DOFade(0, 0.7f));
-        seq.Join(maskTargetImage.DOFade(0, 0.7f));
+        //seq.Join(maskImage.DOFade(0, 0.7f));
+        //seq.Join(maskTargetImage.DOFade(0, 0.7f));
         seq.Append(tipText.transform.DOMoveX(-700, 0.4f));
-        seq.Join(tipText.DOFade(0, 0.6f));
+        //seq.Join(tipText.DOFade(0, 0.6f));
         seq.Append(tip.transform.DOMoveX(-600, 0.93f));
-        seq.Join(tip.DOFade(0, 0.6f));
+        //seq.Join(tip.DOFade(0, 0.6f));
         seq.Append(barImage.transform.DOMoveX(-(1920f / 2), 0.3f));
         seq.Join(barImage.DOFade(0, 0.2f));
         #endregion

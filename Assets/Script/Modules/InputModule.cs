@@ -66,6 +66,9 @@ public class InputModule : MonoBehaviour
     {
         if (mainModule.stageClear)
         {
+       AudioManager.PlayAudio( UISoundManager.Instance.data.sanhojacyoung);
+
+
             mainModule.canMove = true;
             mainModule.MapManager.StartInit(mainModule.playerDataSO.stage + 1);
         }
@@ -85,6 +88,8 @@ public class InputModule : MonoBehaviour
         Sequence seq = DOTween.Sequence();
         seq.AppendCallback(() =>
         {
+            AudioManager.PlayAudio(UISoundManager.Instance.data.sanhojacyoung);
+
             mainModule.canInven = false;
             mainModule.chestCreateManager.chestAnimators[mainModule.physicsModule.index].Play("Open");
             mainModule.isTrophy = true; 

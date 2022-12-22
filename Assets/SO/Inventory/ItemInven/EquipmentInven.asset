@@ -30,13 +30,6 @@ MonoBehaviour:
         inBattle: 0
         abilities: []
       itemCnt: 0
-    - itemTypes: 03000000
-      item:
-        item_id: -1
-        item_name: 
-        inBattle: 0
-        abilities: []
-      itemCnt: 0
     - itemTypes: 02000000
       item:
         item_id: -1
@@ -44,6 +37,21 @@ MonoBehaviour:
         inBattle: 0
         abilities: []
       itemCnt: 0
+    - itemTypes: 03000000
+      item:
+        item_id: 8
+        item_name: KinghtPants
+        inBattle: 0
+        abilities:
+        - characterStack: 1
+          valStack: 3
+          min: 3
+          max: 3
+        - characterStack: 3
+          valStack: 1
+          min: 1
+          max: 1
+      itemCnt: 1
     - itemTypes: 04000000
       item:
         item_id: -1

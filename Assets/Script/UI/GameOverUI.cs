@@ -100,5 +100,22 @@ public class GameOverUI : MonoBehaviour
         itemInven?.Clear();
         equipInven?.Clear();
 
+        equipInven.invenSlots[0].itemTypes[0] = ItemType.Helmet;
+        equipInven.invenSlots[1].itemTypes[0] = ItemType.Armor;
+        equipInven.invenSlots[2].itemTypes[0] = ItemType.Pants;
+        equipInven.invenSlots[3].itemTypes[0] = ItemType.Shoes;
+        equipInven.invenSlots[4].itemTypes[0] = ItemType.Weapon;
+        equipInven.invenSlots[5].itemTypes[0] = ItemType.Jewelry;
+
+
+        quickInven.invenSlots[0].itemTypes[0] = ItemType.Default;
+        quickInven.invenSlots[1].itemTypes[0] = ItemType.Default;
+        quickInven.invenSlots[2].itemTypes[0] = ItemType.Default;
+        quickInven.invenSlots[3].itemTypes[0] = ItemType.Default;
+        quickInven.invenSlots[4].itemTypes[0] = ItemType.Default;
+        quickInven.invenSlots[5].itemTypes[0] = ItemType.Default;
+        quickInven.invenSlots[6].itemTypes[0] = ItemType.Default;
+
+
     }
 }
