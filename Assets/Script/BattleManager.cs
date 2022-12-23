@@ -4,6 +4,7 @@ using UnityEngine;
 using Cinemachine;
 using UnityEngine.AI;
 using DG.Tweening;
+using TMPro;
 
 public class BattleManager : MonoBehaviour
 {
@@ -38,6 +39,10 @@ public class BattleManager : MonoBehaviour
     public GameObject dirSprite;
 
     public EffectUI _effectUI;
+
+    public TextMeshProUGUI hp_NomalCam;
+    public TextMeshProUGUI hp_Inven;
+    public TextMeshProUGUI hp_Mini;
     private void Start()
     {
         killenemyCount = 0;
@@ -159,6 +164,10 @@ public class BattleManager : MonoBehaviour
         _mainModule._BattleModule.inBattle = false;
         _mainModule._BattleModule.EndBattle();
         StartCoroutine(UnlockBattleLimit());
+
+        hp_NomalCam.text = $"{_mainModule._HpModule.hp} / {_mainModule.playerDataSO.Health}"; //._HpModule.maxHp}";
+        hp_Inven.text = $"HP : {_mainModule._HpModule.hp} /  {_mainModule.playerDataSO.Health}"; //{ mainModule._HpModule.maxHp}";
+        hp_Mini.text = $"{_mainModule._HpModule.hp} / {_mainModule.playerDataSO.Health}";
     }
 
     public void SetBattleUI()
@@ -212,8 +221,6 @@ public class BattleManager : MonoBehaviour
            _battleUI.TurnChangeEffect(true);
             yield return new WaitForSeconds(0.2f);
             _battleUI.SetActiveButton(true);
-
-
 
             playerHitCam.Priority -= 100;
             /*if(!shieldMaintain)*/

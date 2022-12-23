@@ -5429,7 +5429,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 2.360018
+  orthographic size: 3.080018
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -21902,7 +21902,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435867081}
-  m_LocalRotation: {x: 0.11779183, y: -0.39380544, z: 0.050964177, w: 0.91018957}
+  m_LocalRotation: {x: 0.11779181, y: -0.3938054, z: 0.050964165, w: 0.91018957}
   m_LocalPosition: {x: 8.57, y: 3.79, z: -14.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -57746,7 +57746,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354670130}
-  m_LocalRotation: {x: 0.09614291, y: -0.00000001765377, z: 0.0000000017051838, w: 0.9953676}
+  m_LocalRotation: {x: 0.09614291, y: 0.000000017653768, z: -0.0000000017051837, w: 0.9953676}
   m_LocalPosition: {x: 0, y: 3.8799999, z: -9.999999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -86904,7 +86904,7 @@ MonoBehaviour:
   enemySpawnMinPoint: 0
   enemySpawnMaxPoint: 0
   killenemyCount: 0
-  maxEnemyCount: 8
+  maxEnemyCount: 5
   ccm: {fileID: 638879456}
   bagImage: {fileID: 302382020}
   settingImage: {fileID: 402642972}
@@ -86912,6 +86912,9 @@ MonoBehaviour:
   battleRelicParent: {fileID: 760093626}
   dirSprite: {fileID: 416791804}
   _effectUI: {fileID: 1892100674}
+  hp_NomalCam: {fileID: 1416435048117693166}
+  hp_Inven: {fileID: 55474847}
+  hp_Mini: {fileID: 589033033}
 --- !u!4 &2096068069
 Transform:
   m_ObjectHideFlags: 0

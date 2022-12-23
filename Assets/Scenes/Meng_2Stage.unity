@@ -96294,7 +96294,7 @@ MonoBehaviour:
   enemySpawnMinPoint: 0
   enemySpawnMaxPoint: 0
   killenemyCount: 0
-  maxEnemyCount: 7
+  maxEnemyCount: 4
   ccm: {fileID: 638879456}
   bagImage: {fileID: 302382020}
   settingImage: {fileID: 402642972}
@@ -96302,6 +96302,9 @@ MonoBehaviour:
   battleRelicParent: {fileID: 760093626}
   dirSprite: {fileID: 416791804}
   _effectUI: {fileID: 1892100674}
+  hp_NomalCam: {fileID: 1416435048117693166}
+  hp_Inven: {fileID: 55474847}
+  hp_Mini: {fileID: 589033033}
 --- !u!4 &2096068069
 Transform:
   m_ObjectHideFlags: 0

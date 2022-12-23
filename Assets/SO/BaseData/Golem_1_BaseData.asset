@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 70
   _def: 3
-  _atk: 14
+  _atk: 12
   _speed: 2

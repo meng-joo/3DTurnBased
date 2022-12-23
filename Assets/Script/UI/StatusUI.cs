@@ -32,8 +32,6 @@ public class StatusUI : MonoBehaviour
 
     IEnumerator UpdateText()
     {
-        while (true)
-        {
             hp_NomalCam.text = $"{mainModule._HpModule.hp} / {mainModule._HpModule.maxHp}";
             hp_Inven.text = $"HP : {mainModule._HpModule.hp} / {mainModule._HpModule.maxHp}";
             hp_Mini.text = $"{mainModule._HpModule.hp} / {mainModule._HpModule.maxHp}";
@@ -47,6 +45,6 @@ public class StatusUI : MonoBehaviour
             speed_Inven.text = $"SPEED : {mainModule.playerDataSO.Speed}";
             speed_NomalCam.text = $"{mainModule.playerDataSO.Speed}";
             yield return new WaitForSeconds(3f);
-        }
+        
     }
 }

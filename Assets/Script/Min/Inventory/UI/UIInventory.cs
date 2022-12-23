@@ -79,7 +79,6 @@ public abstract class UIInventory : MonoBehaviour
             inventoryObj.invenSlots[i].uploadSlot(inventoryObj.invenSlots[i].item, inventoryObj.invenSlots[i].itemCnt);
         }
 
-
         hp_NomalCam.text = $"{mainModule._HpModule.hp} / {PlayerData.Health}"; //._HpModule.maxHp}";
         hp_Inven.text = $"HP : {mainModule._HpModule.hp} /  {PlayerData.Health}"; //{ mainModule._HpModule.maxHp}";
         hp_Mini.text = $"{mainModule._HpModule.hp} / {PlayerData.Health}"; //{ mainModule._HpModule.maxHp}";
