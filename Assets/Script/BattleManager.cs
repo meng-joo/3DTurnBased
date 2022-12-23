@@ -156,6 +156,12 @@ public class BattleManager : MonoBehaviour
         _mainModule.battleCam.Priority -= 10;
         
         if(!boss)_mainModule.playerDataSO.killEnemy++;
+
+        if (boss)
+        {
+            DialogManager.Instance.ShowText("문을 찾아 다음 맵으로 가시오");
+        }
+
         _battleUI.cemetryBtn.SetActive(false);
         _battleUI.pickCardBtn.SetActive(false);
         killenemyCount++;

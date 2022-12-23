@@ -70,6 +70,8 @@ public class HpModule : MonoBehaviour
         UpdateHPText();
 
         _battleUI = FindObjectOfType<BattleUI>();
+
+        
     }
 
     private void Update()

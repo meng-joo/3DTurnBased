@@ -37753,6 +37753,7 @@ MonoBehaviour:
   speed_Inven: {fileID: 758045410}
   speed_NomalCam: {fileID: 1590073285}
   mainModule: {fileID: 9175644270623422100}
+  player: {fileID: 11400000, guid: de8a6403f7d0675478f21fa28ee7e868, type: 2}
 --- !u!1001 &817904559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62758,7 +62759,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354670130}
-  m_LocalRotation: {x: 0.09614291, y: -0.00000001765377, z: 0.0000000017051838, w: 0.9953676}
+  m_LocalRotation: {x: 0.09614291, y: 0.000000017653768, z: -0.0000000017051837, w: 0.9953676}
   m_LocalPosition: {x: 0, y: 3.8799999, z: -9.999999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -95809,7 +95810,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -121336,8 +121337,8 @@ MonoBehaviour:
   battleCam: {fileID: 435867084}
   twoView: {fileID: 665235672}
   _enemySpawnPoint: []
-  minTime: 9.54
-  maxTime: 17.6
+  minTime: 8
+  maxTime: 13
   canMove: 0
   canInven: 1
   canRelic: 0

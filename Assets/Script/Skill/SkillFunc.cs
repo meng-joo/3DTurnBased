@@ -35,12 +35,14 @@ public class SkillFunc : MonoBehaviour
         SkinnedMeshAfterImage skinnedMeshAfterImage = player.GetComponent<SkinnedMeshAfterImage>();
         skinnedMeshAfterImage.enabled = true;
         GameObject target = player.transform.Find("Target").gameObject;
+        GameObject cost = player.transform.Find("CostObj").gameObject;
 
 
         Sequence seq = DOTween.Sequence();
 
         Vector3 originpos = player.transform.localPosition;
         target.transform.SetParent(null);
+        cost.transform.SetParent(null);
         seq.Append(player.transform.DOLocalMove(_enemy.transform.position + _enemy.transform.forward * -2, 0.74f));
 
         seq.AppendCallback(() =>
@@ -48,6 +50,7 @@ public class SkillFunc : MonoBehaviour
             skinnedMeshAfterImage.enabled = false;
             player.transform.localPosition = originpos;
             target.transform.SetParent(player.transform);
+            cost.transform.SetParent(player.transform);
         });
     }
 

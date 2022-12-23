@@ -34613,6 +34613,7 @@ MonoBehaviour:
   speed_Inven: {fileID: 758045410}
   speed_NomalCam: {fileID: 1590073285}
   mainModule: {fileID: 9175644270623422100}
+  player: {fileID: 11400000, guid: de8a6403f7d0675478f21fa28ee7e868, type: 2}
 --- !u!1001 &817904559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -86419,7 +86420,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -111855,8 +111856,8 @@ MonoBehaviour:
   battleCam: {fileID: 435867084}
   twoView: {fileID: 665235672}
   _enemySpawnPoint: []
-  minTime: 9.54
-  maxTime: 17.6
+  minTime: 8
+  maxTime: 13
   canMove: 0
   canInven: 1
   canRelic: 0

@@ -121,6 +121,8 @@ public class MainModule : MonoBehaviour
         {
             _enemySpawnPoint.Add(transform.GetChild(i + 6));
         }
+
+  
     }
 
     private void Update()

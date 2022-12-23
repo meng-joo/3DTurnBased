@@ -45,11 +45,8 @@ public class Card : PoolAbleObject, IPointerEnterHandler, IPointerExitHandler, I
         {
             skill = value;
             gameObject.transform.Find("Image").GetComponent<Image>().sprite = (skill != null) ? skill.skillInfo._skillImage : null;
-            //gameObject.GetComponentInChildren<TextMeshProUGUI>().text = (skill != null) ? skill.skillInfo._skillName : string.Empty;
-
             gameObject.transform.Find("NameBackground").GetComponentInChildren<TextMeshProUGUI>().text = (skill != null) ? skill.skillInfo._skillName : string.Empty;
             gameObject.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = (skill != null) ? skill.skillInfo._skillExplanation : string.Empty;
-            //gameObject.transform.Find("CostTxt").GetComponent<TextMeshProUGUI>().text = (skill != null) ? skill.skillInfo._skillCost.ToString() : string.Empty;
             gameObject.transform.Find("CostImage").GetComponentInChildren<TextMeshProUGUI>().text = (skill != null) ? skill.skillInfo._skillCost.ToString(): string.Empty;
             SetAlpha(0f);
 
@@ -96,10 +93,6 @@ public class Card : PoolAbleObject, IPointerEnterHandler, IPointerExitHandler, I
             #endregion
 
             #region µ¶ SO ≥÷æÓ¡÷±‚
-            //for (int i = 0; i < invenSkill.skillCards.Length; i++)
-            //{
-            //    invenSkill.skillDeckInvenObj.cards[i] = invenSkill.skillCards[i].Skill;
-            //}
             for (int i = 0; i < invenSkill.PlayerDataSO._skills.Count; i++)
             {
                 invenSkill.PlayerDataSO._skills[i] = invenSkill.skillCards[i].Skill;

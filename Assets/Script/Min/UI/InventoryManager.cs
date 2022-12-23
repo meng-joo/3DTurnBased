@@ -133,6 +133,7 @@ public class InventoryManager : MonoBehaviour
         seq.AppendCallback(() => OnItemUI());                    //<<----여기도 위에 있던거 밑으로 스퀀스 내림
         //seq.AppendCallback(() => invenSkill.DeleteCard());               
         invenSkill.DeleteCard();
+
         mainModule.canMove = false;
         exitBtn.SetActive(false);
         useTapOffBtn.SetActive(false);
