@@ -5,6 +5,7 @@ using Cinemachine;
 using UnityEngine.AI;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 {
@@ -51,6 +52,11 @@ public class BattleManager : MonoBehaviour
 
     public void SetBattle()
     {
+        if (TutorialManager.Instance.isTuto)
+        {
+              
+        TutorialManager.Instance.Battle();
+        }
         Sequence seq = DOTween.Sequence();
 
         bool isf = _mainModule.playerDataSO.killEnemy < maxEnemyCount ? false : true;
@@ -155,6 +161,8 @@ public class BattleManager : MonoBehaviour
         _mainModule.twoView.Priority += 10;
         _mainModule.battleCam.Priority -= 10;
         
+        
+
         if(!boss)_mainModule.playerDataSO.killEnemy++;
 
         if (boss)
@@ -174,6 +182,22 @@ public class BattleManager : MonoBehaviour
         hp_NomalCam.text = $"{_mainModule._HpModule.hp} / {_mainModule.playerDataSO.Health}"; //._HpModule.maxHp}";
         hp_Inven.text = $"HP : {_mainModule._HpModule.hp} /  {_mainModule.playerDataSO.Health}"; //{ mainModule._HpModule.maxHp}";
         hp_Mini.text = $"{_mainModule._HpModule.hp} / {_mainModule.playerDataSO.Health}";
+
+        if (TutorialManager.Instance.isTuto)
+        {
+            Sequence seq = DOTween.Sequence();
+            seq.AppendCallback(() =>
+            {
+            DialogManager.Instance.ShowText("듀토리얼을 무사히 마치셨습니다");
+
+            });
+            seq.AppendInterval(2f);
+            seq.AppendCallback(() =>
+            {
+                DialogManager.Instance.ShowText("이제 본 게임을 시작해봅시다");
+                TutorialManager.Instance.isTuto = false;
+            });
+        }
     }
 
     public void SetBattleUI()

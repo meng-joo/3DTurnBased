@@ -212,6 +212,8 @@ public abstract class UIInventory : MonoBehaviour
         }
         else if (MouseTransformData.mouseSlot)
         {
+            TutorialManager.Instance.isDragItem = true;
+
             InvenSlot mouseHoverSlotData = MouseTransformData.mouseInventory.uiSlotLists[MouseTransformData.mouseSlot]; //드래그 하고 있는애
             InvenSlot uIInventory = uiSlotLists[gameObj];
 

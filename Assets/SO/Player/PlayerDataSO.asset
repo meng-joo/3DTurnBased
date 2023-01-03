@@ -22,9 +22,9 @@ MonoBehaviour:
   killEnemy: 0
   cost: 3
   player: {fileID: 11400000, guid: e685c9983c5323c48b0883e0cfe4a469, type: 2}
-  canBattle: 1
+  canBattle: 0
   _skills:
-  - {fileID: 11400000, guid: b6ed1b400dd58384192f8552040ac9ea, type: 2}
+  - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
   - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
   - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}
   - {fileID: 11400000, guid: 01b6875f447cb124e8f76fa5480a4143, type: 2}

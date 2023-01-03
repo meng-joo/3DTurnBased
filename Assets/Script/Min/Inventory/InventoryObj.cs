@@ -48,8 +48,7 @@ public class InventoryObj : ScriptableObject
         InvenSlot invenSlot = seachItemInInven(item);
         if (!itemDBObj.itemObjs[item.item_id].getFlagStackable || invenSlot == null)
         {
-            Debug.Log(itemDBObj.itemObjs.Length);
-            if (getEmptySlotCnt <= 0)
+            if (getEmptySlotCnt <= 0)   
             {
                 return false;
             }

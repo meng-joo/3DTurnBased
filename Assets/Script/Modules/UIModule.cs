@@ -66,8 +66,6 @@ public class UIModule : MonoBehaviour
 
     public void OnInteractionKeyImage(bool isOn = false, string _behave = "", string _key = "f", string _func = "")
     {
-        Debug.Log(isOn);
-
         _keyName = _key;
 
         _keyText.text = _key;

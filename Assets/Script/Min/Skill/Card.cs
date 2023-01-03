@@ -91,7 +91,7 @@ public class Card : PoolAbleObject, IPointerEnterHandler, IPointerExitHandler, I
             this.Skill = Click.clickCard.Skill;
             Click.clickCard.Skill = skillTemp;
             #endregion
-
+            TutorialManager.Instance.isCardClick = true;
             #region µ¶ SO ≥÷æÓ¡÷±‚
             for (int i = 0; i < invenSkill.PlayerDataSO._skills.Count; i++)
             {

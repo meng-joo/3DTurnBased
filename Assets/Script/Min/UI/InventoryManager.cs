@@ -140,6 +140,8 @@ public class InventoryManager : MonoBehaviour
         useTab.SetActive(false);
         relic.SetActive(true);
         cardInfo.SetActive(false);
+
+        TutorialManager.Instance.isInvenClear = true;
     }
     public void OnSkillUI()
     {

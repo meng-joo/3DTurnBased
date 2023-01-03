@@ -17,7 +17,7 @@ public class ToolTipManager : MonoBehaviour
     {
         while (true)
         {
-            if (mainModule.isBattle == false && mainModule.isTrophy == false && mainModule.canInven == true && mainModule.MapManager.isMiniMapUp == false && im.isInven  == false)
+            if (TutorialManager.Instance.isTuto == false && mainModule.isBattle == false && mainModule.isTrophy == false && mainModule.canInven == true && mainModule.MapManager.isMiniMapUp == false && im.isInven  == false)
             {
                 Debug.Log("A");
                 int randTxt = Random.Range(0, s.Count);

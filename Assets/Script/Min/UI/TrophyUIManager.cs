@@ -410,9 +410,16 @@ public class TrophyUIManager : MonoBehaviour
                 bagBtn.interactable = true;
                 settingBtn.interactable = true;
 
-                Destroy(mainModule.chestCreateManager.chestAnimators[mainModule.physicsModule.index].gameObject);
                 mainModule._UIModule.OnInteractionKeyImage(false, "", "j", "");
 
+                if (TutorialManager.Instance.isTuto)
+                {
+                    Debug.Log("¾ËÆ®Zz");
+                    TutorialManager.Instance.OpenChestCallBack();
+
+                }
+
+                Destroy(mainModule.chestCreateManager.chestAnimators[mainModule.physicsModule.index].gameObject);
             });
         }
         else

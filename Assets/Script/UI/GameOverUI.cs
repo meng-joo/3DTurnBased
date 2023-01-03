@@ -57,6 +57,15 @@ public class GameOverUI : MonoBehaviour
     }
     public void Init()
     {
+        TutorialManager.Instance.isTuto = true;
+        TutorialManager.Instance.isInvenClear = false;
+        TutorialManager.Instance.isDragItem = false;
+        TutorialManager.Instance.isCardClick = false;
+
+        TutorialManager.Instance.isItem = true;
+
+        TutorialManager.Instance.isDragCard = false;
+
         platerDataSO.isBuringBlood= false; 
         platerDataSO.isAnchor     = false;
         platerDataSO.isBagOfMarbles = false;

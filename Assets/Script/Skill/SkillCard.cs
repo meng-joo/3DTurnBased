@@ -89,6 +89,7 @@ public class SkillCard : PoolAbleObject
 
     void FixedUpdate()
     {
+    
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (m_IsButtonDowning)
@@ -128,7 +129,10 @@ public class SkillCard : PoolAbleObject
                 _mainModule.dirObj.transform.LookAt(hit.point);
                 _mainModule.dirObj.transform.eulerAngles = new Vector3(0, _mainModule.dirObj.transform.eulerAngles.y, 0);
 
-
+                if (TutorialManager.Instance.isDragCard == false)
+                {
+                    return;
+                }
                 if (hit.collider.CompareTag(target))
                 {
                     if (fadeImage.color.a <= 1f)

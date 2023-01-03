@@ -53,6 +53,11 @@ public class StartSceneManager : MonoBehaviour
         //SceneManager.LoadScene("InGame_Hollway");
         //탑으로 가는 씬
     }
+    public void GoTuto()
+    {
+        SceneManager.LoadScene("Tuto");
+        TutorialManager.Instance.isTuto = true;
+    }
 
     public void DicBtn()
     {

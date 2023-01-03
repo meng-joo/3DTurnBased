@@ -7,6 +7,9 @@ using UnityEngine.Playables;
 
 public class MainModule : MonoBehaviour
 {
+    [Header("전투 할 지역?")]
+    public bool isBattleArea;
+
     [Space]
     [Header("플레이어 데이터")]
     public PlayerDataSO playerDataSO;
@@ -93,6 +96,7 @@ public class MainModule : MonoBehaviour
     public BattleManager bm;
     private void Awake()
     {
+        canMove = true;
         physicsModule = GetComponent<PhysicsModule>();
         _moveModule = GetComponent<MoveModule>();
         _inputModule = GetComponent<InputModule>();
@@ -107,6 +111,9 @@ public class MainModule : MonoBehaviour
         //_animatorOverride = GetComponent<AnimatorOverrideController>();
         playerCam = Camera.main;
         SetBattleDelay();
+        StartCoroutine(ansnd());
+
+        playerDataSO.canBattle = isBattleArea;
     }
 
     private void Start()
@@ -193,5 +200,11 @@ public class MainModule : MonoBehaviour
             playerDataSO.canBattle = true;
             _mapManager.StartInit(playerDataSO.stage + 1);
         }
+    }
+
+    IEnumerator ansnd()
+    {
+        yield return new WaitForSeconds(6f);
+        canMove = false;
     }
 }

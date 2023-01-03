@@ -25,7 +25,6 @@ public class DialogManager : MonoSingleton<DialogManager>
             
        GameObject obj =  Instantiate(ps, Camera.main.ScreenToWorldPoint(dialog.transform.position), Quaternion.identity).gameObject;
 
-        Debug.Log(ps);
         for (int i = 0; i <= text.Length; i++)
         {
             _tipText.text = string.Format(text.Substring(0, i));
